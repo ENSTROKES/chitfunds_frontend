@@ -1,0 +1,117 @@
+<main id="main" class="main">
+    <div class="pagetitle">
+        <h1>Minutes of Auction</h1>
+        <nav>
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a routerLink="/">Home</a></li>
+                <li class="breadcrumb-item">Minutes of Auction</li>
+
+            </ol>
+        </nav>
+    </div>
+    <section class="section">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Minutes of Auction table</h5>
+                        <div class="search-here">
+                            <!-- <select [(ngModel)]="selectedCategory" (change)="valueSelected()">
+                        <option *ngFor="let user of CategoryName">{{ item }}</option>
+                      </select> -->
+                            <label for="inputName5" class="form-label"> <b>Search</b></label>&nbsp;&nbsp;&nbsp;<input type="text" name="search" [(ngModel)]="searchText" placeholder="Search Here">
+                        </div>
+                        <table class="table table-striped">
+
+                            <thead>
+                                <tr>
+                                    <th>Id</th>
+                                    <th>Name</th>
+                                    <th>Username</th>
+                                    <th>Email</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let empData of ListOfEmpData | filter:searchText">
+                                    <td>{{ empData.emp_code }}</td>
+                                    <td>{{ empData.first_name +" "+ empData.last_name}}</td>
+                                    <td>{{ empData.mobile_number }}</td>
+                                    <td>{{ empData.email }}</td>
+                                    <td>
+                                        <div class="icon">
+                                            <i class="bi bi-pencil"></i> &nbsp;
+                                            <i class="bi bi-eye" data-bs-toggle="modal" data-bs-target="#largeModal"></i>&nbsp;
+
+                                            <i class="ri-delete-bin-line" (click)="delete(empData.id)"></i>
+                                            <!-- <div class="d-flex justify-content-center">
+                           <div class="spinner-border" role="status">
+                               <span class="sr-only" id="loading"></span>
+                           </div>
+                       </div> -->
+                                            <div class="modal fade" id="largeModal" tabindex="-1">
+                                                <div class="modal-dialog modal-lg">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+
+                                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                            <!-- <table class="table table-striped">
+    
+                                    <thead>
+                                        <tr>
+                                          <th>Id</th>
+                                          <th>Name</th>
+                                          <th>Username</th>
+                                          <th>Email</th>
+                                          <th>Phone</th>
+                                          <th>Website</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                      <tr *ngFor="let user of users">
+                                        <td>{{ user.id }}</td>
+                                        <td>{{ user.name }}</td>
+                                        <td>{{ user.username }}</td>
+                                        <td>{{ user.email }}</td>
+                                        <td>{{ user.phone }}</td>
+                                        <td>{{ user.website }}</td>
+                                      </tr>
+                                    </tbody>
+                                  </table> -->
+                                                            <p *ngIf="selectedUser">Id: {{ empData.id }}</p>
+                                                            <p *ngIf="selectedUser">Name: {{ empData.name }}</p>
+                                                        </div>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+
+
+                                            <div class="label"></div>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
+<!-- <ul>
+    <li *ngFor="let user of users" style="margin-left: 50%;margin-top: 20px;">
+        {{user.email}}
+    </li>
+</ul> -->
+<!-- <form  #usersForm ="ngForm" (ngSubmit)="getUserFormData(usersForm.value)" style="margin-left: 50%;margin-top: 20px;">
+    <input type="text" ngModel name="name" placeholder="Enter Name">
+    <br> <br>
+    <input type="text" ngModel name="username" placeholder="Enter Username">
+    <br> <br>
+    <input type="text" ngModel name="email" placeholder="Enter email id">
+    <br> <br>
+    <button>Create</button>
+ </form> -->

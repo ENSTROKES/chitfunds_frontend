@@ -1,0 +1,67 @@
+<main id="main" class="main">
+    <div class="pagetitle">
+       <h1>Commitment chit detail</h1>
+       <nav>
+          <ol class="breadcrumb">
+             <li class="breadcrumb-item"><a routerLink="/">Home</a></li>
+             <li class="breadcrumb-item"> Auction</li>
+             <li class="breadcrumb-item active">Commitment chit detail</li>
+          </ol>
+       </nav>
+    </div>
+    <section class="section">
+        <div class="row">
+           <div class="col-lg-12">
+              <div class="card">
+                 <div class="card-body">
+                    <h5 class="card-title">Commitment chit detail</h5>
+                    
+                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#largeModal"style="margin-left:780px; margin-top:-60px;"> Chit details </button>
+                    <div class="modal fade" id="largeModal" tabindex="-1">
+                       <div class="modal-dialog modal-lg">
+                          <div class="modal-content">
+                             <div class="modal-header">
+                                <h5 class="modal-title" >Chit</h5>
+                                <button type="button"  class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                             </div>
+                             <div class="modal-body"> 
+                                <form class="row g-3">
+                                <div class="col-md-6"> <label for="inputName5" class="form-label">Branch Name</label> <input type="text" class="form-control" id="inputName5"></div>
+                                <div class="col-md-6"> <label for="inputName5" class="form-label"> Collection Employee</label> <input type="text" class="form-control" id="inputName5"></div>
+                                <div class="col-md-6"> <label for="inputName5" class="form-label"> Collection Area</label> <input type="text" class="form-control" id="inputName5"></div>                                            
+                                                                                                                  
+                             </form>
+                            </div>
+                             <div class="modal-footer"> <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button> <button type="button" class="btn btn-primary">Save changes</button></div>
+                          </div>
+                       </div>
+                    </div>
+                    <table class="table table-striped">
+    
+                     <thead>
+                         <tr>
+                           <th>Id</th>
+                           <th>Name</th>
+                           <th>Username</th>
+                           <th>Email</th>
+                         </tr>
+                     </thead>
+                     <tbody>
+                       <tr *ngFor="let user of users">
+                         <td>{{ user.id }}</td>
+                         <td>{{ user.name }}</td>
+                         <td>{{ user.username }}</td>
+                         <td>{{ user.email }}</td>
+                       </tr>
+                     </tbody>
+                   </table>
+                 </div>
+              </div>
+           </div>
+        </div>
+     </section>
+       
+       
+                
+
+</main>
