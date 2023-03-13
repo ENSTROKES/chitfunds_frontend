@@ -23,67 +23,120 @@
                    </ul>
                    <div class="tab-content pt-2" id="borderedTabJustifiedContent">
                       <div class="tab-pane fade show active" id="bordered-justified-home" role="tabpanel" aria-labelledby="groups-tab"> <div class="row">
-                        <div class="col-lg-15">
-                           
-                           <div class="card">
-                              <div class="card-body">
-                                 <h5 class="card-title">Group Form</h5>
-                                 <form class="row g-3">
-                                    <div class="col-md-4"> <label for="inputName5" class="form-label">Branch Name</label> <input type="text" class="form-control" id="inputName5"></div> &nbsp;&nbsp; 
-                                    <div class="col-md-6">
-                                    <fieldset class="row mb-6" style="margin-left:100px;">
-                                       <legend class="col-form-label col-sm-3 pt-1">Group Type</legend>
-                                       <div class="col-md-6">
-                                       <div class="col-sm-12">
-                                          <div class="form-check"> <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios1" value="option1" checked> <label class="form-check-label" for="gridRadios1"> Register </label></div>
-                                          <div class="form-check"> <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios2" value="option2"> <label class="form-check-label" for="gridRadios2"> Non-register</label></div>
+                        <div class="row">
+                           <div class="col-lg-12">
+                              <div class="card">
+                                 <div class="card-body">
+                                    <h5 class="card-title"></h5>
+                                    <div class="search-here">
+                                      
+                                       <label for="inputName5" class="form-label"> <b>Search</b></label>&nbsp;&nbsp;&nbsp;<input type="text" name="search" [(ngModel)]="searchText" placeholder="Search Here">
+                                   </div>
+                                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#largeModal"style="margin-left:780px; margin-top:-60px;"> Create</button>
+                                    <div class="modal fade" id="largeModal" tabindex="-1">
+                                       <div class="modal-dialog modal-lg">
+                                          <div class="modal-content">
+                                             <div class="modal-header">
+                                                <h5 class="modal-title" >Group Create</h5>
+                                                <button type="button"  class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                             </div>
+                                             <div class="modal-body"> 
+                                                <form class="row g-3">
+                                                   <!-- <div class="col-md-4"> <label for="inputName5" class="form-label">Branch Name</label> <input type="text" class="form-control" id="inputName5"></div> &nbsp;&nbsp;  -->
+                                                   <div class="col-md-6"> <label for="inputName5" class="form-label"> Branch Name</label>
+                                                      <select name="BranchName" class="form-control">
+                                                         <option>---Select----</option>
+                                                         <option>
+                                                            <!-- {{empData.first_name}} -->
+                                                         </option>
+                                                      </select>
+                                                     </div>
+                                                   <div class="col-md-6">
+                                                   <fieldset class="row mb-6" style="margin-left:100px;">
+                                                      <legend class="col-form-label col-sm-3 pt-1">Group Type</legend>
+                                                      <div class="col-md-6">
+                                                      <div class="col-sm-12">
+                                                         <div class="form-check"> <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios1" value="option1" checked> <label class="form-check-label" for="gridRadios1"> Register </label></div>
+                                                         <div class="form-check"> <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios2" value="option2"> <label class="form-check-label" for="gridRadios2"> Non-register</label></div>
+                                                      </div>
+                                                   </div>
+                                                   </fieldset>
+                                                </div>
+                                                   <div class="col-md-4"> <label for="inputName5" class="form-label"> Group Name</label> <input type="text" class="form-control" id="inputName5"></div>
+                                                   <div class="col-md-6"> <label for="inputName5" class="form-label"> Scheme</label>
+                                                      <select name="Scheme" class="form-control">
+                                                         <option>---Select----</option>
+                                                         <option>
+                                                            <!-- {{empData.first_name}} -->
+                                                         </option>
+                                                      </select>
+                                                     </div>
+                                                   <div class="col-md-4"> <label for="inputName5" class="form-label"> Auction Date</label> <input type="date" class="form-control" id="inputName5"></div>
+                                                   <label for="inputName5" class="form-label"> Auction Time</label>
+                                                   <div class="row mb-3">
+                                                      <label for="inputTime" class="col-sm-1 col-form-label">From </label>
+                                                      <div class="col-sm-4"> <input type="time" class="form-control"></div>
+                                                      <label for="inputTime" class="col-sm-1 col-form-label">To </label>
+                                                      <div class="col-sm-4"> <input type="time" class="form-control"></div>
+                                                   </div>
+                                                   <div class="col-md-4"> <label for="inputName5" class="form-label"> Starting Date</label> <input type="date" class="form-control" id="inputName5"></div>
+                                                   <div class="col-md-4"> <label for="inputName5" class="form-label"> Company Commission percentage</label> <input type="date" class="form-control" id="inputName5"></div><br>
+                                                   
+                                                   
+                                                   
+                                                   <label class="form-check-label" for="gridCheck1" style="margin-top: -10px; padding-top: 30px;"> If Group Type register: &nbsp; Yes</label>
+                                                   <input class="form-check-input" style="margin-top: -20px;margin-left: 220px; " type="checkbox"  (change)="showHideText($event);"> 
+                                                   
+                                                   <div *ngIf="isDisplayed">
+                                                      <div class="row">
+                                                      <div class="col-md-6"> <label for="inputName5" class="form-label"> FD Number</label> <input type="text" class="form-control" id="inputName5"></div>
+                                                   <div class="col-md-6"> <label for="inputName5" class="form-label"> Total FD </label> <input type="text" class="form-control" id="inputName5"></div>
+                                                </div>
+                                                <div class="row">
+                                                   <div class="col-md-6"> <label for="inputName5" class="form-label"> Rate of Interest</label> <input type="text" class="form-control" id="inputName5"></div>
+                                                   <div class="col-md-6"> <label for="inputName5" class="form-label"> FD Date</label> <input type="date" class="form-control" id="inputName5"></div>
+                                                </div>
+                                                <div class="row">
+                                                   <div class="col-md-6"> <label for="inputName5" class="form-label"> Maturity Amount</label> <input type="text" class="form-control" id="inputName5"></div>
+                                                   <div class="col-md-6"> <label for="inputName5" class="form-label"> FD Bank</label> <input type="text" class="form-control" id="inputName5"></div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-6"> <label for="inputName5" class="form-label"> FD Branch</label> <input type="text" class="form-control" id="inputName5"></div>
+                                                    <div class="col-md-6"> <label for="inputName5" class="form-label"> PSO Number</label> <input type="text" class="form-control" id="inputName5"></div>
+                                                   </div>
+                                                    <div class="col-md-6"> <label for="inputName5" class="form-label"> PSO Date</label> <input type="date" class="form-control" id="inputName5"></div>
+                                                   </div>
+                                                   
+                                                                                           
+                                                </form>
+                                            </div>
+                                             <div class="modal-footer"> <button type="submit" class="btn btn-primary">Submit</button>&nbsp; <button type="reset" class="btn btn-secondary">Reset</button></div>
+                                          </div>
                                        </div>
                                     </div>
-                                    </fieldset>
+                                    <table class="table table-striped">
+                    
+                                     <thead>
+                                         <tr>
+                                           <th>Id</th>
+                                           <th>Name</th>
+                                           <th>Username</th>
+                                           <th>Email</th>
+                                         </tr>
+                                     </thead>
+                                     <tbody>
+                                       <tr *ngFor="let user of users| filter:searchText">
+                                         <td>{{ user.id }}</td>
+                                         <td>{{ user.name }}</td>
+                                         <td>{{ user.username }}</td>
+                                         <td>{{ user.email }}</td>
+                                       </tr>
+                                     </tbody>
+                                   </table>
                                  </div>
-                                    <div class="col-md-4"> <label for="inputName5" class="form-label"> Group Name</label> <input type="text" class="form-control" id="inputName5"></div>
-                                    <div class="col-md-4"> <label for="inputName5" class="form-label"> Scheme</label> <input type="text" class="form-control" id="inputName5"></div>
-                                    <div class="col-md-4"> <label for="inputName5" class="form-label"> Auction Date</label> <input type="date" class="form-control" id="inputName5"></div>
-                                    <label for="inputName5" class="form-label"> Auction Time</label>
-                                    <div class="row mb-3">
-                                       <label for="inputTime" class="col-sm-1 col-form-label">From </label>
-                                       <div class="col-sm-4"> <input type="time" class="form-control"></div>
-                                       <label for="inputTime" class="col-sm-1 col-form-label">To </label>
-                                       <div class="col-sm-4"> <input type="time" class="form-control"></div>
-                                    </div>
-                                    <div class="col-md-4"> <label for="inputName5" class="form-label"> Starting Date</label> <input type="date" class="form-control" id="inputName5"></div>
-                                    <div class="col-md-4"> <label for="inputName5" class="form-label"> Company Commission percentage</label> <input type="date" class="form-control" id="inputName5"></div><br>
-                                    
-                                    
-                                    
-                                    <label class="form-check-label" for="gridCheck1" style="margin-top: -10px; padding-top: 30px;"> If Group Type register: &nbsp; Yes</label>
-                                    <input class="form-check-input" style="margin-top: -20px;margin-left: 220px; " type="checkbox"  (change)="showHideText($event);"> 
-                                    <input class="form-check-input" style="margin-top: -20px;margin-left: 60px; " type="checkbox" id="gridCheck1" > <label class="form-check-label" style="margin-top: -25px;margin-left: 260px; " for="gridCheck1"> No </label>
-                                    <div *ngIf="isDisplayed">
-                                       <div class="row">
-                                       <div class="col-md-6"> <label for="inputName5" class="form-label"> FD Number</label> <input type="text" class="form-control" id="inputName5"></div>
-                                    <div class="col-md-6"> <label for="inputName5" class="form-label"> Total FD </label> <input type="text" class="form-control" id="inputName5"></div>
-                                 </div>
-                                 <div class="row">
-                                    <div class="col-md-6"> <label for="inputName5" class="form-label"> Rate of Interest</label> <input type="text" class="form-control" id="inputName5"></div>
-                                    <div class="col-md-6"> <label for="inputName5" class="form-label"> FD Date</label> <input type="date" class="form-control" id="inputName5"></div>
-                                 </div>
-                                 <div class="row">
-                                    <div class="col-md-6"> <label for="inputName5" class="form-label"> Maturity Amount</label> <input type="text" class="form-control" id="inputName5"></div>
-                                    <div class="col-md-6"> <label for="inputName5" class="form-label"> FD Bank</label> <input type="text" class="form-control" id="inputName5"></div>
-                                 </div>
-                                 <div class="row">
-                                     <div class="col-md-6"> <label for="inputName5" class="form-label"> FD Branch</label> <input type="text" class="form-control" id="inputName5"></div>
-                                     <div class="col-md-6"> <label for="inputName5" class="form-label"> PSO Number</label> <input type="text" class="form-control" id="inputName5"></div>
-                                    </div>
-                                     <div class="col-md-6"> <label for="inputName5" class="form-label"> PSO Date</label> <input type="date" class="form-control" id="inputName5"></div>
-                                    </div>
-                                    <div class="text-center"> <button type="submit" class="btn btn-primary">Submit</button>&nbsp; <button type="reset" class="btn btn-secondary">Reset</button></div>                                            
-                                                                            
-                                 </form>
                               </div>
                            </div>
-                        </div>                                                                     
+                        </div>                                                                   
                      </div></div>
                       <div class="tab-pane fade" id="bordered-justified-profile" role="tabpanel" aria-labelledby="slabs-tab"> 
                         <main id="main" class="main">
@@ -93,6 +146,7 @@
                                  <div class="card" style="margin-left: -300px;">
                                     <div class="card-body">
                                        <div class="card-title">
+                                          
                                           <!-- <h5 style="text-align: center;">Chit Value - 10,000   <br></h5> -->
                                              
                                        </div>
@@ -100,7 +154,7 @@
                                        
                                        <table class="table datatable">
                                           <thead>
-                                             <tr>
+                                             <tr >
                                                 <th scope="col">#</th>
                                                 <th scope="col">Chit Value</th>
                                                 <th scope="col">No.of Members</th>
@@ -212,7 +266,7 @@
                                                 
                                              </tr>
                                              <tr>
-                                                <th scope="row">1</th>
+                                                <th scope="row">11</th>
                                                 <td>20,000</td>
                                                 <td>No.of Members</td>
                                                 <td>11</td>
@@ -222,7 +276,7 @@
                                                
                                              </tr>
                                              <tr>
-                                                <th scope="row">2</th>
+                                                <th scope="row">12</th>
                                                 <td>20,000</td>
                                                 <td>No.of Members</td>
                                                 <td>12</td>
@@ -232,7 +286,7 @@
                                                 
                                              </tr>
                                              <tr>
-                                                <th scope="row">3</th>
+                                                <th scope="row">13</th>
                                                 <td>20,000</td>
                                                 <td>No.of Members</td>
                                                 <td>13</td>
@@ -242,7 +296,7 @@
                                                 
                                              </tr>
                                              <tr>
-                                                <th scope="row">4</th>
+                                                <th scope="row">14</th>
                                                 <td>20,000</td>
                                                 <td>No.of Members</td>
                                                 <td>14</td>
@@ -252,7 +306,7 @@
                                                
                                              </tr>
                                              <tr>
-                                                <th scope="row">5</th>
+                                                <th scope="row">15</th>
                                                 <td>20,000</td>
                                                 <td>No.of Members</td>
                                                 <td>15</td>
@@ -262,7 +316,7 @@
                                                 
                                              </tr>
                                              <tr>
-                                                <th scope="row">6</th>
+                                                <th scope="row">16</th>
                                                 <td>20,000</td>
                                                 <td>No.of Members</td>
                                                 <td>16</td>
@@ -272,7 +326,7 @@
                                                 
                                              </tr>
                                              <tr>
-                                                <th scope="row">7</th>
+                                                <th scope="row">17</th>
                                                 <td>20,000</td>
                                                 <td>No.of Members</td>
                                                 <td>17</td>
@@ -283,7 +337,7 @@
                                                 
                                              </tr>
                                              <tr>
-                                                <th scope="row">8</th>
+                                                <th scope="row">18</th>
                                                 <td>20,000</td>
                                                 <td>No.of Members</td>
                                                 <td>18</td>
@@ -293,7 +347,7 @@
                                                 
                                              </tr>
                                              <tr>
-                                                <th scope="row">9</th>
+                                                <th scope="row">19</th>
                                                 <td>20,000</td>
                                                 <td>No.of Members</td>
                                                 <td>19</td>
@@ -303,7 +357,7 @@
                                                 
                                              </tr>
                                              <tr>
-                                                <th scope="row">10</th>
+                                                <th scope="row">20</th>
                                                 <td>20,000</td>
                                                 <td>No.of Members</td>
                                                 <td>20</td>
@@ -312,7 +366,7 @@
                                                 <td>22,000</td>
                                              </tr>
                                              <tr>
-                                                <th scope="row">1</th>
+                                                <th scope="row">21</th>
                                                 <td>50,000</td>
                                                 <td>No.of Members</td>
                                                 <td>21</td>
@@ -322,7 +376,7 @@
                                                
                                              </tr>
                                              <tr>
-                                                <th scope="row">2</th>
+                                                <th scope="row">22</th>
                                                 <td>50,000</td>
                                                 <td>No.of Members</td>
                                                 <td>22</td>
@@ -332,7 +386,7 @@
                                                 
                                              </tr>
                                              <tr>
-                                                <th scope="row">3</th>
+                                                <th scope="row">23</th>
                                                 <td>50,000</td>
                                                 <td>No.of Members</td>
                                                 <td>23</td>
@@ -342,7 +396,7 @@
                                                 
                                              </tr>
                                              <tr>
-                                                <th scope="row">4</th>
+                                                <th scope="row">24</th>
                                                 <td>50,000</td>
                                                 <td>No.of Members</td>
                                                 <td>24</td>
@@ -352,7 +406,7 @@
                                                
                                              </tr>
                                              <tr>
-                                                <th scope="row">5</th>
+                                                <th scope="row">25</th>
                                                 <td>50,000</td>
                                                 <td>No.of Members</td>
                                                 <td>25</td>
@@ -362,7 +416,7 @@
                                                 
                                              </tr>
                                              <tr>
-                                                <th scope="row">6</th>
+                                                <th scope="row">26</th>
                                                 <td>50,000</td>
                                                 <td>No.of Members</td>
                                                 <td>26</td>
@@ -372,7 +426,7 @@
                                                 
                                              </tr>
                                              <tr>
-                                                <th scope="row">7</th>
+                                                <th scope="row">27</th>
                                                 <td>50,000</td>
                                                 <td>No.of Members</td>
                                                 <td>27</td>
@@ -383,7 +437,7 @@
                                                 
                                              </tr>
                                              <tr>
-                                                <th scope="row">8</th>
+                                                <th scope="row">28</th>
                                                 <td>50,000</td>
                                                 <td>No.of Members</td>
                                                 <td>28</td>
@@ -393,7 +447,7 @@
                                                 
                                              </tr>
                                              <tr>
-                                                <th scope="row">9</th>
+                                                <th scope="row">29</th>
                                                 <td>50,000</td>
                                                 <td>No.of Members</td>
                                                 <td>29</td>
@@ -403,7 +457,7 @@
                                                 
                                              </tr>
                                              <tr>
-                                                <th scope="row">10</th>
+                                                <th scope="row">30</th>
                                                 <td>50,000</td>
                                                 <td>No.of Members</td>
                                                 <td>30</td>

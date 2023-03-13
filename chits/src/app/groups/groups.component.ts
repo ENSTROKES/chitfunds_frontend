@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-
+import { HttpClient } from '@angular/common/http';
+import {UserDataService} from 'src/app/users-data.service';
 @Component({
   selector: 'app-groups',
   templateUrl: './groups.component.html',
@@ -7,9 +8,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class GroupsComponent implements OnInit {
   isDisplayed: boolean | undefined;
-
-  constructor() { }
-
+  searchText: any;
+  users:any;
+  constructor(private http: HttpClient, private userData:UserDataService) { 
+    this.userData.users().subscribe((data) =>{
+    this.users=data;
+  })
+}
   ngOnInit(): void {
   }
   showHideText(event:any){

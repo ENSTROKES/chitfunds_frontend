@@ -15,7 +15,109 @@
               <div class="card">
                  <div class="card-body">
                     <h5 class="card-title">Branch table</h5>
-                    
+                    <div class="search-here">
+                            
+                     <label for="inputName5" class="form-label"> <b>Search</b></label>&nbsp;&nbsp;&nbsp;<input type="text" name="search" [(ngModel)]="searchText" placeholder="Search Here">
+                 </div>
+                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#largeModal"style="margin-left:780px; margin-top:-60px;"> Create </button>
+                    <div class="modal fade" id="largeModal" tabindex="-1">
+                       <div class="modal-dialog modal-lg">
+                          <div class="modal-content">
+                             <div class="modal-header">
+                                <h5 class="modal-title" >Office Form </h5>
+                                <button type="button"  class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                             </div>
+                             <div class="modal-body"> 
+                              <div class="col-lg-15">
+                           
+                                 <div class="card">
+                                    <div class="card-body">
+                                       <!-- <h5 class="card-title">Group Form</h5> -->
+                                       <form class="row g-3">
+                                          <div class="col-md-4"> <label for="inputName5" class="form-label">Office Name</label> <input type="text" class="form-control" id="inputName5"></div>  
+                                          <div class="col-md-6">
+                                             <label for="inputName5" class="form-label"> Mobile Number </label> <div class="input-group w-50"><span class="input-group-text">+91</span> <input type="text"  maxlength="10" class="form-control" aria-label="Amount (to the nearest rupees)"></div>
+                                           </div>
+                                           <div class="col-md-4"> <label for="inputName5" class="form-label">Email ID</label> <input type="text" class="form-control" id="inputName5"></div> 
+                                           <div class="col-md-6">
+                                             <label for="inputName5" class="form-label"> Address</label>
+                                             <div class="form-floating"><textarea class="form-control"  id="floatingTextarea" style="height: 100px;"></textarea><label for="floatingTextarea"></label></div>
+                                          </div>
+                                          <div class="col-md-3"> <label for="inputZip" class="form-label">Pin Code</label> <input type="text" class="form-control" id="inputZip"></div>   
+                                          <div class="col-md-4">
+                                             <label for="inputState" class="form-label">State</label> 
+                                             <select id="inputState" class="form-select">
+                                                <option selected>Choose...</option>
+                                                <option value="AN">Andaman and Nicobar Islands</option>
+                                                <option value="AP">Andhra Pradesh</option>
+                                                <option value="AR">Arunachal Pradesh</option>
+                                                <option value="AS">Assam</option>
+                                                <option value="BR">Bihar</option>
+                                                <option value="CH">Chandigarh</option>
+                                                <option value="CT">Chhattisgarh</option>
+                                                <option value="DN">Dadra and Nagar Haveli</option>
+                                                <option value="DD">Daman and Diu</option>
+                                                <option value="DL">Delhi</option>
+                                                <option value="GA">Goa</option>
+                                                <option value="GJ">Gujarat</option>
+                                                <option value="HR">Haryana</option>
+                                                <option value="HP">Himachal Pradesh</option>
+                                                <option value="JK">Jammu and Kashmir</option>
+                                                <option value="JH">Jharkhand</option>
+                                                <option value="KA">Karnataka</option>
+                                               <option value="KL">Kerala</option>
+                                               <option value="LA">Ladakh</option> 
+                                                <option value="LD">Lakshadweep</option>
+                                                <option value="MP">Madhya Pradesh</option>
+                                                <option value="MH">Maharashtra</option>
+                                                <option value="MN">Manipur</option>
+                                                <option value="ML">Meghalaya</option>
+                                                <option value="MZ">Mizoram</option>
+                                                <option value="NL">Nagaland</option>
+                                                <option value="OR">Odisha</option>
+                                                <option value="PY">Puducherry</option>
+                                                <option value="PB">Punjab</option>
+                                                <option value="RJ">Rajasthan</option>
+                                                <option value="SK">Sikkim</option>
+                                                <option value="TN">Tamil Nadu</option>
+                                                <option value="TG">Telangana</option>
+                                                <option value="TR">Tripura</option>
+                                                <option value="UP">Uttar Pradesh</option>
+                                                <option value="UT">Uttarakhand</option>
+                                                <option value="WB">West Bengal</option>
+                                             </select>
+                                          </div>                                         
+                                              <div class="col-md-4"> <label for="inputCity" class="form-label">District</label> <input type="text" class="form-control" id="inputCity"></div>
+                                              <div class="col-md-3"> <label for="inputCity" class="form-label">City</label> <input type="text" class="form-control" id="inputCity"></div>
+                                              <div class="col-md-4"> <label for="inputCity" class="form-label">Landmark</label> <input type="text" class="form-control" id="inputCity"></div>
+                                              <div class="col-md-4"> <label for="inputCity" class="form-label">Remarks</label> <input type="text" class="form-control" id="inputCity"></div>
+                                          <label class="form-check-label" for="gridCheck1" style="margin-top: -10px; padding-top: 30px;"> If Branch Office: &nbsp; Yes</label>
+                                          <input class="form-check-input" style="margin-top: -20px;margin-left: 180px; " type="checkbox"  (change)="showHideText($event);"> 
+                                          
+                                          <div *ngIf="isDisplayed">
+                                             <div class="row">
+                                                <div class="col-md-6"> <label for="inputName5" class="form-label"> Head Office Name</label>
+                                                   <select name="BranchName" class="form-control">
+                                                      <option>---Select----</option>
+                                                      <option>
+                                                         <!-- {{empData.first_name}} -->
+                                                      </option>
+                                                   </select>
+                                                  </div>
+                                          <div class="col-md-6"> <label for="inputName5" class="form-label"> Start Date </label> <input type="date" class="form-control" id="inputName5"></div>
+                                       </div>
+                                          <!-- <div  class="modal-footer"> <button type="submit" class="btn btn-primary">Submit</button>&nbsp; <button type="reset" class="btn btn-secondary">Reset</button></div>                                             -->
+                                          </div>                                    
+                                       </form>
+                                    </div>
+                                 </div>
+                              </div>
+                               
+                            </div>
+                             <div class="modal-footer"> <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button> <button type="button" class="btn btn-primary">Submit</button></div>
+                          </div>
+                       </div>
+                    </div>
                     <table class="table table-striped">
     
                      <thead>
@@ -27,7 +129,7 @@
                          </tr>
                      </thead>
                      <tbody>
-                       <tr *ngFor="let user of users">
+                       <tr *ngFor="let user of users| filter:searchText">
                          <td>{{ user.id }}</td>
                          <td>{{ user.name }}</td>
                          <td>{{ user.username }}</td>

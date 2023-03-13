@@ -15,7 +15,9 @@
               <div class="card">
                  <div class="card-body">
                     <h5 class="card-title">Receipt</h5>
-                    
+                    <div class="search-here">
+                     <label for="inputName5" class="form-label"> <b>Search</b></label>&nbsp;&nbsp;&nbsp;<input type="text" name="search" [(ngModel)]="searchText" placeholder="Search Here">
+                 </div>
                     <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#largeModal"style="margin-left:780px; margin-top:-60px;"> Bill </button>
                     <div class="modal fade" id="largeModal" tabindex="-1">
                        <div class="modal-dialog modal-lg">
@@ -26,19 +28,50 @@
                              </div>
                              <div class="modal-body"> 
                                 <form class="row g-3">
-                                <div class="col-md-6"> <label for="inputName5" class="form-label">Branch Name</label> <input type="text" class="form-control" id="inputName5"></div>
+                                 <div class="col-md-6"> <label for="inputName5" class="form-label"> Branch Name</label>
+                                    <select name="CustomerName" class="form-control">
+                                       <option>---Select----</option>
+                                       <!-- <option *ngFor="let empData of ListOfEmpData">
+                                          {{empData.first_name}}
+                                       </option> -->
+                                    </select>
+                                   </div>
                                 <div class="col-md-6"> <label for="inputName5" class="form-label">Receipt Date</label> <input type="date" class="form-control" id="inputName5"></div>
-                                <div class="col-md-6"> <label for="inputName5" class="form-label"> Collection Employee</label> <input type="text" class="form-control" id="inputName5"></div>
+                                <div class="col-md-6"> <label for="inputName5" class="form-label">  Collection Employee</label>
+                                 <select name="CustomerName" class="form-control">
+                                    <option>---Select----</option>
+                                    <!-- <option *ngFor="let empData of ListOfEmpData">
+                                       {{empData.first_name}}
+                                    </option> -->
+                                 </select>
+                                </div>
                                 <div class="col-md-6"> <label for="inputName5" class="form-label"> Customer Name</label>
                                  <select name="CustomerName" class="form-control">
                                     <option>---Select----</option>
-                                    <option *ngFor="let name of NameList">
-                                       {{name.name}}
+                                    <option *ngFor="let empData of ListOfEmpData">
+                                       {{empData.first_name}}
                                     </option>
                                  </select>
                                 </div>
-                                <div class="col-md-6"> <label for="inputName5" class="form-label">Select Enrollment</label> <input type="text" class="form-control" id="inputName5"></div>
-                                <div class="col-md-6"> <label for="inputName5" class="form-label"> Receipt Type</label> <input type="text" class="form-control" id="inputName5"></div>
+                                <div class="col-md-6"> <label for="inputName5" class="form-label"> Select Enrollment</label>
+                                 <select name="CustomerName" class="form-control">
+                                    <option>---Select----</option>
+                                    <!-- <option *ngFor="let empData of ListOfEmpData">
+                                       {{empData.first_name}}
+                                    </option> -->
+                                 </select>
+                                </div>
+                                <div class="col-md-6"> <label for="inputName5" class="form-label"> Receipt Type</label>
+                                 <select name="CustomerName" class="form-control">
+                                    <option>---Select----</option>
+                                    <!-- <option *ngFor="let empData of ListOfEmpData">
+                                       {{empData.first_name}}
+                                    </option> -->
+                                 </select>
+                                </div>
+                                <div class="col-md-6">
+                                 <label for="inputName5" class="form-label"> Amount </label> <div class="input-group mb-3 w-50"><span class="input-group-text">₹</span> <input type="text" class="form-control" aria-label="Amount (to the nearest rupees)"> <span class="input-group-text">.00</span></div>
+                                 </div>
                                                                             
                                                                                                                   
                              </form>
@@ -58,7 +91,7 @@
                          </tr>
                      </thead>
                      <tbody>
-                       <tr *ngFor="let user of users">
+                       <tr *ngFor="let user of users|filter:searchText">
                          <td>{{ user.id }}</td>
                          <td>{{ user.name }}</td>
                          <td>{{ user.username }}</td>

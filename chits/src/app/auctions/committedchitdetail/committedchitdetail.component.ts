@@ -2,12 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import {UserDataService} from 'src/app/users-data.service';
 
-interface USERS {
-  id: Number;
-  name: String;
-  username: String;
-  email: String;
-}
 
 @Component({
   selector: 'app-committedchitdetail',
@@ -26,7 +20,7 @@ export class CommittedchitdetailComponent implements OnInit {
   }
   getUserFormData(data:any){
     console.warn(data)
-    this.userData.saveUser(data).subscribe((result)=>{
+    this.userData.createUser(data).subscribe((result)=>{
       console.warn(result)
     })
   }

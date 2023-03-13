@@ -24,6 +24,7 @@ export class CustomermanagementComponent implements OnInit {
   public tabObj!: TabComponent;
   title = 'Chitfunds';
   users:any; 
+  searchText: any;
   constructor(private http: HttpClient, private userData:UserDataService) { 
     this.userData.users().subscribe((data) =>{
       this.users=data;
@@ -31,7 +32,7 @@ export class CustomermanagementComponent implements OnInit {
 }
 getUserFormData(data:any){
   console.warn(data)
-  this.userData.saveUser(data).subscribe((result)=>{
+  this.userData.createUser(data).subscribe((result)=>{
     console.warn(result)
   })
 }
@@ -39,8 +40,6 @@ getUserFormData(data:any){
 
   ngOnInit(): void {
   }
-  public btnClick(): void {
-    this.tabObj.selectedItem = 4;
-  }
+  
   
 }

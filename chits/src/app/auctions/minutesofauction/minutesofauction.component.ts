@@ -5,12 +5,7 @@ import { FormGroup } from '@angular/forms';
 
 
 
-interface users {
-  id: Number;
-  name: String;
-  username: String;
-  email: String;
-}
+
 
 @Component({
   selector: 'app-minutesofauction',
@@ -48,7 +43,7 @@ export class MinutesofauctionComponent implements OnInit {
   }
   getUserFormData(data:any){
     console.warn(data)
-    this.userData.saveUser(data).subscribe((result)=>{
+    this.userData.createUser(data).subscribe((result)=>{
       console.warn(result)
     })
   }
@@ -62,12 +57,7 @@ export class MinutesofauctionComponent implements OnInit {
    selectedUser = null;
    el:any;
    
-  //  ClickSelectedUser(userId: any) {
-  //   this.selectedUser = this.Users.find((USERS: { id: any; }) =>{
-  //     return USERS.id == userId
-  //   })
-   
-  // }
+ 
    delete(user_id:any){
     
     this.userData.delete(user_id).subscribe((result) =>
@@ -82,12 +72,7 @@ export class MinutesofauctionComponent implements OnInit {
     this.CategoryName = this.userData.CategoryName;
     
   }
-  // public selectedCategory: any;
-  // public valueSelected() {
-  //   this.Users = this.userData.CategoryName.filter(
-  //     (item) => item.name === this.selectedCategory
-  //   );
-  // }
+  
   
   
   

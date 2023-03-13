@@ -1,37 +1,37 @@
 <aside id="sidebar" class="sidebar">
     <ul class="sidebar-nav" id="sidebar-nav">
-       <li class="nav-item"> <a class="nav-link " routerLink="/dashboard"> <i class="bi bi-grid"></i> <span>Dashboard</span> </a></li>
+       <li class="nav-item"> <a class="nav-link " routerLink="/dashboard" routerLinkActive="active-link"> <i class="bi bi-grid"></i> <span>Dashboard</span> </a></li>
        
-       <a class="nav-link collapsed" data-bs-target="#group-nav" data-bs-toggle="collapse" routerLink="/groups"> <i class="bi bi-people"></i><span>Groups</span></a>
-       <a class="nav-link collapsed" data-bs-target="#customer-nav" data-bs-toggle="collapse" routerLink="/customermanagement"> <i class="bi bi-person-lines-fill"></i><span>Customer Mangement</span></a>
+       <a class="nav-link collapsed" data-bs-target="#group-nav" data-bs-toggle="collapse" routerLink="/groups" routerLinkActive="active-link"> <i class="bi bi-people"></i><span>Groups</span></a>
+       <a class="nav-link collapsed" data-bs-target="#customer-nav" data-bs-toggle="collapse" routerLink="/customermanagement" routerLinkActive="active-link"> <i class="bi bi-person-lines-fill"></i><span>Customer Mangement</span></a>
 
        <li class="nav-item">
-       <a class="nav-link collapsed" data-bs-target="#employee-nav" data-bs-toggle="collapse" routerLink="/employeemanagement"> <i class="bi bi-person-lines-fill"></i><span>Employee Management</span> <i class="bi bi-chevron-down ms-auto"></i></a>
+       <a class="nav-link collapsed" data-bs-target="#employee-nav" data-bs-toggle="collapse" routerLink="/employeemanagement" routerLinkActive="active-link"> <i class="bi bi-person-lines-fill"></i><span>Employee Management</span> <i class="bi bi-chevron-down ms-auto"></i></a>
        <ul id="employee-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
-         <li> <a routerLink="/payroll"> <i class="bi bi-circle"></i><span>Payroll</span> </a></li>
-         <li> <a routerLink="/collectionareamapping"> <i class="bi bi-circle"></i><span>Collection Area Mapping</span> </a></li>
+         <li> <a routerLink="/payroll" routerLinkActive="active-link"> <i class="bi bi-circle" ></i><span>Payroll</span> </a></li>
+         <li> <a routerLink="/collectionareamapping" routerLinkActive="active-link"> <i class="bi bi-circle"></i><span>Collection Area Mapping</span> </a></li>
        </ul>
     </li>
        <li class="nav-item">
           <a class="nav-link collapsed" data-bs-target="#auction-nav" data-bs-toggle="collapse" href="#"> <i class="bi bi-gavel"></i><span>Auction</span><i class="bi bi-chevron-down ms-auto"></i> </a>
           <ul id="auction-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
-             <li> <a routerLink="/minutesofauction"> <i class="bi bi-circle"></i><span>Minutes of Auction</span> </a></li>
-             <li> <a routerLink="/auctionpaymentdisbursal"> <i class="bi bi-circle"></i><span>Auction payment disbursal</span> </a></li>
-             <li> <a routerLink="/committedchitdetail"> <i class="bi bi-circle"></i><span>Commitment chit detail</span> </a></li>
-             <li> <a routerLink="/closure"> <i class="bi bi-circle"></i><span>Closure</span> </a></li>
+             <li> <a routerLink="/minutesofauction" routerLinkActive="active-link"> <i class="bi bi-circle"></i><span>Minutes of Auction</span> </a></li>
+             <li> <a routerLink="/auctionpaymentdisbursal" routerLinkActive="active-link"> <i class="bi bi-circle"></i><span>Auction payment disbursal</span> </a></li>
+             <li> <a routerLink="/committedchitdetail" routerLinkActive="active-link"> <i class="bi bi-circle"></i><span>Commitment chit detail</span> </a></li>
+             <li> <a routerLink="/closure" routerLinkActive="active-link"> <i class="bi bi-circle"></i><span>Closure</span> </a></li>
           </ul>
        </li>
-       <a class="nav-link collapsed" data-bs-target="#branch-nav" data-bs-toggle="collapse" routerLink="/branches"> <i class="bi bi-branch"></i><span>Branches</span></a>
+       <a class="nav-link collapsed" data-bs-target="#branch-nav" data-bs-toggle="collapse" routerLink="/branches" routerLinkActive="active-link"> <i class="bi bi-branch"></i><span>Branches</span></a>
        <li class="nav-item">
           <a class="nav-link collapsed" data-bs-target="#transaction-nav" data-bs-toggle="collapse" href="#"> <i class="bi bi-cash"></i><span>Transaction</span><i class="bi bi-chevron-down ms-auto"></i> </a>
           <ul id="transaction-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
-             <li> <a routerLink="/receipt"> <i class="bi bi-circle"></i><span>Receipt</span> </a></li>
-             <li> <a routerLink="/accountexpenses"> <i class="bi bi-circle"></i><span>Account Expenses</span> </a></li>
-             <li> <a routerLink="/employeeincentive"> <i class="bi bi-circle"></i><span>Employee Incentive</span> </a></li>
-             <li> <a routerLink="/pettycash"> <i class="bi bi-circle"></i><span>Petty cash expenses & Income</span> </a></li>
+             <li> <a routerLink="/receipt" routerLinkActive="active-link"> <i class="bi bi-circle"></i><span>Receipt</span> </a></li>
+             <li> <a routerLink="/accountexpenses" routerLinkActive="active-link"> <i class="bi bi-circle"></i><span>Account Expenses</span> </a></li>
+             <li> <a routerLink="/employeeincentive" routerLinkActive="active-link"> <i class="bi bi-circle"></i><span>Employee Incentive</span> </a></li>
+             <li> <a routerLink="/pettycash" routerLinkActive="active-link"> <i class="bi bi-circle"></i><span>Petty cash expenses & Income</span> </a></li>
           </ul>
        </li>
-       <a class="nav-link collapsed" data-bs-target="#reports-nav" data-bs-toggle="collapse" routerLink="/reports"> <i class="bi bi-journal-text"></i><span>Reports</span></a>
+       <a class="nav-link collapsed" data-bs-target="#reports-nav" data-bs-toggle="collapse" routerLink="/reports" routerLinkActive="active-link"> <i class="bi bi-journal-text"></i><span>Reports</span></a>
        
        
        

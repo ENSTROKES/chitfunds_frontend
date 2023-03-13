@@ -20,13 +20,20 @@ import { UsersProfileComponent } from './pages/users-profile/users-profile.compo
 import { PettycashComponent } from './transaction/pettycash/pettycash.component';
 import { ReceiptComponent } from './transaction/receipt/receipt.component';
 import { HttpClientModule } from '@angular/common/http';
-import {FormsModule} from '@angular/forms'
+import {FormsModule} from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
 import { PayrollComponent } from './employeemanagement/payroll/payroll.component';
+import { PagesLoginComponent } from './pages/pages-login/pages-login.component';
 import { CollectionAreaMappingComponent } from './employeemanagement/collectionareamapping/collectionareamapping.component';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
 
+
 // import { MbscModule } from '@mobiscroll/angular';
 @NgModule({
+  exports: [
+    FormsModule,
+    ReactiveFormsModule
+  ],
   declarations: [
     AppComponent,
     HeaderComponent,
@@ -47,7 +54,8 @@ import { Ng2SearchPipeModule } from 'ng2-search-filter';
     PettycashComponent,
     ReceiptComponent,
     PayrollComponent,
-    CollectionAreaMappingComponent
+    CollectionAreaMappingComponent,
+    PagesLoginComponent
   ],
   imports: [
     BrowserModule,
@@ -56,8 +64,10 @@ import { Ng2SearchPipeModule } from 'ng2-search-filter';
     Ng2SearchPipeModule,
     // MbscModule,
     FormsModule,
+    ReactiveFormsModule
     
   ],
+  
   providers: [],
   bootstrap: [AppComponent]
 })
