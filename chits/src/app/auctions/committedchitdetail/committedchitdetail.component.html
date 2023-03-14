@@ -26,7 +26,14 @@
                              </div>
                              <div class="modal-body"> 
                                 <form class="row g-3">
-                                <div class="col-md-6"> <label for="inputName5" class="form-label">Branch Name</label> <input type="text" class="form-control" id="inputName5"></div>
+                                 <div class="col-md-6"> <label for="inputName5" class="form-label"> Branch Name</label>
+                                    <select name="BranchName" class="form-control">
+                                       <option>---Select----</option>
+                                       <option *ngFor="let branchData of ListOfBranchData">
+                                          {{branchData.officeName}}
+                                    </option>
+                                    </select>
+                                   </div>
                                 <div class="col-md-6"> <label for="inputName5" class="form-label"> Collection Employee</label> <input type="text" class="form-control" id="inputName5"></div>
                                 <div class="col-md-6"> <label for="inputName5" class="form-label"> Collection Area</label> <input type="text" class="form-control" id="inputName5"></div>                                            
                                                                                                                   

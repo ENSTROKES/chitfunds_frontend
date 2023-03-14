@@ -10,9 +10,18 @@ export class GroupsComponent implements OnInit {
   isDisplayed: boolean | undefined;
   searchText: any;
   users:any;
+  //branch
+  response:any;
+  ListOfBranchData:any;
   constructor(private http: HttpClient, private userData:UserDataService) { 
-    this.userData.users().subscribe((data) =>{
-    this.users=data;
+    this.userData.branch().subscribe((data) =>{
+      this.response=data;
+  Object.keys(this.response).forEach(prop => {
+    if(prop=="object"){
+      this.ListOfBranchData = this.response[prop];
+    }
+  });
+    
   })
 }
   ngOnInit(): void {

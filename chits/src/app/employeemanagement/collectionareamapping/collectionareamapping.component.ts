@@ -13,6 +13,8 @@ export class CollectionAreaMappingComponent implements OnInit {
   res : any;
   ListOfCollData :any;
   userId: any; 
+  response:any;
+  ListOfBranchData:any
 searchText:any;
   constructor(private http: HttpClient, private userData:UserDataService) {
     this.userData.users().subscribe((data) =>{
@@ -29,6 +31,18 @@ searchText:any;
      // console.log("get data ==>>" + JSON.parse(this.empData));
    // this.users=this.ListOfEmpData;
   })
+
+  //branch
+
+  this.userData.branch().subscribe((data) =>{
+    this.response=data;
+Object.keys(this.response).forEach(prop => {
+  if(prop=="object"){
+    this.ListOfBranchData = this.response[prop];
+  }
+});
+  
+})
   }
   delete(user_id:any){
   

@@ -24,6 +24,8 @@ export class ReceiptComponent implements OnInit {
   ListOfEmpData :any;
   NameList: any;
   service: any;
+  response:any;
+  ListOfBranchData:any;
   constructor(private http: HttpClient, private userData: UserDataService) {
     //console.log('Hello');
     // this.userData.users().subscribe((data) => {
@@ -43,10 +45,21 @@ export class ReceiptComponent implements OnInit {
           this.ListOfEmpData = this.res[prop];
         }
       });
-     // console.log("get string data ==>>" +JSON.stringify(this.ListOfEmpData[0]));
-     // console.log("get data ==>>" + JSON.parse(this.empData));
-   // this.users=this.ListOfEmpData;
   })
+// get branch
+
+this.userData.branch().subscribe((data) =>{
+  this.response=data;
+Object.keys(this.response).forEach(prop => {
+if(prop=="object"){
+  this.ListOfBranchData = this.response[prop];
+}
+});
+
+})
+
+
+
   }
 
   getUserFormData(data: any) {

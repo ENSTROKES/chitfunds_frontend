@@ -80,7 +80,14 @@
                                  <div class="card-body">
                                     <h5 class="card-title"> Details</h5>
                                     <form class="row g-3">
-                                       <div class="col-md-6"> <label for="inputName5" class="form-label"> Branch Name</label> <input type="text" class="form-control" id="inputName5"></div>
+                                       <div class="col-md-6"> <label for="inputName5" class="form-label"> Branch Name</label>
+                                          <select name="BranchName" class="form-control">
+                                             <option>---Select----</option>
+                                             <option *ngFor="let branchData of ListOfBranchData">
+                                                {{branchData.officeName}}
+                                          </option>
+                                          </select>
+                                         </div>
                                        <div class="col-md-6"> <label for="inputName5" class="form-label"> Joining Date</label> <input type="date" class="form-control" id="inputName5"></div>
                                        <div class="col-md-6"> <label for="inputName5" class="form-label"> Guarantor</label> <input type="text" class="form-control" id="inputName5"></div>
                                        <div class="col-md-6"> <label for="inputName5" class="form-label"> Referred By</label> <input type="text" class="form-control" id="inputName5"></div>                                             

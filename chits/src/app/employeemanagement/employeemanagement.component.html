@@ -65,11 +65,7 @@
                                                           <i class="bi bi-eye" data-bs-toggle="modal" data-bs-target="#largeModal"></i>&nbsp;
               
                                                           <i class="ri-delete-bin-line" (click)="delete(empData.id)"></i>
-                                                          <!-- <div class="d-flex justify-content-center">
-                                         <div class="spinner-border" role="status">
-                                             <span class="sr-only" id="loading"></span>
-                                         </div>
-                                     </div> -->
+                                                          
                                                           <div class="modal fade" id="largeModal" tabindex="-1">
                                                               <div class="modal-dialog modal-lg">
                                                                   <div class="modal-content">
@@ -314,8 +310,15 @@
                               <div class="card">
                                  <div class="card-body">
                                     <h5 class="card-title"> Employee Details</h5>
-                                    <form class="row g-3" #employeeForm="ngForm" (ngSubmit)="getEmpFormData(employeeForm.value)">
-                                       <div class="col-md-6"> <label for="inputName5" class="form-label"> Branch Name</label> <input type="text" ngModel name="branch_name" class="form-control" id="inputName5"></div>
+                                    <form class="row g-3"  #employeeForm="ngForm" (ngSubmit)="getEmpFormData(employeeForm.value)">
+                                       <div class="col-md-6"> <label for="inputName5" class="form-label"> Branch Name</label>
+                                          <select name="BranchName" class="form-control">
+                                             <option>---Select----</option>
+                                             <option *ngFor="let branchData of ListOfBranchData">
+                                                {{branchData.officeName}}
+                                          </option>
+                                          </select>
+                                         </div>
                                        <!-- <div class="col-md-6"> <label for="inputName5" class="form-label"> Employee Code</label> <input type="text" class="form-control" id="inputName5"></div> -->
                                        <div class="col-md-6"> <label for="inputName5" class="form-label"> Salutation</label> <select class="form-select" name="salution" aria-label="Default select example">
                                           <option selected><select name="" id=""></select>Select</option>
@@ -334,7 +337,7 @@
                                        </select></div>
                                        <div class="col-md-6"> <label for="inputName5" class="form-label"> Date of Birth</label> <input type="date" ngModel name="DOB" class="form-control" id="inputName5"></div>
                                        <div class="col-md-6"> <label for="inputName5" class="form-label"> Blood Group</label> <select class="form-select" ngModel name="blood_group" aria-label="Default select example">
-                                          <option selected><select name="" id=""></select>Select</option>
+                                          <option selected><select name="" id=""></select>Seelect</option>
                                           <option>A Positive</option>
                                              <option>A Negative</option>
                                              <option>A Unknown</option>

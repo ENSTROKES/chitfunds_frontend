@@ -12,9 +12,19 @@ export class CommittedchitdetailComponent implements OnInit {
 
   title = 'Chitfunds';
   users:any;
+  //branch name
+  response:any;
+  ListOfBranchData:any
+
   constructor(private http: HttpClient, private userData:UserDataService) { 
-    this.userData.users().subscribe((data) =>{
-    this.users=data;
+    this.userData.branch().subscribe((data) =>{
+      this.response=data;
+  Object.keys(this.response).forEach(prop => {
+    if(prop=="object"){
+      this.ListOfBranchData = this.response[prop];
+    }
+  });
+    
   })
   
   }

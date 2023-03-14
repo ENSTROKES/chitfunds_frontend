@@ -31,9 +31,9 @@
                                  <div class="col-md-6"> <label for="inputName5" class="form-label"> Branch Name</label>
                                     <select name="CustomerName" class="form-control">
                                        <option>---Select----</option>
-                                       <!-- <option *ngFor="let empData of ListOfEmpData">
-                                          {{empData.first_name}}
-                                       </option> -->
+                                       <option *ngFor="let branchData of ListOfBranchData">
+                                          {{branchData.officeName}}
+                                    </option>
                                     </select>
                                    </div>
                                 <div class="col-md-6"> <label for="inputName5" class="form-label">Receipt Date</label> <input type="date" class="form-control" id="inputName5"></div>

@@ -10,26 +10,54 @@ import { FormGroup, FormControl, Validators,NgForm} from '@angular/forms';
 export class BranchesComponent implements OnInit {
   title = 'Chitfunds';
   users:any; 
+  response:any; //allbranch
+  result:any; //branchbyID
+  ListOfBranchData:any; //allbranch
+  ListOfBranchIDData:any; //branchbyID
+  output:any;	//headoffice
+  ListOfHeadData:any; //headoffice
   searchText:any;
   //popup
   //isSubmitted = false;
   isDisplayed: boolean | undefined;
   
   constructor(private http: HttpClient, private userData:UserDataService) {
-    this.userData.users().subscribe((data) =>{
-      this.users=data;
+    //get branch method
+    this.userData.branch().subscribe((data) =>{
+      this.response=data;
+  Object.keys(this.response).forEach(prop => {
+    if(prop=="object"){
+      this.ListOfBranchData = this.response[prop];
+    }
+  });
+    
   })
-}
-/*########### Template Driven Form ###########*/
-// submitForm(form: NgForm) {
-//   this.isSubmitted = true;
-//   if(!form.valid) {
-//     return false;
-//   } else {
-//     return true; 
-//   }
+
+  //getbranchbyid
+  this.userData.branchbyID().subscribe((data) =>{
+    this.result=data;
+Object.keys(this.result).forEach(prop => {
+  if(prop=="object"){
+    this.ListOfBranchIDData = this.result[prop];
+  }
+});
   
-// }
+})
+ 
+//head office
+this.userData.head().subscribe((data) =>{
+  this.output=data;
+Object.keys(this.output).forEach(prop => {
+if(prop=="object"){
+  this.ListOfHeadData = this.output[prop];
+}
+});
+
+})
+
+}
+
+
 
 getUserFormData(data:any): void{
   console.warn(data)
@@ -41,7 +69,15 @@ getUserFormData(data:any): void{
   ngOnInit(): void {
   }
 
-  //popup
+  delete(user_id:any){
+  
+    this.userData.delete(user_id).subscribe((result) =>
+    {
+      if(confirm('Are you sure to delete?'))
+      console.log(result);
+      //this.ngOnInit();
+    })
+   }
   
 
   showHideText(event:any){

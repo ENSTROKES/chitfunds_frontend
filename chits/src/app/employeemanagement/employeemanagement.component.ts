@@ -27,7 +27,9 @@ export class EmployeemanagementComponent implements OnInit {
 searchText:any;
 CategoryName = {};
   
-
+//branch
+result:any;
+ListOfBranchData:any
  
 
 
@@ -47,24 +49,23 @@ CategoryName = {};
    // console.log("get data ==>>" + JSON.parse(this.empData));
  // this.users=this.ListOfEmpData;
 })
-//get collection
-// this.userData.users().subscribe((data) =>{
-//   this.res =  data;
 
-//   Object.keys(this.res).forEach(prop => {
-//    // console.log("key : " +prop);
-//    // console.log("value : "+this.res[prop]);
-//     if(prop=="object"){
-//       this.ListOfCollData = this.res[prop];
-//     }
-//   });
-//  // console.log("get string data ==>>" +JSON.stringify(this.ListOfEmpData[0]));
-//  // console.log("get data ==>>" + JSON.parse(this.empData));
-// // this.users=this.ListOfEmpData;
-// })
+this.userData.branch().subscribe((data) =>{
+  this.result=data;
+Object.keys(this.result).forEach(prop => {
+if(prop=="object"){
+  this.ListOfBranchData = this.result[prop];
+}
+});
+
+})
 }
 //mobile number restriction method
  
+//get branch name
+
+
+
 
 getEmpFormData(data:any): void{
   console.log("GetData" +data.branch_name);

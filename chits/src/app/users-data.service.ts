@@ -13,27 +13,47 @@ export class UserDataService {
   data = String;
 
   // url = 'https://jsonplaceholder.typicode.com/users';
-  url = 'http://13.126.215.67/chitfund/getAllEmployee';
-  createurl = 'http://13.126.215.67/chitfund/createEmployee';
-
+  url = 'http://3.108.194.170/chitfund/getAllEmployee';
+  createurl = 'http://3.108.194.170/chitfund/createEmployee';
+  branchurl = 'http://3.108.194.170/chitfund/getAllBranches';
+  branchbyid = 'http://3.108.194.170/chitfund/getBranchById?branchId=2';
+  headurl='http://3.108.194.170/chitfund/getAllHeadOffice';
   constructor(private http: HttpClient) {
     //employeeData: any;
   }
   CategoryName = ['Name', 'Username', 'Email'];
  
-  
+
+  //employee
   users() {
     return this.http.get(this.url);
   }
   user() {
     return this.http.get(this.url);
   }
+
+  //create employee
   createUser(data: any) {
     
     console.log("createUser" + data);
 
     return this.http.post(this.createurl, data);
   }
+
+  //get branch
+  branch() {
+    return this.http.get(this.branchurl);
+  }
+
+  branchbyID(){
+    return this.http.get(this.branchbyid);
+  }
+
+  //get head office
+  head() {
+    return this.http.get(this.headurl);
+  }
+
   delete(id: any) {
     return this.http.delete(this.url + '/' + id);
   }

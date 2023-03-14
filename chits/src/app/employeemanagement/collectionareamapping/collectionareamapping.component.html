@@ -29,9 +29,9 @@
                                  <div class="col-md-6"> <label for="inputName5" class="form-label"> Branch</label>
                                     <select name="CustomerName" class="form-control">
                                        <option>---Select----</option>
-                                       <!-- <option *ngFor="let empData of ListOfEmpData">
-                                          {{empData.first_name}}
-                                       </option> -->
+                                       <option *ngFor="let branchData of ListOfBranchData">
+                                          {{branchData.officeName}}
+                                    </option>
                                     </select>
                                    </div>
                                 <div class="col-md-6"> <label for="inputName5" class="form-label">Collection Area Name</label> <input type="text" class="form-control" id="inputName5"></div>
