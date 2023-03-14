@@ -34,7 +34,7 @@ export class PagesLoginComponent implements OnInit {
      var pwd ="admin123"
     if (user == usr){
         if (password == pwd){
-          this.router.navigate(["/"]);
+          this.router.navigate(["/dashboard"]);
         }
         else {
         alert("Invalid Password");

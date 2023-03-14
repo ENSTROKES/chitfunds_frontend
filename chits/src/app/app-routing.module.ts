@@ -28,7 +28,8 @@ import { UsersProfileComponent } from './pages/users-profile/users-profile.compo
 
 
 const routes: Routes = [
-  { path: '', component: DashboardComponent },
+  { path: '',redirectTo:'pages-login', pathMatch: 'full' },
+  // { path: 'pages-login', component: PagesLoginComponent,pathMatch: 'full' },
   { path: 'dashboard', component: DashboardComponent },
   { path: 'branches', component: BranchesComponent },
   { path: 'auctionpaymentdisbursal', component: AuctionpaymentdisbursalComponent},
