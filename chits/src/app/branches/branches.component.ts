@@ -17,6 +17,8 @@ export class BranchesComponent implements OnInit {
   output:any;	//headoffice
   ListOfHeadData:any; //headoffice
   searchText:any;
+
+  reslt:any;
   //popup
   //isSubmitted = false;
   isDisplayed: boolean | undefined;
@@ -59,24 +61,27 @@ if(prop=="object"){
 
 
 
-getUserFormData(data:any): void{
-  console.warn(data)
-  this.userData.createUser(data).subscribe((result)=>{
-    console.warn(result)
-  })
-   }
+// create Branch
 
-  ngOnInit(): void {
-  }
+getbranchFormData(data:any): void{
+  console.log("GetData" +data.officeName);
+  console.log("AllData" +JSON.stringify(data));
 
-  delete(user_id:any){
-  
-    this.userData.delete(user_id).subscribe((result) =>
-    {
-      if(confirm('Are you sure to delete?'))
-      console.log(result);
-      //this.ngOnInit();
-    })
+
+  //console.log(new Date("2015/04/29 11:24:00").getTime());
+
+ 
+  //this.userData.createbranch(data).subscribe((result)=>{
+ //  this.reslt = result;
+    
+ // Object.keys(this.reslt).forEach(prop => {
+  //    console.log("data : " +prop);
+ //      console.log("value : "+this.reslt[prop]);
+       //  if(prop=="object"){
+       //    this.ListOfEmpData = this.reslt[prop];
+       //  }
+  //   });
+  //  })
    }
   
 
@@ -90,5 +95,7 @@ getUserFormData(data:any): void{
     }
     // Add other stuff
   }
-
+  ngOnInit(): void {
+    
+  }
 }

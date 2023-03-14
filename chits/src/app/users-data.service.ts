@@ -18,6 +18,7 @@ export class UserDataService {
   branchurl = 'http://3.108.194.170/chitfund/getAllBranches';
   branchbyid = 'http://3.108.194.170/chitfund/getBranchById?branchId=2';
   headurl='http://3.108.194.170/chitfund/getAllHeadOffice';
+  createbrnch = 'http://3.108.194.170/chitfund/createBranch';
   constructor(private http: HttpClient) {
     //employeeData: any;
   }
@@ -47,6 +48,13 @@ export class UserDataService {
 
   branchbyID(){
     return this.http.get(this.branchbyid);
+  }
+   //create branch
+   createbranch(data: any) {
+    
+    console.log("createbranch" + data);
+
+    return this.http.post(this.createbrnch, data);
   }
 
   //get head office

@@ -29,7 +29,8 @@ CategoryName = {};
   
 //branch
 result:any;
-ListOfBranchData:any
+ListOfBranchData:any;
+selectedbranch:any;
  
 
 
@@ -68,19 +69,26 @@ if(prop=="object"){
 
 
 getEmpFormData(data:any): void{
-  console.log("GetData" +data.branch_name);
+  console.log("GetData" +data.bank_name);
   console.log("AllData" +JSON.stringify(data));
+
+
+  let currentDate= data.dob  ; // 2020-04-17T17:19:19.831Z
+console.log(new Date())
+
+
+console.log(new Date("2015/04/29 11:24:00").getTime());
   this.userData.createUser(data).subscribe((result)=>{
-    this.response = result;
+   this.response = result;
     
-    Object.keys(this.response).forEach(prop => {
+  Object.keys(this.response).forEach(prop => {
       console.log("data : " +prop);
        console.log("value : "+this.response[prop]);
-      //  if(prop=="object"){
-      //    this.ListOfEmpData = this.response[prop];
-      //  }
+       //  if(prop=="object"){
+       //    this.ListOfEmpData = this.response[prop];
+       //  }
      });
-  })
+   })
 }
 edit(user_id:any){
     
