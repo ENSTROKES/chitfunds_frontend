@@ -24,6 +24,8 @@ export class BranchesComponent implements OnInit {
   isDisplayed: boolean | undefined;
   
   constructor(private http: HttpClient, private userData:UserDataService) {
+
+    
     //get branch method
     this.userData.branch().subscribe((data) =>{
       this.response=data;
@@ -57,32 +59,45 @@ if(prop=="object"){
 
 })
 
-}
 
+  }
+
+ 
 
 
 // create Branch
 
 getbranchFormData(data:any): void{
-  console.log("GetData" +data.officeName);
+//  console.log("GetData" +data.officeName);
   console.log("AllData" +JSON.stringify(data));
 
+ 
+  //console.log("GetData" +this.userData.headOffice);
 
-  //console.log(new Date("2015/04/29 11:24:00").getTime());
+ //console.log(new Date("2015/04/29 11:24:00").getTime());
 
  
-  //this.userData.createbranch(data).subscribe((result)=>{
- //  this.reslt = result;
+  this.http.post(this.userData.createbrnch, data).subscribe((result)=>{
+   this.reslt = result;
     
- // Object.keys(this.reslt).forEach(prop => {
-  //    console.log("data : " +prop);
- //      console.log("value : "+this.reslt[prop]);
-       //  if(prop=="object"){
-       //    this.ListOfEmpData = this.reslt[prop];
-       //  }
-  //   });
-  //  })
+   Object.keys(this.reslt).forEach(prop => {
+      console.log("data : " +prop);
+        console.log("value : "+this.reslt[prop]);
+         if(prop=="responseCode"){
+        // this.ListOfEmpData = this.reslt[prop];
+          if(this.reslt[prop]=="200"){
+            if(window.confirm('Branch is created successfully')){
+              location.reload();
+            }else{
+              location.reload();
+            }
+          }
+          }
+      });
+    })
    }
+
+  
   
 
   showHideText(event:any){

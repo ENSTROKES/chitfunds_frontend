@@ -93,31 +93,32 @@
                                                         <div class="col-md-4"> <label for="inputCity" class="form-label">Landmark</label> <input type="text" class="form-control" id="inputCity" ngModel name="landmark"></div>
                                                         <div class="col-md-4"> <label for="inputCity" class="form-label">Remarks</label> <input type="text" class="form-control" id="inputCity" ngModel name="remarks"></div>
                                                         <label class="form-check-label" for="gridCheck1" style="margin-top: -10px; padding-top: 30px;"> If Branch Office: &nbsp; Yes</label>
-                                                        <input class="form-check-input" style="margin-top: -20px;margin-left: 180px; " type="checkbox" (change)="showHideText($event);">
+                                                        <input class="form-check-input" ngModel name="headOffice" style="margin-top: -20px;margin-left: 180px; " type="checkbox" (change)="showHideText($event);">
 
                                                         <div *ngIf="isDisplayed">
                                                             <div class="row">
                                                                 <div class="col-md-6"> <label for="inputName5" class="form-label"> Head Office Name</label>
-                                                                    <select ngModel name="headOffice" class="form-control" ngModel name="phoneNumber">
-                                                      <option>---Select----</option>
+                                                                    <select ngModel name="headOfficeName" class="form-control">
+                                                                        <option>---Select----</option>
+                                                                         <option *ngFor="let headData of ListOfHeadData" [value]="headData.officeName">{{headData.officeName}}</option>
                                                      
-                                                         <option *ngFor="let headData of ListOfHeadData" [value]="headData.officeName">
-                                                               {{headData.officeName}}
-                                                         </option>
-                                                     
-                                                   </select>
+                                                                    </select>
                                                                 </div>
                                                                 <div class="col-md-6"> <label for="inputName5" class="form-label"> Start Date </label> <input type="date" class="form-control" id="inputName5"></div>
                                                             </div>
                                                             <!-- <div  class="modal-footer"> <button type="submit" class="btn btn-primary">Submit</button>&nbsp; <button type="reset" class="btn btn-secondary">Reset</button></div>                                             -->
                                                         </div>
+                                                        <div class="modal-footer">
+                                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close
+                                                            </button>
+                                                            <button type="submit" class="btn btn-primary">Submit</button></div>
                                                     </form>
                                                 </div>
                                             </div>
                                         </div>
 
                                     </div>
-                                    <div class="modal-footer"> <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button> <button type="button" class="btn btn-primary">Submit</button></div>
+
                                 </div>
                             </div>
                         </div>

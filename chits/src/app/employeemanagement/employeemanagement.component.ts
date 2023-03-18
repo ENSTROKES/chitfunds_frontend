@@ -46,9 +46,9 @@ selectedbranch:any;
         this.ListOfEmpData = this.res[prop];
       }
     });
-   // console.log("get string data ==>>" +JSON.stringify(this.ListOfEmpData[0]));
-   // console.log("get data ==>>" + JSON.parse(this.empData));
- // this.users=this.ListOfEmpData;
+      // console.log("get string data ==>>" +JSON.stringify(this.ListOfEmpData[0]));
+      // console.log("get data ==>>" + JSON.parse(this.empData));
+     // this.users=this.ListOfEmpData;
 })
 
 this.userData.branch().subscribe((data) =>{
@@ -69,7 +69,7 @@ if(prop=="object"){
 
 
 getEmpFormData(data:any): void{
-  console.log("GetData" +data.bank_name);
+  console.log("GetData" +data.joining_date);
   console.log("AllData" +JSON.stringify(data));
 
 
@@ -81,7 +81,7 @@ console.log(new Date("2015/04/29 11:24:00").getTime());
   this.userData.createUser(data).subscribe((result)=>{
    this.response = result;
     
-  Object.keys(this.response).forEach(prop => {
+   Object.keys(this.response).forEach(prop => {
       console.log("data : " +prop);
        console.log("value : "+this.response[prop]);
        //  if(prop=="object"){
