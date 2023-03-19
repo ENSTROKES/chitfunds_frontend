@@ -41,30 +41,31 @@
                                                 <button type="button"  class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                              </div>
                                              <div class="modal-body"> 
-                                                <form class="row g-3" #grpForm="ngForm" (ngSubmit)="getgroupFormData(grpForm.value)">
-                                                   <!-- <div class="col-md-4"> <label for="inputName5" class="form-label">Branch Name</label> <input type="text" class="form-control" id="inputName5"></div> &nbsp;&nbsp;  -->
-                                                   <div class="col-md-6"> <label for="inputName5" class="form-label"> Branch Name</label>
-                                                      <select name="BranchName" class="form-control" ngModel name="branchName">
+                                                <form class="row g-3" #groupForm="ngForm" (ngSubmit)="getgroupFormData(groupForm.value)">
+                                                                    <!-- <div class="col-md-4"> <label for="inputName5" class="form-label">Branch Name</label> <input type="text" class="form-control" id="inputName5"></div> &nbsp;&nbsp;  -->
+                                                                    <div class="col-md-6"> <label for="inputName5" class="form-label"> Branch Name</label>
+                                                                        <select ngModel name="branchName" class="form-control">
                                                          <option>---Select----</option>
                                                          <option *ngFor="let branchData of ListOfBranchData" [value]="branchData.officeName">
                                                             {{branchData.officeName}}
                                                       </option>
                                                       </select>
-                                                     </div>
-                                                   <div class="col-md-6">
-                                                   <fieldset class="row mb-6" style="margin-left:100px;">
-                                                      <legend class="col-form-label col-sm-3 pt-1">Group Type</legend>
-                                                      <div class="col-md-6">
-                                                      <div class="col-sm-12">
-                                                         <div class="form-check"> <input class="form-check-input" type="radio"  id="gridRadios1" value="register" checked ngModel name="groupType"> <label class="form-check-label" for="gridRadios1"> Register </label></div>
-                                                         <div class="form-check"> <input class="form-check-input" type="radio"  id="gridRadios2" value="non-register" ngModel name="groupType"> <label class="form-check-label" for="gridRadios2"> Non-register</label></div>
-                                                      </div>
-                                                   </div>
-                                                   </fieldset>
-                                                </div>
-                                                   <div class="col-md-4"> <label for="inputName5" class="form-label"> Group Name</label> <input type="text" class="form-control" id="inputName5" ngModel name="groupName"></div>
-                                                   <div class="col-md-6"> <label for="inputName5" class="form-label"> Scheme</label>
-                                                      <select name="Scheme" class="form-control" ngModel name="schemeId">
+                                                                    </div>
+                                                                    <div class="col-md-6">
+                                                                        <fieldset class="row mb-6" style="margin-left:100px;">
+
+                                                                            <div class="col-md-6"> <label for="inputName5" class="form-label"> Group Type</label>
+                                                                                <select ngModel name="groupType" class="form-control">
+                                                               <option>---Select----</option>
+                                                               <option value="Register">Register</option>
+                                                               <option value="Non-Register">Non-Register</option>
+                                                            </select>
+                                                                            </div>
+                                                                        </fieldset>
+                                                                    </div>
+                                                                    <div class="col-md-4"> <label for="inputName5" class="form-label"> Group Name</label> <input type="text" ngModel name="groupName" class="form-control" id="inputName5"></div>
+                                                                    <div class="col-md-6"> <label for="inputName5" class="form-label"> Scheme</label>
+                                                                        <select ngModel name="schemeId" class="form-control">
                                                          <option>---Select----</option>
                                                          <option value="10,000">10,000 </option>
                                                          <option value="20,000 ">20,000 </option>
@@ -79,45 +80,47 @@
                                                          <option value="10,00,000 - 20">10,00,000 - 20 </option>
                                                          <option value="10,00,000- 30">10,00,000- 30</option>
                                                       </select>
-                                                     </div>
-                                                   <div class="col-md-4"> <label for="inputName5" class="form-label"> Auction Date</label> <input type="date" class="form-control" id="inputName5" ngModel name="lauctionDate"></div>
-                                                   <label for="inputName5" class="form-label"> Auction Time</label>
-                                                   <div class="row mb-3">
-                                                      <label for="inputTime" class="col-sm-1 col-form-label">From </label>
-                                                      <div class="col-sm-4"> <input type="time" class="form-control" ngModel name="auctionFromDate"></div>
-                                                      <label for="inputTime" class="col-sm-1 col-form-label">To </label>
-                                                      <div class="col-sm-4"> <input type="time" class="form-control" ngModel name="auctioToDate"></div>
-                                                   </div>
-                                                   <div class="col-md-4"> <label for="inputName5" class="form-label"> Starting Date</label> <input type="date" class="form-control" id="inputName5" ngModel name="startingDate"></div>
-                                                   <div class="col-md-4"> <label for="inputName5" class="form-label">Commission percentage</label> <input type="number" class="form-control" id="inputName5" ngModel name="companyCommissionPercentage"></div><br>
-                                                   
-                                                   
-                                                   
-                                                   <label class="form-check-label" for="gridCheck1" style="margin-top: -10px; padding-top: 30px;"> If Group Type register: &nbsp; Yes</label>
-                                                   <input class="form-check-input" style="margin-top: -20px;margin-left: 220px; " type="checkbox"  (change)="showHideText($event);"> 
-                                                   
-                                                   <div *ngIf="isDisplayed">
-                                                      <div class="row">
-                                                      <div class="col-md-6"> <label for="inputName5" class="form-label"> FD Number</label> <input type="number" class="form-control" id="inputName5" ngModel name="fdnumber"></div>
-                                                   <div class="col-md-6"> <label for="inputName5" class="form-label"> Total FD </label> <input type="number" class="form-control" id="inputName5" ngModel name="totalFD"></div>
-                                                </div>
-                                                <div class="row">
-                                                   <div class="col-md-6"> <label for="inputName5" class="form-label"> Rate of Interest</label> <input type="number" class="form-control" id="inputName5" ngModel name="rateOfInterest"></div>
-                                                   <div class="col-md-6"> <label for="inputName5" class="form-label"> FD Date</label> <input type="date" class="form-control" id="inputName5" ngModel name="fDDate"></div>
-                                                </div>
-                                                <div class="row">
-                                                   <div class="col-md-6"> <label for="inputName5" class="form-label"> Maturity Amount</label> <input type="number" class="form-control" id="inputName5" ngModel name="maturityAmount"></div>
-                                                   <div class="col-md-6"> <label for="inputName5" class="form-label"> FD Bank</label> <input type="text" class="form-control" id="inputName5" ngModel name="fdbank"></div>
-                                                </div>
-                                                <div class="row">
-                                                    <div class="col-md-6"> <label for="inputName5" class="form-label"> FD Branch</label> <input type="text" class="form-control" id="inputName5" ngModel name="fdbranch"></div>
-                                                    <div class="col-md-6"> <label for="inputName5" class="form-label"> PSO Number</label> <input type="number" class="form-control" id="inputName5" ngModel name="psonumber"></div>
-                                                   </div>
-                                                    <div class="col-md-6"> <label for="inputName5" class="form-label"> PSO Date</label> <input type="date" class="form-control" id="inputName5" ngModel name="psodate"></div>
-                                                   </div>
-                                                   <div class="modal-footer"> <button type="submit" class="btn btn-primary">Submit</button>&nbsp; <button type="reset" class="btn btn-secondary">Reset</button></div>
-                                                                                           
-                                                </form>
+                                                                    </div>
+                                                                    <div class="col-md-4"> <label for="inputName5" class="form-label"> Auction Date</label> <input type="number" ngModel name="lauctionDate" class="form-control" id="inputName5"></div>
+                                                                    <label for="inputName5" class="form-label"> Auction Time</label>
+                                                                    <div class="row mb-3">
+                                                                        <label for="inputTime" class="col-sm-1 col-form-label">From </label>
+                                                                        <div class="col-sm-4"> <input type="time" ngModel name="auctionFromDate" class="form-control"></div>
+                                                                        <label for="inputTime" class="col-sm-1 col-form-label">To </label>
+                                                                        <div class="col-sm-4"> <input type="time" ngModel name="auctioToDate" class="form-control"></div>
+                                                                    </div>
+                                                                    <div class="col-md-4"> <label for="inputName5" class="form-label"> Starting Date</label> <input type="date" ngModel name="startingDate" class="form-control" id="inputName5"></div>
+                                                                    <div class="col-md-4"> <label for="inputName5" class="form-label">  Commission percentage</label> <input type="number" ngModel name="companyCommissionPercentage" class="form-control" id="inputName5"></div><br>
+
+
+
+                                                                    <label class="form-check-label" for="gridCheck1" style="margin-top: -10px; padding-top: 30px;"> If Group Type register: &nbsp; Yes</label>
+                                                                    <input class="form-check-input" style="margin-top: -20px;margin-left: 220px; " type="checkbox" (change)="showHideText($event);">
+
+                                                                    <div *ngIf="isDisplayed">
+                                                                        <div class="row">
+                                                                            <div class="col-md-6"> <label for="inputName5" class="form-label"> FD Number</label> <input type="text" ngModel name="fdnumber" class="form-control" id="inputName5"></div>
+                                                                            <div class="col-md-6"> <label for="inputName5" class="form-label"> Total FD </label> <input type="number" ngModel name="totalFD" class="form-control" id="inputName5"></div>
+                                                                        </div>
+                                                                        <div class="row">
+                                                                            <div class="col-md-6"> <label for="inputName5" class="form-label"> Rate of Interest</label> <input type="number" ngModel name="rateOfInterest" class="form-control" id="inputName5"></div>
+                                                                            <div class="col-md-6"> <label for="inputName5" class="form-label"> FD Date</label> <input type="date" ngModel name="fDDate" class="form-control" id="inputName5"></div>
+                                                                        </div>
+                                                                        <div class="row">
+                                                                            <div class="col-md-6"> <label for="inputName5" class="form-label"> Maturity Amount</label> <input type="number" ngModel name="maturityAmount" class="form-control" id="inputName5"></div>
+                                                                            <div class="col-md-6"> <label for="inputName5" class="form-label"> FD Bank</label> <input type="text" ngModel name="fdbank" class="form-control" id="inputName5"></div>
+                                                                        </div>
+                                                                        <div class="row">
+                                                                            <div class="col-md-6"> <label for="inputName5" class="form-label"> FD Branch</label> <input type="text" ngModel name="fdbranch" class="form-control" id="inputName5"></div>
+                                                                            <div class="col-md-6"> <label for="inputName5" class="form-label"> PSO Number</label> <input type="text" ngModel name="psonumber" class="form-control" id="inputName5"></div>
+                                                                        </div>
+                                                                        <div class="col-md-6"> <label for="inputName5" class="form-label"> PSO Date</label> <input type="date" class="form-control" ngModel name="psodate" id="inputName5"></div>
+                                                                    </div>
+
+                                                                    <div class="modal-footer"> 
+                                                                     <button type="submit" class="btn btn-primary">Submit</button>&nbsp; <button type="reset" class="btn btn-secondary">Reset</button>
+                                                                  </div>
+                                                                </form>
                                             </div>
                                              
                                           </div>
@@ -127,18 +130,20 @@
                     
                                      <thead>
                                          <tr>
-                                           <th>Id</th>
-                                           <th>Name</th>
-                                           <th>Username</th>
-                                           <th>Email</th>
+                                           <th>Group Name</th>
+                                           <th>Group Type</th>
+                                           <th>Branch Name</th>
+                                           <th>Scheme Id</th>
+                                           <th>Auction Date</th>
                                          </tr>
                                      </thead>
                                      <tbody>
-                                       <tr *ngFor="let user of users| filter:searchText">
-                                         <td>{{ user.id }}</td>
-                                         <td>{{ user.name }}</td>
-                                         <td>{{ user.username }}</td>
-                                         <td>{{ user.email }}</td>
+                                       <tr *ngFor="let group of ListOfGroupData| filter:searchText">
+                                         <td>{{ group.groupName}}</td>
+                                         <td>{{ group.groupType}}</td>
+                                         <td>{{ group.branchName }}</td>
+                                         <td>{{ group.schemeId }}</td>
+                                         <td>{{ group.lauctionDate }}</td>
                                        </tr>
                                      </tbody>
                                    </table>

@@ -26,15 +26,54 @@ export class ReceiptComponent implements OnInit {
   service: any;
   response:any;
   ListOfBranchData:any;
-  constructor(private http: HttpClient, private userData: UserDataService) {
-    //console.log('Hello');
-    // this.userData.users().subscribe((data) => {
-    //   // var userdata = JSON.parse(data).object;
-    //   console.log('data' + userdata);
-    //   this.users = data;
-    // });
+  recptreslt:any;
+  ListOfGroupData:any;
+//customer
+ListOfCustomerData:any;
+custmresponse:any
 
-    //get method
+//recipt
+ListOfReceiptData:any;
+receiptres:any;
+
+  constructor(private http: HttpClient, private userData: UserDataService) {
+// get all receipt
+this.userData.receipt().subscribe((data) =>{
+  this.receiptres=data;
+Object.keys(this.receiptres).forEach(prop => {
+if(prop=="object"){
+  this.ListOfReceiptData = this.receiptres[prop];
+}
+});
+
+})
+
+
+
+
+    // get all group method
+    this.userData.group().subscribe((data) =>{
+      this.response=data;
+    Object.keys(this.response).forEach(prop => {
+    if(prop=="object"){
+      this.ListOfGroupData = this.response[prop];
+    }
+    });
+    
+    })
+
+    // get all customer method
+    this.userData.customer().subscribe((data) =>{
+      this.custmresponse=data;
+    Object.keys(this.custmresponse).forEach(prop => {
+    if(prop=="object"){
+      this.ListOfCustomerData = this.custmresponse[prop];
+    }
+    });
+    
+    })
+
+    //get employee method
     this.userData.users().subscribe((data) =>{
       this.res =  data;
 
@@ -62,12 +101,38 @@ if(prop=="object"){
 
   }
 
-  getUserFormData(data: any) {
-    console.warn(data);
-    this.userData.createUser(data).subscribe((result) => {
-      console.warn(result);
-    });
-  }
+  //create reciept
+
+  getrecieptFormData(data:any): void{
+    //  console.log("GetData" +data.officeName);
+      console.log("AllData" +JSON.stringify(data));
+    
+     
+      //console.log("GetData" +this.userData.headOffice);
+    
+     //console.log(new Date("2015/04/29 11:24:00").getTime());
+    
+     
+      this.http.post(this.userData.createreceipt, data).subscribe((result)=>{
+       this.recptreslt = result;
+        
+       Object.keys(this.recptreslt).forEach(prop => {
+          console.log("data : " +prop);
+            console.log("value : "+this.recptreslt[prop]);
+             if(prop=="responseCode"){
+            // this.ListOfEmpData = this.reslt[prop];
+              if(this.recptreslt[prop]=="200"){
+                if(window.confirm('Receipt is created successfully')){
+                  location.reload();
+                }else(window.confirm('Error in creating receipt'))
+                {
+                  location.reload();
+                }
+              }
+              }
+          });
+        })
+       }
 
   ngOnInit(): void {
     this.userData.getNameList().subscribe((data: any) => {

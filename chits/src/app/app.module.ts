@@ -29,6 +29,7 @@ import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import { HashLocationStrategy, LocationStrategy  } from '@angular/common';
 
 
+
 // import { MbscModule } from '@mobiscroll/angular';
 @NgModule({
   exports: [

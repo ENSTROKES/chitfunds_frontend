@@ -27,56 +27,58 @@
                                 <button type="button"  class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                              </div>
                              <div class="modal-body"> 
-                                <form class="row g-3">
+                              <form class="row g-3" #recieptForm="ngForm" (ngSubmit)="getrecieptFormData(recieptForm.value)">
                                  <div class="col-md-6"> <label for="inputName5" class="form-label"> Branch Name</label>
-                                    <select name="CustomerName" class="form-control">
-                                       <option>---Select----</option>
-                                       <option *ngFor="let branchData of ListOfBranchData">
-                                          {{branchData.officeName}}
-                                    </option>
-                                    </select>
-                                   </div>
-                                <div class="col-md-6"> <label for="inputName5" class="form-label">Receipt Date</label> <input type="date" class="form-control" id="inputName5"></div>
-                                <div class="col-md-6"> <label for="inputName5" class="form-label">  Collection Employee</label>
-                                 <select name="CustomerName" class="form-control">
-                                    <option>---Select----</option>
-                                    <!-- <option *ngFor="let empData of ListOfEmpData">
-                                       {{empData.first_name}}
-                                    </option> -->
-                                 </select>
-                                </div>
-                                <div class="col-md-6"> <label for="inputName5" class="form-label"> Customer Name</label>
-                                 <select name="CustomerName" class="form-control">
-                                    <option>---Select----</option>
-                                    <option *ngFor="let empData of ListOfEmpData">
-                                       {{empData.first_name}}
-                                    </option>
-                                 </select>
-                                </div>
-                                <div class="col-md-6"> <label for="inputName5" class="form-label"> Select Enrollment</label>
-                                 <select name="CustomerName" class="form-control">
-                                    <option>---Select----</option>
-                                    <!-- <option *ngFor="let empData of ListOfEmpData">
-                                       {{empData.first_name}}
-                                    </option> -->
-                                 </select>
-                                </div>
-                                <div class="col-md-6"> <label for="inputName5" class="form-label"> Receipt Type</label>
-                                 <select name="CustomerName" class="form-control">
-                                    <option>---Select----</option>
-                                    <!-- <option *ngFor="let empData of ListOfEmpData">
-                                       {{empData.first_name}}
-                                    </option> -->
-                                 </select>
-                                </div>
-                                <div class="col-md-6">
-                                 <label for="inputName5" class="form-label"> Amount </label> <div class="input-group mb-3 w-50"><span class="input-group-text">₹</span> <input type="text" class="form-control" aria-label="Amount (to the nearest rupees)"> <span class="input-group-text">.00</span></div>
+                                     <select ngModel name="branchName" class="form-control">
+                            <option>---Select----</option>
+                            <option *ngFor="let branchData of ListOfBranchData">
+                               {{branchData.officeName}}
+                         </option>
+                         </select>
                                  </div>
-                                                                            
-                                                                                                                  
+                                 <div class="col-md-6"> <label for="inputName5" class="form-label">Receipt Date</label> <input type="date" class="form-control" ngModel name="receiptDate" id="inputName5"></div>
+                                 <div class="col-md-6"> <label for="inputName5" class="form-label">  Collection Employee</label>
+                                     <select ngModel name="collectionEmployee" class="form-control">
+                         <option>---Select----</option>
+                         <option *ngFor="let empData of ListOfEmpData">
+                           {{empData.first_name}}
+                        </option>
+                      </select>
+                                 </div>
+                                 <div class="col-md-6"> <label for="inputName5" class="form-label"> Customer Name</label>
+                                     <select ngModel name="customerName" class="form-control">
+                         <option>---Select----</option>
+                         <option *ngFor="let cusData of ListOfCustomerData">
+                           {{cusData.personalDetails.name}}
+                        </option>
+                         
+                      </select>
+                                 </div>
+                                 <div class="col-md-6"> <label for="inputName5" class="form-label"> Select Enrollment</label>
+                                     <select ngModel name="selectEnrollment" class="form-control">
+                         <option>---Select----</option>
+                         <option *ngFor="let grpData of ListOfGroupData">
+                            {{grpData.groupName}}
+                         </option>
+                      </select>
+                                 </div>
+                                 <div class="col-md-6"> <label for="inputName5" class="form-label"> Receipt Type</label>
+                                     <select ngModel name="receiptType" class="form-control">
+                         <option>---Select----</option>
+                         <option value="Document Fee">Document Fee</option>
+                         <option value="RF Amount">RF Amount</option>
+                         <option value="Normal">Normal</option>
+                         <option value="Advance">Advance</option>
+                      </select>
+                                 </div>
+                                 <div class="col-md-6">
+                                     <label for="inputName5" class="form-label"> Amount </label>
+                                     <div class="input-group mb-3 w-50"><span class="input-group-text">₹</span> <input type="number" ngModel name="billAmount" class="form-control" aria-label="Amount (to the nearest rupees)"> <span class="input-group-text">.00</span></div>
+                                 </div>
+                                 <div class="text-center"> <button type="submit" class="btn btn-primary">Submit</button>&nbsp; <button type="reset" class="btn btn-secondary">Reset</button></div>
                              </form>
                             </div>
-                             <div class="modal-footer"> <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button> <button type="button" class="btn btn-primary">Submit</button></div>
+                             
                           </div>
                        </div>
                     </div>
@@ -84,18 +86,31 @@
     
                      <thead>
                          <tr>
-                           <th>Id</th>
-                           <th>Name</th>
-                           <th>Username</th>
-                           <th>Email</th>
+                           <th> Id</th>
+                           <th>Branch Name</th>
+                           <th> Date</th>
+                           <th>Customer</th>
+                           <th>Employee </th>
+                           <th>Enrollment </th>
+                           <th>Receipt </th>
+                           <th> Amount</th>
+                           <th> Action</th>
                          </tr>
                      </thead>
                      <tbody>
-                       <tr *ngFor="let user of users|filter:searchText">
-                         <td>{{ user.id }}</td>
-                         <td>{{ user.name }}</td>
-                         <td>{{ user.username }}</td>
-                         <td>{{ user.email }}</td>
+                       <tr *ngFor="let receipt of ListOfReceiptData|filter:searchText">
+                         <td>{{ receipt.reportId }}</td>
+                         <td>{{ receipt.branchName }}</td>
+                         <td>{{ receipt.receiptDate }}</td>
+                         <td>{{ receipt.customerName }}</td>
+                         <td>{{ receipt.collectionEmployee }}</td>
+                         <td>{{ receipt.selectEnrollment }}</td>
+                         <td>{{ receipt.receiptType }}</td>
+                         <td>{{ receipt.billAmount }}</td>
+                         <td>
+                        <div class="icon">
+                           <i class="bi bi-printer"></i></div></td>
+                           
                        </tr>
                      </tbody>
                    </table>

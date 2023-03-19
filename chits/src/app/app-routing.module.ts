@@ -28,9 +28,9 @@ import { UsersProfileComponent } from './pages/users-profile/users-profile.compo
 
 
 const routes: Routes = [
-  // { path: '',redirectTo:'pages-login', pathMatch: 'full' },
+  { path: '',redirectTo:'pages-login', pathMatch: 'full' },
   // { path: 'pages-login', component: PagesLoginComponent,pathMatch: 'full' },
-  {path:'', component:PagesLoginComponent},
+  //{path:'', component:PagesLoginComponent},
   { path: 'dashboard', component: DashboardComponent },
   { path: 'branches', component: BranchesComponent },
   { path: 'auctionpaymentdisbursal', component: AuctionpaymentdisbursalComponent},

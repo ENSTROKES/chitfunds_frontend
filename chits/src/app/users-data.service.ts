@@ -20,6 +20,10 @@ export class UserDataService {
   headurl='http://3.111.255.69/chitfund/getAllHeadOffice';
   createbrnch = 'http://3.111.255.69/chitfund/createBranch';
   creategrp = 'http://3.111.255.69/chitfund/createGroup';
+  createreceipt = 'http://3.111.255.69/chitfund/createReceipt';
+  getAllgrp ='http://3.111.255.69/chitfund/getAllGroup';
+  getAllcustomer ='http://3.111.255.69/chitfund/getAllCustomers';
+  getReceipt ='http://3.111.255.69/chitfund/getAllReceipt';
   constructor(private http: HttpClient) {
     //employeeData: any;
   }
@@ -32,6 +36,22 @@ export class UserDataService {
   }
   user() {
     return this.http.get(this.url);
+  }
+
+  //get all group
+  group() {
+    return this.http.get(this.getAllgrp);
+  }
+
+ //get all receipt
+ receipt() {
+  return this.http.get(this.getReceipt);
+}
+
+
+  //get all customers
+  customer() {
+    return this.http.get(this.getAllcustomer);
   }
 
   //create employee

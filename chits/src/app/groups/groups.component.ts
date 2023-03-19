@@ -13,11 +13,26 @@ export class GroupsComponent implements OnInit {
   //branch
   response:any;
   ListOfBranchData:any;
-
+  ListOfGroupData:any;
+  grpres:any;
   //group
   grpreslt:any;
 
   constructor(private http: HttpClient, private userData:UserDataService) { 
+    //get all group
+    this.userData.group().subscribe((data) =>{
+      this.grpres=data;
+    Object.keys(this.grpres).forEach(prop => {
+    if(prop=="object"){
+      this.ListOfGroupData = this.grpres[prop];
+    }
+    });
+    
+    })
+
+
+    //get all branch
+
     this.userData.branch().subscribe((data) =>{
       this.response=data;
   Object.keys(this.response).forEach(prop => {
@@ -52,7 +67,8 @@ getgroupFormData(data:any): void{
             if(this.grpreslt[prop]=="200"){
               if(window.confirm('Group is created successfully')){
                 location.reload();
-              }else{
+              }else(window.confirm('Error creating group'))
+              {
                 location.reload();
               }
             }
