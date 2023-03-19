@@ -22,6 +22,9 @@ export class BranchesComponent implements OnInit {
   //popup
   //isSubmitted = false;
   isDisplayed: boolean | undefined;
+
+
+  
   
   constructor(private http: HttpClient, private userData:UserDataService) {
 

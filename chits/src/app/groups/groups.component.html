@@ -19,7 +19,7 @@
                    <ul class="nav nav-tabs nav-tabs-bordered d-flex" id="borderedTabJustified" role="tablist">
                       <li class="nav-item flex-fill" role="presentation"> <button class="nav-link w-100 active" id="home-tab" data-bs-toggle="tab" data-bs-target="#bordered-justified-home" type="button" role="tab" aria-controls="groups" aria-selected="true">Groups</button></li>
                       <li class="nav-item flex-fill" role="presentation"> <button class="nav-link w-100" id="profile-tab" data-bs-toggle="tab" data-bs-target="#bordered-justified-profile" type="button" role="tab" aria-controls="slabs" aria-selected="false">Slabs</button></li>
-                      <li class="nav-item flex-fill" role="presentation"> <button class="nav-link w-100" id="contact-tab" data-bs-toggle="tab" data-bs-target="#bordered-justified-contact" type="button" role="tab" aria-controls="scheme" aria-selected="false">Scheme</button></li>
+                      <!-- <li class="nav-item flex-fill" role="presentation"> <button class="nav-link w-100" id="contact-tab" data-bs-toggle="tab" data-bs-target="#bordered-justified-contact" type="button" role="tab" aria-controls="scheme" aria-selected="false">Scheme</button></li> -->
                    </ul>
                    <div class="tab-content pt-2" id="borderedTabJustifiedContent">
                       <div class="tab-pane fade show active" id="bordered-justified-home" role="tabpanel" aria-labelledby="groups-tab"> <div class="row">
@@ -41,12 +41,12 @@
                                                 <button type="button"  class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                              </div>
                                              <div class="modal-body"> 
-                                                <form class="row g-3">
+                                                <form class="row g-3" #grpForm="ngForm" (ngSubmit)="getgroupFormData(grpForm.value)">
                                                    <!-- <div class="col-md-4"> <label for="inputName5" class="form-label">Branch Name</label> <input type="text" class="form-control" id="inputName5"></div> &nbsp;&nbsp;  -->
                                                    <div class="col-md-6"> <label for="inputName5" class="form-label"> Branch Name</label>
-                                                      <select name="BranchName" class="form-control">
+                                                      <select name="BranchName" class="form-control" ngModel name="branchName">
                                                          <option>---Select----</option>
-                                                         <option *ngFor="let branchData of ListOfBranchData">
+                                                         <option *ngFor="let branchData of ListOfBranchData" [value]="branchData.officeName">
                                                             {{branchData.officeName}}
                                                       </option>
                                                       </select>
@@ -56,31 +56,40 @@
                                                       <legend class="col-form-label col-sm-3 pt-1">Group Type</legend>
                                                       <div class="col-md-6">
                                                       <div class="col-sm-12">
-                                                         <div class="form-check"> <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios1" value="option1" checked> <label class="form-check-label" for="gridRadios1"> Register </label></div>
-                                                         <div class="form-check"> <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios2" value="option2"> <label class="form-check-label" for="gridRadios2"> Non-register</label></div>
+                                                         <div class="form-check"> <input class="form-check-input" type="radio"  id="gridRadios1" value="register" checked ngModel name="groupType"> <label class="form-check-label" for="gridRadios1"> Register </label></div>
+                                                         <div class="form-check"> <input class="form-check-input" type="radio"  id="gridRadios2" value="non-register" ngModel name="groupType"> <label class="form-check-label" for="gridRadios2"> Non-register</label></div>
                                                       </div>
                                                    </div>
                                                    </fieldset>
                                                 </div>
-                                                   <div class="col-md-4"> <label for="inputName5" class="form-label"> Group Name</label> <input type="text" class="form-control" id="inputName5"></div>
+                                                   <div class="col-md-4"> <label for="inputName5" class="form-label"> Group Name</label> <input type="text" class="form-control" id="inputName5" ngModel name="groupName"></div>
                                                    <div class="col-md-6"> <label for="inputName5" class="form-label"> Scheme</label>
-                                                      <select name="Scheme" class="form-control">
+                                                      <select name="Scheme" class="form-control" ngModel name="schemeId">
                                                          <option>---Select----</option>
-                                                         <option>
-                                                            <!-- {{empData.first_name}} -->
-                                                         </option>
+                                                         <option value="10,000">10,000 </option>
+                                                         <option value="20,000 ">20,000 </option>
+                                                         <option value="50,000 - 10">50,000 - 10 </option>
+                                                         <option value="50,000 - 20">50,000 - 20 </option>
+                                                         <option value="1,00,000">1,00,000 </option>
+                                                         <option value="2,00,000">2,00,000 </option>
+                                                         <option value="3,00,000 - 20">3,00,000 - 20</option>
+                                                         <option value="3,00,000 - 30">3,00,000 - 30</option>
+                                                         <option value="5,00,000">5,00,000 </option>
+                                                         <option value="6,00,000">6,00,000 </option>
+                                                         <option value="10,00,000 - 20">10,00,000 - 20 </option>
+                                                         <option value="10,00,000- 30">10,00,000- 30</option>
                                                       </select>
                                                      </div>
-                                                   <div class="col-md-4"> <label for="inputName5" class="form-label"> Auction Date</label> <input type="date" class="form-control" id="inputName5"></div>
+                                                   <div class="col-md-4"> <label for="inputName5" class="form-label"> Auction Date</label> <input type="date" class="form-control" id="inputName5" ngModel name="lauctionDate"></div>
                                                    <label for="inputName5" class="form-label"> Auction Time</label>
                                                    <div class="row mb-3">
                                                       <label for="inputTime" class="col-sm-1 col-form-label">From </label>
-                                                      <div class="col-sm-4"> <input type="time" class="form-control"></div>
+                                                      <div class="col-sm-4"> <input type="time" class="form-control" ngModel name="auctionFromDate"></div>
                                                       <label for="inputTime" class="col-sm-1 col-form-label">To </label>
-                                                      <div class="col-sm-4"> <input type="time" class="form-control"></div>
+                                                      <div class="col-sm-4"> <input type="time" class="form-control" ngModel name="auctioToDate"></div>
                                                    </div>
-                                                   <div class="col-md-4"> <label for="inputName5" class="form-label"> Starting Date</label> <input type="date" class="form-control" id="inputName5"></div>
-                                                   <div class="col-md-4"> <label for="inputName5" class="form-label"> Company Commission percentage</label> <input type="date" class="form-control" id="inputName5"></div><br>
+                                                   <div class="col-md-4"> <label for="inputName5" class="form-label"> Starting Date</label> <input type="date" class="form-control" id="inputName5" ngModel name="startingDate"></div>
+                                                   <div class="col-md-4"> <label for="inputName5" class="form-label">Commission percentage</label> <input type="number" class="form-control" id="inputName5" ngModel name="companyCommissionPercentage"></div><br>
                                                    
                                                    
                                                    
@@ -89,28 +98,28 @@
                                                    
                                                    <div *ngIf="isDisplayed">
                                                       <div class="row">
-                                                      <div class="col-md-6"> <label for="inputName5" class="form-label"> FD Number</label> <input type="text" class="form-control" id="inputName5"></div>
-                                                   <div class="col-md-6"> <label for="inputName5" class="form-label"> Total FD </label> <input type="text" class="form-control" id="inputName5"></div>
+                                                      <div class="col-md-6"> <label for="inputName5" class="form-label"> FD Number</label> <input type="number" class="form-control" id="inputName5" ngModel name="fdnumber"></div>
+                                                   <div class="col-md-6"> <label for="inputName5" class="form-label"> Total FD </label> <input type="number" class="form-control" id="inputName5" ngModel name="totalFD"></div>
                                                 </div>
                                                 <div class="row">
-                                                   <div class="col-md-6"> <label for="inputName5" class="form-label"> Rate of Interest</label> <input type="text" class="form-control" id="inputName5"></div>
-                                                   <div class="col-md-6"> <label for="inputName5" class="form-label"> FD Date</label> <input type="date" class="form-control" id="inputName5"></div>
+                                                   <div class="col-md-6"> <label for="inputName5" class="form-label"> Rate of Interest</label> <input type="number" class="form-control" id="inputName5" ngModel name="rateOfInterest"></div>
+                                                   <div class="col-md-6"> <label for="inputName5" class="form-label"> FD Date</label> <input type="date" class="form-control" id="inputName5" ngModel name="fDDate"></div>
                                                 </div>
                                                 <div class="row">
-                                                   <div class="col-md-6"> <label for="inputName5" class="form-label"> Maturity Amount</label> <input type="text" class="form-control" id="inputName5"></div>
-                                                   <div class="col-md-6"> <label for="inputName5" class="form-label"> FD Bank</label> <input type="text" class="form-control" id="inputName5"></div>
+                                                   <div class="col-md-6"> <label for="inputName5" class="form-label"> Maturity Amount</label> <input type="number" class="form-control" id="inputName5" ngModel name="maturityAmount"></div>
+                                                   <div class="col-md-6"> <label for="inputName5" class="form-label"> FD Bank</label> <input type="text" class="form-control" id="inputName5" ngModel name="fdbank"></div>
                                                 </div>
                                                 <div class="row">
-                                                    <div class="col-md-6"> <label for="inputName5" class="form-label"> FD Branch</label> <input type="text" class="form-control" id="inputName5"></div>
-                                                    <div class="col-md-6"> <label for="inputName5" class="form-label"> PSO Number</label> <input type="text" class="form-control" id="inputName5"></div>
+                                                    <div class="col-md-6"> <label for="inputName5" class="form-label"> FD Branch</label> <input type="text" class="form-control" id="inputName5" ngModel name="fdbranch"></div>
+                                                    <div class="col-md-6"> <label for="inputName5" class="form-label"> PSO Number</label> <input type="number" class="form-control" id="inputName5" ngModel name="psonumber"></div>
                                                    </div>
-                                                    <div class="col-md-6"> <label for="inputName5" class="form-label"> PSO Date</label> <input type="date" class="form-control" id="inputName5"></div>
+                                                    <div class="col-md-6"> <label for="inputName5" class="form-label"> PSO Date</label> <input type="date" class="form-control" id="inputName5" ngModel name="psodate"></div>
                                                    </div>
-                                                   
+                                                   <div class="modal-footer"> <button type="submit" class="btn btn-primary">Submit</button>&nbsp; <button type="reset" class="btn btn-secondary">Reset</button></div>
                                                                                            
                                                 </form>
                                             </div>
-                                             <div class="modal-footer"> <button type="submit" class="btn btn-primary">Submit</button>&nbsp; <button type="reset" class="btn btn-secondary">Reset</button></div>
+                                             
                                           </div>
                                        </div>
                                     </div>
@@ -139,8 +148,7 @@
                         </div>                                                                   
                      </div></div>
                       <div class="tab-pane fade" id="bordered-justified-profile" role="tabpanel" aria-labelledby="slabs-tab"> 
-                        <main id="main" class="main">
-                        
+                        <main id="main" class="main" style="margin-top: -20px;">
                            <div class="row">
                               <div class="col-lg-12">
                                  <div class="card" style="margin-left: -300px;">
@@ -157,315 +165,1943 @@
                                              <tr >
                                                 <th scope="col">#</th>
                                                 <th scope="col">Chit Value</th>
-                                                <th scope="col">No.of Members</th>
-                                                <th scope="col">No. of Months</th>
-                                                <th scope="col">Registration-Fee</th>
-                                                <th scope="col">Due Amount</th>
-                                                <th scope="col">Payment Slab</th>
+                                                <th scope="col">Installment</th>
+                                                <th scope="col">Due-Daily</th>
+                                                <th scope="col">Due-Weekly</th>
+                                                <th scope="col">Due-Monthly</th>
+                                                <th scope="col">Action</th>
                                              </tr>
                                           </thead>
                                           <tbody>
                                              <tr>
                                                 <th scope="row">1</th>
                                                 <td>10,000</td>
-                                                <td>No.of Members</td>
-                                                <td>1</td>
+                                                <td>10</td>
                                                 <td>50</td>
-                                                <td>1</td>
-                                                <td>Company</td>
+                                                <td>250</td>
+                                                <td>1000</td>
+                                                <td><i class="bi bi-eye" data-bs-toggle="modal" data-bs-target="#modalDialogScrollable1"></i>
+                                                   <div class="modal fade" id="modalDialogScrollable1" tabindex="-1">
+                                                      <div class="modal-dialog modal-dialog-scrollable">
+                                                          <div class="modal-content">
+                                                              <div class="modal-header">
+      
+                                                                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                              </div>
+                                                              <div class="modal-body">
+                                                               <div style="text-align: center;">
+                                                                  <h5>Chit Value-10,000</h5>
+                                                                  <h5>Registration Fee- 50</h5>
+                                                                  <h6>Daily- Rs.50 || Weekly- Rs.250|| Monthly- Rs.1000</h6>
+                                                               </div>
+                                                               <table class="table table-hover">
+                                                                  <thead>
+                                                                     <tr >
+                                                                        
+                                                                        <th scope="col">Installment</th>
+                                                                        <th scope="col">Payment Slab</th>
+                                                                     </tr>
+                                                                  </thead>
+                                                                  <tbody>
+                                                                     <tr>
+                                                                        <td>1</td>
+                                                                        <td>Company</td>
+                                                                       
+                                                                     </tr>
+                                                                     <tr>
+                                                                        
+                                                                        <td>2</td>
+                                                                        <td>8,000</td>
+                                                                        
+                                                                     </tr>
+                                                                     <tr>
+                                                                        
+                                                                        <td>3</td>
+                                                                        <td>8,100</td>
+                                                                        
+                                                                     </tr>
+                                                                     <tr>
+                                                                        
+                                                                        <td>4</td>
+                                                                        <td>8,200</td>
+                                                                       
+                                                                     </tr>
+                                                                     <tr>
+                                                                        
+                                                                        <td>5</td>
+                                                                        <td>8,400</td>
+                                                                        
+                                                                     </tr>
+                                                                     <tr>
+                                                                        
+                                                                        <td>6</td>
+                                                                        <td>8,600</td>   
+                                                                     </tr>
+                                                                     <tr>
+                                                                        
+                                                                        <td>7</td>
+                                                                        <td>8,800</td>
+                                                                        
+                                                                     </tr>
+                                                                     <tr>
+                                                                       
+                                                                        <td>8</td>
+                                                                        <td>9,400</td>
+                                                                        
+                                                                     </tr>
+                                                                     <tr>
+                                                                        
+                                                                        <td>9</td>
+                                                                        <td>10,200</td> 
+                                                                     </tr>
+                                                                     <tr>
+                                                                        
+                                                                        <td>10</td>
+                                                                        <td>11,000</td>
+                                                                        
+                                                                     </tr>
+                                                                  </table>
+                                                                  
+                                                              </div>
+      
+                                                          </div>
+                                                      </div>
+                                                  </div>
+                                                </td>
                                                
                                              </tr>
                                              <tr>
                                                 <th scope="row">2</th>
-                                                <td>10,000</td>
-                                                <td>No.of Members</td>
-                                                <td>2</td>
-                                                <td>50</td>
-                                                <td>1</td>
-                                                <td>8,000</td>
+                                                <td>20,000</td>
+                                                <td>10</td>
+                                                <td>100</td>
+                                                <td>500</td>
+                                                <td>2000</td>
+                                                <td><i class="bi bi-eye" data-bs-toggle="modal" data-bs-target="#modalDialogScrollable2"></i>
+                                                   <div class="modal fade" id="modalDialogScrollable2" tabindex="-1">
+                                                      <div class="modal-dialog modal-dialog-scrollable">
+                                                          <div class="modal-content">
+                                                              <div class="modal-header">
+      
+                                                                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                              </div>
+                                                              <div class="modal-body">
+                                                               <div style="text-align: center;">
+                                                                  <h5>Chit Value-20,000</h5>
+                                                                  <h5>Registration Fee- 50</h5>
+                                                                  <h6>Daily- Rs.100 || Weekly- Rs.500|| Monthly- Rs.2000</h6>
+                                                               </div>
+                                                               <table class="table table-hover">
+                                                                  <thead>
+                                                                     <tr >
+                                                                        <th scope="col">Installment</th>
+                                                                        <th scope="col">Payment Slab</th>
+                                                                     </tr>
+                                                                  </thead>
+                                                                  <tbody>
+                                                                     <tr>
+                                                                        <td>1</td>
+                                                                        <td>Company</td>
+                                                                       
+                                                                     </tr>
+                                                                     <tr>
+                                                                        
+                                                                        <td>2</td>
+                                                                        <td>16,000</td>
+                                                                        
+                                                                     </tr>
+                                                                     <tr>
+                                                                        
+                                                                        <td>3</td>
+                                                                        <td>16,200</td>
+                                                                        
+                                                                     </tr>
+                                                                     <tr>
+                                                                        
+                                                                        <td>4</td>
+                                                                        <td>16,400</td>
+                                                                       
+                                                                     </tr>
+                                                                     <tr>
+                                                                       
+                                                                        <td>5</td>
+                                                                        <td>16,800</td>
+                                                                        
+                                                                     </tr>
+                                                                     <tr>
+                                                                        
+                                                                        <td>6</td>
+                                                                        <td>17,200</td>   
+                                                                     </tr>
+                                                                     <tr>
+                                                                       
+                                                                        <td>7</td>
+                                                                        <td>17,600</td>
+                                                                        
+                                                                     </tr>
+                                                                     <tr>
+                                                                       
+                                                                        <td>8</td>
+                                                                        <td>18,800</td>
+                                                                        
+                                                                     </tr>
+                                                                     <tr>
+                                                                        
+                                                                        <td>9</td>
+                                                                        <td>20,400</td> 
+                                                                     </tr>
+                                                                     <tr>
+                                                                        
+                                                                        <td>10</td>
+                                                                        <td>22,000</td>
+                                                                        
+                                                                     </tr>
+                                                                  </table>
+                                                                  
+                                                              </div>
+      
+                                                          </div>
+                                                      </div>
+                                                  </div>
+                                                </td>
                                                 
                                              </tr>
                                              <tr>
                                                 <th scope="row">3</th>
-                                                <td>10,000</td>
-                                                <td>No.of Members</td>
-                                                <td>3</td>
-                                                <td>50</td>
-                                                <td>1</td>
-                                                <td>8,100</td>
+                                                <td>50,000</td>
+                                                <td>10</td>
+                                                <td>250</td>
+                                                <td>1250</td>
+                                                <td>5000</td>
+                                                <td><i class="bi bi-eye" data-bs-toggle="modal" data-bs-target="#modalDialogScrollable3"></i>
+                                                   <div class="modal fade" id="modalDialogScrollable3" tabindex="-1">
+                                                      <div class="modal-dialog modal-dialog-scrollable">
+                                                          <div class="modal-content">
+                                                              <div class="modal-header">
+      
+                                                                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                              </div>
+                                                              <div class="modal-body">
+                                                               <div style="text-align: center;">
+                                                                  <h5>Chit Value-50,000</h5>
+                                                                  <h5>Registration Fee- 100</h5>
+                                                                  <h6>Daily- Rs.250 || Weekly- Rs.1250|| Monthly- Rs.5000</h6>
+                                                               </div>
+                                                               <table class="table table-hover">
+                                                                  <thead>
+                                                                     <tr >
+                                                                        
+                                                                        <th scope="col">Installment</th>
+                                                                        <th scope="col">Payment Slab</th>
+                                                                     </tr>
+                                                                  </thead>
+                                                                  <tbody>
+                                                                     <tr>
+                                                                        
+                                                                        <td>1</td>
+                                                                        <td>Company</td>
+                                                                       
+                                                                     </tr>
+                                                                     <tr>
+                                                                        
+                                                                        <td>2</td>
+                                                                        <td>40,000</td>
+                                                                        
+                                                                     </tr>
+                                                                     <tr>
+                                                                        
+                                                                        <td>3</td>
+                                                                        <td>40,500</td>
+                                                                        
+                                                                     </tr>
+                                                                     <tr>
+                                                                       
+                                                                        <td>4</td>
+                                                                        <td>41,000</td>
+                                                                       
+                                                                     </tr>
+                                                                     <tr>
+                                                                       
+                                                                        <td>5</td>
+                                                                        <td>42,000</td>
+                                                                        
+                                                                     </tr>
+                                                                     <tr>
+                                                                       
+                                                                        <td>6</td>
+                                                                        <td>43,000</td>   
+                                                                     </tr>
+                                                                     <tr>
+                                                                        
+                                                                        <td>7</td>
+                                                                        <td>44,000</td>
+                                                                        
+                                                                     </tr>
+                                                                     <tr>
+                                                                        
+                                                                        <td>8</td>
+                                                                        <td>47,000</td>
+                                                                        
+                                                                     </tr>
+                                                                     <tr>
+                                                                        
+                                                                        <td>9</td>
+                                                                        <td>51,000</td> 
+                                                                     </tr>
+                                                                     <tr>
+                                                                        
+                                                                        <td>10</td>
+                                                                        <td>55,000</td>
+                                                                        
+                                                                     </tr>
+                                                                  </table>
+                                                                  
+                                                              </div>
+      
+                                                          </div>
+                                                      </div>
+                                                  </div>
+                                                </td>
                                                 
                                              </tr>
                                              <tr>
                                                 <th scope="row">4</th>
-                                                <td>10,000</td>
-                                                <td>No.of Members</td>
-                                                <td>4</td>
-                                                <td>50</td>
-                                                <td>1</td>
-                                                <td>8,200</td>
-                                               
+                                                <td>50,000</td>
+                                                <td>20</td>
+                                                <td>100</td>
+                                                <td>625</td>
+                                                <td>2500</td>
+                                                <td><i class="bi bi-eye" data-bs-toggle="modal" data-bs-target="#modalDialogScrollable4"></i>
+                                                   <div class="modal fade" id="modalDialogScrollable4" tabindex="-1">
+                                                      <div class="modal-dialog modal-dialog-scrollable">
+                                                          <div class="modal-content">
+                                                              <div class="modal-header">
+      
+                                                                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                              </div>
+                                                              <div class="modal-body">
+                                                               <div style="text-align: center;">
+                                                                  <h5>Chit Value-50,000</h5>
+                                                                  <h5>Registration Fee- 100</h5>
+                                                                  <h6>Daily- Rs.100 || Weekly- Rs.625|| Monthly- Rs.2500</h6>
+                                                               </div>
+                                                               <table class="table table-hover">
+                                                                  <thead>
+                                                                     <tr >
+                                                                        
+                                                                        <th scope="col">Installment</th>
+                                                                        <th scope="col">Payment Slab</th>
+                                                                     </tr>
+                                                                  </thead>
+                                                                  <tbody>
+                                                                     <tr>
+                                                                        
+                                                                        <td>1</td>
+                                                                        <td>Company</td>
+                                                                       
+                                                                     </tr>
+                                                                     <tr>
+                                                                        
+                                                                        <td>2</td>
+                                                                        <td>41,250</td>
+                                                                        
+                                                                     </tr>
+                                                                     <tr>
+                                                                        
+                                                                        <td>3</td>
+                                                                        <td>41,500</td>
+                                                                        
+                                                                     </tr>
+                                                                     <tr>
+                                                                       
+                                                                        <td>4</td>
+                                                                        <td>41,750</td>
+                                                                       
+                                                                     </tr>
+                                                                     <tr>
+                                                                       
+                                                                        <td>5</td>
+                                                                        <td>42,000</td>
+                                                                        
+                                                                     </tr>
+                                                                     <tr>
+                                                                       
+                                                                        <td>6</td>
+                                                                        <td>42,250</td>   
+                                                                     </tr>
+                                                                     <tr>
+                                                                        
+                                                                        <td>7</td>
+                                                                        <td>42,500</td>
+                                                                        
+                                                                     </tr>
+                                                                     <tr>
+                                                                        
+                                                                        <td>8</td>
+                                                                        <td>43,000</td>
+                                                                        
+                                                                     </tr>
+                                                                     <tr>
+                                                                        
+                                                                        <td>9</td>
+                                                                        <td>43,500</td> 
+                                                                     </tr>
+                                                                     <tr>
+                                                                        
+                                                                        <td>10</td>
+                                                                        <td>44,000</td>
+                                                                        
+                                                                     </tr>
+                                                                     <tr>
+                                                                        
+                                                                        <td>11</td>
+                                                                        <td>44,500</td>
+                                                                       
+                                                                     </tr>
+                                                                     <tr>
+                                                                        
+                                                                        <td>12</td>
+                                                                        <td>45,000</td>
+                                                                        
+                                                                     </tr>
+                                                                     <tr>
+                                                                        
+                                                                        <td>13</td>
+                                                                        <td>46,000</td>
+                                                                        
+                                                                     </tr>
+                                                                     <tr>
+                                                                       
+                                                                        <td>14</td>
+                                                                        <td>47,500</td>
+                                                                       
+                                                                     </tr>
+                                                                     <tr>
+                                                                       
+                                                                        <td>15</td>
+                                                                        <td>49,000</td>
+                                                                        
+                                                                     </tr>
+                                                                     <tr>
+                                                                       
+                                                                        <td>16</td>
+                                                                        <td>50,500</td>   
+                                                                     </tr>
+                                                                     <tr>
+                                                                        
+                                                                        <td>17</td>
+                                                                        <td>52,000</td>
+                                                                        
+                                                                     </tr>
+                                                                     <tr>
+                                                                        
+                                                                        <td>18</td>
+                                                                        <td>54,000</td>
+                                                                        
+                                                                     </tr>
+                                                                     <tr>
+                                                                        
+                                                                        <td>19</td>
+                                                                        <td>56,500</td> 
+                                                                     </tr>
+                                                                     <tr>
+                                                                        
+                                                                        <td>20</td>
+                                                                        <td>60,000</td>
+                                                                        
+                                                                     </tr>
+                                                                  </table>
+                                                                  
+                                                              </div>
+      
+                                                          </div>
+                                                      </div>
+                                                  </div>
+                                                </td>
                                              </tr>
                                              <tr>
                                                 <th scope="row">5</th>
-                                                <td>10,000</td>
-                                                <td>No.of Members</td>
-                                                <td>5</td>
-                                                <td>50</td>
-                                                <td>1</td>
-                                                <td>8,400</td>
+                                                <td>1,00,000</td>
+                                                <td>20</td>
+                                                <td>200</td>
+                                                <td>1250</td>
+                                                <td>5000</td>
+                                                <td><i class="bi bi-eye" data-bs-toggle="modal" data-bs-target="#modalDialogScrollable5"></i>
+                                                   <div class="modal fade" id="modalDialogScrollable5" tabindex="-1">
+                                                      <div class="modal-dialog modal-dialog-scrollable">
+                                                          <div class="modal-content">
+                                                              <div class="modal-header">
+      
+                                                                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                              </div>
+                                                              <div class="modal-body">
+                                                               <div style="text-align: center;">
+                                                                  <h5>Chit Value-1,00,000</h5>
+                                                                  <h5>Registration Fee- 200</h5>
+                                                                  <h6>Daily- Rs.200 || Weekly- Rs.1250|| Monthly- Rs.5000</h6>
+                                                               </div>
+                                                               <table class="table table-hover">
+                                                                  <thead>
+                                                                     <tr >
+                                                                        
+                                                                        <th scope="col">Installment</th>
+                                                                        <th scope="col">Payment Slab</th>
+                                                                     </tr>
+                                                                  </thead>
+                                                                  <tbody>
+                                                                     <tr>
+                                                                        
+                                                                        <td>1</td>
+                                                                        <td>Company</td>
+                                                                       
+                                                                     </tr>
+                                                                     <tr>
+                                                                        
+                                                                        <td>2</td>
+                                                                        <td>82,500</td>
+                                                                        
+                                                                     </tr>
+                                                                     <tr>
+                                                                        
+                                                                        <td>3</td>
+                                                                        <td>83,000</td>
+                                                                        
+                                                                     </tr>
+                                                                     <tr>
+                                                                       
+                                                                        <td>4</td>
+                                                                        <td>83,500</td>
+                                                                       
+                                                                     </tr>
+                                                                     <tr>
+                                                                       
+                                                                        <td>5</td>
+                                                                        <td>84,000</td>
+                                                                        
+                                                                     </tr>
+                                                                     <tr>
+                                                                       
+                                                                        <td>6</td>
+                                                                        <td>84,500</td>   
+                                                                     </tr>
+                                                                     <tr>
+                                                                        
+                                                                        <td>7</td>
+                                                                        <td>85,000</td>
+                                                                        
+                                                                     </tr>
+                                                                     <tr>
+                                                                        
+                                                                        <td>8</td>
+                                                                        <td>86,000</td>
+                                                                        
+                                                                     </tr>
+                                                                     <tr>
+                                                                        
+                                                                        <td>9</td>
+                                                                        <td>87,000</td> 
+                                                                     </tr>
+                                                                     <tr>
+                                                                        
+                                                                        <td>10</td>
+                                                                        <td>88,000</td>
+                                                                        
+                                                                     </tr>
+                                                                     <tr>
+                                                                        
+                                                                        <td>11</td>
+                                                                        <td>89,000</td>
+                                                                       
+                                                                     </tr>
+                                                                     <tr>
+                                                                        
+                                                                        <td>12</td>
+                                                                        <td>90,000</td>
+                                                                        
+                                                                     </tr>
+                                                                     <tr>
+                                                                        
+                                                                        <td>13</td>
+                                                                        <td>92,000</td>
+                                                                        
+                                                                     </tr>
+                                                                     <tr>
+                                                                       
+                                                                        <td>14</td>
+                                                                        <td>95,000</td>
+                                                                       
+                                                                     </tr>
+                                                                     <tr>
+                                                                       
+                                                                        <td>15</td>
+                                                                        <td>98,000</td>
+                                                                        
+                                                                     </tr>
+                                                                     <tr>
+                                                                       
+                                                                        <td>16</td>
+                                                                        <td>1,01,000</td>   
+                                                                     </tr>
+                                                                     <tr>
+                                                                        
+                                                                        <td>17</td>
+                                                                        <td>1,04,000</td>
+                                                                        
+                                                                     </tr>
+                                                                     <tr>
+                                                                        
+                                                                        <td>18</td>
+                                                                        <td>1,08,000</td>
+                                                                        
+                                                                     </tr>
+                                                                     <tr>
+                                                                        
+                                                                        <td>19</td>
+                                                                        <td>1,13,000</td> 
+                                                                     </tr>
+                                                                     <tr>
+                                                                        
+                                                                        <td>20</td>
+                                                                        <td>1,20,000</td>
+                                                                        
+                                                                     </tr>
+                                                                  </table>
+                                                                  
+                                                              </div>
+      
+                                                          </div>
+                                                      </div>
+                                                  </div>
+                                                </td>
                                                 
                                              </tr>
                                              <tr>
                                                 <th scope="row">6</th>
-                                                <td>10,000</td>
-                                                <td>No.of Members</td>
-                                                <td>6</td>
-                                                <td>50</td>
-                                                <td>1</td>
-                                                <td>8,600</td>
+                                                <td>2,00,000</td>
+                                                <td>20</td>
+                                                <td>400</td>
+                                                <td>2500</td>
+                                                <td>10000</td>
+                                                <td><i class="bi bi-eye" data-bs-toggle="modal" data-bs-target="#modalDialogScrollable6"></i>
+                                                   <div class="modal fade" id="modalDialogScrollable6" tabindex="-1">
+                                                      <div class="modal-dialog modal-dialog-scrollable">
+                                                          <div class="modal-content">
+                                                              <div class="modal-header">
+      
+                                                                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                              </div>
+                                                              <div class="modal-body">
+                                                               <div style="text-align: center;">
+                                                                  <h5>Chit Value-2,00,000</h5>
+                                                                  <h5>Registration Fee- 400</h5>
+                                                                  <h6>Daily- Rs.400 || Weekly- Rs.2500|| Monthly- Rs.10000</h6>
+                                                               </div>
+                                                               <table class="table table-hover">
+                                                                  <thead>
+                                                                     <tr >
+                                                                        
+                                                                        <th scope="col">Installment</th>
+                                                                        <th scope="col">Payment Slab</th>
+                                                                     </tr>
+                                                                  </thead>
+                                                                  <tbody>
+                                                                     <tr>
+                                                                        
+                                                                        <td>1</td>
+                                                                        <td>Company</td>
+                                                                       
+                                                                     </tr>
+                                                                     <tr>
+                                                                        
+                                                                        <td>2</td>
+                                                                        <td>1,65,000</td>
+                                                                        
+                                                                     </tr>
+                                                                     <tr>
+                                                                        
+                                                                        <td>3</td>
+                                                                        <td>1,66,000</td>
+                                                                        
+                                                                     </tr>
+                                                                     <tr>
+                                                                       
+                                                                        <td>4</td>
+                                                                        <td>1,67,000</td>
+                                                                       
+                                                                     </tr>
+                                                                     <tr>
+                                                                       
+                                                                        <td>5</td>
+                                                                        <td>1,68,000</td>
+                                                                        
+                                                                     </tr>
+                                                                     <tr>
+                                                                       
+                                                                        <td>6</td>
+                                                                        <td>1,69,000</td>   
+                                                                     </tr>
+                                                                     <tr>
+                                                                        
+                                                                        <td>7</td>
+                                                                        <td>1,70,000</td>
+                                                                        
+                                                                     </tr>
+                                                                     <tr>
+                                                                        
+                                                                        <td>8</td>
+                                                                        <td>1,72,000</td>
+                                                                        
+                                                                     </tr>
+                                                                     <tr>
+                                                                        
+                                                                        <td>9</td>
+                                                                        <td>1,74,000</td> 
+                                                                     </tr>
+                                                                     <tr>
+                                                                        
+                                                                        <td>10</td>
+                                                                        <td>1,76,000</td>
+                                                                        
+                                                                     </tr>
+                                                                     <tr>
+                                                                        
+                                                                        <td>11</td>
+                                                                        <td>1,78,000</td>
+                                                                       
+                                                                     </tr>
+                                                                     <tr>
+                                                                        
+                                                                        <td>12</td>
+                                                                        <td>1,80,000</td>
+                                                                        
+                                                                     </tr>
+                                                                     <tr>
+                                                                        
+                                                                        <td>13</td>
+                                                                        <td>1,84,000</td>
+                                                                        
+                                                                     </tr>
+                                                                     <tr>
+                                                                       
+                                                                        <td>14</td>
+                                                                        <td>1,90,000</td>
+                                                                       
+                                                                     </tr>
+                                                                     <tr>
+                                                                       
+                                                                        <td>15</td>
+                                                                        <td>1,96,000</td>
+                                                                        
+                                                                     </tr>
+                                                                     <tr>
+                                                                       
+                                                                        <td>16</td>
+                                                                        <td>2,02,000</td>   
+                                                                     </tr>
+                                                                     <tr>
+                                                                        
+                                                                        <td>17</td>
+                                                                        <td>2,08,000</td>
+                                                                        
+                                                                     </tr>
+                                                                     <tr>
+                                                                        
+                                                                        <td>18</td>
+                                                                        <td>2,16,000</td>
+                                                                        
+                                                                     </tr>
+                                                                     <tr>
+                                                                        
+                                                                        <td>19</td>
+                                                                        <td>2,26,000</td> 
+                                                                     </tr>
+                                                                     <tr>
+                                                                        
+                                                                        <td>20</td>
+                                                                        <td>2,40,000</td>
+                                                                        
+                                                                     </tr>
+                                                                  </table>
+                                                                  
+                                                              </div>
+      
+                                                          </div>
+                                                      </div>
+                                                  </div>
+                                                </td>
                                                 
                                              </tr>
                                              <tr>
                                                 <th scope="row">7</th>
-                                                <td>10,000</td>
-                                                <td>No.of Members</td>
-                                                <td>7</td>
-                                                <td>50</td>
-                                                <td>1</td>
-                                                <td>8,800</td>
+                                                <td>3,00,000</td>
+                                                <td>20</td>
+                                                <td>600</td>
+                                                <td>3750</td>
+                                                <td>15000</td>
+                                                <td><i class="bi bi-eye" data-bs-toggle="modal" data-bs-target="#modalDialogScrollable7"></i>
+                                                   <div class="modal fade" id="modalDialogScrollable7" tabindex="-1">
+                                                      <div class="modal-dialog modal-dialog-scrollable">
+                                                          <div class="modal-content">
+                                                              <div class="modal-header">
+      
+                                                                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                              </div>
+                                                              <div class="modal-body">
+                                                               <div style="text-align: center;">
+                                                                  <h5>Chit Value-3,00,000</h5>
+                                                                  <h5>Registration Fee- 400</h5>
+                                                                  <h6>Daily- Rs.400 || Weekly- Rs.2500|| Monthly- Rs.10000</h6>
+                                                               </div>
+                                                               <table class="table table-hover">
+                                                                  <thead>
+                                                                     <tr >
+                                                                        
+                                                                        <th scope="col">Installment</th>
+                                                                        <th scope="col">Payment Slab</th>
+                                                                     </tr>
+                                                                  </thead>
+                                                                  <tbody>
+                                                                     <tr>
+                                                                        
+                                                                        <td>1</td>
+                                                                        <td>Company</td>
+                                                                       
+                                                                     </tr>
+                                                                     <tr>
+                                                                        
+                                                                        <td>2</td>
+                                                                        <td>2,47,500</td>
+                                                                        
+                                                                     </tr>
+                                                                     <tr>
+                                                                        
+                                                                        <td>3</td>
+                                                                        <td>2,49,000</td>
+                                                                        
+                                                                     </tr>
+                                                                     <tr>
+                                                                       
+                                                                        <td>4</td>
+                                                                        <td>2,50,500</td>
+                                                                       
+                                                                     </tr>
+                                                                     <tr>
+                                                                       
+                                                                        <td>5</td>
+                                                                        <td>2,52,000</td>
+                                                                        
+                                                                     </tr>
+                                                                     <tr>
+                                                                       
+                                                                        <td>6</td>
+                                                                        <td>2,53,500</td>   
+                                                                     </tr>
+                                                                     <tr>
+                                                                        
+                                                                        <td>7</td>
+                                                                        <td>2,55,500</td>
+                                                                        
+                                                                     </tr>
+                                                                     <tr>
+                                                                        
+                                                                        <td>8</td>
+                                                                        <td>2,58,500</td>
+                                                                        
+                                                                     </tr>
+                                                                     <tr>
+                                                                        
+                                                                        <td>9</td>
+                                                                        <td>2,61,000</td> 
+                                                                     </tr>
+                                                                     <tr>
+                                                                        
+                                                                        <td>10</td>
+                                                                        <td>2,64,000</td>
+                                                                        
+                                                                     </tr>
+                                                                     <tr>
+                                                                        
+                                                                        <td>11</td>
+                                                                        <td>2,67,000</td>
+                                                                       
+                                                                     </tr>
+                                                                     <tr>
+                                                                        
+                                                                        <td>12</td>
+                                                                        <td>2,70,000</td>
+                                                                        
+                                                                     </tr>
+                                                                     <tr>
+                                                                        
+                                                                        <td>13</td>
+                                                                        <td>2,76,000</td>
+                                                                        
+                                                                     </tr>
+                                                                     <tr>
+                                                                       
+                                                                        <td>14</td>
+                                                                        <td>2,85,000</td>
+                                                                       
+                                                                     </tr>
+                                                                     <tr>
+                                                                       
+                                                                        <td>15</td>
+                                                                        <td>2,94,000</td>
+                                                                        
+                                                                     </tr>
+                                                                     <tr>
+                                                                       
+                                                                        <td>16</td>
+                                                                        <td>3,03,000</td>   
+                                                                     </tr>
+                                                                     <tr>
+                                                                        
+                                                                        <td>17</td>
+                                                                        <td>3,12,000</td>
+                                                                        
+                                                                     </tr>
+                                                                     <tr>
+                                                                        
+                                                                        <td>18</td>
+                                                                        <td>3,24,000</td>
+                                                                        
+                                                                     </tr>
+                                                                     <tr>
+                                                                        
+                                                                        <td>19</td>
+                                                                        <td>3,39,000</td> 
+                                                                     </tr>
+                                                                     <tr>
+                                                                        
+                                                                        <td>20</td>
+                                                                        <td>3,60,000</td>
+                                                                        
+                                                                     </tr>
+                                                                  </table>
+                                                                  
+                                                              </div>
+      
+                                                          </div>
+                                                      </div>
+                                                  </div>
+                                                </td>
                                                 
                                              </tr>
                                              <tr>
                                                 <th scope="row">8</th>
-                                                <td>10,000</td>
-                                                <td>No.of Members</td>
-                                                <td>8</td>
-                                                <td>50</td>
-                                                <td>1</td>
-                                                <td>9,400</td>
+                                                <td>5,00,000</td>
+                                                <td>20</td>
+                                                <td>1000</td>
+                                                <td>6250</td>
+                                                <td>25000</td>
+                                                <td><i class="bi bi-eye" data-bs-toggle="modal" data-bs-target="#modalDialogScrollable8"></i>
+                                                   <div class="modal fade" id="modalDialogScrollable8" tabindex="-1">
+                                                      <div class="modal-dialog modal-dialog-scrollable">
+                                                          <div class="modal-content">
+                                                              <div class="modal-header">
+      
+                                                                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                              </div>
+                                                              <div class="modal-body">
+                                                               <div style="text-align: center;">
+                                                                  <h5>Chit Value-5,00,000</h5>
+                                                                  <h5>Registration Fee- 1000</h5>
+                                                                  <h6>Daily- Rs.1000 || Weekly- Rs.6250|| Monthly- Rs.25000</h6>
+                                                               </div>
+                                                               <table class="table table-hover">
+                                                                  <thead>
+                                                                     <tr >
+                                                                        
+                                                                        <th scope="col">Installment</th>
+                                                                        <th scope="col">Payment Slab</th>
+                                                                     </tr>
+                                                                  </thead>
+                                                                  <tbody>
+                                                                     <tr>
+                                                                        
+                                                                        <td>1</td>
+                                                                        <td>Company</td>
+                                                                       
+                                                                     </tr>
+                                                                     <tr>
+                                                                        
+                                                                        <td>2</td>
+                                                                        <td>4,12,500</td>
+                                                                        
+                                                                     </tr>
+                                                                     <tr>
+                                                                        
+                                                                        <td>3</td>
+                                                                        <td>4,15,000</td>
+                                                                        
+                                                                     </tr>
+                                                                     <tr>
+                                                                       
+                                                                        <td>4</td>
+                                                                        <td>4,17,500</td>
+                                                                       
+                                                                     </tr>
+                                                                     <tr>
+                                                                       
+                                                                        <td>5</td>
+                                                                        <td>4,20,000</td>
+                                                                        
+                                                                     </tr>
+                                                                     <tr>
+                                                                       
+                                                                        <td>6</td>
+                                                                        <td>4,22,500</td>   
+                                                                     </tr>
+                                                                     <tr>
+                                                                        
+                                                                        <td>7</td>
+                                                                        <td>4,25,000</td>
+                                                                        
+                                                                     </tr>
+                                                                     <tr>
+                                                                        
+                                                                        <td>8</td>
+                                                                        <td>4,30,000</td>
+                                                                        
+                                                                     </tr>
+                                                                     <tr>
+                                                                        
+                                                                        <td>9</td>
+                                                                        <td>4,35,000</td> 
+                                                                     </tr>
+                                                                     <tr>
+                                                                        
+                                                                        <td>10</td>
+                                                                        <td>4,40,000</td>
+                                                                        
+                                                                     </tr>
+                                                                     <tr>
+                                                                        
+                                                                        <td>11</td>
+                                                                        <td>4,45,000</td>
+                                                                       
+                                                                     </tr>
+                                                                     <tr>
+                                                                        
+                                                                        <td>12</td>
+                                                                        <td>4,50,000</td>
+                                                                        
+                                                                     </tr>
+                                                                     <tr>
+                                                                        
+                                                                        <td>13</td>
+                                                                        <td>4,60,000</td>
+                                                                        
+                                                                     </tr>
+                                                                     <tr>
+                                                                       
+                                                                        <td>14</td>
+                                                                        <td>4,75,000</td>
+                                                                       
+                                                                     </tr>
+                                                                     <tr>
+                                                                       
+                                                                        <td>15</td>
+                                                                        <td>4,90,000</td>
+                                                                        
+                                                                     </tr>
+                                                                     <tr>
+                                                                       
+                                                                        <td>16</td>
+                                                                        <td>5,05,000</td>   
+                                                                     </tr>
+                                                                     <tr>
+                                                                        
+                                                                        <td>17</td>
+                                                                        <td>5,20,000</td>
+                                                                        
+                                                                     </tr>
+                                                                     <tr>
+                                                                        
+                                                                        <td>18</td>
+                                                                        <td>5,40,000</td>
+                                                                        
+                                                                     </tr>
+                                                                     <tr>
+                                                                        
+                                                                        <td>19</td>
+                                                                        <td>5,65,000</td> 
+                                                                     </tr>
+                                                                     <tr>
+                                                                        
+                                                                        <td>20</td>
+                                                                        <td>6,00,000</td>
+                                                                        
+                                                                     </tr>
+                                                                  </table>
+                                                                  
+                                                              </div>
+      
+                                                          </div>
+                                                      </div>
+                                                  </div>
+                                                </td>
                                                 
                                              </tr>
                                              <tr>
                                                 <th scope="row">9</th>
-                                                <td>10,000</td>
-                                                <td>No.of Members</td>
-                                                <td>9</td>
-                                                <td>50</td>
-                                                <td>1</td>
-                                                <td>10,200</td>
+                                                <td>10,00,000</td>
+                                                <td>20</td>
+                                                <td>2000</td>
+                                                <td>12500</td>
+                                                <td>50000</td>
+                                                <td><i class="bi bi-eye" data-bs-toggle="modal" data-bs-target="#modalDialogScrollable9"></i>
+                                                   <div class="modal fade" id="modalDialogScrollable9" tabindex="-1">
+                                                      <div class="modal-dialog modal-dialog-scrollable">
+                                                          <div class="modal-content">
+                                                              <div class="modal-header">
+      
+                                                                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                              </div>
+                                                              <div class="modal-body">
+                                                               <div style="text-align: center;">
+                                                                  <h5>Chit Value-10,00,000</h5>
+                                                                  <h5>Registration Fee- 2000</h5>
+                                                                  <h6>Daily- Rs.2000 || Weekly- Rs.12500|| Monthly- Rs.50000</h6>
+                                                               </div>
+                                                               <table class="table table-hover">
+                                                                  <thead>
+                                                                     <tr >
+                                                                        
+                                                                        <th scope="col">Installment</th>
+                                                                        <th scope="col">Payment Slab</th>
+                                                                     </tr>
+                                                                  </thead>
+                                                                  <tbody>
+                                                                     <tr>
+                                                                        
+                                                                        <td>1</td>
+                                                                        <td>Company</td>
+                                                                       
+                                                                     </tr>
+                                                                     <tr>
+                                                                        
+                                                                        <td>2</td>
+                                                                        <td>8,25,000</td>
+                                                                        
+                                                                     </tr>
+                                                                     <tr>
+                                                                        
+                                                                        <td>3</td>
+                                                                        <td>8,30,000</td>
+                                                                        
+                                                                     </tr>
+                                                                     <tr>
+                                                                       
+                                                                        <td>4</td>
+                                                                        <td>8,35,000</td>
+                                                                       
+                                                                     </tr>
+                                                                     <tr>
+                                                                       
+                                                                        <td>5</td>
+                                                                        <td>8,40,000</td>
+                                                                        
+                                                                     </tr>
+                                                                     <tr>
+                                                                       
+                                                                        <td>6</td>
+                                                                        <td>8,45,000</td>   
+                                                                     </tr>
+                                                                     <tr>
+                                                                        
+                                                                        <td>7</td>
+                                                                        <td>8,50,000</td>
+                                                                        
+                                                                     </tr>
+                                                                     <tr>
+                                                                        
+                                                                        <td>8</td>
+                                                                        <td>8,60,000</td>
+                                                                        
+                                                                     </tr>
+                                                                     <tr>
+                                                                        
+                                                                        <td>9</td>
+                                                                        <td>8,70,000</td> 
+                                                                     </tr>
+                                                                     <tr>
+                                                                        
+                                                                        <td>10</td>
+                                                                        <td>8,80,000</td>
+                                                                        
+                                                                     </tr>
+                                                                     <tr>
+                                                                        
+                                                                        <td>11</td>
+                                                                        <td>8,90,000</td>
+                                                                       
+                                                                     </tr>
+                                                                     <tr>
+                                                                        
+                                                                        <td>12</td>
+                                                                        <td>9,00,000</td>
+                                                                        
+                                                                     </tr>
+                                                                     <tr>
+                                                                        
+                                                                        <td>13</td>
+                                                                        <td>9,20,000</td>
+                                                                        
+                                                                     </tr>
+                                                                     <tr>
+                                                                       
+                                                                        <td>14</td>
+                                                                        <td>9,50,000</td>
+                                                                       
+                                                                     </tr>
+                                                                     <tr>
+                                                                       
+                                                                        <td>15</td>
+                                                                        <td>9,80,000</td>
+                                                                        
+                                                                     </tr>
+                                                                     <tr>
+                                                                       
+                                                                        <td>16</td>
+                                                                        <td>10,10,000</td>   
+                                                                     </tr>
+                                                                     <tr>
+                                                                        
+                                                                        <td>17</td>
+                                                                        <td>10,40,000</td>
+                                                                        
+                                                                     </tr>
+                                                                     <tr>
+                                                                        
+                                                                        <td>18</td>
+                                                                        <td>10,80,000</td>
+                                                                        
+                                                                     </tr>
+                                                                     <tr>
+                                                                        
+                                                                        <td>19</td>
+                                                                        <td>11,30,000</td> 
+                                                                     </tr>
+                                                                     <tr>
+                                                                        
+                                                                        <td>20</td>
+                                                                        <td>12,00,000</td>
+                                                                        
+                                                                     </tr>
+                                                                  </table>
+                                                                  
+                                                              </div>
+      
+                                                          </div>
+                                                      </div>
+                                                  </div>
+                                                </td>
                                                 
                                              </tr>
+                                             
+                                                
+                                             
                                              <tr>
                                                 <th scope="row">10</th>
-                                                <td>10,000</td>
-                                                <td>No.of Members</td>
-                                                <td>10</td>
-                                                <td>50</td>
-                                                <td>1</td>
-                                                <td>11,000</td>
+                                                <td>3,00,000</td>
+                                                <td>30</td>
+                                                <td>400</td>
+                                                <td>2500</td>
+                                                <td>10000</td>
+                                                <td><i class="bi bi-eye" data-bs-toggle="modal" data-bs-target="#modalDialogScrollable10"></i>
+                                                   <div class="modal fade" id="modalDialogScrollable10" tabindex="-1">
+                                                      <div class="modal-dialog modal-dialog-scrollable">
+                                                          <div class="modal-content">
+                                                              <div class="modal-header">
+      
+                                                                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                              </div>
+                                                              <div class="modal-body">
+                                                               <div style="text-align: center;">
+                                                                  <h5>Chit Value-3,00,000</h5>
+                                                                  <h5>Registration Fee- 500</h5>
+                                                                  <h6>Daily- Rs.400 || Weekly- Rs.2500|| Monthly- Rs.10000</h6>
+                                                               </div>
+                                                               <table class="table table-hover">
+                                                                  <thead>
+                                                                     <tr >
+                                                                        
+                                                                        <th scope="col">Installment</th>
+                                                                        <th scope="col">Payment Slab</th>
+                                                                     </tr>
+                                                                  </thead>
+                                                                  <tbody>
+                                                                     <tr>
+                                                                        
+                                                                        <td>1</td>
+                                                                        <td>Company</td>
+                                                                       
+                                                                     </tr>
+                                                                     <tr>
+                                                                        
+                                                                        <td>2</td>
+                                                                        <td>2,30,000</td>
+                                                                        
+                                                                     </tr>
+                                                                     <tr>
+                                                                        
+                                                                        <td>3</td>
+                                                                        <td>2,31,000</td>
+                                                                        
+                                                                     </tr>
+                                                                     <tr>
+                                                                       
+                                                                        <td>4</td>
+                                                                        <td>2,33,000</td>
+                                                                       
+                                                                     </tr>
+                                                                     <tr>
+                                                                       
+                                                                        <td>5</td>
+                                                                        <td>2,34,500</td>
+                                                                        
+                                                                     </tr>
+                                                                     <tr>
+                                                                       
+                                                                        <td>6</td>
+                                                                        <td>2,36,000</td>   
+                                                                     </tr>
+                                                                     <tr>
+                                                                        
+                                                                        <td>7</td>
+                                                                        <td>2,37,000</td>
+                                                                        
+                                                                     </tr>
+                                                                     <tr>
+                                                                        
+                                                                        <td>8</td>
+                                                                        <td>2,39,000</td>
+                                                                        
+                                                                     </tr>
+                                                                     <tr>
+                                                                        
+                                                                        <td>9</td>
+                                                                        <td>2,40,000</td> 
+                                                                     </tr>
+                                                                     <tr>
+                                                                        
+                                                                        <td>10</td>
+                                                                        <td>2,42,000</td>
+                                                                        
+                                                                     </tr>
+                                                                     <tr>
+                                                                        
+                                                                        <td>11</td>
+                                                                        <td>2,45,000</td>
+                                                                       
+                                                                     </tr>
+                                                                     <tr>
+                                                                        
+                                                                        <td>12</td>
+                                                                        <td>2,48,000</td>
+                                                                        
+                                                                     </tr>
+                                                                     <tr>
+                                                                        
+                                                                        <td>13</td>
+                                                                        <td>2,51,000</td>
+                                                                        
+                                                                     </tr>
+                                                                     <tr>
+                                                                       
+                                                                        <td>14</td>
+                                                                        <td>2,54,000</td>
+                                                                       
+                                                                     </tr>
+                                                                     <tr>
+                                                                       
+                                                                        <td>15</td>
+                                                                        <td>2,57,000</td>
+                                                                        
+                                                                     </tr>
+                                                                     <tr>
+                                                                       
+                                                                        <td>16</td>
+                                                                        <td>2,60,000</td>   
+                                                                     </tr>
+                                                                     <tr>
+                                                                        
+                                                                        <td>17</td>
+                                                                        <td>2,63,000</td>
+                                                                        
+                                                                     </tr>
+                                                                     <tr>
+                                                                        
+                                                                        <td>18</td>
+                                                                        <td>2,66,000</td>
+                                                                        
+                                                                     </tr>
+                                                                     <tr>
+                                                                        
+                                                                        <td>19</td>
+                                                                        <td>2,69,000</td> 
+                                                                     </tr>
+                                                                     <tr>
+                                                                        
+                                                                        <td>20</td>
+                                                                        <td>2,75,000</td>
+                                                                        
+                                                                     </tr>
+                                                                     <tr>
+                                                                        
+                                                                        <td>21</td>
+                                                                        <td>2,80,000</td>
+                                                                       
+                                                                     </tr>
+                                                                     <tr>
+                                                                        
+                                                                        <td>22</td>
+                                                                        <td>2,90,000</td>
+                                                                        
+                                                                     </tr>
+                                                                     <tr>
+                                                                        
+                                                                        <td>23</td>
+                                                                        <td>3,00,000</td>
+                                                                        
+                                                                     </tr>
+                                                                     <tr>
+                                                                       
+                                                                        <td>24</td>
+                                                                        <td>3,10,000</td>
+                                                                       
+                                                                     </tr>
+                                                                     <tr>
+                                                                       
+                                                                        <td>25</td>
+                                                                        <td>3,20,000</td>
+                                                                        
+                                                                     </tr>
+                                                                     <tr>
+                                                                       
+                                                                        <td>26</td>
+                                                                        <td>3,30,000</td>   
+                                                                     </tr>
+                                                                     <tr>
+                                                                        
+                                                                        <td>27</td>
+                                                                        <td>3,45,000</td>
+                                                                        
+                                                                     </tr>
+                                                                     <tr>
+                                                                        
+                                                                        <td>28</td>
+                                                                        <td>3,60,000</td>
+                                                                        
+                                                                     </tr>
+                                                                     <tr>
+                                                                        
+                                                                        <td>29</td>
+                                                                        <td>3,75,000</td> 
+                                                                     </tr>
+                                                                     <tr>
+                                                                        
+                                                                        <td>30</td>
+                                                                        <td>3,90,000</td>
+                                                                        
+                                                                     </tr>
+                                                                  </table>
+                                                                  
+                                                              </div>
+      
+                                                          </div>
+                                                      </div>
+                                                  </div>
+                                                </td>
                                                 
                                              </tr>
+                                             
+                                                
+                                            
                                              <tr>
                                                 <th scope="row">11</th>
-                                                <td>20,000</td>
-                                                <td>No.of Members</td>
-                                                <td>11</td>
-                                                <td>50</td>
-                                                <td>1</td>
-                                                <td>Company</td>
+                                                <td>6,00,000</td>
+                                                <td>30</td>
+                                                <td>800</td>
+                                                <td>5000</td>
+                                                <td>20000</td>
+                                                <td><i class="bi bi-eye" data-bs-toggle="modal" data-bs-target="#modalDialogScrollable11"></i>
+                                                   <div class="modal fade" id="modalDialogScrollable11" tabindex="-1">
+                                                      <div class="modal-dialog modal-dialog-scrollable">
+                                                          <div class="modal-content">
+                                                              <div class="modal-header">
+      
+                                                                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                              </div>
+                                                              <div class="modal-body">
+                                                               <div style="text-align: center;">
+                                                                  <h5>Chit Value-6,00,000</h5>
+                                                                  <h5>Registration Fee- 1000</h5>
+                                                                  <h6>Daily- Rs.800 || Weekly- Rs.5000|| Monthly- Rs.20000</h6>
+                                                               </div>
+                                                               <table class="table table-hover">
+                                                                  <thead>
+                                                                     <tr >
+                                                                        
+                                                                        <th scope="col">Installment</th>
+                                                                        <th scope="col">Payment Slab</th>
+                                                                     </tr>
+                                                                  </thead>
+                                                                  <tbody>
+                                                                     <tr>
+                                                                        
+                                                                        <td>1</td>
+                                                                        <td>Company</td>
+                                                                       
+                                                                     </tr>
+                                                                     <tr>
+                                                                        
+                                                                        <td>2</td>
+                                                                        <td>4,60,000</td>
+                                                                        
+                                                                     </tr>
+                                                                     <tr>
+                                                                        
+                                                                        <td>3</td>
+                                                                        <td>4,63,000</td>
+                                                                        
+                                                                     </tr>
+                                                                     <tr>
+                                                                       
+                                                                        <td>4</td>
+                                                                        <td>4,66,000</td>
+                                                                       
+                                                                     </tr>
+                                                                     <tr>
+                                                                       
+                                                                        <td>5</td>
+                                                                        <td>4,69,000</td>
+                                                                        
+                                                                     </tr>
+                                                                     <tr>
+                                                                       
+                                                                        <td>6</td>
+                                                                        <td>4,72,000</td>   
+                                                                     </tr>
+                                                                     <tr>
+                                                                        
+                                                                        <td>7</td>
+                                                                        <td>4,74,000</td>
+                                                                        
+                                                                     </tr>
+                                                                     <tr>
+                                                                        
+                                                                        <td>8</td>
+                                                                        <td>4,78,000</td>
+                                                                        
+                                                                     </tr>
+                                                                     <tr>
+                                                                        
+                                                                        <td>9</td>
+                                                                        <td>4,80,000</td> 
+                                                                     </tr>
+                                                                     <tr>
+                                                                        
+                                                                        <td>10</td>
+                                                                        <td>4,84,000</td>
+                                                                        
+                                                                     </tr>
+                                                                     <tr>
+                                                                        
+                                                                        <td>11</td>
+                                                                        <td>4,90,000</td>
+                                                                       
+                                                                     </tr>
+                                                                     <tr>
+                                                                        
+                                                                        <td>12</td>
+                                                                        <td>4,96,000</td>
+                                                                        
+                                                                     </tr>
+                                                                     <tr>
+                                                                        
+                                                                        <td>13</td>
+                                                                        <td>5,02,000</td>
+                                                                        
+                                                                     </tr>
+                                                                     <tr>
+                                                                       
+                                                                        <td>14</td>
+                                                                        <td>5,08,000</td>
+                                                                       
+                                                                     </tr>
+                                                                     <tr>
+                                                                       
+                                                                        <td>15</td>
+                                                                        <td>5,14,000</td>
+                                                                        
+                                                                     </tr>
+                                                                     <tr>
+                                                                       
+                                                                        <td>16</td>
+                                                                        <td>5,20,000</td>   
+                                                                     </tr>
+                                                                     <tr>
+                                                                        
+                                                                        <td>17</td>
+                                                                        <td>5,26,000</td>
+                                                                        
+                                                                     </tr>
+                                                                     <tr>
+                                                                        
+                                                                        <td>18</td>
+                                                                        <td>5,32,000</td>
+                                                                        
+                                                                     </tr>
+                                                                     <tr>
+                                                                        
+                                                                        <td>19</td>
+                                                                        <td>5,38,000</td> 
+                                                                     </tr>
+                                                                     <tr>
+                                                                        
+                                                                        <td>20</td>
+                                                                        <td>5,50,000</td>
+								                                             <tr>
+                                                                        
+                                                                        <td>21</td>
+                                                                        <td>5,60,000</td>
+                                                                       
+                                                                     </tr>
+                                                                     <tr>
+                                                                        
+                                                                        <td>22</td>
+                                                                        <td>5,80,000</td>
+                                                                        
+                                                                     </tr>
+                                                                     <tr>
+                                                                        
+                                                                        <td>23</td>
+                                                                        <td>6,00,000</td>
+                                                                        
+                                                                     </tr>
+                                                                     <tr>
+                                                                       
+                                                                        <td>24</td>
+                                                                        <td>6,20,000</td>
+                                                                       
+                                                                     </tr>
+                                                                     <tr>
+                                                                       
+                                                                        <td>25</td>
+                                                                        <td>6,40,000</td>
+                                                                        
+                                                                     </tr>
+                                                                     <tr>
+                                                                       
+                                                                        <td>26</td>
+                                                                        <td>6,60,000</td>   
+                                                                     </tr>
+                                                                     <tr>
+                                                                        
+                                                                        <td>27</td>
+                                                                        <td>6,69,000</td>
+                                                                        
+                                                                     </tr>
+                                                                     <tr>
+                                                                        
+                                                                        <td>28</td>
+                                                                        <td>7,20,000</td>
+                                                                        
+                                                                     </tr>
+                                                                     <tr>
+                                                                        
+                                                                        <td>29</td>
+                                                                        <td>7,50,000</td> 
+                                                                     </tr>
+                                                                     <tr>
+                                                                        
+                                                                        <td>30</td>
+                                                                        <td>7,80,000</td>
+                                                                        
+                                                                     </tr>
+                                                                  </table>
+                                                                  
+                                                              </div>
+      
+                                                          </div>
+                                                      </div>
+                                                  </div>
+                                                </td>
                                                
                                              </tr>
                                              <tr>
                                                 <th scope="row">12</th>
-                                                <td>20,000</td>
-                                                <td>No.of Members</td>
-                                                <td>12</td>
-                                                <td>50</td>
-                                                <td>1</td>
-                                                <td>16,000</td>
-                                                
-                                             </tr>
-                                             <tr>
-                                                <th scope="row">13</th>
-                                                <td>20,000</td>
-                                                <td>No.of Members</td>
-                                                <td>13</td>
-                                                <td>50</td>
-                                                <td>1</td>
-                                                <td>16,200</td>
-                                                
-                                             </tr>
-                                             <tr>
-                                                <th scope="row">14</th>
-                                                <td>20,000</td>
-                                                <td>No.of Members</td>
-                                                <td>14</td>
-                                                <td>50</td>
-                                                <td>1</td>
-                                                <td>16,400</td>
-                                               
-                                             </tr>
-                                             <tr>
-                                                <th scope="row">15</th>
-                                                <td>20,000</td>
-                                                <td>No.of Members</td>
-                                                <td>15</td>
-                                                <td>50</td>
-                                                <td>1</td>
-                                                <td>16,800</td>
-                                                
-                                             </tr>
-                                             <tr>
-                                                <th scope="row">16</th>
-                                                <td>20,000</td>
-                                                <td>No.of Members</td>
-                                                <td>16</td>
-                                                <td>50</td>
-                                                <td>1</td>
-                                                <td>17,600</td>
-                                                
-                                             </tr>
-                                             <tr>
-                                                <th scope="row">17</th>
-                                                <td>20,000</td>
-                                                <td>No.of Members</td>
-                                                <td>17</td>
-                                                <td>50</td>
-                                                <td>1</td>
-                                                <td>17,600</td>
-                                                
-                                                
-                                             </tr>
-                                             <tr>
-                                                <th scope="row">18</th>
-                                                <td>20,000</td>
-                                                <td>No.of Members</td>
-                                                <td>18</td>
-                                                <td>50</td>
-                                                <td>1</td>
-                                                <td>18,800</td>
-                                                
-                                             </tr>
-                                             <tr>
-                                                <th scope="row">19</th>
-                                                <td>20,000</td>
-                                                <td>No.of Members</td>
-                                                <td>19</td>
-                                                <td>50</td>
-                                                <td>1</td>
-                                                <td>20,400</td>
-                                                
-                                             </tr>
-                                             <tr>
-                                                <th scope="row">20</th>
-                                                <td>20,000</td>
-                                                <td>No.of Members</td>
-                                                <td>20</td>
-                                                <td>50</td>
-                                                <td>1</td>
-                                                <td>22,000</td>
-                                             </tr>
-                                             <tr>
-                                                <th scope="row">21</th>
-                                                <td>50,000</td>
-                                                <td>No.of Members</td>
-                                                <td>21</td>
-                                                <td>100</td>
-                                                <td>1</td>
-                                                <td>Company</td>
-                                               
-                                             </tr>
-                                             <tr>
-                                                <th scope="row">22</th>
-                                                <td>50,000</td>
-                                                <td>No.of Members</td>
-                                                <td>22</td>
-                                                <td>100</td>
-                                                <td>1</td>
-                                                <td>40,000</td>
-                                                
-                                             </tr>
-                                             <tr>
-                                                <th scope="row">23</th>
-                                                <td>50,000</td>
-                                                <td>No.of Members</td>
-                                                <td>23</td>
-                                                <td>100</td>
-                                                <td>1</td>
-                                                <td>40,500</td>
-                                                
-                                             </tr>
-                                             <tr>
-                                                <th scope="row">24</th>
-                                                <td>50,000</td>
-                                                <td>No.of Members</td>
-                                                <td>24</td>
-                                                <td>100</td>
-                                                <td>1</td>
-                                                <td>41,000</td>
-                                               
-                                             </tr>
-                                             <tr>
-                                                <th scope="row">25</th>
-                                                <td>50,000</td>
-                                                <td>No.of Members</td>
-                                                <td>25</td>
-                                                <td>100</td>
-                                                <td>1</td>
-                                                <td>42,000</td>
-                                                
-                                             </tr>
-                                             <tr>
-                                                <th scope="row">26</th>
-                                                <td>50,000</td>
-                                                <td>No.of Members</td>
-                                                <td>26</td>
-                                                <td>100</td>
-                                                <td>1</td>
-                                                <td>43,000</td>
-                                                
-                                             </tr>
-                                             <tr>
-                                                <th scope="row">27</th>
-                                                <td>50,000</td>
-                                                <td>No.of Members</td>
-                                                <td>27</td>
-                                                <td>100</td>
-                                                <td>1</td>
-                                                <td>44,000</td>
-                                                
-                                                
-                                             </tr>
-                                             <tr>
-                                                <th scope="row">28</th>
-                                                <td>50,000</td>
-                                                <td>No.of Members</td>
-                                                <td>28</td>
-                                                <td>100</td>
-                                                <td>1</td>
-                                                <td>47,000</td>
-                                                
-                                             </tr>
-                                             <tr>
-                                                <th scope="row">29</th>
-                                                <td>50,000</td>
-                                                <td>No.of Members</td>
-                                                <td>29</td>
-                                                <td>100</td>
-                                                <td>1</td>
-                                                <td>51,000</td>
-                                                
-                                             </tr>
-                                             <tr>
-                                                <th scope="row">30</th>
-                                                <td>50,000</td>
-                                                <td>No.of Members</td>
+                                                <td>10,00,000</td>
                                                 <td>30</td>
-                                                <td>100</td>
-                                                <td>1</td>
-                                                <td>55,000</td>
+                                                <td>1000</td>
+                                                <td>6250</td>
+                                                <td>25000</td>
+                                                <td><i class="bi bi-eye" data-bs-toggle="modal" data-bs-target="#modalDialogScrollable12"></i>
+                                                   <div class="modal fade" id="modalDialogScrollable12" tabindex="-1">
+                                                      <div class="modal-dialog modal-dialog-scrollable">
+                                                          <div class="modal-content">
+                                                              <div class="modal-header">
+      
+                                                                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                              </div>
+                                                              <div class="modal-body">
+                                                               <div style="text-align: center;">
+                                                                  <h5>Chit Value-10,00,000</h5>
+                                                                  <h5>Registration Fee- 1000</h5>
+                                                                  <h6>Daily- Rs.1000 || Weekly- Rs.6250|| Monthly- Rs.25000</h6>
+                                                               </div>
+                                                               <table class="table table-hover">
+                                                                  <thead>
+                                                                     <tr >
+                                                                        
+                                                                        <th scope="col">Installment</th>
+                                                                        <th scope="col">Payment Slab</th>
+                                                                     </tr>
+                                                                  </thead>
+                                                                  <tbody>
+                                                                     <tr>
+                                                                        
+                                                                        <td>1</td>
+                                                                        <td>Company</td>
+                                                                       
+                                                                     </tr>
+                                                                     <tr>
+                                                                        
+                                                                        <td>2</td>
+                                                                        <td>8,00,000</td>
+                                                                        
+                                                                     </tr>
+                                                                     <tr>
+                                                                        
+                                                                        <td>3</td>
+                                                                        <td>8,05,000</td>
+                                                                        
+                                                                     </tr>
+                                                                     <tr>
+                                                                       
+                                                                        <td>4</td>
+                                                                        <td>8,10,000</td>
+                                                                       
+                                                                     </tr>
+                                                                     <tr>
+                                                                       
+                                                                        <td>5</td>
+                                                                        <td>8,15,000</td>
+                                                                        
+                                                                     </tr>
+                                                                     <tr>
+                                                                       
+                                                                        <td>6</td>
+                                                                        <td>8,20,000</td>   
+                                                                     </tr>
+                                                                     <tr>
+                                                                        
+                                                                        <td>7</td>
+                                                                        <td>8,25,000</td>
+                                                                        
+                                                                     </tr>
+                                                                     <tr>
+                                                                        
+                                                                        <td>8</td>
+                                                                        <td>8,30,000</td>
+                                                                        
+                                                                     </tr>
+                                                                     <tr>
+                                                                        
+                                                                        <td>9</td>
+                                                                        <td>8,35,000</td> 
+                                                                     </tr>
+                                                                     <tr>
+                                                                        
+                                                                        <td>10</td>
+                                                                        <td>8,40,000</td>
+                                                                        
+                                                                     </tr>
+                                                                     <tr>
+                                                                        
+                                                                        <td>11</td>
+                                                                        <td>8,45,000</td>
+                                                                       
+                                                                     </tr>
+                                                                     <tr>
+                                                                        
+                                                                        <td>12</td>
+                                                                        <td>8,50,000</td>
+                                                                        
+                                                                     </tr>
+                                                                     <tr>
+                                                                        
+                                                                        <td>13</td>
+                                                                        <td>8,65,000</td>
+                                                                        
+                                                                     </tr>
+                                                                     <tr>
+                                                                       
+                                                                        <td>14</td>
+                                                                        <td>8,70,000</td>
+                                                                       
+                                                                     </tr>
+                                                                     <tr>
+                                                                       
+                                                                        <td>15</td>
+                                                                        <td>8,75,000</td>
+                                                                        
+                                                                     </tr>
+                                                                     <tr>
+                                                                       
+                                                                        <td>16</td>
+                                                                        <td>8,80,000</td>   
+                                                                     </tr>
+                                                                     <tr>
+                                                                        
+                                                                        <td>17</td>
+                                                                        <td>8,85,000</td>
+                                                                        
+                                                                     </tr>
+                                                                     <tr>
+                                                                        
+                                                                        <td>18</td>
+                                                                        <td>8,90,000</td>
+                                                                        
+                                                                     </tr>
+                                                                     <tr>
+                                                                        
+                                                                        <td>19</td>
+                                                                        <td>8,95,000</td> 
+                                                                     </tr>
+                                                                     <tr>
+                                                                        
+                                                                        <td>20</td>
+                                                                        <td>9,00,000</td>
+								                                             <tr>
+                                                                        
+                                                                        <td>21</td>
+                                                                        <td>9,05,000</td>
+                                                                       
+                                                                     </tr>
+                                                                     <tr>
+                                                                        
+                                                                        <td>22</td>
+                                                                        <td>9,10,000</td>
+                                                                        
+                                                                     </tr>
+                                                                     <tr>
+                                                                        
+                                                                        <td>23</td>
+                                                                        <td>9,15,000</td>
+                                                                        
+                                                                     </tr>
+                                                                     <tr>
+                                                                       
+                                                                        <td>24</td>
+                                                                        <td>9,20,000</td>
+                                                                       
+                                                                     </tr>
+                                                                     <tr>
+                                                                       
+                                                                        <td>25</td>
+                                                                        <td>9,25,000</td>
+                                                                        
+                                                                     </tr>
+                                                                     <tr>
+                                                                       
+                                                                        <td>26</td>
+                                                                        <td>9,30,000</td>   
+                                                                     </tr>
+                                                                     <tr>
+                                                                        
+                                                                        <td>27</td>
+                                                                        <td>9,35,000</td>
+                                                                        
+                                                                     </tr>
+                                                                     <tr>
+                                                                        
+                                                                        <td>28</td>
+                                                                        <td>9,40,000</td>
+                                                                        
+                                                                     </tr>
+                                                                     <tr>
+                                                                        
+                                                                        <td>29</td>
+                                                                        <td>9,45,000</td> 
+                                                                     </tr>
+                                                                     <tr>
+                                                                        
+                                                                        <td>30</td>
+                                                                        <td>9,50,000</td>
+                                                                        
+                                                                     </tr>
+                                                                     <tr>
+                                                                        
+                                                                        <td>31</td>
+                                                                        <td>9,60,000</td>
+                                                                       
+                                                                     </tr>
+                                                                     <tr>
+                                                                        
+                                                                        <td>32</td>
+                                                                        <td>9,70,000</td>
+                                                                        
+                                                                     </tr>
+                                                                     <tr>
+                                                                        
+                                                                        <td>33</td>
+                                                                        <td>10,00,000</td>
+                                                                        
+                                                                     </tr>
+                                                                     <tr>
+                                                                       
+                                                                        <td>34</td>
+                                                                        <td>10,70,000</td>
+                                                                       
+                                                                     </tr>
+                                                                     <tr>
+                                                                       
+                                                                        <td>35</td>
+                                                                        <td>11,15,000</td>
+                                                                        
+                                                                     </tr>
+                                                                     <tr>
+                                                                       
+                                                                        <td>36</td>
+                                                                        <td>11,80,000</td>   
+                                                                     </tr>
+                                                                     <tr>
+                                                                        
+                                                                        <td>37</td>
+                                                                        <td>12,50,000</td>
+                                                                        
+                                                                     </tr>
+                                                                     <tr>
+                                                                        
+                                                                        <td>38</td>
+                                                                        <td>13,10,000</td>
+                                                                        
+                                                                     </tr>
+                                                                     <tr>
+                                                                        
+                                                                        <td>39</td>
+                                                                        <td>13,60,000</td> 
+                                                                     </tr>
+                                                                     <tr>
+                                                                        
+                                                                        <td>40</td>
+                                                                        <td>14,00,000</td>
+                                                                        
+                                                                     </tr>
+                                                                  </table>
+                                                                  
+                                                              </div>
+      
+                                                          </div>
+                                                      </div>
+                                                  </div>
+                                                </td>
                                                 
                                              </tr>
+                                             
                                        </table>
                                     </div>
                                  </div>

@@ -26,6 +26,7 @@ import { PayrollComponent } from './employeemanagement/payroll/payroll.component
 import { PagesLoginComponent } from './pages/pages-login/pages-login.component';
 import { CollectionAreaMappingComponent } from './employeemanagement/collectionareamapping/collectionareamapping.component';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
+import { HashLocationStrategy, LocationStrategy  } from '@angular/common';
 
 
 // import { MbscModule } from '@mobiscroll/angular';
@@ -68,7 +69,9 @@ import { Ng2SearchPipeModule } from 'ng2-search-filter';
     
   ],
   
-  providers: [],
+  providers: [
+    {provide : LocationStrategy , useClass: HashLocationStrategy}
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

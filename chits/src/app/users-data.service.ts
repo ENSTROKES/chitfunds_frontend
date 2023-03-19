@@ -13,12 +13,13 @@ export class UserDataService {
   data = String;
 
   // url = 'https://jsonplaceholder.typicode.com/users';
-  url = 'http://3.108.194.170/chitfund/getAllEmployee';
-  createurl = 'http://3.108.194.170/chitfund/createEmployee';
-  branchurl = 'http://3.108.194.170/chitfund/getAllBranches';
-  branchbyid = 'http://3.108.194.170/chitfund/getBranchById?branchId=2';
-  headurl='http://3.108.194.170/chitfund/getAllHeadOffice';
-  createbrnch = 'http://3.108.194.170/chitfund/createBranch';
+  url = 'http://3.111.255.69/chitfund/getAllEmployee';
+  createurl = 'http://3.111.255.69/chitfund/createEmployee';
+  branchurl = 'http://3.111.255.69/chitfund/getAllBranches';
+  branchbyid = 'http://3.111.255.69/chitfund/getBranchById?branchId=2';
+  headurl='http://3.111.255.69/chitfund/getAllHeadOffice';
+  createbrnch = 'http://3.111.255.69/chitfund/createBranch';
+  creategrp = 'http://3.111.255.69/chitfund/createGroup';
   constructor(private http: HttpClient) {
     //employeeData: any;
   }

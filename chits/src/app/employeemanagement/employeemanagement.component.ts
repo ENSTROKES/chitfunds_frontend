@@ -22,6 +22,7 @@ export class EmployeemanagementComponent implements OnInit {
   res : any;
   response:any;
   ListOfEmpData :any;
+  reslt:any;
   // ListOfCollData :any;
   userId: any; 
 searchText:any;
@@ -84,6 +85,16 @@ console.log(new Date("2015/04/29 11:24:00").getTime());
    Object.keys(this.response).forEach(prop => {
       console.log("data : " +prop);
        console.log("value : "+this.response[prop]);
+       if(prop=="responseCode"){
+        // this.ListOfEmpData = this.reslt[prop];
+          if(this.reslt[prop]=="200"){
+            if(window.confirm('Employee is created successfully')){
+              location.reload();
+            }else{
+              location.reload();
+            }
+          }
+          }
        //  if(prop=="object"){
        //    this.ListOfEmpData = this.response[prop];
        //  }
