@@ -33,6 +33,15 @@ result:any;
 ListOfBranchData:any;
 selectedbranch:any;
  
+//spinner
+button = 'Submit';
+  isLoading = false;
+  buttons = {
+    button1: {
+      name: 'Button 1',
+      loading: false
+    }
+  }
 
 
   constructor(private http: HttpClient, private userData:UserDataService) {
@@ -66,7 +75,18 @@ if(prop=="object"){
  
 //get branch name
 
+//spinner
+  
+click() {
+  this.isLoading = true;
+  this.button = 'Processing';
 
+  setTimeout(() => {
+    this.isLoading = false;
+    this.button = 'Submit';
+    //alert('Done loading');
+  }, 2000)
+}
 
 
 getEmpFormData(data:any): void{

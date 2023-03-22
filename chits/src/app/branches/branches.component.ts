@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import {UserDataService} from 'src/app/users-data.service';
 import { FormGroup, FormControl, Validators,NgForm} from '@angular/forms';
+
 @Component({
   selector: 'app-branches',
   templateUrl: './branches.component.html',
@@ -22,11 +23,21 @@ export class BranchesComponent implements OnInit {
   //popup
   //isSubmitted = false;
   isDisplayed: boolean | undefined;
-
+  button = 'Submit';
+  isLoading = false;
+  buttons = {
+    button1: {
+      name: 'Button 1',
+      loading: false
+    }
+  }
 
   
   
-  constructor(private http: HttpClient, private userData:UserDataService) {
+  
+  
+  
+  constructor(private http: HttpClient, private userData:UserDataService, ) {
 
     
     //get branch method
@@ -51,6 +62,17 @@ Object.keys(this.result).forEach(prop => {
   
 })
  
+// this.userData.branchbyID().subscribe((data) =>{
+//   this.result=data;
+// Object.keys(this.result).forEach(prop => {
+// if(prop=="object"){
+//   this.ListOfBranchIDData = this.result[prop];
+// }
+// });
+
+// })
+
+
 //head office
 this.userData.head().subscribe((data) =>{
   this.output=data;
@@ -65,8 +87,22 @@ if(prop=="object"){
 
   }
 
- 
 
+  //spinner
+  
+  click() {
+    this.isLoading = true;
+    this.button = 'Processing';
+
+    setTimeout(() => {
+      this.isLoading = false;
+      this.button = 'Submit';
+      //alert('Done loading');
+    }, 2000)
+  }
+  
+  
+  
 
 // create Branch
 
@@ -117,3 +153,7 @@ getbranchFormData(data:any): void{
     
   }
 }
+function userDetails(branchID: any, string: any) {
+  throw new Error('Function not implemented.');
+}
+

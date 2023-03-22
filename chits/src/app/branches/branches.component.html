@@ -111,7 +111,8 @@
                                                         <div class="modal-footer">
                                                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close
                                                             </button>
-                                                            <button type="submit" class="btn btn-primary" >Submit</button></div>
+                                                            <button type="submit" class="btn btn-primary" [disabled]="isLoading" (click)="click()"><i class="spinner-border" style="width: 20px; height: 20px;"[ngClass]="{'spinner-border': isLoading}"></i>&nbsp; Submit</button></div>
+                                                           
                                                     </form>
                                                 </div>
                                             </div>
@@ -143,7 +144,8 @@
                                     <td>
                                         <div class="icon">
                                             <i class="bi bi-pencil"></i> &nbsp;
-                                            <i class="bi bi-eye" data-bs-toggle="modal" data-bs-target="#ExtralargeModal"></i>&nbsp;
+                                            <i class="bi bi-eye" data-bs-toggle="modal" data-bs-target="#ExtralargeModal"   ></i>&nbsp;
+                                            <!-- (click)="userDetails(brnchData.branchID)" -->
 
                                             <!-- <i class="ri-delete-bin-line" (click)="delete(brnchData.id)"></i> -->
 

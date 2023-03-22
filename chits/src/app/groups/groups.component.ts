@@ -18,6 +18,15 @@ export class GroupsComponent implements OnInit {
   //group
   grpreslt:any;
 
+  //spinner
+  button = 'Submit';
+  isLoading = false;
+  buttons = {
+    button1: {
+      name: 'Button 1',
+      loading: false
+    }
+  }
   constructor(private http: HttpClient, private userData:UserDataService) { 
     //get all group
     this.userData.group().subscribe((data) =>{
@@ -43,6 +52,19 @@ export class GroupsComponent implements OnInit {
     
   })
 }
+
+//spinner
+click() {
+  this.isLoading = true;
+  this.button = 'Processing';
+
+  setTimeout(() => {
+    this.isLoading = false;
+    this.button = 'Submit';
+    //alert('Done loading');
+  }, 2000)
+}
+
 
 // Create Group Method
 

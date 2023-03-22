@@ -36,6 +36,15 @@ custmresponse:any
 ListOfReceiptData:any;
 receiptres:any;
 
+//spinner
+button = 'Submit';
+  isLoading = false;
+  buttons = {
+    button1: {
+      name: 'Button 1',
+      loading: false
+    }
+  }
   constructor(private http: HttpClient, private userData: UserDataService) {
 // get all receipt
 this.userData.receipt().subscribe((data) =>{
@@ -100,7 +109,18 @@ if(prop=="object"){
 
 
   }
+//spinner
+  
+click() {
+  this.isLoading = true;
+  this.button = 'Processing';
 
+  setTimeout(() => {
+    this.isLoading = false;
+    this.button = 'Submit';
+    //alert('Done loading');
+  }, 2000)
+}
   //create reciept
 
   getrecieptFormData(data:any): void{

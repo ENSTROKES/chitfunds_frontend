@@ -16,7 +16,7 @@ export class UserDataService {
   url = 'http://3.111.255.69/chitfund/getAllEmployee';
   createurl = 'http://3.111.255.69/chitfund/createEmployee';
   branchurl = 'http://3.111.255.69/chitfund/getAllBranches';
-  branchbyid = 'http://3.111.255.69/chitfund/getBranchById?branchId=2';
+  branchbyid = 'https://jsonplaceholder.typicode.com/posts/1';
   headurl='http://3.111.255.69/chitfund/getAllHeadOffice';
   createbrnch = 'http://3.111.255.69/chitfund/createBranch';
   creategrp = 'http://3.111.255.69/chitfund/createGroup';

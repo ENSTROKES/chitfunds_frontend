@@ -28,6 +28,16 @@ export class CustomermanagementComponent implements OnInit {
   // get branch
   response:any;
   ListOfBranchData:any;
+//spinner
+button = 'Submit';
+  isLoading = false;
+  buttons = {
+    button1: {
+      name: 'Button 1',
+      loading: false
+    }
+  }
+
   constructor(private http: HttpClient, private userData:UserDataService) { 
     this.userData.branch().subscribe((data) =>{
       this.response=data;
@@ -45,7 +55,18 @@ getUserFormData(data:any){
     console.warn(result)
   })
 }
- 
+ //spinner
+  
+ click() {
+  this.isLoading = true;
+  this.button = 'Processing';
+
+  setTimeout(() => {
+    this.isLoading = false;
+    this.button = 'Submit';
+    //alert('Done loading');
+  }, 2000)
+}
 
   ngOnInit(): void {
   }
