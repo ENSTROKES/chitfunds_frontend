@@ -112,7 +112,7 @@
                                                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close
                                                             </button>
                                                             <button type="submit" class="btn btn-primary" [disabled]="isLoading" (click)="click()"><i class="spinner-border" style="width: 20px; height: 20px;"[ngClass]="{'spinner-border': isLoading}"></i>&nbsp; Submit</button></div>
-                                                           
+
                                                     </form>
                                                 </div>
                                             </div>
@@ -144,7 +144,7 @@
                                     <td>
                                         <div class="icon">
                                             <i class="bi bi-pencil"></i> &nbsp;
-                                            <i class="bi bi-eye" data-bs-toggle="modal" data-bs-target="#ExtralargeModal"   ></i>&nbsp;
+                                            <i class="bi bi-eye" data-bs-toggle="modal" data-bs-target="#ExtralargeModal" (click)="getBranchbyId(brnchData.branchId)"></i>&nbsp;
                                             <!-- (click)="userDetails(brnchData.branchID)" -->
 
                                             <!-- <i class="ri-delete-bin-line" (click)="delete(brnchData.id)"></i> -->
@@ -157,7 +157,31 @@
                                                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                                         </div>
                                                         <div class="modal-body">
-                                                            <table class="table table-striped">
+
+                                                            <form class="row g-3">
+                                                                <div class="col-md-6"> <label for="inputName5" class="form-label"> Branch Name</label>
+                                                                    <input type="text" class="form-control" ngModel name="office name" id="inputName5" [(ngModel)]="BranchDetailById.officeName" readonly>
+                                                                </div>
+                                                                <div class="col-md-6"> <label for="inputName5" class="form-label">Mobile Number</label> <input type="text" class="form-control" ngModel name="receiptDate" id="inputName5" [(ngModel)]="BranchDetailById.phoneNumber"
+                                                                        readonly></div>
+                                                                <div class="col-md-6"> <label for="inputName5" class="form-label">Head Office Name</label> <input type="text" class="form-control" ngModel name="headofficename" id="inputName5" [(ngModel)]="BranchDetailById.headOfficeName"
+                                                                        readonly></div>
+                                                                <div class="col-md-6"> <label for="inputName5" class="form-label">Start date</label> <input type="text" class="form-control" ngModel name="startupdate" id="inputName5" [(ngModel)]="BranchDetailById.startUpDate"
+                                                                        readonly></div>
+                                                                <div class="col-md-6"> <label for="inputName5" class="form-label">Email ID</label> <input type="text" class="form-control" ngModel name="emailId" id="inputName5" [(ngModel)]="BranchDetailById.emailID" readonly></div>
+                                                                <div class="col-md-6"> <label for="inputName5" class="form-label">Address</label> <input type="text" class="form-control" ngModel name="address" id="inputName5" [(ngModel)]="BranchDetailById.address" readonly></div>
+
+                                                                <div class="col-md-6"> <label for="inputName5" class="form-label">City</label> <input type="text" class="form-control" ngModel name="city" id="inputName5" [(ngModel)]="BranchDetailById.city" readonly></div>
+                                                                <div class="col-md-6"> <label for="inputName5" class="form-label">District</label> <input type="text" class="form-control" ngModel name="district" id="inputName5" [(ngModel)]="BranchDetailById.district" readonly></div>
+                                                                <div class="col-md-6"> <label for="inputName5" class="form-label">State</label> <input type="text" class="form-control" ngModel name="state" id="inputName5" [(ngModel)]="BranchDetailById.state" readonly></div>
+                                                                <div class="col-md-6"> <label for="inputName5" class="form-label">Pincode</label> <input type="text" class="form-control" ngModel name="pincode" id="inputName5" [(ngModel)]="BranchDetailById.pincode" readonly></div>
+                                                                <div class="col-md-6"> <label for="inputName5" class="form-label">Landmark</label> <input type="text" class="form-control" ngModel name="landmark" id="inputName5" [(ngModel)]="BranchDetailById.landmark" readonly></div>
+                                                                <div class="col-md-6"> <label for="inputName5" class="form-label">Remarks</label> <input type="text" class="form-control" ngModel name="remarks" id="inputName5" [(ngModel)]="BranchDetailById.remarks" readonly></div>
+
+
+
+                                                            </form>
+                                                            <!-- <table class="table table-striped">
 
                                                                 <thead>
                                                                     <tr>
@@ -179,25 +203,25 @@
                                                                     </tr>
                                                                 </thead>
                                                                 <tbody>
-                                                                    <tr *ngFor="let branchID of ListOfBranchIDData">
-                                                                        <td>{{ branchID.officeName }}</td>
-                                                                        <td>{{ branchID.phoneNumber }}</td>
-                                                                        <td>{{ branchID.emailID }}</td>
-                                                                        <td>{{ branchID.address }}</td>
-                                                                        <td>{{ branchID.pincode }}</td>
-                                                                        <td>{{ branchID.state }}</td>
-                                                                        <td>{{ branchID.district }}</td>
-                                                                        <td>{{ branchID.city }}</td>
-                                                                        <td>{{ branchID.landmark }}</td>
-                                                                        <td>{{ branchID.remarks }}</td>
-                                                                        <td>{{ branchID.headOffice }}</td>
-                                                                        <td>{{ branchID.createdDate }}</td>
-                                                                        <td>{{ branchID.lastUpdatedDate }}</td>
-                                                                        <td>{{ branchID.headOfficeName }}</td>
-                                                                        <td>{{ branchID.startUpDate }}</td>
+                                                                    <tr *ngFor="let branchdetails of BranchDetailById">
+                                                                        <td>{{ branchdetails.officeName }}</td>
+                                                                        <td>{{ branchdetails.phoneNumber }}</td>
+                                                                        <td>{{ branchdetails.emailID }}</td>
+                                                                        <td>{{ branchdetails.address }}</td>
+                                                                        <td>{{ branchdetails.pincode }}</td>
+                                                                        <td>{{ branchdetails.state }}</td>
+                                                                        <td>{{ branchdetails.district }}</td>
+                                                                        <td>{{ branchdetails.city }}</td>
+                                                                        <td>{{ branchdetails.landmark }}</td>
+                                                                        <td>{{ branchdetails.remarks }}</td>
+                                                                        <td>{{ branchdetails.headOffice }}</td>
+                                                                        <td>{{ branchdetails.createdDate }}</td>
+                                                                        <td>{{ branchdetails.lastUpdatedDate }}</td>
+                                                                        <td>{{ branchdetails.headOfficeName }}</td>
+                                                                        <td>{{ branchdetails.startUpDate }}</td>
                                                                     </tr>
                                                                 </tbody>
-                                                            </table>
+                                                            </table> -->
                                                         </div>
 
                                                     </div>

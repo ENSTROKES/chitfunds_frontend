@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import {UserDataService} from 'src/app/users-data.service';
 import { FormGroup, FormControl, Validators,NgForm} from '@angular/forms';
+import {Branch} from 'src/app/model/branch.model';
 
 @Component({
   selector: 'app-branches',
@@ -18,7 +19,25 @@ export class BranchesComponent implements OnInit {
   output:any;	//headoffice
   ListOfHeadData:any; //headoffice
   searchText:any;
-
+  idoutput:any ;
+  BranchDetailsById: Array<Branch>=[] ; //branchID
+  BranchDetailById: Branch={ branchId: ' ',
+  officeName: ' ',
+  phoneNumber: ' ',
+  emailID: ' ',
+  address: ' ',
+  pincode: ' ',
+  state: ' ',
+  district: ' ',
+  city: ' ',
+  landmark: ' ',
+  remarks: ' ',
+  headOffice:' ',
+  createdDate: ' ',
+  lastUpdatedDate: ' ',
+  headOfficeName: ' ',
+  startUpDate:' '
+} ;
   reslt:any;
   //popup
   //isSubmitted = false;
@@ -52,15 +71,15 @@ export class BranchesComponent implements OnInit {
   })
 
   //getbranchbyid
-  this.userData.branchbyID().subscribe((data) =>{
-    this.result=data;
-Object.keys(this.result).forEach(prop => {
-  if(prop=="object"){
-    this.ListOfBranchIDData = this.result[prop];
-  }
-});
+//   this.userData.branchbyID().subscribe((data) =>{
+//     this.result=data;
+// Object.keys(this.result).forEach(prop => {
+//   if(prop=="object"){
+//     this.ListOfBranchIDData = this.result[prop];
+//   }
+// });
   
-})
+// })
  
 // this.userData.branchbyID().subscribe((data) =>{
 //   this.result=data;
@@ -85,6 +104,8 @@ if(prop=="object"){
 })
 
 
+
+
   }
 
 
@@ -101,24 +122,42 @@ if(prop=="object"){
     }, 2000)
   }
   
-  
+//   exit() {
+//     window.location.reload();
+//  }
+// GGet BRANCH by ID
+
+  getBranchbyId(data:any): void{
+     console.log("GetData" +data);
+     
+      console.log("AllData" +JSON.stringify(data));
+        
+     //console.log(new Date("2015/04/29 11:24:00").getTime());
+     
+     this.http.get(this.userData.branchbyidurl+data).subscribe((data) =>{
+      this.idoutput=data;
+    Object.keys(this.output).forEach(prop => {
+    if(prop=="object"){
+      this.BranchDetailById = this.idoutput[prop];
+      console.log("GetData" +this.userData.branchbyidurl);
+    }
+    });
+    
+    })
+       }
+
+
   
 
 // create Branch
 
 getbranchFormData(data:any): void{
-//  console.log("GetData" +data.officeName);
+ console.log("GetData" +data);
   console.log("AllData" +JSON.stringify(data));
-
- 
   //console.log("GetData" +this.userData.headOffice);
-
  //console.log(new Date("2015/04/29 11:24:00").getTime());
-
- 
   this.http.post(this.userData.createbrnch, data).subscribe((result)=>{
    this.reslt = result;
-    
    Object.keys(this.reslt).forEach(prop => {
       console.log("data : " +prop);
         console.log("value : "+this.reslt[prop]);
@@ -148,6 +187,9 @@ getbranchFormData(data:any): void{
       this.isDisplayed = false;
     }
     // Add other stuff
+
+
+    
   }
   ngOnInit(): void {
     

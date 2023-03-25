@@ -16,7 +16,7 @@ export class UserDataService {
   url = 'http://3.111.255.69/chitfund/getAllEmployee';
   createurl = 'http://3.111.255.69/chitfund/createEmployee';
   branchurl = 'http://3.111.255.69/chitfund/getAllBranches';
-  branchbyid = 'https://jsonplaceholder.typicode.com/posts/1';
+  branchbyidurl = 'http://3.111.255.69/chitfund/getBranchById?id=';
   headurl='http://3.111.255.69/chitfund/getAllHeadOffice';
   createbrnch = 'http://3.111.255.69/chitfund/createBranch';
   creategrp = 'http://3.111.255.69/chitfund/createGroup';
@@ -24,6 +24,7 @@ export class UserDataService {
   getAllgrp ='http://3.111.255.69/chitfund/getAllGroup';
   getAllcustomer ='http://3.111.255.69/chitfund/getAllCustomers';
   getReceipt ='http://3.111.255.69/chitfund/getAllReceipt';
+  createcustomer='http://3.111.255.69/chitfund/createCustomer';
   constructor(private http: HttpClient) {
     //employeeData: any;
   }
@@ -67,9 +68,9 @@ export class UserDataService {
     return this.http.get(this.branchurl);
   }
 
-  branchbyID(){
-    return this.http.get(this.branchbyid);
-  }
+  // branchbyID(){
+  //   return this.http.get(this.branchbyid);
+  // }
    //create branch
    createbranch(data: any) {
     
