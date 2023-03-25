@@ -472,7 +472,9 @@
                                                     <label for="inputName5" class="form-label"> Remarks</label>
                                                     <div class="form-floating"><textarea class="form-control" ngmodel name="remarks" style="height: 100px;"></textarea><label for="floatingTextarea"></label></div>
                                                 </div> -->
-                                                <div class="text-center"> <button type="submit" class="btn btn-primary" [disabled]="isLoading" (click)="click()"><i class="spinner-border" style="width: 20px; height: 20px;"[ngClass]="{'spinner-border': isLoading}"></i>&nbsp; Submit</button>&nbsp; <button type="reset" class="btn btn-secondary">Reset</button></div>
+                                                <div class="text-center"> <button type="submit" class="btn btn-primary" >&nbsp; Submit</button>&nbsp; <button type="reset" class="btn btn-secondary">Reset</button></div>
+                                                <!-- [disabled]="isLoading" (click)="click()"
+                                                <i class="spinner-border" style="width: 20px; height: 20px;"[ngClass]="{'spinner-border': isLoading}"></i> -->
                                             </form>
                                         </div>
                                     </div>

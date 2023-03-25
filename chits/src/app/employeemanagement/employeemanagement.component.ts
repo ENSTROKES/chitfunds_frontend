@@ -107,7 +107,7 @@ console.log(new Date("2015/04/29 11:24:00").getTime());
        console.log("value : "+this.response[prop]);
        if(prop=="responseCode"){
         // this.ListOfEmpData = this.reslt[prop];
-          if(this.reslt[prop]=="200"){
+          if(this.response[prop]=="200"){
             if(window.confirm('Employee is created successfully')){
               location.reload();
             }else{

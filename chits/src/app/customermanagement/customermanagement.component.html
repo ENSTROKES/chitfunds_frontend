@@ -79,8 +79,8 @@
                                     <div class="card">
                                         <div class="card-body">
                                             <h5 class="card-title"> Details</h5>
-                                            <!-- <form class="row g-3" #customerForm="ngForm" (ngSubmit)="getCustomerFormData(customerForm.value)"> -->
-                                            <!-- <form class="row g-3">
+                                            <form class="row g-3" #customerForm="ngForm" (ngSubmit)="getCustomerFormData(customerForm.value)"> 
+                                            <!-- <form class="row g-3"> -->
                                                 <div class="col-md-6"> <label for="inputName5" class="form-label"> Branch Name</label>
                                                     <select name="branch_name" [(ngModel)]="customer.branch_name" class="form-control" #name="ngModel">
                                              <option>---Select----</option>
@@ -192,9 +192,11 @@
                                                     <label for="inputName5" class="form-label"> Remarks</label>
                                                     <div class="form-floating"><textarea class="form-control" id="floatingTextarea" style="height: 100px;"></textarea><label for="floatingTextarea"></label></div>
                                                 </div>
-                                                <div class="text-center"> <button type="submit" class="btn btn-primary" [disabled]="isLoading" (click)="click()"><i class="spinner-border" style="width: 20px; height: 20px;"[ngClass]="{'spinner-border': isLoading}"></i>&nbsp; Submit</button>&nbsp;
+                                                <div class="text-center"> <button type="submit" class="btn btn-primary" >&nbsp; Submit</button>&nbsp;
+                                                    <!-- <i class="spinner-border" style="width: 20px; height: 20px;"[ngClass]="{'spinner-border': isLoading}"></i>
+                                                    [disabled]="isLoading" (click)="click()" -->
                                                     <button type="reset" class="btn btn-secondary">Reset</button></div>
-                                            </form> -->
+                                            </form>
                                         </div>
                                     </div>
                                 </div>

@@ -40,37 +40,37 @@ button = 'Submit';
   }
 
 // Post Customer
-// customerresult: any;
-// customer : Customer = {
-//   branch_name:'',
-//   joining_date:'',
-//   guarantor:'',
-//   refered_type:'',
-//   refered_by:'',
-//   personalDetails:{
-//                    name:'',
-//                    father:'',
-//                    spouse_name:'',
-//                    DOB:'',
-//                    aadhar_no:'',
-//                    pan:'',
-//                    gender:'',
-//                    occupation:'',
-//                    monthly_income:'',
-//                    marrital_status:'',
-//                    address:'',
-//                    pincode:'',
-//                    state:'',
-//                    city:'',
-//                    landmark:''
-//                                   },                                
-//   customerNomineeDetails:{                                
-//                           name:'',
-//                           DOB:'',
-//                           relationship:'',
-//                           nominee_address:'',
-//                           }
-//   }
+customerresult: any;
+customer : Customer = {
+  branch_name:'',
+  joining_date:'',
+  guarantor:'',
+  refered_type:'',
+  refered_by:'',
+  personalDetails:{
+                   name:'',
+                   father:'',
+                   spouse_name:'',
+                   DOB:'',
+                   aadhar_no:'',
+                   pan:'',
+                   gender:'',
+                   occupation:'',
+                   monthly_income:'',
+                   marrital_status:'',
+                   address:'',
+                   pincode:'',
+                   state:'',
+                   city:'',
+                   landmark:''
+                                  },                                
+  customerNomineeDetails:{                                
+                          name:'',
+                          DOB:'',
+                          relationship:'',
+                          nominee_address:'',
+                          }
+  }
 
 
 
@@ -105,36 +105,36 @@ getUserFormData(data:any){
 }
 
 // Create customer post
-// getCustomerFormData(data:any): void{
-//   console.log("GetData" +data);
-//     console.log("AllData" +JSON.stringify(data));
-//     console.log("Hello World");
+getCustomerFormData(data:any): void{
+  console.log("GetData" +data);
+    console.log("AllData" +JSON.stringify(data));
+    console.log("Hello World");
    
-//     //console.log("GetData" +this.userData.headOffice);
+    //console.log("GetData" +this.userData.headOffice);
   
-//    //console.log(new Date("2015/04/29 11:24:00").getTime());
+   //console.log(new Date("2015/04/29 11:24:00").getTime());
   
    
-//     this.http.post(this.userData.createcustomer, data).subscribe((result)=>{
-//      this.customerresult = result;
+    this.http.post(this.userData.createcustomer, data).subscribe((result)=>{
+     this.customerresult = result;
       
-//      Object.keys(this.customerresult).forEach(prop => {
-//         console.log("data : " +prop);
+     Object.keys(this.customerresult).forEach(prop => {
+        console.log("data : " +prop);
         
-//           console.log("value : "+this.customerresult[prop]);
-//            if(prop=="responseCode"){
-//           // this.ListOfEmpData = this.reslt[prop];
-//             if(this.customerresult[prop]=="200"){
-//               if(window.confirm('Customer is created successfully')){
-//                 location.reload();
-//               }else{
-//                 location.reload();
-//               }
-//             }
-//             }
-//         });
-//       })
-//      }
+          console.log("value : "+this.customerresult[prop]);
+           if(prop=="responseCode"){
+          // this.ListOfEmpData = this.reslt[prop];
+            if(this.customerresult[prop]=="200"){
+              if(window.confirm('Customer is created successfully')){
+                location.reload();
+              }else{
+                location.reload();
+              }
+            }
+            }
+        });
+      })
+     }
 
 // getCustomerFormData(): void
 //   {
