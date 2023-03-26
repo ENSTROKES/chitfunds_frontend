@@ -128,18 +128,18 @@ if(prop=="object"){
 // GGet BRANCH by ID
 
   getBranchbyId(data:any): void{
-     console.log("GetData" +data);
+    // console.log("GetData" +data);
      
-      console.log("AllData" +JSON.stringify(data));
+     // console.log("AllData" +JSON.stringify(data));
         
      //console.log(new Date("2015/04/29 11:24:00").getTime());
      
      this.http.get(this.userData.branchbyidurl+data).subscribe((data) =>{
       this.idoutput=data;
-    Object.keys(this.output).forEach(prop => {
+    Object.keys(this.idoutput).forEach(prop => {
     if(prop=="object"){
       this.BranchDetailById = this.idoutput[prop];
-      console.log("GetData" +this.userData.branchbyidurl);
+      //console.log("GetData" +this.userData.branchbyidurl);
     }
     });
     

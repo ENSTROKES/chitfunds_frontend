@@ -2,7 +2,7 @@ export class PersonalDetails {
   name:string;
   father:string;
   spouse_name:string;
-  DOB:string;
+  dob:string;
   aadhar_no:string;
   pan:string;
   gender:string;
@@ -14,4 +14,6 @@ export class PersonalDetails {
   state:string;
   city:string;
   landmark:string;
+  phoneNumber: string;
+  email: string;
 }

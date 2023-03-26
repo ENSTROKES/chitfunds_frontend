@@ -74,6 +74,7 @@ if(prop=="object"){
     // get all customer method
     this.userData.customer().subscribe((data) =>{
       this.custmresponse=data;
+      console.log("AllData" +JSON.stringify(data));
     Object.keys(this.custmresponse).forEach(prop => {
     if(prop=="object"){
       this.ListOfCustomerData = this.custmresponse[prop];

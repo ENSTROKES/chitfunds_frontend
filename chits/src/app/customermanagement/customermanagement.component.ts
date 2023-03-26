@@ -38,10 +38,13 @@ button = 'Submit';
       loading: false
     }
   }
-
+// Get Customer
+custmresponse:any;
+ListOfCustomerData:any;
 // Post Customer
 customerresult: any;
 customer : Customer = {
+  customerId:'',
   branch_name:'',
   joining_date:'',
   guarantor:'',
@@ -51,7 +54,7 @@ customer : Customer = {
                    name:'',
                    father:'',
                    spouse_name:'',
-                   DOB:'',
+                   dob:'',
                    aadhar_no:'',
                    pan:'',
                    gender:'',
@@ -62,15 +65,53 @@ customer : Customer = {
                    pincode:'',
                    state:'',
                    city:'',
-                   landmark:''
+                   landmark:'',
+                   phoneNumber:'',
+                   email:''
                                   },                                
   customerNomineeDetails:{                                
                           name:'',
-                          DOB:'',
+                          dob:'',
                           relationship:'',
                           nominee_address:'',
                           }
   }
+
+  // get customer by id
+  idoutput:any;
+  customerDetailbyid : Customer = {
+    customerId:'',
+    branch_name:'',
+    joining_date:'',
+    guarantor:'',
+    refered_type:'',
+    refered_by:'',
+    personalDetails:{
+                     name:'',
+                     father:'',
+                     spouse_name:'',
+                     dob:'',
+                     aadhar_no:'',
+                     pan:'',
+                     gender:'',
+                     occupation:'',
+                     monthly_income:'',
+                     marrital_status:'',
+                     address:'',
+                     pincode:'',
+                     state:'',
+                     city:'',
+                     landmark:'',
+                     phoneNumber:'',
+                     email:''
+                                    },                                
+    customerNomineeDetails:{                                
+                            name:'',
+                            dob:'',
+                            relationship:'',
+                            nominee_address:'',
+                            }
+    }
 
 
 
@@ -84,6 +125,21 @@ customer : Customer = {
   });
     
   })
+
+
+
+
+    // get all customer method
+    this.userData.customer().subscribe((data) =>{
+      this.custmresponse=data;
+      console.log("AllData" +JSON.stringify(data));
+    Object.keys(this.custmresponse).forEach(prop => {
+    if(prop=="object"){
+      this.ListOfCustomerData = this.custmresponse[prop];
+    }
+    });
+    
+    })
 }
 getUserFormData(data:any){
   console.warn(data)
@@ -105,17 +161,13 @@ getUserFormData(data:any){
 }
 
 // Create customer post
-getCustomerFormData(data:any): void{
-  console.log("GetData" +data);
-    console.log("AllData" +JSON.stringify(data));
-    console.log("Hello World");
-   
+getCustomerFormData(): void{
+  // console.log("GetData" +data);
+  //   console.log("AllData" +JSON.stringify(data));
+    // console.log("Hello World");
     //console.log("GetData" +this.userData.headOffice);
-  
    //console.log(new Date("2015/04/29 11:24:00").getTime());
-  
-   
-    this.http.post(this.userData.createcustomer, data).subscribe((result)=>{
+    this.http.post(this.userData.createcustomer,this.customer ).subscribe((result)=>{
      this.customerresult = result;
       
      Object.keys(this.customerresult).forEach(prop => {
@@ -135,6 +187,27 @@ getCustomerFormData(data:any): void{
         });
       })
      }
+
+// Get customer by id
+getCustomerbyId(data:any): void{
+  // console.log("GetData" +data);
+   
+   // console.log("AllData" +JSON.stringify(data));
+      
+   //console.log(new Date("2015/04/29 11:24:00").getTime());
+   
+   this.http.get(this.userData.customerbyidurl+data).subscribe((data) =>{
+    this.idoutput=data;
+  Object.keys(this.idoutput).forEach(prop => {
+  if(prop=="object"){
+    this.customerDetailbyid = this.idoutput[prop];
+    //console.log("GetData" +this.userData.branchbyidurl);
+  }
+  });
+  
+  })
+     }
+     
 
 // getCustomerFormData(): void
 //   {

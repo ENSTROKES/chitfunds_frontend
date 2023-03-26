@@ -47,18 +47,143 @@
                                                     <thead>
                                                         <tr>
                                                             <th>Id</th>
+                                                            <th>Branch</th>
                                                             <th>Name</th>
-                                                            <th>Username</th>
-                                                            <th>Email</th>
+                                                            <th>DOB</th>
+                                                            <th>Phone Number</th>
+                                                            <th>Actions</th>
                                                         </tr>
                                                     </thead>
                                                     <tbody>
-                                                        <tr *ngFor="let user of users| filter: searchText">
-                                                            <td>{{ user.id }}</td>
-                                                            <td>{{ user.name }}</td>
-                                                            <td>{{ user.username }}</td>
-                                                            <td>{{ user.email }}</td>
+                                                        <tr *ngFor="let customrdata of ListOfCustomerData| filter: searchText">
+                                                            <td>{{ customrdata.customerId }}</td>
+                                                            <td>{{ customrdata.branch_name }}</td>
+                                                            <td>{{ customrdata.personalDetails.name }}</td>
+                                                            <td>{{ customrdata.personalDetails.dob }}</td>
+                                                            <td>{{ customrdata.personalDetails.phoneNumber }}</td>
+                                                            <td>
+                                                                <div class="icon">
+                                                                    <i class="bi bi-pencil"></i> &nbsp;
+                                                                    <i class="bi bi-eye" data-bs-toggle="modal" data-bs-target="#ExtralargeModal" (click)="getCustomerbyId(customrdata.customerId)"></i>&nbsp;
+                                                                    <!-- (click)="userDetails(brnchData.branchID)" -->
+
+                                                                    <!-- <i class="ri-delete-bin-line" (click)="delete(brnchData.id)"></i> -->
+
+                                                                    <div class="modal fade" id="ExtralargeModal" tabindex="-1">
+                                                                        <div class="modal-dialog modal-xl">
+                                                                            <div class="modal-content">
+                                                                                <div class="modal-header">
+
+                                                                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                                                </div>
+                                                                                <div class="modal-body">
+
+                                                                                    <form class="row g-3">
+                                                                                        <h5 class="card-title">Office Details</h5>
+                                                                                        <div class="col-md-3"> <label for="inputName5" class="form-label"> Customer ID</label>
+                                                                                            <input type="text" class="form-control" ngModel name="Customerid" id="inputName5" [(ngModel)]="customerDetailbyid.customerId" readonly>
+                                                                                        </div>
+                                                                                        <div class="col-md-3"> <label for="inputName5" class="form-label"> Branch Name</label>
+                                                                                            <input type="text" class="form-control" ngModel name="office name" id="inputName5" [(ngModel)]="customerDetailbyid.branch_name" readonly>
+                                                                                        </div>
+                                                                                        <div class="col-md-3"> <label for="inputName5" class="form-label">joining date</label>
+                                                                                            <input type="text" class="form-control" ngModel name="Joininfdate" id="inputName5" [(ngModel)]="customerDetailbyid.joining_date" readonly>
+                                                                                        </div>
+                                                                                        <div class="col-md-3"> <label for="inputName5" class="form-label">Guarantor</label>
+                                                                                            <input type="text" class="form-control" ngModel name="guarantor" id="inputName5" [(ngModel)]="customerDetailbyid.guarantor" readonly>
+                                                                                        </div>
+                                                                                        <div class="col-md-3"> <label for="inputName5" class="form-label">Refered Type</label>
+                                                                                            <input type="text" class="form-control" ngModel name="refered_type" id="inputName5" [(ngModel)]="customerDetailbyid.refered_type" readonly>
+                                                                                        </div>
+                                                                                        <div class="col-md-3"> <label for="inputName5" class="form-label">Refered By</label>
+                                                                                            <input type="text" class="form-control" ngModel name="refered_by" id="inputName5" [(ngModel)]="customerDetailbyid.refered_by" readonly>
+                                                                                        </div>
+                                                                                        <h5 class="card-title">Personal Details</h5>
+                                                                                        <div class="col-md-3"> <label for="inputName5" class="form-label">Name</label>
+                                                                                            <input type="text" class="form-control" ngModel name="customername" id="inputName5" [(ngModel)]="customerDetailbyid.personalDetails.name" readonly>
+                                                                                        </div>
+
+                                                                                        <div class="col-md-3"> <label for="inputName5" class="form-label">Father Name</label>
+                                                                                            <input type="text" class="form-control" ngModel name="fathername" id="inputName5" [(ngModel)]="customerDetailbyid.personalDetails.father" readonly>
+                                                                                        </div>
+                                                                                        <div class="col-md-3"> <label for="inputName5" class="form-label">Spouse Name</label>
+                                                                                            <input type="text" class="form-control" ngModel name="spouse_name" id="inputName5" [(ngModel)]="customerDetailbyid.personalDetails.spouse_name" readonly>
+                                                                                        </div>
+                                                                                        <div class="col-md-3"> <label for="inputName5" class="form-label">DOB</label>
+                                                                                            <input type="text" class="form-control" ngModel name="cusdob" id="inputName5" [(ngModel)]="customerDetailbyid.personalDetails.dob" readonly>
+                                                                                        </div>
+                                                                                        <div class="col-md-3"> <label for="inputName5" class="form-label">Mobile number</label>
+                                                                                            <input type="text" class="form-control" ngModel name="mobilenumber" id="inputName5" [(ngModel)]="customerDetailbyid.personalDetails.phoneNumber" readonly>
+                                                                                        </div>
+                                                                                        <div class="col-md-3"> <label for="inputName5" class="form-label">Email ID</label>
+                                                                                            <input type="text" class="form-control" ngModel name="email" id="inputName5" [(ngModel)]="customerDetailbyid.personalDetails.email" readonly>
+                                                                                        </div>
+                                                                                        <div class="col-md-3"> <label for="inputName5" class="form-label">Aadhar No.</label>
+                                                                                            <input type="text" class="form-control" ngModel name="aadhar_no" id="inputName5" [(ngModel)]="customerDetailbyid.personalDetails.aadhar_no" readonly>
+                                                                                        </div>
+                                                                                        <div class="col-md-3"> <label for="inputName5" class="form-label">Pan No.</label>
+                                                                                            <input type="text" class="form-control" ngModel name="pan" id="inputName5" [(ngModel)]="customerDetailbyid.personalDetails.pan" readonly>
+                                                                                        </div>
+                                                                                        <div class="col-md-3"> <label for="inputName5" class="form-label">Gender</label>
+                                                                                            <input type="text" class="form-control" ngModel name="gender" id="inputName5" [(ngModel)]="customerDetailbyid.personalDetails.gender" readonly>
+                                                                                        </div>
+                                                                                        <div class="col-md-3"> <label for="inputName5" class="form-label">Occupation</label>
+                                                                                            <input type="text" class="form-control" ngModel name="occupation" id="inputName5" [(ngModel)]="customerDetailbyid.personalDetails.occupation" readonly>
+                                                                                        </div>
+                                                                                        <div class="col-md-3"> <label for="inputName5" class="form-label">Monthly Income</label>
+                                                                                            <input type="text" class="form-control" ngModel name="monthly_income" id="inputName5" [(ngModel)]="customerDetailbyid.personalDetails.monthly_income" readonly>
+                                                                                        </div>
+                                                                                        <div class="col-md-3"> <label for="inputName5" class="form-label">Marrital Status</label>
+                                                                                            <input type="text" class="form-control" ngModel name="marrital_status" id="inputName5" [(ngModel)]="customerDetailbyid.personalDetails.marrital_status" readonly>
+                                                                                        </div>
+                                                                                        <div class="col-md-3"> <label for="inputName5" class="form-label">Address</label>
+                                                                                            <input type="text" class="form-control" ngModel name="address" id="inputName5" [(ngModel)]="customerDetailbyid.personalDetails.address" readonly>
+                                                                                        </div>
+                                                                                        <div class="col-md-3"> <label for="inputName5" class="form-label">City</label>
+                                                                                            <input type="text" class="form-control" ngModel name="city" id="inputName5" [(ngModel)]="customerDetailbyid.personalDetails.city" readonly>
+                                                                                        </div>
+                                                                                        <div class="col-md-3"> <label for="inputName5" class="form-label">State</label>
+                                                                                            <input type="text" class="form-control" ngModel name="state" id="inputName5" [(ngModel)]="customerDetailbyid.personalDetails.state" readonly>
+                                                                                        </div>
+                                                                                        <div class="col-md-3"> <label for="inputName5" class="form-label">Pincode</label>
+                                                                                            <input type="text" class="form-control" ngModel name="pincode" id="inputName5" [(ngModel)]="customerDetailbyid.personalDetails.pincode" readonly>
+                                                                                        </div>
+                                                                                        <div class="col-md-3"> <label for="inputName5" class="form-label">Landmark</label>
+                                                                                            <input type="text" class="form-control" ngModel name="landmark" id="inputName5" [(ngModel)]="customerDetailbyid.personalDetails.landmark" readonly>
+                                                                                        </div>
+                                                                                        <h5 class="card-title">Nominee Details</h5>
+                                                                                        <div class="col-md-3"> <label for="inputName5" class="form-label">Name</label>
+                                                                                            <input type="text" class="form-control" ngModel name="nomineename" id="inputName5" [(ngModel)]="customerDetailbyid.customerNomineeDetails.name" readonly>
+                                                                                        </div>
+                                                                                        <div class="col-md-3"> <label for="inputName5" class="form-label">Relationship</label>
+                                                                                            <input type="text" class="form-control" ngModel name="nomineerelationship" id="inputName5" [(ngModel)]="customerDetailbyid.customerNomineeDetails.relationship" readonly>
+                                                                                        </div>
+                                                                                        <div class="col-md-3"> <label for="inputName5" class="form-label">Address</label>
+                                                                                            <input type="text" class="form-control" ngModel name="nominee_address" id="inputName5" [(ngModel)]="customerDetailbyid.customerNomineeDetails.nominee_address" readonly>
+                                                                                        </div>
+                                                                                        <div class="col-md-3"> <label for="inputName5" class="form-label">DOB</label>
+                                                                                            <input type="text" class="form-control" ngModel name="nomineedob" id="inputName5" [(ngModel)]="customerDetailbyid.customerNomineeDetails.dob" readonly>
+                                                                                        </div>
+
+
+                                                                                        <div class="modal-footer ">
+                                                                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close
+                                                                                            </button>
+                                                                                        </div>
+                                                                                    </form>
+
+                                                                                </div>
+
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+
+
+
+                                                                </div>
+                                                            </td>
                                                         </tr>
+
                                                     </tbody>
                                                 </table>
                                             </div>
@@ -78,9 +203,9 @@
 
                                     <div class="card">
                                         <div class="card-body">
-                                            <h5 class="card-title"> Details</h5>
-                                            <form class="row g-3" #customerForm="ngForm" (ngSubmit)="getCustomerFormData(customerForm.value)"> 
-                                            <!-- <form class="row g-3"> -->
+                                            <h5 class="card-title">Office Details</h5>
+                                            <form class="row g-3" #customerForm="ngForm" (ngSubmit)="getCustomerFormData()">
+                                                <!-- <form class="row g-3"> -->
                                                 <div class="col-md-6"> <label for="inputName5" class="form-label"> Branch Name</label>
                                                     <select name="branch_name" [(ngModel)]="customer.branch_name" class="form-control" #name="ngModel">
                                              <option>---Select----</option>
@@ -89,51 +214,54 @@
                                           </option>
                                           </select>
                                                 </div>
-                                                <div class="col-md-6"> <label for="inputName5" class="form-label"> Joining Date</label> <input type="text" class="form-control" name="joining_date" [(ngModel)]="customer.joining_date" #name="ngModel" id="inputName5"></div>
-                                                <div class="col-md-6"> <label for="inputName5" class="form-label"> Guarantor</label> <input type="text" class="form-control" id="inputName5"></div>
-                                                <div class="col-md-6"> <label for="inputName5" class="form-label"> Referred By</label> <input type="text" class="form-control" id="inputName5"></div>
-                                                <div class="col-md-6"> <label for="inputName5" class="form-label"> Name</label> <input type="text" class="form-control" id="inputName5"></div>
-                                                <div class="col-md-6"> <label for="inputName5" class="form-label"> Father Name</label> <input type="text" class="form-control" id="inputName5"></div>
-                                                <div class="col-md-6"> <label for="inputName5" class="form-label"> Spouse Name</label> <input type="text" class="form-control" id="inputName5"></div>
-                                                <div class="col-md-6"> <label for="inputName5" class="form-label"> Date of Birth</label> <input type="date" class="form-control" id="inputName5"></div>
+                                                <div class="col-md-6"> <label for="inputName5" class="form-label"> Joining Date</label> <input type="date" class="form-control" name="joining_date" [(ngModel)]="customer.joining_date" #name="ngModel" id="inputName5"></div>
+                                                <div class="col-md-6"> <label for="inputName5" class="form-label"> Guarantor</label> <input type="text" name="Guarantor" [(ngModel)]="customer.guarantor" #name="ngModel" class="form-control" id="inputName5"></div>
+                                                <div class="col-md-6"> <label for="inputName5" class="form-label"> Referred Type</label> <input name="referredtype" [(ngModel)]="customer.refered_type" #name="ngModel" type="text" class="form-control" id="inputName5"></div>
+                                                <div class="col-md-6"> <label for="inputName5" class="form-label"> Referred By</label> <input name="regerredby" [(ngModel)]="customer.refered_by" #name="ngModel" type="text" class="form-control" id="inputName5"></div>
+                                                <h5 class="card-title">Personal Details</h5>
+                                                <div class="col-md-6"> <label for="inputName5" class="form-label"> Name</label> <input type="text" class="form-control" name="cusname" id="inputName5" [(ngModel)]="customer.personalDetails.name" #name="ngModel"></div>
+                                                <div class="col-md-6"> <label for="inputName5" class="form-label"> Father Name</label> <input name="cusfathername" id="inputName5" [(ngModel)]="customer.personalDetails.father" #name="ngModel" type="text" class="form-control"
+                                                        id="inputName5"></div>
+                                                <div class="col-md-6"> <label for="inputName5" class="form-label"> Spouse Name</label> <input name="spousename" id="inputName5" [(ngModel)]="customer.personalDetails.spouse_name" #name="ngModel" type="text" class="form-control"
+                                                        id="inputName5"></div>
+                                                <div class="col-md-6"> <label for="inputName5" class="form-label"> Date of Birth</label> <input type="date" class="form-control" id="inputName5" name="cusdob" id="inputName5" [(ngModel)]="customer.personalDetails.dob" #name="ngModel"></div>
                                                 <div class="col-md-6">
                                                     <label for="inputName5" class="form-label"> Mobile Number </label>
-                                                    <div class="input-group w-50"><span class="input-group-text">+91</span> <input type="text" maxlength="10" class="form-control" aria-label="Amount (to the nearest rupees)"></div>
+                                                    <div class="input-group w-50"><span class="input-group-text">+91</span> <input type="text" maxlength="10" class="form-control" aria-label="Amount (to the nearest rupees)" name="cusphone" id="inputName5" [(ngModel)]="customer.personalDetails.phoneNumber"
+                                                            #name="ngModel"></div>
                                                 </div>
-                                                <div class="col-md-6"> <label for="inputName5" class="form-label"> Aadhar No.</label> <input type="text" class="form-control" id="inputName5"></div>
-                                                <div class="col-md-6"> <label for="inputName5" class="form-label"> Pan No.</label> <input type="text" class="form-control" id="inputName5"></div>
-                                                <div class="col-md-6"> <label for="inputName5" class="form-label"> Gender</label> <select class="form-select" aria-label="Default select example">
-                                          <option selected><select name="" id=""></select>Select</option>
-                                                    <option value="1">Male</option>
-                                                    <option value="2">Female</option>
-                                                    <option value="3">Others</option>
+                                                <div class="col-md-6"> <label for="inputName5" class="form-label"> Email ID</label> <input type="text" class="form-control" id="inputName5" name="email" id="inputName5" [(ngModel)]="customer.personalDetails.email" #name="ngModel"></div>
+                                                <div class="col-md-6"> <label for="inputName5" class="form-label"> Aadhar No.</label> <input type="text" class="form-control" id="inputName5" name="aadhar_no" id="inputName5" [(ngModel)]="customer.personalDetails.aadhar_no" #name="ngModel"></div>
+                                                <div class="col-md-6"> <label for="inputName5" class="form-label"> Pan No.</label> <input type="text" class="form-control" id="inputName5" name="pan_no" id="inputName5" [(ngModel)]="customer.personalDetails.pan" #name="ngModel"></div>
+                                                <div class="col-md-6"> <label for="inputName5" class="form-label"> Gender</label> <select class="form-select" aria-label="Default select example" name="gender" id="inputName5" [(ngModel)]="customer.personalDetails.gender" #name="ngModel">
+                                          <option selected>Select</option>
+                                                    <option value="Male">Male</option>
+                                                    <option value="Female">Female</option>
+                                                    <option value="Others">Others</option>
                                                     </select>
                                                 </div>
 
 
-                                                <div class="col-md-6"> <label for="inputName5" class="form-label"> Occupation </label> <input type="text" class="form-control" id="inputName5"></div>
+                                                <div class="col-md-6"> <label for="inputName5" class="form-label"> Occupation </label> <input type="text" class="form-control" id="inputName5" name="occupation" id="inputName5" [(ngModel)]="customer.personalDetails.occupation"
+                                                        #name="ngModel"></div>
                                                 <div class="col-md-6">
                                                     <label for="inputName5" class="form-label"> Monthly Income </label>
-                                                    <div class="input-group mb-3 w-50"><span class="input-group-text">₹</span> <input type="text" class="form-control" aria-label="Amount (to the nearest rupees)"> <span class="input-group-text">.00</span></div>
+                                                    <div class="input-group mb-3 w-50"><span class="input-group-text">₹</span> <input type="number" class="form-control" aria-label="Amount (to the nearest rupees)" name="monthly_income" id="inputName5" [(ngModel)]="customer.personalDetails.monthly_income"
+                                                            #name="ngModel"> <span class="input-group-text">.00</span></div>
                                                 </div>
-                                                <div class="col-md-6">
-                                                    <fieldset class="row mb-2 w-80">
-                                                        <legend class="col-form-label col-sm-2 pt-0">Marital Status</legend>
-                                                        <div class="col-sm-5">
-                                                            <div class="form-check"> <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios1" value="option1" checked> <label class="form-check-label" for="gridRadios1"> Married </label></div>
-                                                            <div class="form-check"> <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios2" value="option2"> <label class="form-check-label" for="gridRadios2"> Unmarried </label></div>
+                                                <div class="col-md-6"> <label for="inputName5" class="form-label"> Marital Status</label> <select class="form-select" aria-label="Default select example" name="maritalstatus" id="inputName5" [(ngModel)]="customer.personalDetails.marrital_status"
+                                                        #name="ngModel">
+                                                    <option selected>Select</option>
+                                                              <option value="Married">Married</option>
+                                                              <option value="UnMarried">UnMarried</option>
+                                                              </select>
+                                                </div>
+                                                <div class="col-md-6"> <label for="inputName5" class="form-label"> Address </label> <input type="text" class="form-control" id="inputName5" name="address" id="inputName5" [(ngModel)]="customer.personalDetails.address" #name="ngModel"></div>
+                                                <div class="col-md-6"> <label for="inputCity" class="form-label">City</label> <input type="text" class="form-control" id="inputCity" name="city" id="inputName5" [(ngModel)]="customer.personalDetails.city" #name="ngModel"></div>
 
-                                                        </div>
-                                                    </fieldset>
-                                                </div>
                                                 <div class="col-md-6">
-                                                    <label for="inputName5" class="form-label"> Address</label>
-                                                    <div class="form-floating"><textarea class="form-control" id="floatingTextarea" style="height: 100px;"></textarea><label for="floatingTextarea"></label></div>
-                                                </div>
-                                                <div class="col-md-5"> <label for="inputZip" class="form-label">Pin Code</label> <input type="text" class="form-control" id="inputZip"></div>
-                                                <div class="col-md-4">
                                                     <label for="inputState" class="form-label">State</label>
-                                                    <select id="inputState" class="form-select">
+                                                    <select id="inputState" class="form-select" name="state" id="inputName5" [(ngModel)]="customer.personalDetails.state" #name="ngModel"> 
                                           <option selected>Choose...</option>
                                           <option value="AN">Andaman and Nicobar Islands</option>
                                           <option value="AP">Andhra Pradesh</option>
@@ -174,15 +302,17 @@
                                           <option value="WB">West Bengal</option>
                                        </select>
                                                 </div>
-                                                <div class="col-md-4"> <label for="inputCity" class="form-label">City</label> <input type="text" class="form-control" id="inputCity"></div>
-                                                <div class="col-md-4"> <label for="inputCity" class="form-label">Landmark</label> <input type="text" class="form-control" id="inputCity"></div>
-                                                <div class="col-md-6"> <label for="inputName5" class="form-label"> Name</label> <input type="text" class="form-control" id="inputName5"></div>
-                                                <div class="col-md-6"> <label for="inputName5" class="form-label"> Date of Birth</label> <input type="date" class="form-control" id="inputName5"></div>
-                                                <div class="col-md-6"> <label for="inputName5" class="form-label"> Relationship</label> <input type="text" class="form-control" id="inputName5"></div>
+                                                <div class="col-md-6"> <label for="inputZip" class="form-label">Pin Code</label> <input type="number" class="form-control" id="inputZip" name="pincode" id="inputName5" [(ngModel)]="customer.personalDetails.pincode" #name="ngModel"></div>
+                                                <div class="col-md-6"> <label for="inputCity" class="form-label">Landmark</label> <input type="text" class="form-control" id="inputCity" name="landmark" id="inputName5" [(ngModel)]="customer.personalDetails.landmark" #name="ngModel"></div>
+                                                <h5 class="card-title">Nominee Details</h5>
+                                                <div class="col-md-6"> <label for="inputName5" class="form-label"> Name</label> <input type="text" class="form-control" id="inputName5" name="nomineename" [(ngModel)]="customer.customerNomineeDetails.name" #name="ngModel"></div>
+                                                <div class="col-md-6"> <label for="inputName5" class="form-label"> Date of Birth</label> <input type="date" class="form-control" id="inputName5" name="nomineedob" [(ngModel)]="customer.customerNomineeDetails.dob" #name="ngModel"></div>
+                                                <div class="col-md-6"> <label for="inputName5" class="form-label"> Relationship</label> <input type="text" class="form-control" id="inputName5" name="relationship" [(ngModel)]="customer.customerNomineeDetails.relationship" #name="ngModel"></div>
                                                 <div class="col-md-6">
                                                     <label for="inputName5" class="form-label"> Address</label>
-                                                    <div class="form-floating"><textarea class="form-control" id="floatingTextarea" style="height: 100px;"></textarea><label for="floatingTextarea"></label></div>
+                                                    <div class="form-floating"><textarea class="form-control" id="floatingTextarea" style="height: 100px;" name="nominee_address" [(ngModel)]="customer.customerNomineeDetails.nominee_address" #name="ngModel"></textarea><label for="floatingTextarea"></label></div>
                                                 </div>
+                                                <!-- <h5 class="card-title">Chit Details</h5>
                                                 <div class="col-md-6"> <label for="inputName5" class="form-label"> Scheme</label> <input type="text" class="form-control" id="inputName5"></div>
                                                 <div class="col-md-6"> <label for="inputName5" class="form-label">Payment type</label> <input type="date" class="form-control" id="inputName5"></div>
                                                 <div class="col-md-6"> <label for="inputName5" class="form-label"> Collection area</label> <input type="text" class="form-control" id="inputName5"></div>
@@ -191,8 +321,8 @@
                                                 <div class="col-md-6">
                                                     <label for="inputName5" class="form-label"> Remarks</label>
                                                     <div class="form-floating"><textarea class="form-control" id="floatingTextarea" style="height: 100px;"></textarea><label for="floatingTextarea"></label></div>
-                                                </div>
-                                                <div class="text-center"> <button type="submit" class="btn btn-primary" >&nbsp; Submit</button>&nbsp;
+                                                </div> -->
+                                                <div class="text-center"> <button type="submit" class="btn btn-primary">&nbsp; Submit</button>&nbsp;
                                                     <!-- <i class="spinner-border" style="width: 20px; height: 20px;"[ngClass]="{'spinner-border': isLoading}"></i>
                                                     [disabled]="isLoading" (click)="click()" -->
                                                     <button type="reset" class="btn btn-secondary">Reset</button></div>

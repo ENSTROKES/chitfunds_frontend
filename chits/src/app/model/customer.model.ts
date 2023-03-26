@@ -2,6 +2,7 @@ import { PersonalDetails } from  './customerpersonalDetails.model' ;
 import { customerNomineeDetails } from  './cusNomineeDetails.model' ;
 
 export class Customer {
+        customerId:string;
         branch_name:string;
         joining_date:string;
         guarantor:string;

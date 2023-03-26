@@ -111,8 +111,8 @@
                                                         <div class="modal-footer">
                                                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close
                                                             </button>
-                                                            <button type="submit" class="btn btn-primary" >&nbsp; Submit</button></div>
-                                                            <!-- [disabled]="isLoading" (click)="click()"
+                                                            <button type="submit" class="btn btn-primary">&nbsp; Submit</button></div>
+                                                        <!-- [disabled]="isLoading" (click)="click()"
                                                             <i class="spinner-border" style="width: 20px; height: 20px;"[ngClass]="{'spinner-border': isLoading}"></i> -->
                                                     </form>
                                                 </div>
@@ -133,6 +133,7 @@
                                     <th>Email ID</th>
                                     <th>Head Office Name</th>
                                     <th>Start Up Date</th>
+                                    <th>Actions</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -182,47 +183,7 @@
 
 
                                                             </form>
-                                                            <!-- <table class="table table-striped">
 
-                                                                <thead>
-                                                                    <tr>
-                                                                        <th>Office Name</th>
-                                                                        <th>Phone Number</th>
-                                                                        <th>Email ID</th>
-                                                                        <th>Address</th>
-                                                                        <th>Pincode</th>
-                                                                        <th>State</th>
-                                                                        <th>District</th>
-                                                                        <th>City</th>
-                                                                        <th>Landmark</th>
-                                                                        <th>Remarks</th>
-                                                                        <th>Head Office</th>
-                                                                        <th>Created Date</th>
-                                                                        <th>Last Updated Date</th>
-                                                                        <th>Head Office Name</th>
-                                                                        <th>Start Up Date</th>
-                                                                    </tr>
-                                                                </thead>
-                                                                <tbody>
-                                                                    <tr *ngFor="let branchdetails of BranchDetailById">
-                                                                        <td>{{ branchdetails.officeName }}</td>
-                                                                        <td>{{ branchdetails.phoneNumber }}</td>
-                                                                        <td>{{ branchdetails.emailID }}</td>
-                                                                        <td>{{ branchdetails.address }}</td>
-                                                                        <td>{{ branchdetails.pincode }}</td>
-                                                                        <td>{{ branchdetails.state }}</td>
-                                                                        <td>{{ branchdetails.district }}</td>
-                                                                        <td>{{ branchdetails.city }}</td>
-                                                                        <td>{{ branchdetails.landmark }}</td>
-                                                                        <td>{{ branchdetails.remarks }}</td>
-                                                                        <td>{{ branchdetails.headOffice }}</td>
-                                                                        <td>{{ branchdetails.createdDate }}</td>
-                                                                        <td>{{ branchdetails.lastUpdatedDate }}</td>
-                                                                        <td>{{ branchdetails.headOfficeName }}</td>
-                                                                        <td>{{ branchdetails.startUpDate }}</td>
-                                                                    </tr>
-                                                                </tbody>
-                                                            </table> -->
                                                         </div>
 
                                                     </div>
