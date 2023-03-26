@@ -17,4 +17,11 @@ export class HeaderComponent implements OnInit {
     //toggle sidebar function
     this.document.body.classList.toggle('toggle-sidebar');
   }
+  clearSession()
+        {
+         //delete session value
+          sessionStorage.removeItem("UserName");
+          //sessionStorage.clear();
+        }
 }
+

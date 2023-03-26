@@ -34,6 +34,8 @@ result:any;
 ListOfBranchData:any;
 selectedbranch:any;
  
+//delete employee
+empdelete:any
 //spinner
 button = 'Submit';
   isLoading = false;
@@ -82,7 +84,42 @@ button = 'Submit';
     remarks: ' ' ,
     dob: ' ' 
   }
-
+  EmployeeDeleteByID:  EmployeeID= {
+    emp_code: ' ',
+    branch_name: ' ' ,
+    salution: ' ' ,
+    first_name: ' ' ,
+    last_name: ' ' ,
+    gender: ' ' ,
+    blood_group: ' ' ,
+    mobile_number: ' ' ,
+    email: ' ' ,
+    aadhar_no: ' ' ,
+    pan_no: ' ' ,
+    father_name: ' ',
+    spouse_name: ' ' ,
+    designation: ' ' ,
+    qalification: ' ' ,
+    joining_date: ' ' ,
+    verified_by: ' ' ,
+    pervious_salary: ' ',
+    bank_name: ' ',
+    account_holder_name: ' ' ,
+    account_number: ' ' ,
+    salary: ' ',
+    incentive: ' ' ,
+    target: ' ' ,
+    address: ' ' ,
+    pincode: ' ' ,
+    state: ' ' ,
+    distric: ' ' ,
+    city: ' ' ,
+    landmark: ' ' ,
+    experience: ' ' ,
+    ifsc_code: ' ' ,
+    remarks: ' ' ,
+    dob: ' ' 
+  }
   
 
   constructor(private http: HttpClient, private userData:UserDataService) {
@@ -176,7 +213,27 @@ console.log(new Date("2015/04/29 11:24:00").getTime());
       });
       
       })
-         }
+      }
+         deleteEmployeebyId(data:any): void{
+           
+           this.http.delete(this.userData.deleteemployee+data).subscribe((data) =>{
+          if(confirm('Are you sure to delete?'))
+            this.empdelete=data;
+          Object.keys(this.empdelete).forEach(prop => {
+            if(prop=="responseCode"){
+              // this.ListOfEmpData = this.reslt[prop];
+                if(this.empdelete[prop]=="200"){
+                  if(window.confirm('Employee is deleted successfully')){
+                    location.reload();
+                  }else{
+                    location.reload();
+                  }
+                }
+                }
+          });
+          
+          })
+             }
 
 
 

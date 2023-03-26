@@ -112,7 +112,41 @@ customer : Customer = {
                             nominee_address:'',
                             }
     }
-
+    //delete customer
+    customerdelete:any;
+    customerDeletebyid : Customer = {
+      customerId:'',
+      branch_name:'',
+      joining_date:'',
+      guarantor:'',
+      refered_type:'',
+      refered_by:'',
+      personalDetails:{
+                       name:'',
+                       father:'',
+                       spouse_name:'',
+                       dob:'',
+                       aadhar_no:'',
+                       pan:'',
+                       gender:'',
+                       occupation:'',
+                       monthly_income:'',
+                       marrital_status:'',
+                       address:'',
+                       pincode:'',
+                       state:'',
+                       city:'',
+                       landmark:'',
+                       phoneNumber:'',
+                       email:''
+                                      },                                
+      customerNomineeDetails:{                                
+                              name:'',
+                              dob:'',
+                              relationship:'',
+                              nominee_address:'',
+                              }
+      }
 
 
   constructor(private http: HttpClient, private userData:UserDataService ) { 
@@ -207,6 +241,29 @@ getCustomerbyId(data:any): void{
   
   })
      }
+
+
+     //delete customer
+     deleteCustomerbyId(data:any): void{
+           
+      this.http.delete(this.userData.deletecustomer+data).subscribe((data) =>{
+     if(confirm('Are you sure to delete?'))
+       this.customerdelete=data;
+     Object.keys(this.customerdelete).forEach(prop => {
+       if(prop=="responseCode"){
+         // this.ListOfEmpData = this.reslt[prop];
+           if(this.customerdelete[prop]=="200"){
+             if(window.confirm('Employee is deleted successfully')){
+               location.reload();
+             }else{
+               location.reload();
+             }
+           }
+           }
+     });
+     
+     })
+        }
      
 
 // getCustomerFormData(): void

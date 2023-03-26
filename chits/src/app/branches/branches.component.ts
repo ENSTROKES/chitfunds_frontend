@@ -41,6 +41,26 @@ export class BranchesComponent implements OnInit {
   reslt:any;
   //popup
   //isSubmitted = false;
+// delete branch
+branchdelete:any;
+BranchDeleteById: Branch={ branchId: ' ',
+  officeName: ' ',
+  phoneNumber: ' ',
+  emailID: ' ',
+  address: ' ',
+  pincode: ' ',
+  state: ' ',
+  district: ' ',
+  city: ' ',
+  landmark: ' ',
+  remarks: ' ',
+  headOffice:' ',
+  createdDate: ' ',
+  lastUpdatedDate: ' ',
+  headOfficeName: ' ',
+  startUpDate:' '
+} ;
+
   isDisplayed: boolean | undefined;
   button = 'Submit';
   isLoading = false;
@@ -175,6 +195,28 @@ getbranchFormData(data:any): void{
     })
    }
 
+   //delete branch
+   
+   deleteBranchbyId(data:any): void{
+           
+    this.http.delete(this.userData.deletebranch+data).subscribe((data) =>{
+   if(confirm('Are you sure to delete?'))
+     this.branchdelete=data;
+   Object.keys(this.branchdelete).forEach(prop => {
+     if(prop=="responseCode"){
+       // this.ListOfEmpData = this.reslt[prop];
+         if(this.branchdelete[prop]=="200"){
+           if(window.confirm('Employee is deleted successfully')){
+             location.reload();
+           }else{
+             location.reload();
+           }
+         }
+         }
+   });
+   
+   })
+      }
   
   
 

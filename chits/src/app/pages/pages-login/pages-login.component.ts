@@ -67,6 +67,7 @@ export class PagesLoginComponent implements OnInit {
              if(prop=="responseCode"){
             // this.ListOfEmpData = this.reslt[prop];
               if(this.loginout[prop]=="1000"){
+                sessionStorage.setItem("UserName", this.username);
                 this.router.navigate(["/dashboard"]);
                 }else
                 {

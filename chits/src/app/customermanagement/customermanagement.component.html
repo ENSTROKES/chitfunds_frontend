@@ -67,7 +67,7 @@
                                                                     <i class="bi bi-eye" data-bs-toggle="modal" data-bs-target="#ExtralargeModal" (click)="getCustomerbyId(customrdata.customerId)"></i>&nbsp;
                                                                     <!-- (click)="userDetails(brnchData.branchID)" -->
 
-                                                                    <!-- <i class="ri-delete-bin-line" (click)="delete(brnchData.id)"></i> -->
+                                                                    <i class="ri-delete-bin-line" (click)="deleteCustomerbyId(customrdata.customerId)"></i>
 
                                                                     <div class="modal fade" id="ExtralargeModal" tabindex="-1">
                                                                         <div class="modal-dialog modal-xl">
@@ -208,7 +208,7 @@
                                                 <!-- <form class="row g-3"> -->
                                                 <div class="col-md-6"> <label for="inputName5" class="form-label"> Branch Name</label>
                                                     <select name="branch_name" [(ngModel)]="customer.branch_name" class="form-control" #name="ngModel">
-                                             <option>---Select----</option>
+                                             <option value="" disable selected hidden>---Select----</option>
                                              <option *ngFor="let branchData of ListOfBranchData" [value]="branchData.officeName">
                                                 {{branchData.officeName}}
                                           </option>
@@ -234,7 +234,7 @@
                                                 <div class="col-md-6"> <label for="inputName5" class="form-label"> Aadhar No.</label> <input type="text" class="form-control" id="inputName5" name="aadhar_no" id="inputName5" [(ngModel)]="customer.personalDetails.aadhar_no" #name="ngModel"></div>
                                                 <div class="col-md-6"> <label for="inputName5" class="form-label"> Pan No.</label> <input type="text" class="form-control" id="inputName5" name="pan_no" id="inputName5" [(ngModel)]="customer.personalDetails.pan" #name="ngModel"></div>
                                                 <div class="col-md-6"> <label for="inputName5" class="form-label"> Gender</label> <select class="form-select" aria-label="Default select example" name="gender" id="inputName5" [(ngModel)]="customer.personalDetails.gender" #name="ngModel">
-                                          <option selected>Select</option>
+                                          <option value="" disable selected hidden>Select</option>
                                                     <option value="Male">Male</option>
                                                     <option value="Female">Female</option>
                                                     <option value="Others">Others</option>
@@ -251,7 +251,7 @@
                                                 </div>
                                                 <div class="col-md-6"> <label for="inputName5" class="form-label"> Marital Status</label> <select class="form-select" aria-label="Default select example" name="maritalstatus" id="inputName5" [(ngModel)]="customer.personalDetails.marrital_status"
                                                         #name="ngModel">
-                                                    <option selected>Select</option>
+                                                    <option value="" disable selected hidden>Select</option>
                                                               <option value="Married">Married</option>
                                                               <option value="UnMarried">UnMarried</option>
                                                               </select>
@@ -262,7 +262,7 @@
                                                 <div class="col-md-6">
                                                     <label for="inputState" class="form-label">State</label>
                                                     <select id="inputState" class="form-select" name="state" id="inputName5" [(ngModel)]="customer.personalDetails.state" #name="ngModel"> 
-                                          <option selected>Choose...</option>
+                                          <option value="" disable selected hidden>Choose...</option>
                                           <option value="AN">Andaman and Nicobar Islands</option>
                                           <option value="AP">Andhra Pradesh</option>
                                           <option value="AR">Arunachal Pradesh</option>

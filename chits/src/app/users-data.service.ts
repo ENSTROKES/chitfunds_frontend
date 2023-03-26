@@ -29,6 +29,11 @@ export class UserDataService {
   groupbyidurl='http://3.111.255.69/chitfund/getGroupById?id=';
   employeebyidurl='http://3.111.255.69/chitfund/getEmployeeById?id=';
   loginurl='http://3.111.255.69/chitfund/userLogin?userName=';
+  creategroupMapping = 'http://3.111.255.69/chitfund/createCustomerGroupMapping';
+  deleteemployee = 'http://3.111.255.69/chitfund/deleteEmployeeById?id=';
+  deletegroup = 'http://3.111.255.69/chitfund/deleteGroupById?id=';
+  deletecustomer = 'http://3.111.255.69/chitfund/deleteCustomerById?id=';
+  deletebranch = 'http://3.111.255.69/chitfund/deleteBranchById?id=';
   constructor(private http: HttpClient) {
     //employeeData: any;
   }

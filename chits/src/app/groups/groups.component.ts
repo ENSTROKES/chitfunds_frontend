@@ -18,8 +18,37 @@ export class GroupsComponent implements OnInit {
   grpres:any;
   //group
   grpreslt:any;
+  custmresponse:any;
+  ListOfCustomerData:any;
+  grpMappingreslt:any;
   //Group Details by Id
   grpidoutput:any;
+  //grp delete
+  groupdelete:any;
+  GroupDeletebyId: Group={
+    id: ' ' ,
+    branchName: ' ' ,
+    groupType: ' ' ,
+    groupName: ' ',
+    schemeId:' ',
+    lauctionDate: ' ',
+    auctionFromDate: ' ' ,
+    auctioToDate: ' ' ,
+    startingDate: ' ',
+    companyCommissionPercentage: ' ' ,
+    totalFD: ' ' ,
+    rateOfInterest: ' ' ,
+    fDDate: ' ' ,
+    maturityAmount: ' ' ,
+    fdnumber: ' ' ,
+    fdbank: ' ' ,
+    fdbranch: ' ' ,
+    psonumber: ' ' ,
+    psodate: ' ' 
+    }
+
+
+
   GroupDetailsbyId: Group={
   id: ' ' ,
   branchName: ' ' ,
@@ -75,6 +104,16 @@ export class GroupsComponent implements OnInit {
     }
   });
     
+  })
+  // get all customer method
+  this.userData.customer().subscribe((data) =>{
+    this.custmresponse=data;
+  Object.keys(this.custmresponse).forEach(prop => {
+  if(prop=="object"){
+    this.ListOfCustomerData = this.custmresponse[prop];
+  }
+  });
+  
   })
 }
 
@@ -139,7 +178,53 @@ getgroupFormData(data:any): void{
     
     })
        }
+       //grpip mapping post
+       getgrpMappingFormData(data:any): void{
+        //  console.log("GetData" +data.officeName);
+          console.log("AllData" +JSON.stringify(data));
+      
+          this.http.post(this.userData.creategroupMapping, data).subscribe((result)=>{
+           this.grpMappingreslt = result;
+            
+           Object.keys(this.grpMappingreslt).forEach(prop => {
+              console.log("data : " +prop);
+                console.log("value : "+this.grpMappingreslt[prop]);
+                 if(prop=="responseCode"){
+                // this.ListOfEmpData = this.reslt[prop];
+                  if(this.grpMappingreslt[prop]=="200"){
+                    if(window.confirm('Group is mapped successfully')){
+                      location.reload();
+                    }else(window.confirm('Error mapping group'))
+                    {
+                      location.reload();
+                    }
+                  }
+                  }
+              });
+            })
+          }
 
+          // group delete method
+          deleteGroupbyId(data:any): void{
+           
+            this.http.delete(this.userData.deletegroup+data).subscribe((data) =>{
+           if(confirm('Are you sure to delete?'))
+             this.groupdelete=data;
+           Object.keys(this.groupdelete).forEach(prop => {
+             if(prop=="responseCode"){
+               // this.ListOfEmpData = this.reslt[prop];
+                 if(this.groupdelete[prop]=="200"){
+                   if(window.confirm('Employee is deleted successfully')){
+                     location.reload();
+                   }else{
+                     location.reload();
+                   }
+                 }
+                 }
+           });
+           
+           })
+              }
 
   ngOnInit(): void {
   }

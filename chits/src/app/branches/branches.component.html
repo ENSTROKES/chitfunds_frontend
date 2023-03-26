@@ -48,7 +48,7 @@
                                                         <div class="col-md-4">
                                                             <label for="inputState" class="form-label">State</label>
                                                             <select id="inputState" ngModel name="state" class="form-select">
-                                                <option selected>Choose...</option>
+                                                <option disable selected hidden>Choose...</option>
                                                 <option value="AN">Andaman and Nicobar Islands</option>
                                                 <option value="AP">Andhra Pradesh</option>
                                                 <option value="AR">Arunachal Pradesh</option>
@@ -92,6 +92,7 @@
                                                         <div class="col-md-3"> <label for="inputCity" class="form-label">City</label> <input type="text" class="form-control" id="inputCity" ngModel name="city"></div>
                                                         <div class="col-md-4"> <label for="inputCity" class="form-label">Landmark</label> <input type="text" class="form-control" id="inputCity" ngModel name="landmark"></div>
                                                         <div class="col-md-4"> <label for="inputCity" class="form-label">Remarks</label> <input type="text" class="form-control" id="inputCity" ngModel name="remarks"></div>
+                                                        <div class="col-md-6"> <label for="inputName5" class="form-label"> Start Date </label> <input type="date" class="form-control" id="inputName5" ngModel name="startUpDate"></div>
                                                         <label class="form-check-label" for="gridCheck1" style="margin-top: -10px; padding-top: 30px;"> If Branch Office: &nbsp; Yes</label>
                                                         <input class="form-check-input" ngModel name="headOffice" style="margin-top: -20px;margin-left: 180px; " type="checkbox" (change)="showHideText($event);">
 
@@ -99,12 +100,12 @@
                                                             <div class="row">
                                                                 <div class="col-md-6"> <label for="inputName5" class="form-label"> Head Office Name</label>
                                                                     <select ngModel name="headOfficeName" class="form-control">
-                                                                        <option>---Select----</option>
+                                                                        <option disable selected hidden>---Select----</option>
                                                                          <option *ngFor="let headData of ListOfHeadData" [value]="headData.officeName">{{headData.officeName}}</option>
                                                      
                                                                     </select>
                                                                 </div>
-                                                                <div class="col-md-6"> <label for="inputName5" class="form-label"> Start Date </label> <input type="date" class="form-control" id="inputName5" ngModel name="startUpDate"></div>
+                                                                
                                                             </div>
                                                             <!-- <div  class="modal-footer"> <button type="submit" class="btn btn-primary">Submit</button>&nbsp; <button type="reset" class="btn btn-secondary">Reset</button></div>                                             -->
                                                         </div>
@@ -149,7 +150,7 @@
                                             <i class="bi bi-eye" data-bs-toggle="modal" data-bs-target="#ExtralargeModal" (click)="getBranchbyId(brnchData.branchId)"></i>&nbsp;
                                             <!-- (click)="userDetails(brnchData.branchID)" -->
 
-                                            <!-- <i class="ri-delete-bin-line" (click)="delete(brnchData.id)"></i> -->
+                                            <i class="ri-delete-bin-line" (click)="deleteBranchbyId(brnchData.branchId)"></i>
 
                                             <div class="modal fade" id="ExtralargeModal" tabindex="-1">
                                                 <div class="modal-dialog modal-xl">
