@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import {UserDataService} from 'src/app/users-data.service';
 import { FormGroup, NgForm} from '@angular/forms';  
+import { EmployeeID } from '../model/employeedetail.model';
 
 interface USERS {
     id: Number;
@@ -43,6 +44,46 @@ button = 'Submit';
     }
   }
 
+  //employee by ID
+  empidoutput:any;
+  EmployeeDetailsByID : EmployeeID= {
+    emp_code: ' ',
+    branch_name: ' ' ,
+    salution: ' ' ,
+    first_name: ' ' ,
+    last_name: ' ' ,
+    gender: ' ' ,
+    blood_group: ' ' ,
+    mobile_number: ' ' ,
+    email: ' ' ,
+    aadhar_no: ' ' ,
+    pan_no: ' ' ,
+    father_name: ' ',
+    spouse_name: ' ' ,
+    designation: ' ' ,
+    qalification: ' ' ,
+    joining_date: ' ' ,
+    verified_by: ' ' ,
+    pervious_salary: ' ',
+    bank_name: ' ',
+    account_holder_name: ' ' ,
+    account_number: ' ' ,
+    salary: ' ',
+    incentive: ' ' ,
+    target: ' ' ,
+    address: ' ' ,
+    pincode: ' ' ,
+    state: ' ' ,
+    distric: ' ' ,
+    city: ' ' ,
+    landmark: ' ' ,
+    experience: ' ' ,
+    ifsc_code: ' ' ,
+    remarks: ' ' ,
+    dob: ' ' 
+  }
+
+  
 
   constructor(private http: HttpClient, private userData:UserDataService) {
     //get employee
@@ -89,14 +130,9 @@ click() {
 }
 
 
+// //create employee
+
 getEmpFormData(data:any): void{
-  console.log("GetData" +data.joining_date);
-  console.log("AllData" +JSON.stringify(data));
-
-
-  let currentDate= data.dob  ; // 2020-04-17T17:19:19.831Z
-console.log(new Date())
-
 
 console.log(new Date("2015/04/29 11:24:00").getTime());
   this.userData.createUser(data).subscribe((result)=>{
@@ -115,12 +151,35 @@ console.log(new Date("2015/04/29 11:24:00").getTime());
             }
           }
           }
-       //  if(prop=="object"){
-       //    this.ListOfEmpData = this.response[prop];
-       //  }
+      
      });
    })
 }
+
+
+     // Get Group by ID
+
+     getEmployeebyId(data:any): void{
+      // console.log("GetData" +data);
+       
+       // console.log("AllData" +JSON.stringify(data));
+          
+       //console.log(new Date("2015/04/29 11:24:00").getTime());
+       
+       this.http.get(this.userData.employeebyidurl+data).subscribe((data) =>{
+        this.empidoutput=data;
+      Object.keys(this.empidoutput).forEach(prop => {
+      if(prop=="object"){
+        this.EmployeeDetailsByID = this.empidoutput[prop];
+        //console.log("GetData" +this.userData.branchbyidurl);
+      }
+      });
+      
+      })
+         }
+
+
+
 edit(user_id:any){
     
   this.http.put<any>('https://jsonplaceholder.typicode.com/posts/1',user_id)

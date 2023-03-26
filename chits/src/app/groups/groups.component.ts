@@ -95,14 +95,9 @@ click() {
 
 getgroupFormData(data:any): void{
   //  console.log("GetData" +data.officeName);
-    console.log("AllData" +JSON.stringify(data));
-  
-   
+    console.log("AllData" +JSON.stringify(data)); 
     //console.log("GetData" +this.userData.headOffice);
-  
-   //console.log(new Date("2015/04/29 11:24:00").getTime());
-  
-   
+   //console.log(new Date("2015/04/29 11:24:00").getTime()
     this.http.post(this.userData.creategrp, data).subscribe((result)=>{
      this.grpreslt = result;
       

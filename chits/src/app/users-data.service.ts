@@ -27,6 +27,8 @@ export class UserDataService {
   createcustomer='http://3.111.255.69/chitfund/createCustomer';
   customerbyidurl='http://3.111.255.69/chitfund/getCustomerById?id=';
   groupbyidurl='http://3.111.255.69/chitfund/getGroupById?id=';
+  employeebyidurl='http://3.111.255.69/chitfund/getEmployeeById?id=';
+  loginurl='http://3.111.255.69/chitfund/userLogin?userName=';
   constructor(private http: HttpClient) {
     //employeeData: any;
   }
