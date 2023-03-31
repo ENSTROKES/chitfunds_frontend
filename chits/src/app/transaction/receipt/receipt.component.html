@@ -18,7 +18,7 @@
                     <div class="search-here">
                      <label for="inputName5" class="form-label"> <b>Search</b></label>&nbsp;&nbsp;&nbsp;<input type="text" name="search" [(ngModel)]="searchText" placeholder="Search Here">
                  </div>
-                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#largeModal"style="margin-left:780px; margin-top:-60px;"> Bill </button>
+                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#largeModal"style="margin-left:780px; margin-top:-60px;"> Receipt </button>
                     <div class="modal fade" id="largeModal" tabindex="-1">
                        <div class="modal-dialog modal-lg">
                           <div class="modal-content">
@@ -30,16 +30,25 @@
                               <form class="row g-3" #recieptForm="ngForm" (ngSubmit)="getrecieptFormData(recieptForm.value)">
                                  <div class="col-md-6"> <label for="inputName5" class="form-label"> Branch Name</label>
                                      <select ngModel name="branchName" class="form-control">
-                            <option>---Select----</option>
+                            <option value="" disable selected hidden>---Select----</option>
                             <option *ngFor="let branchData of ListOfBranchData">
                                {{branchData.officeName}}
                          </option>
                          </select>
                                  </div>
+                                 <div class="col-md-6"> <label for="inputName5" class="form-label"> Select Group</label>
+                                    <select ngModel name="selectEnrollment" class="form-control">
+                        <option value="" disable selected hidden>---Select----</option>
+                        <option *ngFor="let grpData of ListOfGroupData">
+                           {{grpData.groupName}}
+                        </option>
+                     </select>
+                                </div>
+                                <div class="col-md-6"> <label for="inputName5" class="form-label">Receipt ID</label> <input type="text" class="form-control" ngModel name="receiptDate" id="inputName5"></div>
                                  <div class="col-md-6"> <label for="inputName5" class="form-label">Receipt Date</label> <input type="date" class="form-control" ngModel name="receiptDate" id="inputName5"></div>
                                  <div class="col-md-6"> <label for="inputName5" class="form-label">  Collection Employee</label>
                                      <select ngModel name="collectionEmployee" class="form-control">
-                         <option>---Select----</option>
+                         <option value="" disable selected hidden>---Select----</option>
                          <option *ngFor="let empData of ListOfEmpData">
                            {{empData.first_name}}
                         </option>
@@ -47,24 +56,17 @@
                                  </div>
                                  <div class="col-md-6"> <label for="inputName5" class="form-label"> Customer Name</label>
                                      <select ngModel name="customerName" class="form-control">
-                         <option>---Select----</option>
+                         <option value="" disable selected hidden>---Select----</option>
                          <option *ngFor="let cusData of ListOfCustomerData">
                            {{cusData.personalDetails.name}}
                         </option>
                          
                       </select>
                                  </div>
-                                 <div class="col-md-6"> <label for="inputName5" class="form-label"> Select Enrollment</label>
-                                     <select ngModel name="selectEnrollment" class="form-control">
-                         <option>---Select----</option>
-                         <option *ngFor="let grpData of ListOfGroupData">
-                            {{grpData.groupName}}
-                         </option>
-                      </select>
-                                 </div>
+                                 
                                  <div class="col-md-6"> <label for="inputName5" class="form-label"> Receipt Type</label>
                                      <select ngModel name="receiptType" class="form-control">
-                         <option>---Select----</option>
+                         <option value="" disable selected hidden>---Select----</option>
                          <option value="Document Fee">Document Fee</option>
                          <option value="RF Amount">RF Amount</option>
                          <option value="Normal">Normal</option>
@@ -75,6 +77,16 @@
                                      <label for="inputName5" class="form-label"> Amount </label>
                                      <div class="input-group mb-3 w-50"><span class="input-group-text">₹</span> <input type="number" ngModel name="billAmount" class="form-control" aria-label="Amount (to the nearest rupees)"> <span class="input-group-text">.00</span></div>
                                  </div>
+                                 <div class="col-md-6"> <label for="inputName5" class="form-label"> Payment Mode</label>
+                                    <select ngModel name="receiptType" class="form-control">
+                        <option value="" disable selected hidden>---Select----</option>
+                        <option value="Document Fee">Cash</option>
+                        <option value="RF Amount">Credit Card</option>
+                        <option value="Normal">Debit Card</option>
+                        <option value="Normal">Cheque</option>
+                        <option value="Advance">UPI payment method</option>
+                     </select>
+                                </div>
                                  <div class="text-center"> <button type="submit" class="btn btn-primary" >&nbsp; Submit</button>&nbsp; <button type="reset" class="btn btn-secondary">Reset</button></div>
                                  <!-- [disabled]="isLoading" (click)="click()"
                                  <i class="spinner-border" style="width: 20px; height: 20px;"[ngClass]="{'spinner-border': isLoading}"></i> -->

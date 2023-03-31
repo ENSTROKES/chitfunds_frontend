@@ -76,107 +76,51 @@
                                                                                 </div>
                                                                                 <div class="modal-body">
 
-                                                                                    <form class="row g-3">
-                                                                                        <h5 class="card-title"> Employee Details</h5>
-                                                                                        <div class="col-md-2"> <label for="inputName5" class="form-label"> Branch Name</label>
-                                                                                            <input type="text" class="form-control" ngModel name="branch_name" id="inputName5" [(ngModel)]="EmployeeDetailsByID.branch_name" readonly>
-                                                                                        </div>
-                                                                                        <div class="col-md-2"> <label for="inputName5" class="form-label">Salution</label>
-                                                                                            <input type="text" class="form-control" ngModel name="salution" id="inputName5" [(ngModel)]="EmployeeDetailsByID.salution" readonly>
-                                                                                        </div>
-                                                                                        <div class="col-md-2"> <label for="inputName5" class="form-label">First Name</label>
-                                                                                            <input type="text" class="form-control" ngModel name="first_name" id="inputName5" [(ngModel)]="EmployeeDetailsByID.first_name" readonly>
-                                                                                        </div>
-                                                                                        <div class="col-md-2"> <label for="inputName5" class="form-label"> Last Name</label>
-                                                                                            <input type="text" class="form-control" ngModel name="last_name" id="inputName5" [(ngModel)]="EmployeeDetailsByID.last_name" readonly>
-                                                                                        </div>
-                                                                                        <div class="col-md-2"> <label for="inputName5" class="form-label">Blood Group</label>
-                                                                                            <input type="text" class="form-control" ngModel name="blood_group" id="inputName5" [(ngModel)]="EmployeeDetailsByID.blood_group" readonly>
-                                                                                        </div>
-                                                                                        <div class="col-md-2"> <label for="inputName5" class="form-label">Email ID</label>
-                                                                                            <input type="text" class="form-control" ngModel name="email" id="inputName5" [(ngModel)]="EmployeeDetailsByID.email" readonly>
-                                                                                        </div>
-                                                                                        <div class="col-md-2"> <label for="inputName5" class="form-label">Aadhar No.</label>
-                                                                                            <input type="text" class="form-control" ngModel name="aadhar_no" id="inputName5" [(ngModel)]="EmployeeDetailsByID.aadhar_no" readonly>
-                                                                                        </div>
-                                                                                        <div class="col-md-2"> <label for="inputName5" class="form-label">Pan No.</label>
-                                                                                            <input type="text" class="form-control" ngModel name="pan_no" id="inputName5" [(ngModel)]="EmployeeDetailsByID.pan_no" readonly>
-                                                                                        </div>
-                                                                                        <div class="col-md-2"> <label for="inputName5" class="form-label">Father Name</label>
-                                                                                            <input type="text" class="form-control" ngModel name="father_name" id="inputName5" [(ngModel)]="EmployeeDetailsByID.father_name" readonly>
-                                                                                        </div>
-                                                                                        <div class="col-md-2"> <label for="inputName5" class="form-label">Spouse Name</label>
-                                                                                            <input type="text" class="form-control" ngModel name="spouse_name" id="inputName5" [(ngModel)]="EmployeeDetailsByID.spouse_name" readonly>
-                                                                                        </div>
-                                                                                        <div class="col-md-2"> <label for="inputName5" class="form-label">Designation</label>
-                                                                                            <input type="text" class="form-control" ngModel name="designation" id="inputName5" [(ngModel)]="EmployeeDetailsByID.designation" readonly>
-                                                                                        </div>
-                                                                                        <div class="col-md-2"> <label for="inputName5" class="form-label">Qalification</label>
-                                                                                            <input type="text" class="form-control" ngModel name="qalification" id="inputName5" [(ngModel)]="EmployeeDetailsByID.qalification" readonly>
-                                                                                        </div>
-                                                                                        <div class="col-md-2"> <label for="inputName5" class="form-label">joining_date</label>
-                                                                                            <input type="text" class="form-control" ngModel name="father_name" id="inputName5" [(ngModel)]="EmployeeDetailsByID.joining_date" readonly>
-                                                                                        </div>
-                                                                                        <div class="col-md-2"> <label for="inputName5" class="form-label">Verified By</label>
-                                                                                            <input type="text" class="form-control" ngModel name="verified_by" id="inputName5" [(ngModel)]="EmployeeDetailsByID.verified_by" readonly>
-                                                                                        </div>
-                                                                                        <div class="col-md-2"> <label for="inputName5" class="form-label">Pervious Salary</label>
-                                                                                            <input type="text" class="form-control" ngModel name="pervious_salary" id="inputName5" [(ngModel)]="EmployeeDetailsByID.pervious_salary" readonly>
-                                                                                        </div>
-                                                                                        <div class="col-md-2"> <label for="inputName5" class="form-label">Bank Name</label>
-                                                                                            <input type="text" class="form-control" ngModel name="bank_name" id="inputName5" [(ngModel)]="EmployeeDetailsByID.bank_name" readonly>
-                                                                                        </div>
-                                                                                        <div class="col-md-2"> <label for="inputName5" class="form-label">Account Holder Name</label>
-                                                                                            <input type="text" class="form-control" ngModel name="account_holder_name" id="inputName5" [(ngModel)]="EmployeeDetailsByID.account_holder_name" readonly>
-                                                                                        </div>
-                                                                                        <div class="col-md-2"> <label for="inputName5" class="form-label">Account Number</label>
-                                                                                            <input type="text" class="form-control" ngModel name="account_number" id="inputName5" [(ngModel)]="EmployeeDetailsByID.account_number" readonly>
-                                                                                        </div>
-                                                                                        <div class="col-md-2"> <label for="inputName5" class="form-label">Salary</label>
-                                                                                            <input type="text" class="form-control" ngModel name="salary" id="inputName5" [(ngModel)]="EmployeeDetailsByID.salary" readonly>
-                                                                                        </div>
-                                                                                        <div class="col-md-2"> <label for="inputName5" class="form-label">Incentive</label>
-                                                                                            <input type="text" class="form-control" ngModel name="incentive" id="inputName5" [(ngModel)]="EmployeeDetailsByID.incentive" readonly>
-                                                                                        </div>
-                                                                                        <div class="col-md-2"> <label for="inputName5" class="form-label">Target</label>
-                                                                                            <input type="text" class="form-control" ngModel name="target" id="inputName5" [(ngModel)]="EmployeeDetailsByID.target" readonly>
-                                                                                        </div>
-                                                                                        <div class="col-md-2"> <label for="inputName5" class="form-label">Address</label>
-                                                                                            <input type="text" class="form-control" ngModel name="address" id="inputName5" [(ngModel)]="EmployeeDetailsByID.address" readonly>
-                                                                                        </div>
-                                                                                        <div class="col-md-2"> <label for="inputName5" class="form-label">Pincode</label>
-                                                                                            <input type="text" class="form-control" ngModel name="pincode" id="inputName5" [(ngModel)]="EmployeeDetailsByID.pincode" readonly>
-                                                                                        </div>
-                                                                                        <div class="col-md-2"> <label for="inputName5" class="form-label">State</label>
-                                                                                            <input type="text" class="form-control" ngModel name="state" id="inputName5" [(ngModel)]="EmployeeDetailsByID.state" readonly>
-                                                                                        </div>
-                                                                                        <div class="col-md-2"> <label for="inputName5" class="form-label">District</label>
-                                                                                            <input type="text" class="form-control" ngModel name="distric" id="inputName5" [(ngModel)]="EmployeeDetailsByID.distric" readonly>
-                                                                                        </div>
-                                                                                        <div class="col-md-2"> <label for="inputName5" class="form-label">City</label>
-                                                                                            <input type="text" class="form-control" ngModel name="city" id="inputName5" [(ngModel)]="EmployeeDetailsByID.city" readonly>
-                                                                                        </div>
-                                                                                        <div class="col-md-2"> <label for="inputName5" class="form-label">Landmark</label>
-                                                                                            <input type="text" class="form-control" ngModel name="landmark" id="inputName5" [(ngModel)]="EmployeeDetailsByID.landmark" readonly>
-                                                                                        </div>
-                                                                                        <div class="col-md-2"> <label for="inputName5" class="form-label">Experience</label>
-                                                                                            <input type="text" class="form-control" ngModel name="experience" id="inputName5" [(ngModel)]="EmployeeDetailsByID.experience" readonly>
-                                                                                        </div>
-                                                                                        <div class="col-md-2"> <label for="inputName5" class="form-label">IFSC Code</label>
-                                                                                            <input type="text" class="form-control" ngModel name="ifsc_code" id="inputName5" [(ngModel)]="EmployeeDetailsByID.ifsc_code" readonly>
-                                                                                        </div>
-                                                                                        <div class="col-md-2"> <label for="inputName5" class="form-label">Remarks</label>
-                                                                                            <input type="text" class="form-control" ngModel name="remarks" id="inputName5" [(ngModel)]="EmployeeDetailsByID.remarks" readonly>
-                                                                                        </div>
-                                                                                        <div class="col-md-2"> <label for="inputName5" class="form-label">DOB</label>
-                                                                                            <input type="text" class="form-control" ngModel name="dob" id="inputName5" [(ngModel)]="EmployeeDetailsByID.dob" readonly>
-                                                                                        </div>
-                                                                                        <div class="modal-footer ">
-                                                                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close
-                                                                                          </button>
-                                                                                        </div>
-                                                                                    </form>
-
+                                                                                    <div class="col-md-4">
+                                                                                        <table class="table table-borderless">
+                         
+                                                                                           <tbody>
+                                                                                            <h5 class="card-title"> Employee Details</h5>
+                                                                                              <tr><th scope="col">Branch Name</th><td>{{EmployeeDetailsByID.branch_name}}</td></tr> 
+                                                                                               <tr><th scope="col">Salutation</th><td>{{EmployeeDetailsByID.salution}}</td></tr>  
+                                                                                                 <tr><th scope="col">First Name</th><td>{{EmployeeDetailsByID.first_name}}</td><br></tr>
+                                                                                                 <tr><th scope="col">Last Name</th> <td>{{EmployeeDetailsByID.last_name}}</td></tr>
+                                                                                                 <tr><th scope="col">Blood Group</th><td>{{EmployeeDetailsByID.blood_group}}</td><br></tr>
+                                                                                                 <tr><th scope="col">Email ID</th> <td>{{EmployeeDetailsByID.email}}</td></tr>
+                                                                                                 <tr><th scope="col">Aadhar No.</th><td>{{EmployeeDetailsByID.aadhar_no}}</td></tr> 
+                                                                                                 <tr><th scope="col">Pan No.</th><td>{{EmployeeDetailsByID.pan_no}}</td></tr>
+                                                                                                 <tr><th scope="col">Father Name</th><td>{{EmployeeDetailsByID.father_name}}</td></tr>  
+                                                                                                 <tr><th scope="col">Spouse Name</th><td>{{EmployeeDetailsByID.spouse_name}}</td></tr>  
+                                                                                                 <tr><th scope="col">Designation</th><td>{{EmployeeDetailsByID.designation}}</td><br></tr>
+                                                                                                 <tr><th scope="col">Qualification</th> <td>{{EmployeeDetailsByID.qalification}}</td></tr>
+                                                                                                 <tr><th scope="col">Joining date</th><td>{{EmployeeDetailsByID.joining_date}}</td><br></tr>
+                                                                                                 <tr><th scope="col">Verified By</th> <td>{{EmployeeDetailsByID.verified_by}}</td></tr>
+                                                                                                 <tr><th scope="col">Previous Salary</th><td>{{EmployeeDetailsByID.pervious_salary}}</td></tr> 
+                                                                                                 <tr><th scope="col">Bank Name</th><td>{{EmployeeDetailsByID.bank_name}}</td></tr>  
+                                                                                                 <tr><th scope="col">Account Holder Name</th><td>{{EmployeeDetailsByID.account_holder_name}}</td><br></tr>
+                                                                                                 <tr><th scope="col">Account Number</th> <td>{{EmployeeDetailsByID.account_number}}</td></tr>
+                                                                                                 <tr><th scope="col">Salary</th> <td>{{EmployeeDetailsByID.salary}}</td></tr>
+                                                                                                 <tr><th scope="col">Incentive</th> <td>{{EmployeeDetailsByID.incentive}}</td></tr>
+                                                                                                 <tr><th scope="col">Target</th><td>{{EmployeeDetailsByID.target}}</td></tr> 
+                                                                                                 <tr><th scope="col">Address</th><td>{{EmployeeDetailsByID.address}}</td></tr>  
+                                                                                                 <tr><th scope="col">Pincode</th><td>{{EmployeeDetailsByID.pincode}}</td><br></tr>
+                                                                                                 <tr><th scope="col">State</th> <td>{{EmployeeDetailsByID.state}}</td></tr>
+                                                                                                 <tr><th scope="col">District</th> <td>{{EmployeeDetailsByID.distric}}</td></tr>
+                                                                                                 <tr><th scope="col">City</th> <td>{{EmployeeDetailsByID.city}}</td></tr>
+                                                                                                 <tr><th scope="col">Landmark</th><td>{{EmployeeDetailsByID.landmark}}</td></tr> 
+                                                                                                 <tr><th scope="col">Experience</th><td>{{EmployeeDetailsByID.experience}}</td></tr>  
+                                                                                                 <tr><th scope="col">IFSC Code</th><td>{{EmployeeDetailsByID.ifsc_code}}</td><br></tr>
+                                                                                                 <tr><th scope="col">Remarks</th> <td>{{EmployeeDetailsByID.remarks}}</td></tr>
+                                                                                                 <tr><th scope="col">DOB</th> <td>{{EmployeeDetailsByID.dob}}</td></tr>
+                                                                                           </tbody>
+                                                                                           
+                         
+                                                                                        </table>
+                                                                                     </div>
+                                                                                     <div class="modal-footer ">
+                                                                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close
+                                                                                      </button>
+                                                                                     </div>
                                                                                 </div>
 
                                                                             </div>

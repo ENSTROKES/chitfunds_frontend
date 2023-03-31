@@ -44,14 +44,14 @@
                                                <div class="modal-body"> 
                                                   <form class="row g-3" #groupForm="ngForm" (ngSubmit)="getgroupFormData(groupForm.value)">
                                                                       <!-- <div class="col-md-4"> <label for="inputName5" class="form-label">Branch Name</label> <input type="text" class="form-control" id="inputName5"></div> &nbsp;&nbsp;  -->
-                                                                      <div class="col-md-6"> <label for="inputName5" class="form-label"> Branch Name</label>
+                                                                      <!-- <div class="col-md-6"> <label for="inputName5" class="form-label"> Branch Name</label>
                                                                           <select ngModel name="branchName" class="form-control" placeholder="select">
                                                            <option value="" disable selected hidden>---Select----</option>
                                                            <option *ngFor="let branchData of ListOfBranchData" [value]="branchData.officeName">
                                                               {{branchData.officeName}}
                                                         </option>
                                                         </select>
-                                                                      </div>
+                                                                      </div> -->
                                                                       <!-- <div class="col-md-6">
                                                                           <fieldset class="row mb-6" style="margin-left:100px;">
   
@@ -91,7 +91,7 @@
                                                                           <div class="col-sm-4"> <input type="time" ngModel name="auctioToDate" class="form-control"></div>
                                                                       </div>
                                                                       <div class="col-md-4"> <label for="inputName5" class="form-label"> Starting Date</label> <input type="date" ngModel name="startingDate" class="form-control" id="inputName5"></div>
-                                                                      <div class="col-md-4"> <label for="inputName5" class="form-label">  Commission percentage</label> <input type="number" ngModel name="companyCommissionPercentage" class="form-control" id="inputName5"></div><br>
+                                                                      <!-- <div class="col-md-4"> <label for="inputName5" class="form-label">  Commission percentage</label> <input type="number" ngModel name="companyCommissionPercentage" class="form-control" id="inputName5"></div><br> -->
   
   
   
@@ -166,80 +166,44 @@
                                                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                                             </div>
                                                             <div class="modal-body">
+                                                               <div class="col-md-4">
+                                                               <table class="table table-borderless">
 
-                                                                <form class="row g-3">
-                                                                    <div class="col-md-3"> <label for="inputName5" class="form-label"> Group ID</label>
-                                                                        <input type="text" class="form-control" ngModel name="grpidid" id="inputName5" [(ngModel)]="GroupDetailsbyId.id " readonly>
-                                                                    </div>
-                                                                    <div class="col-md-3 "> <label for="inputName5 " class="form-label "> Branch Name</label>
-                                                                        <input type="text " class="form-control " ngModel name="branch " id="inputName5 " [(ngModel)]="GroupDetailsbyId.branchName " readonly>
-                                                                    </div>
-                                                                    <div class="col-md-3 "> <label for="inputName5 " class="form-label "> Group Type</label>
-                                                                        <input type="text " class="form-control " ngModel name="groupType " id="inputName5 " [(ngModel)]="GroupDetailsbyId.groupType " readonly>
-                                                                    </div>
-                                                                    <div class="col-md-3 "> <label for="inputName5 " class="form-label "> Group Name</label>
-                                                                        <input type="text " class="form-control " ngModel name="groupName " id="inputName5 " [(ngModel)]="GroupDetailsbyId.groupName " readonly>
-                                                                    </div>
-                                                                    <div class="col-md-3 "> <label for="inputName5 " class="form-label "> Scheme</label>
-                                                                        <input type="text " class="form-control " ngModel name="schemeId " id="inputName5 " [(ngModel)]="GroupDetailsbyId.schemeId " readonly>
-                                                                    </div>
-                                                                    <div class="col-md-3 "> <label for="inputName5 " class="form-label "> Auction Date</label>
-                                                                        <input type="text " class="form-control " ngModel name="lauctionDate " id="inputName5 " [(ngModel)]="GroupDetailsbyId.lauctionDate " readonly>
-                                                                    </div>
-                                                                    <div class="col-md-3 "> <label for="inputName5 " class="form-label "> Time From</label>
-                                                                        <input type="text " class="form-control " ngModel name="auctionFromDate " id="inputName5 " [(ngModel)]="GroupDetailsbyId.auctionFromDate " readonly>
-                                                                    </div>
-                                                                    <div class="col-md-3 "> <label for="inputName5 " class="form-label "> Time To</label>
-                                                                        <input type="text " class="form-control " ngModel name="auctioToDate " id="inputName5 " [(ngModel)]="GroupDetailsbyId.auctioToDate " readonly>
-                                                                    </div>
-                                                                    <div class="col-md-3 "> <label for="inputName5 " class="form-label "> Starting Date</label>
-                                                                        <input type="text " class="form-control " ngModel name="startingDate " id="inputName5 " [(ngModel)]="GroupDetailsbyId.startingDate " readonly>
-                                                                    </div>
-                                                                    <div class="col-md-3 "> <label for="inputName5 " class="form-label "> Commission Percentage</label>
-                                                                        <input type="text " class="form-control " ngModel name="companyCommissionPercentage " id="inputName5 " [(ngModel)]="GroupDetailsbyId.companyCommissionPercentage " readonly>
-                                                                    </div>
-                                                                    <div class="col-md-3 "> <label for="inputName5 " class="form-label "> Total FD</label>
-                                                                        <input type="text " class="form-control " ngModel name="totalFD " id="inputName5 " [(ngModel)]="GroupDetailsbyId.totalFD " readonly>
-                                                                    </div>
-                                                                    <div class="col-md-3 "> <label for="inputName5 " class="form-label "> Rate Of Interest</label>
-                                                                        <input type="text " class="form-control " ngModel name="rateOfInterest " id="inputName5 " [(ngModel)]="GroupDetailsbyId.rateOfInterest " readonly>
-                                                                    </div>
-                                                                    <div class="col-md-3 "> <label for="inputName5 " class="form-label "> FD Date</label>
-                                                                        <input type="text " class="form-control " ngModel name="fDDate " id="inputName5 " [(ngModel)]="GroupDetailsbyId.fDDate " readonly>
-                                                                    </div>
-                                                                    <div class="col-md-3 "> <label for="inputName5 " class="form-label "> Maturity Amount</label>
-                                                                        <input type="text " class="form-control " ngModel name="maturityAmount " id="inputName5 " [(ngModel)]="GroupDetailsbyId.maturityAmount " readonly>
-                                                                    </div>
-                                                                    <div class="col-md-3 "> <label for="inputName5 " class="form-label "> FD Number</label>
-                                                                        <input type="text " class="form-control " ngModel name="fdnumber " id="inputName5 " [(ngModel)]="GroupDetailsbyId.fdnumber " readonly>
-                                                                    </div>
-                                                                    <div class="col-md-3 "> <label for="inputName5 " class="form-label "> FD bank</label>
-                                                                        <input type="text " class="form-control " ngModel name="fdbank " id="inputName5 " [(ngModel)]="GroupDetailsbyId.fdbank " readonly>
-                                                                    </div>
-                                                                    <div class="col-md-3 "> <label for="inputName5 " class="form-label "> FD Branch</label>
-                                                                        <input type="text " class="form-control " ngModel name="fdbranch " id="inputName5 " [(ngModel)]="GroupDetailsbyId.fdbranch " readonly>
-                                                                    </div>
-                                                                    <div class="col-md-3 "> <label for="inputName5 " class="form-label "> PSO Number</label>
-                                                                        <input type="text " class="form-control " ngModel name="psonumber " id="inputName5 " [(ngModel)]="GroupDetailsbyId.psonumber " readonly>
-                                                                    </div>
-                                                                    <div class="col-md-3 "> <label for="inputName5 " class="form-label "> PSO Date</label>
-                                                                        <input type="text " class="form-control " ngModel name="psodate " id="inputName5 " [(ngModel)]="GroupDetailsbyId.psodate " readonly>
-                                                                    </div>
+                                                                  <tbody>
+                                                                     <tr><th scope="col">Group ID</th><td>{{GroupDetailsbyId.id}}</td></tr> 
+                                                                      <tr><th scope="col">Branch Name</th><td>{{GroupDetailsbyId.branchName}}</td></tr>  
+                                                                        <tr><th scope="col">Group Type</th><td>{{GroupDetailsbyId.groupType}}</td><br></tr>
+                                                                        <tr><th scope="col">Group Name</th> <td>{{GroupDetailsbyId.groupName}}</td></tr>
+                                                                        <tr><th scope="col">Scheme</th><td>{{GroupDetailsbyId.schemeId}}</td><br></tr>
+                                                                        <tr><th scope="col">Auction Date</th> <td>{{GroupDetailsbyId.lauctionDate}}</td></tr>
+                                                                        <tr><th scope="col">Time from</th><td>{{GroupDetailsbyId.auctionFromDate}}</td></tr> 
+                                                                        <tr><th scope="col">Time TO</th><td>{{GroupDetailsbyId.auctioToDate}}</td></tr>
+                                                                        <tr><th scope="col">Starting Date</th><td>{{GroupDetailsbyId.startingDate}}</td></tr>  
+                                                                        <tr><th scope="col">Commission Percentage</th><td>{{GroupDetailsbyId.companyCommissionPercentage}}</td></tr>  
+                                                                        <tr><th scope="col">Total FD</th><td>{{GroupDetailsbyId.totalFD}}</td><br></tr>
+                                                                        <tr><th scope="col">Rate Of Interest</th> <td>{{GroupDetailsbyId.rateOfInterest}}</td></tr>
+                                                                        <tr><th scope="col">FD Date</th><td>{{GroupDetailsbyId.fDDate}}</td><br></tr>
+                                                                        <tr><th scope="col">Maturity Amount</th> <td>{{GroupDetailsbyId.maturityAmount}}</td></tr>
+                                                                        <tr><th scope="col">FD Number</th><td>{{GroupDetailsbyId.fdnumber}}</td></tr> 
+                                                                        <tr><th scope="col">FD bank</th><td>{{GroupDetailsbyId.fdbank}}</td></tr>  
+                                                                        <tr><th scope="col">FD Branch</th><td>{{GroupDetailsbyId.fdbranch}}</td><br></tr>
+                                                                        <tr><th scope="col">Group Name</th> <td>{{GroupDetailsbyId.psonumber}}</td></tr>
+                                                                        <tr><th scope="col">PSO Date</th> <td>{{GroupDetailsbyId.psodate}}</td></tr>
+                                                                  </tbody>
+                                                                  
 
-                                                                    <div class="modal-footer ">
-                                                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close
-                                                                      </button>
-                                                                    </div>
-
-                                                                </form>
-
+                                                               </table>
+                                                            </div>
+                                                            <div class="modal-footer ">
+                                                               <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close
+                                                             </button>
                                                             </div>
 
                                                         </div>
                                                     </div>
                                                 </div>
 
-
+                                                </div>
 
                                             </div>
                                         </td>
@@ -326,7 +290,12 @@
                                                 <td>50</td>
                                                 <td>250</td>
                                                 <td>1000</td>
-                                                <td><i class="bi bi-eye" data-bs-toggle="modal" data-bs-target="#modalDialogScrollable1"></i>
+                                                <td>
+                                                   <div class="icon">
+                                                      <i class="bi bi-pencil"></i> &nbsp;
+                                                      <i class="bi bi-eye" data-bs-toggle="modal" data-bs-target="#modalDialogScrollable1"></i>
+                                                      </div>
+
                                                    <div class="modal fade" id="modalDialogScrollable1" tabindex="-1">
                                                       <div class="modal-dialog modal-dialog-scrollable">
                                                           <div class="modal-content">
@@ -423,7 +392,11 @@
                                                 <td>100</td>
                                                 <td>500</td>
                                                 <td>2000</td>
-                                                <td><i class="bi bi-eye" data-bs-toggle="modal" data-bs-target="#modalDialogScrollable2"></i>
+                                                <td>
+                                                   <div class="icon">
+                                                      <i class="bi bi-pencil"></i> &nbsp;
+                                                      <i class="bi bi-eye" data-bs-toggle="modal" data-bs-target="#modalDialogScrollable2"></i>
+                                                   </div>
                                                    <div class="modal fade" id="modalDialogScrollable2" tabindex="-1">
                                                       <div class="modal-dialog modal-dialog-scrollable">
                                                           <div class="modal-content">
@@ -519,7 +492,11 @@
                                                 <td>250</td>
                                                 <td>1250</td>
                                                 <td>5000</td>
-                                                <td><i class="bi bi-eye" data-bs-toggle="modal" data-bs-target="#modalDialogScrollable3"></i>
+                                                <td>
+                                                   <div class="icon">
+                                                      <i class="bi bi-pencil"></i> &nbsp;
+                                                      <i class="bi bi-eye" data-bs-toggle="modal" data-bs-target="#modalDialogScrollable3"></i>
+                                                   </div>
                                                    <div class="modal fade" id="modalDialogScrollable3" tabindex="-1">
                                                       <div class="modal-dialog modal-dialog-scrollable">
                                                           <div class="modal-content">
@@ -617,7 +594,11 @@
                                                 <td>100</td>
                                                 <td>625</td>
                                                 <td>2500</td>
-                                                <td><i class="bi bi-eye" data-bs-toggle="modal" data-bs-target="#modalDialogScrollable4"></i>
+                                                <td>
+                                                   <div class="icon">
+                                                      <i class="bi bi-pencil"></i> &nbsp;
+                                                      <i class="bi bi-eye" data-bs-toggle="modal" data-bs-target="#modalDialogScrollable4"></i>
+                                                   </div>
                                                    <div class="modal fade" id="modalDialogScrollable4" tabindex="-1">
                                                       <div class="modal-dialog modal-dialog-scrollable">
                                                           <div class="modal-content">
@@ -772,7 +753,11 @@
                                                 <td>200</td>
                                                 <td>1250</td>
                                                 <td>5000</td>
-                                                <td><i class="bi bi-eye" data-bs-toggle="modal" data-bs-target="#modalDialogScrollable5"></i>
+                                                <td>
+                                                   <div class="icon">
+                                                   <i class="bi bi-pencil"></i> &nbsp;
+                                                   <i class="bi bi-eye" data-bs-toggle="modal" data-bs-target="#modalDialogScrollable5"></i>
+                                                   </div>
                                                    <div class="modal fade" id="modalDialogScrollable5" tabindex="-1">
                                                       <div class="modal-dialog modal-dialog-scrollable">
                                                           <div class="modal-content">
@@ -928,7 +913,11 @@
                                                 <td>400</td>
                                                 <td>2500</td>
                                                 <td>10000</td>
-                                                <td><i class="bi bi-eye" data-bs-toggle="modal" data-bs-target="#modalDialogScrollable6"></i>
+                                                <td>
+                                                   <div class="icon">
+                                                      <i class="bi bi-pencil"></i> &nbsp;
+                                                      <i class="bi bi-eye" data-bs-toggle="modal" data-bs-target="#modalDialogScrollable6"></i>
+                                                   </div>
                                                    <div class="modal fade" id="modalDialogScrollable6" tabindex="-1">
                                                       <div class="modal-dialog modal-dialog-scrollable">
                                                           <div class="modal-content">
@@ -1084,7 +1073,11 @@
                                                 <td>600</td>
                                                 <td>3750</td>
                                                 <td>15000</td>
-                                                <td><i class="bi bi-eye" data-bs-toggle="modal" data-bs-target="#modalDialogScrollable7"></i>
+                                                <td>
+                                                   <div class="icon">
+                                                      <i class="bi bi-pencil"></i> &nbsp;
+                                                      <i class="bi bi-eye" data-bs-toggle="modal" data-bs-target="#modalDialogScrollable7"></i>
+                                                   </div>
                                                    <div class="modal fade" id="modalDialogScrollable7" tabindex="-1">
                                                       <div class="modal-dialog modal-dialog-scrollable">
                                                           <div class="modal-content">
@@ -1240,7 +1233,11 @@
                                                 <td>1000</td>
                                                 <td>6250</td>
                                                 <td>25000</td>
-                                                <td><i class="bi bi-eye" data-bs-toggle="modal" data-bs-target="#modalDialogScrollable8"></i>
+                                                <td>
+                                                   <div class="icon">
+                                                      <i class="bi bi-pencil"></i> &nbsp;
+                                                      <i class="bi bi-eye" data-bs-toggle="modal" data-bs-target="#modalDialogScrollable8"></i>
+                                                   </div>
                                                    <div class="modal fade" id="modalDialogScrollable8" tabindex="-1">
                                                       <div class="modal-dialog modal-dialog-scrollable">
                                                           <div class="modal-content">
@@ -1392,11 +1389,15 @@
                                              <tr>
                                                 <th scope="row">9</th>
                                                 <td>10,00,000</td>
-                                                <td>20</td>
+                                                <td>40</td>
                                                 <td>2000</td>
                                                 <td>12500</td>
                                                 <td>50000</td>
-                                                <td><i class="bi bi-eye" data-bs-toggle="modal" data-bs-target="#modalDialogScrollable9"></i>
+                                                <td>
+                                                   <div class="icon">
+                                                      <i class="bi bi-pencil"></i> &nbsp;
+                                                      <i class="bi bi-eye" data-bs-toggle="modal" data-bs-target="#modalDialogScrollable9"></i>
+                                                   </div>
                                                    <div class="modal fade" id="modalDialogScrollable9" tabindex="-1">
                                                       <div class="modal-dialog modal-dialog-scrollable">
                                                           <div class="modal-content">
@@ -1555,7 +1556,11 @@
                                                 <td>400</td>
                                                 <td>2500</td>
                                                 <td>10000</td>
-                                                <td><i class="bi bi-eye" data-bs-toggle="modal" data-bs-target="#modalDialogScrollable10"></i>
+                                                <td>
+                                                   <div class="icon">
+                                                      <i class="bi bi-pencil"></i> &nbsp;
+                                                      <i class="bi bi-eye" data-bs-toggle="modal" data-bs-target="#modalDialogScrollable10"></i>
+                                                   </div>
                                                    <div class="modal fade" id="modalDialogScrollable10" tabindex="-1">
                                                       <div class="modal-dialog modal-dialog-scrollable">
                                                           <div class="modal-content">
@@ -1772,7 +1777,11 @@
                                                 <td>800</td>
                                                 <td>5000</td>
                                                 <td>20000</td>
-                                                <td><i class="bi bi-eye" data-bs-toggle="modal" data-bs-target="#modalDialogScrollable11"></i>
+                                                <td>
+                                                   <div class="icon">
+                                                      <i class="bi bi-pencil"></i> &nbsp;
+                                                      <i class="bi bi-eye" data-bs-toggle="modal" data-bs-target="#modalDialogScrollable11"></i>
+                                                   </div>
                                                    <div class="modal fade" id="modalDialogScrollable11" tabindex="-1">
                                                       <div class="modal-dialog modal-dialog-scrollable">
                                                           <div class="modal-content">
@@ -1980,11 +1989,15 @@
                                              <tr>
                                                 <th scope="row">12</th>
                                                 <td>10,00,000</td>
-                                                <td>30</td>
+                                                <td>40</td>
                                                 <td>1000</td>
                                                 <td>6250</td>
                                                 <td>25000</td>
-                                                <td><i class="bi bi-eye" data-bs-toggle="modal" data-bs-target="#modalDialogScrollable12"></i>
+                                                <td>
+                                                   <div class="icon">
+                                                      <i class="bi bi-pencil"></i> &nbsp;
+                                                      <i class="bi bi-eye" data-bs-toggle="modal" data-bs-target="#modalDialogScrollable12"></i>
+                                                   </div>
                                                    <div class="modal fade" id="modalDialogScrollable12" tabindex="-1">
                                                       <div class="modal-dialog modal-dialog-scrollable">
                                                           <div class="modal-content">
