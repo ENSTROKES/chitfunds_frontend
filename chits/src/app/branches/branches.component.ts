@@ -206,7 +206,7 @@ getbranchFormData(data:any): void{
      if(prop=="responseCode"){
        // this.ListOfEmpData = this.reslt[prop];
          if(this.branchdelete[prop]=="200"){
-           if(window.confirm('Employee is deleted successfully')){
+           if(window.confirm('Branch deleted successfully')){
              location.reload();
            }else{
              location.reload();

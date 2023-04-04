@@ -35,7 +35,8 @@ custmresponse:any
 //recipt
 ListOfReceiptData:any;
 receiptres:any;
-
+branch_name :any;
+group_id :any;
 //spinner
 button = 'Submit';
   isLoading = false;
@@ -127,7 +128,14 @@ click() {
   getrecieptFormData(data:any): void{
     //  console.log("GetData" +data.officeName);
       console.log("AllData" +JSON.stringify(data));
-    
+    console.log("name and id : "+ data.branchName.groupId)
+    this.group_id = data.branchName.groupId;
+    this.branch_name = data.branchName.branchName;
+    data.branchName = this.branch_name;
+    data.groupId = this.group_id;
+
+    console.log("AllData after set id " +JSON.stringify(data));
+
      
       //console.log("GetData" +this.userData.headOffice);
     

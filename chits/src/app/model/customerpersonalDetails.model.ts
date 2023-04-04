@@ -1,4 +1,5 @@
 export class PersonalDetails {
+  customerPersonalId:any;
   name:string;
   father:string;
   spouse_name:string;
@@ -15,5 +16,6 @@ export class PersonalDetails {
   city:string;
   landmark:string;
   phoneNumber: string;
+  altrPhoneNumber:string;
   email: string;
 }

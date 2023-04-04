@@ -25,35 +25,38 @@ import { PagesLoginComponent } from './pages/pages-login/pages-login.component';
 import { PagesRegisterComponent } from './pages/pages-register/pages-register.component';
 import { UsersProfileComponent } from './pages/users-profile/users-profile.component';
 
-
+import { AuthenticationGuard } from './authentication.guard';
 
 const routes: Routes = [
-  { path: '',redirectTo:'pages-login', pathMatch: 'full' },
+  { path: '',redirectTo:'/pages-login', pathMatch: 'full' },
   // { path: 'pages-login', component: PagesLoginComponent,pathMatch: 'full' },
   //{path:'', component:PagesLoginComponent},
-  { path: 'dashboard', component: DashboardComponent },
-  { path: 'branches', component: BranchesComponent },
-  { path: 'auctionpaymentdisbursal', component: AuctionpaymentdisbursalComponent},
-  { path: 'closure', component: ClosureComponent},
-  { path: 'committedchitdetail', component: CommittedchitdetailComponent},
-  { path: 'minutesofauction', component: MinutesofauctionComponent},
-  { path: 'customermanagement', component: CustomermanagementComponent},
-  { path: 'employeemanagement', component: EmployeemanagementComponent},
-  { path: 'groups', component: GroupsComponent},
-  { path: 'reports', component: ReportsComponent},
-  { path: 'accountexpenses', component: AccountexpensesComponent},
-  { path: 'employeeincentive', component: EmployeeincentiveComponent},
-  { path: 'pettycash', component: PettycashComponent},
-  { path: 'receipt', component: ReceiptComponent},
-  { path: 'payroll', component: PayrollComponent},
-  { path: 'collectionareamapping', component: CollectionAreaMappingComponent},
+
+  { path: 'pages-login',component:PagesLoginComponent },
+  { path: 'dashboard', component: DashboardComponent,},
+  { path: 'branches', component: BranchesComponent, },
+  { path: 'auctionpaymentdisbursal', component: AuctionpaymentdisbursalComponent,},
+  { path: 'closure', component: ClosureComponent,},
+  { path: 'committedchitdetail', component: CommittedchitdetailComponent,},
+  { path: 'minutesofauction', component: MinutesofauctionComponent,},
   
-  { path: 'pages-contact', component: PagesContactComponent },
-  { path: 'pages-error404', component: PagesError404Component },
-  { path: 'pages-faq', component: PagesFaqComponent },
-  { path: 'pages-login', component: PagesLoginComponent },
-  { path: 'pages-register', component: PagesRegisterComponent },
-  { path: 'user-profile', component: UsersProfileComponent },
+  { path: 'customermanagement', component: CustomermanagementComponent,},
+  { path: 'employeemanagement', component: EmployeemanagementComponent,},
+  { path: 'groups', component: GroupsComponent,},
+  { path: 'reports', component: ReportsComponent,},
+  { path: 'accountexpenses', component: AccountexpensesComponent,},
+  { path: 'employeeincentive', component: EmployeeincentiveComponent,},
+  { path: 'pettycash', component: PettycashComponent,},
+  { path: 'receipt', component: ReceiptComponent,},
+  { path: 'payroll', component: PayrollComponent,},
+  { path: 'collectionareamapping', component: CollectionAreaMappingComponent,},
+  
+  { path: 'pages-contact', component: PagesContactComponent, },
+  { path: 'pages-error404', component: PagesError404Component, },
+  { path: 'pages-faq', component: PagesFaqComponent ,},
+  { path: 'pages-login', component: PagesLoginComponent ,},
+  { path: 'pages-register', component: PagesRegisterComponent ,},
+  { path: 'user-profile', component: UsersProfileComponent, },
 ];
 
 @NgModule({

@@ -20,7 +20,7 @@ export class HeaderComponent implements OnInit {
   clearSession()
         {
          //delete session value
-          sessionStorage.removeItem("UserName");
+         localStorage.clear();
           //sessionStorage.clear();
         }
 }

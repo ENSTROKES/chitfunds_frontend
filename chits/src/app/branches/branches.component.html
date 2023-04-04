@@ -105,13 +105,13 @@
                                                      
                                                                     </select>
                                                                 </div>
-                                                                
+
                                                             </div>
                                                             <!-- <div  class="modal-footer"> <button type="submit" class="btn btn-primary">Submit</button>&nbsp; <button type="reset" class="btn btn-secondary">Reset</button></div>                                             -->
                                                         </div>
                                                         <div class="modal-footer">
                                                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                                            <button type="submit" class="btn btn-primary" [disabled]="isLoading" (click)="click()"><i class="spinner-border" style="width: 20px; height: 20px;"[ngClass]="{'spinner-border': isLoading}"></i>&nbsp; Submit</button></div>
+                                                            <button type="submit" class="btn btn-primary">&nbsp; Submit</button></div>
                                                         <!-- [disabled]="isLoading" (click)="click()"
                                                             <i class="spinner-border" style="width: 20px; height: 20px;"[ngClass]="{'spinner-border': isLoading}"></i> -->
                                                     </form>
@@ -145,13 +145,55 @@
                                     <td>{{ brnchData.startUpDate}}</td>
                                     <td>
                                         <div class="icon">
-                                            <i class="bi bi-pencil"></i> &nbsp;
-                                            <i class="bi bi-eye" data-bs-toggle="modal" data-bs-target="#ExtralargeModal" (click)="getBranchbyId(brnchData.branchId)"></i>&nbsp;
+                                            <i class="bi bi-pencil" data-bs-toggle="modal" data-bs-target="#Editbranch" (click)="getBranchbyId(brnchData.branchId)"></i> &nbsp;
+                                            <i class="bi bi-eye" data-bs-toggle="modal" data-bs-target="#Getbranch" (click)="getBranchbyId(brnchData.branchId)"></i>&nbsp;
                                             <!-- (click)="userDetails(brnchData.branchID)" -->
 
                                             <i class="ri-delete-bin-line" (click)="deleteBranchbyId(brnchData.branchId)"></i>
+                                            <div class="modal fade" id="Editbranch" tabindex="-1">
+                                                <div class="modal-dialog modal-xl">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
 
-                                            <div class="modal fade" id="ExtralargeModal" tabindex="-1">
+                                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                        </div>
+                                                        <div class="modal-body">
+
+                                                            <form class="row g-3" #branchForm="ngForm" (ngSubmit)="getbranchFormData(branchForm.value)">
+                                                                <div class="col-md-6"> <label for="inputName5" class="form-label">Branch ID</label>
+                                                                    <input type="text" class="form-control" ngModel name="branchId" id="inputName5" [(ngModel)]="BranchDetailById.branchId" readonly>
+                                                                </div>
+                                                                <div class="col-md-6"> <label for="inputName5" class="form-label">Branch Name</label>
+                                                                    <input type="text" class="form-control" ngModel name="officeName" id="inputName5" [(ngModel)]="BranchDetailById.officeName">
+                                                                </div>
+                                                                <div class="col-md-6"> <label for="inputName5" class="form-label">Mobile Number</label> <input type="text" class="form-control" ngModel name="phoneNumber" id="inputName5" [(ngModel)]="BranchDetailById.phoneNumber"></div>
+                                                                <div class="col-md-6"> <label for="inputName5" class="form-label">Head office</label> <input type="text" class="form-control" ngModel name="headOffice" id="inputName5" [(ngModel)]="BranchDetailById.headOffice"
+                                                                        readonly></div>
+                                                                <div class="col-md-6"> <label for="inputName5" class="form-label">Head Office Name</label> <input type="text" class="form-control" ngModel name="headOfficeName" id="inputName5" [(ngModel)]="BranchDetailById.headOfficeName"></div>
+                                                                <div class="col-md-6"> <label for="inputName5" class="form-label">Start date</label> <input type="date" class="form-control" ngModel name="startUpDate" id="inputName5" [(ngModel)]="BranchDetailById.startUpDate"></div>
+                                                                <div class="col-md-6"> <label for="inputName5" class="form-label">Email ID</label> <input type="text" class="form-control" ngModel name="emailID" id="inputName5" [(ngModel)]="BranchDetailById.emailID"></div>
+                                                                <div class="col-md-6"> <label for="inputName5" class="form-label">Address</label> <input type="text" class="form-control" ngModel name="address" id="inputName5" [(ngModel)]="BranchDetailById.address"></div>
+
+                                                                <div class="col-md-6"> <label for="inputName5" class="form-label">City</label> <input type="text" class="form-control" ngModel name="city" id="inputName5" [(ngModel)]="BranchDetailById.city"></div>
+                                                                <div class="col-md-6"> <label for="inputName5" class="form-label">District</label> <input type="text" class="form-control" ngModel name="district" id="inputName5" [(ngModel)]="BranchDetailById.district"></div>
+                                                                <div class="col-md-6"> <label for="inputName5" class="form-label">State</label> <input type="text" class="form-control" ngModel name="state" id="inputName5" [(ngModel)]="BranchDetailById.state"></div>
+                                                                <div class="col-md-6"> <label for="inputName5" class="form-label">Pincode</label> <input type="text" class="form-control" ngModel name="pincode" id="inputName5" [(ngModel)]="BranchDetailById.pincode"></div>
+                                                                <div class="col-md-6"> <label for="inputName5" class="form-label">Landmark</label> <input type="text" class="form-control" ngModel name="landmark" id="inputName5" [(ngModel)]="BranchDetailById.landmark"></div>
+                                                                <div class="col-md-6"> <label for="inputName5" class="form-label">Remarks</label> <input type="text" class="form-control" ngModel name="remarks" id="inputName5" [(ngModel)]="BranchDetailById.remarks"></div>
+
+                                                                <div class="modal-footer "><button type="submit" class="btn btn-primary">&nbsp; Edit</button>&nbsp;
+                                                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close
+                                           </button>
+                                                                </div>
+
+                                                            </form>
+
+                                                        </div>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="modal fade" id="Getbranch" tabindex="-1">
                                                 <div class="modal-dialog modal-xl">
                                                     <div class="modal-content">
                                                         <div class="modal-header">
@@ -162,31 +204,63 @@
 
                                                             <div class="col-md-4">
                                                                 <table class="table table-borderless">
- 
-                                                                   <tbody>
-                                                                     
-                                                                       <tr><th scope="col">Branch Name</th><td>{{BranchDetailById.officeName}}</td></tr>  
-                                                                         <tr><th scope="col">Mobile Number</th><td>{{BranchDetailById.phoneNumber}}</td><br></tr>
-                                                                         <tr><th scope="col">Head Office Name</th> <td>{{BranchDetailById.headOfficeName}}</td></tr>
-                                                                         <tr><th scope="col">Start date</th><td>{{BranchDetailById.startUpDate}}</td><br></tr>
-                                                                         <tr><th scope="col">Email ID</th> <td>{{BranchDetailById.emailID}}</td></tr>
-                                                                         <tr><th scope="col">Address</th><td>{{BranchDetailById.address}}</td></tr> 
-                                                                         <tr><th scope="col">City</th><td>{{BranchDetailById.city}}</td></tr>  
-                                                                         <tr><th scope="col">District</th><td>{{BranchDetailById.district}}</td></tr>  
-                                                                         <tr><th scope="col">State</th><td>{{BranchDetailById.state}}</td><br></tr>
-                                                                         <tr><th scope="col">Pincode</th> <td>{{BranchDetailById.pincode}}</td></tr>
-                                                                         <tr><th scope="col">Landmark</th><td>{{BranchDetailById.landmark}}</td><br></tr>
-                                                                         <tr><th scope="col">Remarks</th> <td>{{BranchDetailById.remarks}}</td></tr>
-                                                                         
-                                                                   </tbody>
-                                                                   
- 
+
+                                                                    <tbody>
+
+                                                                        <tr>
+                                                                            <th scope="col">Branch Name</th>
+                                                                            <td>{{BranchDetailById.officeName}}</td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <th scope="col">Mobile Number</th>
+                                                                            <td>{{BranchDetailById.phoneNumber}}</td><br></tr>
+                                                                        <tr>
+                                                                            <th scope="col">Head Office Name</th>
+                                                                            <td>{{BranchDetailById.headOfficeName}}</td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <th scope="col">Start date</th>
+                                                                            <td>{{BranchDetailById.startUpDate}}</td><br></tr>
+                                                                        <tr>
+                                                                            <th scope="col">Email ID</th>
+                                                                            <td>{{BranchDetailById.emailID}}</td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <th scope="col">Address</th>
+                                                                            <td>{{BranchDetailById.address}}</td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <th scope="col">City</th>
+                                                                            <td>{{BranchDetailById.city}}</td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <th scope="col">District</th>
+                                                                            <td>{{BranchDetailById.district}}</td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <th scope="col">State</th>
+                                                                            <td>{{BranchDetailById.state}}</td><br></tr>
+                                                                        <tr>
+                                                                            <th scope="col">Pincode</th>
+                                                                            <td>{{BranchDetailById.pincode}}</td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <th scope="col">Landmark</th>
+                                                                            <td>{{BranchDetailById.landmark}}</td><br></tr>
+                                                                        <tr>
+                                                                            <th scope="col">Remarks</th>
+                                                                            <td>{{BranchDetailById.remarks}}</td>
+                                                                        </tr>
+
+                                                                    </tbody>
+
+
                                                                 </table>
-                                                             </div>
-                                                             <div class="modal-footer ">
+                                                            </div>
+                                                            <div class="modal-footer ">
                                                                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close
                                                               </button>
-                                                             </div>
+                                                            </div>
 
                                                         </div>
 

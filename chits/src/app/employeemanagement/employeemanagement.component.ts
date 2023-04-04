@@ -28,7 +28,7 @@ export class EmployeemanagementComponent implements OnInit {
   userId: any; 
 searchText:any;
 CategoryName = {};
-  
+employee_id:any;
 //branch
 result:any;
 ListOfBranchData:any;
@@ -170,12 +170,13 @@ click() {
 // //create employee
 
 getEmpFormData(data:any): void{
-
+  console.log("AllData" +JSON.stringify(data));
 console.log(new Date("2015/04/29 11:24:00").getTime());
   this.userData.createUser(data).subscribe((result)=>{
    this.response = result;
     
    Object.keys(this.response).forEach(prop => {
+    
       console.log("data : " +prop);
        console.log("value : "+this.response[prop]);
        if(prop=="responseCode"){
