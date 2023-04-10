@@ -46,7 +46,7 @@
 
                                                     <thead>
                                                         <tr>
-                                                            <th>Id</th>
+                                                            <th>S.no</th>
                                                             <th>Branch</th>
                                                             <th>Name</th>
                                                             <th>DOB</th>
@@ -55,8 +55,8 @@
                                                         </tr>
                                                     </thead>
                                                     <tbody>
-                                                        <tr *ngFor="let customrdata of ListOfCustomerData| filter: searchText">
-                                                            <td>{{ customrdata.customerId }}</td>
+                                                        <tr *ngFor="let customrdata of ListOfCustomerData| filter: searchText ;let i = index">
+                                                            <td>{{i+1}}</td>
                                                             <td>{{ customrdata.branch_name }}</td>
                                                             <td>{{ customrdata.personalDetails.name }}</td>
                                                             <td>{{ customrdata.personalDetails.dob }}</td>
@@ -199,34 +199,15 @@
                                                                                 </div>
                                                                                 <div class="modal-body">
 
-                                                                                    <div class="col-md-4">
-                                                                                        <table class="table table-borderless">
 
+                                                                                    <div class="col-md-4" style="float: left;">
+                                                                                        <table class="table table-borderless ">
                                                                                             <tbody>
-
-                                                                                                <h5 class="card-title">Office Details</h5>
-                                                                                                <!-- <tr>
-                                                                                                    <th scope="col">Customer ID</th>
-                                                                                                    <td>{{customerDetailbyid.customerId}}</td>
-                                                                                                </tr> -->
-                                                                                                <tr>
-                                                                                                    <th scope="col">Branch Name</th>
-                                                                                                    <td>{{customerDetailbyid.branch_name}}</td>
-                                                                                                </tr>
-                                                                                                <tr>
-                                                                                                    <th scope="col">Joining date</th>
-                                                                                                    <td>{{customerDetailbyid.joining_date}}</td><br></tr>
-                                                                                                <tr>
-                                                                                                    <th scope="col">Refered Type</th>
-                                                                                                    <td>{{customerDetailbyid.refered_type}}</td>
-                                                                                                </tr>
-                                                                                                <tr>
-                                                                                                    <th scope="col">Refered By</th>
-                                                                                                    <td>{{customerDetailbyid.refered_by}}</td><br></tr>
                                                                                                 <h5 class="card-title">Personal Details</h5>
                                                                                                 <tr>
                                                                                                     <th scope="col">Name</th>
-                                                                                                    <td>{{customerDetailbyid.personalDetails.name}}</td>
+
+                                                                                                    <td>: {{customerDetailbyid.personalDetails.name}}</td>
                                                                                                 </tr>
                                                                                                 <tr>
                                                                                                     <th scope="col">Father Name</th>
@@ -293,6 +274,41 @@
                                                                                                     <th scope="col">Landmark</th>
                                                                                                     <td>{{customerDetailbyid.personalDetails.landmark}}</td>
                                                                                                 </tr>
+                                                                                            </tbody>
+                                                                                        </table>
+                                                                                    </div>
+                                                                                    <div class="col-md-4" style="float: left;">
+                                                                                        <table class="table table-borderless ">
+
+                                                                                            <tbody>
+
+                                                                                                <h5 class="card-title">Office Details</h5>
+                                                                                                <!-- <tr>
+                                                                                                    <th scope="col">Customer ID</th>
+                                                                                                    <td>{{customerDetailbyid.customerId}}</td>
+                                                                                                </tr> -->
+
+                                                                                                <tr>
+                                                                                                    <th scope="col">Branch Name</th>
+                                                                                                    <td>{{customerDetailbyid.branch_name}}</td>
+                                                                                                </tr>
+
+                                                                                                <tr>
+                                                                                                    <th scope="col">Joining date</th>
+                                                                                                    <td>{{customerDetailbyid.joining_date}}</td><br></tr>
+                                                                                                <tr>
+                                                                                                    <th scope="col">Refered Type</th>
+                                                                                                    <td>{{customerDetailbyid.refered_type}}</td>
+                                                                                                </tr>
+                                                                                                <tr>
+                                                                                                    <th scope="col">Refered By</th>
+                                                                                                    <td>{{customerDetailbyid.refered_by}}</td><br></tr>
+                                                                                            </tbody>
+                                                                                        </table>
+                                                                                    </div>
+                                                                                    <div class="col-md-4" style="float: left;">
+                                                                                        <table class="table table-borderless ">
+                                                                                            <tbody>
                                                                                                 <h5 class="card-title">Nominee Details</h5>
                                                                                                 <tr>
                                                                                                     <th scope="col">Name</th>
@@ -313,9 +329,16 @@
                                                                                                     <th scope="col">Aadhar NO.</th>
                                                                                                     <td>{{customerDetailbyid.customerNomineeDetails.adharNumber}}</td>
                                                                                                 </tr>
+                                                                                            </tbody>
+                                                                                        </table>
+                                                                                    </div>
+                                                                                    <div class="col-md-4" style="float: left;">
+                                                                                        <table class="table table-borderless ">
+                                                                                            <tbody>
                                                                                                 <h5 class="card-title">Chit Details</h5>
                                                                                                 <tr>
                                                                                                     <th scope="col">Scheme</th>
+
                                                                                                     <td>{{customerDetailbyid.customerChitDetails[0].scheme}}</td>
                                                                                                 </tr>
                                                                                                 <tr>
@@ -344,10 +367,10 @@
                                                                                         </table>
 
                                                                                     </div>
-                                                                                    <div class="modal-footer ">
+                                                                                    <!-- <div class="modal-footer ">
                                                                                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close
                                                                                           </button>
-                                                                                    </div>
+                                                                                    </div> -->
 
 
 
@@ -416,7 +439,7 @@
                                                         id="inputName5"></div>
                                                 <div class="col-md-6"> <label for="inputName5" class="form-label"> Spouse Name</label> <input name="spousename" id="inputName5" [(ngModel)]="customer.personalDetails.spouse_name" #name="ngModel" type="text" class="form-control"
                                                         id="inputName5"></div>
-                                                <div class="col-md-6"> <label for="inputName5" class="form-label"> Date of Birth</label> <input type="date" class="form-control" id="inputName5" name="cusdob" id="inputName5" [(ngModel)]="customer.personalDetails.dob" #name="ngModel"></div>
+                                                <div class="col-md-6"> <label for="inputName5" class="form-label"> Date of Birth</label> <input type="date" class="form-control" id="inputName5" name="dob" id="inputName5" [(ngModel)]="customer.personalDetails.dob" #name="ngModel"></div>
                                                 <div class="col-md-6">
                                                     <label for="inputName5" class="form-label"> Mobile Number </label>
                                                     <div class="input-group w-50"><span class="input-group-text">+91</span> <input type="text" maxlength="10" class="form-control" aria-label="Amount (to the nearest rupees)" name="phoneNumber" id="inputName5" [(ngModel)]="customer.personalDetails.phoneNumber"
@@ -503,7 +526,7 @@
                                                 <div class="col-md-6"> <label for="inputCity" class="form-label">Landmark</label> <input type="text" class="form-control" id="inputCity" name="landmark" id="inputName5" [(ngModel)]="customer.personalDetails.landmark" #name="ngModel"></div>
                                                 <h5 class="card-title">Nominee Details</h5>
                                                 <div class="col-md-6"> <label for="inputName5" class="form-label"> Name</label> <input type="text" class="form-control" id="inputName5" name="nomineename" [(ngModel)]="customer.customerNomineeDetails.name" #name="ngModel"></div>
-                                                <div class="col-md-6"> <label for="inputName5" class="form-label"> Date of Birth</label> <input type="date" class="form-control" id="inputName5" name="nomineedob" [(ngModel)]="customer.customerNomineeDetails.dob" #name="ngModel"></div>
+                                                <div class="col-md-6"> <label for="inputName5" class="form-label"> Date of Birth</label> <input type="date" class="form-control" id="inputName5" name="dob" [(ngModel)]="customer.customerNomineeDetails.dob" #name="ngModel"></div>
                                                 <div class="col-md-6"> <label for="inputName5" class="form-label"> Relationship</label> <input type="text" class="form-control" id="inputName5" name="relationship" [(ngModel)]="customer.customerNomineeDetails.relationship" #name="ngModel"></div>
                                                 <div class="col-md-6">
                                                     <label for="inputName5" class="form-label"> Address</label>
@@ -533,9 +556,9 @@
                                                 <div class="col-md-6"> <label for="inputName5" class="form-label"> Subscription</label> <select class="form-select" aria-label="Default select example" name="subscription" id="inputName5" [(ngModel)]="customer.customerChitDetails[0].subscription"
                                                         #name="ngModel">
                                                 <option value="" disable selected hidden>Select</option>
-                                                    <option value="Male">Daily</option>
-                                                    <option value="Female">Weekly</option>
-                                                    <option value="Others">Monthly</option>
+                                                    <option value="Daily">Daily</option>
+                                                    <option value="Weekly">Weekly</option>
+                                                    <option value="Monthly">Monthly</option>
                                                     </select>
                                                 </div>
                                                 <div class="col-md-6"> <label for="inputName5" class="form-label"> Collection Route</label> <input type="text" class="form-control" id="inputName5" name='collection_route' [(ngModel)]="customer.customerChitDetails[0].collection_route"
