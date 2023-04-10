@@ -6,6 +6,7 @@ import {UserDataService} from 'src/app/users-data.service';
 import { Customer } from '../model/customer.model'; 
 import { CustomerService } from '../model/customer.service';
 import { HttpEventType } from '@angular/common/http';
+import { FormBuilder, FormGroup, Validators,FormControl } from '@angular/forms';
 
 interface USERS {
   id: Number;
@@ -22,6 +23,16 @@ interface USERS {
  
 })
 export class CustomermanagementComponent implements OnInit {
+  customerForm = new FormGroup({
+    refered_by: new FormControl('',[Validators.required])
+  })
+     
+    
+
+  
+
+
+
   @ViewChild("adaptiveTab")
   public tabObj!: TabComponent;
   title = 'Chitfunds';
@@ -190,8 +201,8 @@ customer : Customer = {
       }
 
 
-  constructor(private http: HttpClient, private userData:UserDataService ) { 
-    
+  constructor(private http: HttpClient, private userData:UserDataService,private fb: FormBuilder ) { 
+   
     this.userData.branch().subscribe((data) =>{
       this.response=data;
   Object.keys(this.response).forEach(prop => {
@@ -218,6 +229,12 @@ customer : Customer = {
     
     })
 }
+
+// myForm() {
+//   this.customerForm = this.fb.group({
+//     refered_by: ['', Validators.required ]
+//   });
+// }
 getUserFormData(data:any){
   console.warn(data)
   this.userData.createUser(data).subscribe((result)=>{
@@ -276,6 +293,7 @@ this.customer.customerChitDetails[0].createdDate=timestamp;
             // }
             
         });
+       
         console.log(this.customerupresponse,this.customeridupload);
         if(this.customerupresponse=="200"){
           this.onUpload(this.customeridupload);
@@ -408,7 +426,7 @@ getCustomerbyId(data:any): void{
 
 
   ngOnInit(): void {
-  }
-  
-  
+    
 }
+}
+
