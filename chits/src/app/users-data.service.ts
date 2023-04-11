@@ -35,6 +35,8 @@ export class UserDataService {
   deletecustomer = 'https://3.111.255.69/chitfund/deleteCustomerById?id=';
   deletebranch = 'https://3.111.255.69/chitfund/deleteBranchById?id=';
   fileupload = 'https://3.111.255.69/chitfund/upload';
+  getslab='https://3.111.255.69/chitfund/getAllSlab';
+  getDocbyid='http://3.111.255.69/chitfund/getImageByCustomer';
   constructor(private http: HttpClient) {
     //employeeData: any;
   }

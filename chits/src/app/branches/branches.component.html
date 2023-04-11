@@ -37,7 +37,7 @@
                                                         <div class="col-md-4"> <label for="inputName5" class="form-label">Office Name</label> <input type="text" class="form-control" id="inputName5" ngModel name="officeName"></div>
                                                         <div class="col-md-6">
                                                             <label for="inputName5" class="form-label"> Mobile Number </label>
-                                                            <div class="input-group w-50"><span class="input-group-text">+91</span> <input type="number" ngModel name="phoneNumber" maxlength="10" class="form-control" aria-label="Amount (to the nearest rupees)"></div>
+                                                            <div class="input-group w-50"><span class="input-group-text">+91</span> <input type="text" ngModel name="phoneNumber" maxlength="10" class="form-control" aria-label="Amount (to the nearest rupees)"></div>
                                                         </div>
                                                         <div class="col-md-4"> <label for="inputName5" class="form-label">Email ID</label> <input type="text" class="form-control" id="inputName5" ngModel name="emailID"></div>
                                                         <div class="col-md-6">
@@ -94,7 +94,7 @@
                                                         <div class="col-md-4"> <label for="inputCity" class="form-label">Remarks</label> <input type="text" class="form-control" id="inputCity" ngModel name="remarks"></div>
                                                         <div class="col-md-6"> <label for="inputName5" class="form-label"> Start Date </label> <input type="date" class="form-control" id="inputName5" ngModel name="startUpDate"></div>
                                                         <label class="form-check-label" for="gridCheck1" style="margin-top: -10px; padding-top: 30px;"> If Branch Office: &nbsp; Yes</label>
-                                                        <input class="form-check-input" ngModel name="headOffice" style="margin-top: -20px;margin-left: 180px; " type="checkbox" (change)="showHideText($event);">
+                                                        <input class="form-check-input" ngModel name="headOffice" style="margin-top: -20px;margin-left: 180px; " type="checkbox" [(ngModel)]="isChecked" (change)="showHideText($event);">
 
                                                         <div *ngIf="isDisplayed">
                                                             <div class="row">

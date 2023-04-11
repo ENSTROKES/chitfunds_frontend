@@ -4,9 +4,11 @@ import { TabComponent } from "@syncfusion/ej2-angular-navigations";
 import { HttpClient } from '@angular/common/http';
 import {UserDataService} from 'src/app/users-data.service';
 import { Customer } from '../model/customer.model'; 
+import { slab } from '../model/slab.module';
 import { CustomerService } from '../model/customer.service';
 import { HttpEventType } from '@angular/common/http';
 import { FormBuilder, FormGroup, Validators,FormControl } from '@angular/forms';
+import { docbyid } from '../model/getdocbyid.model';
 
 interface USERS {
   id: Number;
@@ -54,6 +56,7 @@ button = 'Submit';
 // Get Customer
 custmresponse:any;
 ListOfCustomerData:any;
+listofslabdata:any;
 customeridupload: any;
 customerupresponse:any;
 // Post Customer
@@ -87,9 +90,9 @@ customer : Customer = {
                                   },                                
   customerNomineeDetails:{   nomineeId:0,                             
                           name:'',
-                          dob:'',
+                         
                           relationship:'',
-                          nominee_address:'',
+                         
                           adharNumber:'',
                           createdDate: 0 
                           },
@@ -97,7 +100,7 @@ customer : Customer = {
                           createdDate: 0 ,
    subscription  :  ' ',
    collection_route  :  ' ',
-   collection_pincode  :' ',
+   
   chit_asking_month  :  ' ',
   remarks  :  ' ',
   chitId:0,
@@ -135,16 +138,16 @@ customer : Customer = {
                                     },                                
     customerNomineeDetails:{ nomineeId:0,                                 
                             name:'',
-                            dob:'',
+                            
                             relationship:'',
-                            nominee_address:'',
+                            
                             adharNumber:'',
                             createdDate: 0 ,
                             },
                             customerChitDetails:[{scheme  :  ' ',
    subscription  :  ' ',
    collection_route  :  ' ',
-   collection_pincode  :' ',
+   
   chit_asking_month  :  ' ',
   remarks  :  ' ',
   createdDate: 0 ,
@@ -183,22 +186,55 @@ customer : Customer = {
                                       },                                
       customerNomineeDetails:{    nomineeId:0,                              
                               name:'',
-                              dob:'',
+                              
                               relationship:'',
-                              nominee_address:'',
+                              
                               adharNumber:'',
                               createdDate: 0 
                               },
                               customerChitDetails:[{scheme  :  ' ',
    subscription  :  ' ',
    collection_route  :  ' ',
-   collection_pincode  :' ',
+  
   chit_asking_month  :  ' ',
   remarks  :  ' ',
   createdDate: 0 ,
   chitId:0,
 }]
       }
+
+
+///Get Slab details
+slaboutpt:any;
+slab : slab = {
+  slabId:'',
+  chitValue:'',
+  installment:'',
+  dueDaily:'',
+  dueWeekly:'',
+  dueMonthly:'',
+  paymentSlab:[
+    {
+      id:'',
+      installment:'',
+      payment:'',
+    }
+  ]
+}
+
+/// Get Documents by id
+
+docoupt:any;
+Document : docbyid = [{
+  id:'',
+  customerId:'',
+  name:'',
+  category:'',
+  link:'',
+}]
+
+
+
 
 
   constructor(private http: HttpClient, private userData:UserDataService,private fb: FormBuilder ) { 
@@ -228,6 +264,24 @@ customer : Customer = {
     });
     
     })
+
+
+      // get all slab method
+    this.http.get(this.userData.getslab).subscribe((data) =>{
+      this.slaboutpt=data;
+    Object.keys(this.slaboutpt).forEach(prop => {
+    if(prop=="object"){
+      this.listofslabdata = this.slaboutpt[prop];
+      //console.log("GetData" +this.userData.branchbyidurl);
+    }
+    });
+    
+    })
+
+
+    
+
+    
 }
 
 // myForm() {
@@ -268,7 +322,8 @@ this.customer.customerChitDetails[0].createdDate=timestamp;
     // console.log("Hello World");
     //console.log("GetData" +this.userData.headOffice);
    //console.log(new Date("2015/04/29 11:24:00").getTime());
-  console.log("data"+this.customer);
+  console.log("data"+this.customer.personalDetails.name);
+  console.log("data"+this.customer.personalDetails.father);
     this.http.post(this.userData.createcustomer,this.customer ).subscribe((result)=>{
      this.customerresult = result;
        // console.log(this.customer);
@@ -322,6 +377,28 @@ getCustomerbyId(data:any): void{
      }
 
 
+
+     // Get Document by id
+getDocumentbyId(data:any): void{
+  // console.log("GetData" +data);
+   
+   // console.log("AllData" +JSON.stringify(data));
+      
+   //console.log(new Date("2015/04/29 11:24:00").getTime());
+   
+   this.http.get(this.userData.getDocbyid+data).subscribe((data) =>{
+    this.docoupt=data;
+  Object.keys(this.docoupt).forEach(prop => {
+  if(prop=="object"){
+    this.Document = this.docoupt[prop];
+    //console.log("GetData" +this.userData.branchbyidurl);
+  }
+  });
+  
+  })
+     }
+
+
      //delete customer
      deleteCustomerbyId(data:any): void{
            
@@ -349,7 +426,7 @@ getCustomerbyId(data:any): void{
        pan:any;
        appfrm:any;
        photo:any;
-       sign:any;
+      //  sign:any;
   retrievedImage: any;
   base64Data: any;
   retrieveResonse: any;
@@ -378,11 +455,11 @@ getCustomerbyId(data:any): void{
     this.appfrm = event.target.files[0];
     console.log("data",this.appfrm );
   }
-  public onsignFileChanged(event:any) {
-    //Select File
-    this.sign = event.target.files[0];
-    console.log("data",this.sign );
-  }
+  // public onsignFileChanged(event:any) {
+  //   //Select File
+  //   this.sign = event.target.files[0];
+  //   console.log("data",this.sign );
+  // }
   //Gets called when the user clicks on submit to upload the image
   onUpload(id:any) {
     
@@ -393,7 +470,7 @@ getCustomerbyId(data:any): void{
     uploadImageData.append('adharcard', this.aadhar, this.aadhar.name);
     uploadImageData.append('pancard', this.pan, this.pan.name);
     uploadImageData.append('applicationForm', this.appfrm, this.appfrm.name);
-    uploadImageData.append('signature', this.sign, this.sign.name);
+    // uploadImageData.append('signature', this.sign, this.sign.name);
     uploadImageData.append('customerId', this.customerId);
     
     //Make a call to the Spring Boot Application to save the image
@@ -422,7 +499,8 @@ getCustomerbyId(data:any): void{
 //     console.log(this.customer);
 //     this._cusService.getCustomerFormData(this.customer);
 //    // this.route.navigate(['list']);
-//   }
+//   }// Get customer by id
+
 
 
   ngOnInit(): void {

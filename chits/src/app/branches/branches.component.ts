@@ -11,6 +11,8 @@ import {Branch} from 'src/app/model/branch.model';
 })
 export class BranchesComponent implements OnInit {
   title = 'Chitfunds';
+  
+  isChecked = false;
   users:any; 
   response:any; //allbranch
   result:any; //branchbyID
@@ -176,7 +178,9 @@ getbranchFormData(data:any): void{
   console.log("AllData" +JSON.stringify(data));
   //console.log("GetData" +this.userData.headOffice);
  //console.log(new Date("2015/04/29 11:24:00").getTime());
+ 
   this.http.post(this.userData.createbrnch, data).subscribe((result)=>{
+    
    this.reslt = result;
    Object.keys(this.reslt).forEach(prop => {
       console.log("data : " +prop);
