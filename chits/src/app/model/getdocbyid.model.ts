@@ -1,7 +1,7 @@
 export class docbyid {
-  id:string;
-  customerId:string;
-  name:string;
-  category:string;
-  link:string;
+  id:any;
+  customerId:any;
+  name:any;
+  category:any;
+  link:any;
 }

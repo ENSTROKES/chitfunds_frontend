@@ -60,6 +60,7 @@ listofslabdata:any;
 customeridupload: any;
 customerupresponse:any;
 // Post Customer
+custreditresp:any;
 customerresult: any;
 customer : Customer = {
   
@@ -221,11 +222,16 @@ slab : slab = {
     }
   ]
 }
+PhotoUrl : String = "";
+AdharUrl : String = "";
+PanUrl : String = "";
+ApplicationUrl : String = "";
+
 
 /// Get Documents by id
 
-docoupt:any;
-Document : docbyid = [{
+docoupt: any;
+Document : docbyid[] = [{
   id:'',
   customerId:'',
   name:'',
@@ -308,8 +314,45 @@ getUserFormData(data:any){
   }, 2000)
 }
 
+
+
+
+getCustomertestData(): void{
+  const current = new Date();
+  const timestamp = current.getTime();
+  console.log(current,timestamp);
+  this.customerDetailbyid.customerNomineeDetails.createdDate=timestamp;
+  this.customerDetailbyid.customerChitDetails[0].createdDate=timestamp;
+    // console.log("AllData" +JSON.stringify(this.customer));
+    // console.log("data"+this.customerDetailbyid.personalDetails.name);
+    // console.log("data"+this.customerDetailbyid.personalDetails.father);
+
+    console.log("AllData" +JSON.stringify(this.customerDetailbyid));
+
+      this.http.post(this.userData.createcustomer,this.customerDetailbyid ).subscribe((result)=>{
+       this.custreditresp = result;
+         // console.log(this.customer);
+       Object.keys(this.custreditresp).forEach(prop => {
+          console.log("data : " +prop);
+          if(prop=="responseCode"){
+            // this.ListOfEmpData = this.reslt[prop];
+              if(this.custreditresp[prop]=="200"){
+                if(window.confirm('Customer Changed successfully')){
+                  location.reload();
+                }else{
+                  location.reload();
+                }
+              }
+              }
+         
+          });
+        })
+}
+
+
 // Create customer post
 getCustomerFormData(): void{
+
   const current = new Date();
 const timestamp = current.getTime();
 console.log(current,timestamp);
@@ -350,26 +393,28 @@ this.customer.customerChitDetails[0].createdDate=timestamp;
         });
        
         console.log(this.customerupresponse,this.customeridupload);
-        if(this.customerupresponse=="200"){
+        if(this.customerupresponse== 200){
           this.onUpload(this.customeridupload);
         }
       })
      }
 
 // Get customer by id
-getCustomerbyId(data:any): void{
+getCustomerbyId(custid:any): void{
   // console.log("GetData" +data);
    
-   // console.log("AllData" +JSON.stringify(data));
+   //console.log("AllData" +JSON.stringify(data));
       
    //console.log(new Date("2015/04/29 11:24:00").getTime());
    
-   this.http.get(this.userData.customerbyidurl+data).subscribe((data) =>{
+
+   this.http.get(this.userData.customerbyidurl+custid).subscribe((data) =>{
     this.idoutput=data;
   Object.keys(this.idoutput).forEach(prop => {
   if(prop=="object"){
     this.customerDetailbyid = this.idoutput[prop];
     //console.log("GetData" +this.userData.branchbyidurl);
+    this.getDocumentbyId(custid);
   }
   });
   
@@ -379,19 +424,28 @@ getCustomerbyId(data:any): void{
 
 
      // Get Document by id
-getDocumentbyId(data:any): void{
+getDocumentbyId(custId:any): void{
   // console.log("GetData" +data);
    
    // console.log("AllData" +JSON.stringify(data));
       
    //console.log(new Date("2015/04/29 11:24:00").getTime());
-   
-   this.http.get(this.userData.getDocbyid+data).subscribe((data) =>{
+   console.log("Heloo1");
+   this.http.get(this.userData.getDocbyid+custId).subscribe((data) =>{
     this.docoupt=data;
-  Object.keys(this.docoupt).forEach(prop => {
+    Object.keys(this.docoupt).forEach(prop => {
   if(prop=="object"){
     this.Document = this.docoupt[prop];
-    //console.log("GetData" +this.userData.branchbyidurl);
+    console.log("Heloo");
+    console.log("Documents response : " + this.Document[0].link);
+    console.log("Documents response : " + this.Document[1].link);
+    console.log("Documents response : " + this.Document[2].link);
+    console.log("Documents response : " + this.Document[3].link);
+
+    this.PhotoUrl = this.Document[0].link;
+    this.AdharUrl = this.Document[1].link;
+    this.PanUrl = this.Document[2].link;
+    this.ApplicationUrl = this.Document[3].link;
   }
   });
   
@@ -465,6 +519,8 @@ getDocumentbyId(data:any): void{
     
     this.customerId=id;
     //FormData API provides methods and properties to allow us easily prepare form data to be sent with POST HTTP requests.
+    if(this.photo !=null && this.aadhar!=null && this.pan!=null && this.appfrm!=null ){
+
     const uploadImageData = new FormData();
     uploadImageData.append('imageFile', this.photo, this.photo.name);
     uploadImageData.append('adharcard', this.aadhar, this.aadhar.name);
@@ -475,7 +531,7 @@ getDocumentbyId(data:any): void{
     
     //Make a call to the Spring Boot Application to save the image
     console.log("userdata",uploadImageData);
-    this.http.post(this.userData.fileupload, uploadImageData,this.customerId )
+    this.http.post(this.userData.fileupload, uploadImageData, this.customerId )
       .subscribe((response) => {
         
       this.uploadresponse= response;
@@ -493,6 +549,13 @@ getDocumentbyId(data:any): void{
         });
     
     })
+  }else{
+if (window.confirm('Customer craeted successfully without documents')) {
+                        location.reload();
+                    } else {
+                        location.reload();
+                    }
+  }
   }
 // getCustomerFormData(): void
 //   {
