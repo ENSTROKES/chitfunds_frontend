@@ -19,7 +19,7 @@ import { AccountexpensesComponent } from './transaction/accountexpenses/accounte
 import { UsersProfileComponent } from './pages/users-profile/users-profile.component';
 import { PettycashComponent } from './transaction/pettycash/pettycash.component';
 import { ReceiptComponent } from './transaction/receipt/receipt.component';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule,HTTP_INTERCEPTORS } from '@angular/common/http';
 import {FormsModule} from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
 import { PayrollComponent } from './employeemanagement/payroll/payroll.component';
@@ -29,6 +29,8 @@ import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import { AuthguradServiceService } from './authgurad-service.service';
 import { AddgroupmemberComponent } from './addgroupmember/addgroupmember.component';
 import { AddmemberComponent } from './addmember/addmember.component';
+import { SpinnerComponent } from './spinner/spinner.component';
+import { LoadingInterceptor } from './loading.interceptor';
 
 // import { HashLocationStrategy, LocationStrategy  } from '@angular/common';
 
@@ -63,7 +65,8 @@ import { AddmemberComponent } from './addmember/addmember.component';
     CollectionAreaMappingComponent,
     PagesLoginComponent,
     AddgroupmemberComponent,
-    AddmemberComponent
+    AddmemberComponent,
+    SpinnerComponent
   ],
   imports: [
     BrowserModule,
@@ -78,7 +81,10 @@ import { AddmemberComponent } from './addmember/addmember.component';
   
   providers: [
     // {provide : LocationStrategy , useClass: HashLocationStrategy}
-    AuthguradServiceService
+    AuthguradServiceService,
+  {
+    provide: HTTP_INTERCEPTORS, useClass: LoadingInterceptor, multi: true
+  }
   ],
   bootstrap: [AppComponent]
 })
