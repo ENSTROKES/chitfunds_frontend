@@ -27,6 +27,9 @@ import { PagesLoginComponent } from './pages/pages-login/pages-login.component';
 import { CollectionAreaMappingComponent } from './employeemanagement/collectionareamapping/collectionareamapping.component';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import { AuthguradServiceService } from './authgurad-service.service';
+import { AddgroupmemberComponent } from './addgroupmember/addgroupmember.component';
+import { AddmemberComponent } from './addmember/addmember.component';
+
 // import { HashLocationStrategy, LocationStrategy  } from '@angular/common';
 
 
@@ -58,7 +61,9 @@ import { AuthguradServiceService } from './authgurad-service.service';
     ReceiptComponent,
     PayrollComponent,
     CollectionAreaMappingComponent,
-    PagesLoginComponent
+    PagesLoginComponent,
+    AddgroupmemberComponent,
+    AddmemberComponent
   ],
   imports: [
     BrowserModule,

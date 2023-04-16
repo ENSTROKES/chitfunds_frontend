@@ -16,7 +16,8 @@ import { AccountexpensesComponent } from './transaction/accountexpenses/accounte
 import { EmployeeincentiveComponent } from './transaction/employeeincentive/employeeincentive.component';
 import { PettycashComponent } from './transaction/pettycash/pettycash.component';
 import { ReceiptComponent } from './transaction/receipt/receipt.component';
-
+import { AddgroupmemberComponent } from './addgroupmember/addgroupmember.component';
+import { AddmemberComponent } from './addmember/addmember.component';
 
 import { PagesContactComponent } from './pages/pages-contact/pages-contact.component';
 import { PagesError404Component } from './pages/pages-error404/pages-error404.component';
@@ -57,6 +58,8 @@ const routes: Routes = [
   { path: 'pages-login', component: PagesLoginComponent ,},
   { path: 'pages-register', component: PagesRegisterComponent ,},
   { path: 'user-profile', component: UsersProfileComponent, },
+  { path: 'addgroupmember', component: AddgroupmemberComponent, },
+  { path: 'addmember', component: AddmemberComponent, },
 ];
 
 @NgModule({

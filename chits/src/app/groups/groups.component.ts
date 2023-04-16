@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import {UserDataService} from 'src/app/users-data.service';
 import { Group } from '../model/groupbyid.model';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-groups',
   templateUrl: './groups.component.html',
@@ -81,7 +82,7 @@ export class GroupsComponent implements OnInit {
       loading: false
     }
   }
-  constructor(private http: HttpClient, private userData:UserDataService) { 
+  constructor(private http: HttpClient, private userData:UserDataService, private router:Router) { 
     //get all group
     this.userData.group().subscribe((data) =>{
       this.grpres=data;
@@ -225,7 +226,14 @@ getgroupFormData(data:any): void{
            
            })
               }
+  
 
+
+  goToPage(pageName:string):void{
+    this.router.navigate([`${pageName}`]);
+  }              
+  
+  
   ngOnInit(): void {
   }
   showHideText(event:any){

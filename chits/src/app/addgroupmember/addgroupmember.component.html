@@ -1,0 +1,85 @@
+<main id="main" class="main">
+    <div class="pagetitle">
+       <h1>Add Group Member</h1>
+       <nav>
+          <ol class="breadcrumb">
+             <li class="breadcrumb-item"><a routerLink="/">Home</a></li>
+             <li class="breadcrumb-item"> Group</li>
+             <li class="breadcrumb-item active">Add Group Member</li>
+          </ol>
+       </nav>
+    </div>
+    <section class="section">
+        <div class="row">
+           <div class="col-lg-12">
+              <div class="card">
+                 <div class="card-body">
+                    <h5 class="card-title">Add Group Member</h5>
+                    
+                    <button type="button" class="btn btn-primary" style="margin-left:780px; margin-top:-60px;" (click)="goToPage('addmember')"> Add Member </button>
+                    <table class="table table-striped">
+
+                     <thead>
+                         <tr>
+                             <th>Group Name</th>
+                             <th>Group Type</th>
+                             <th>Branch Name</th>
+                             <th>Scheme Id</th>
+                             <th>Auction Date</th>
+                             <!-- <th>Actions</th> -->
+                         </tr>
+                     </thead>
+                     <tbody>
+                         <tr *ngFor="let group of ListOfGroupData| filter:searchText">
+                             <td>{{ group.groupName}}</td>
+                             <td>{{ group.groupType}}</td>
+                             <td>{{ group.branchName }}</td>
+                             <td>{{ group.schemeId }}</td>
+                             <td>{{ group.lauctionDate }}</td>
+                             
+                         </tr>
+                     </tbody>
+                  </table>
+                    
+                    
+                 </div>
+              </div>
+
+              <div class="card">
+               <div class="card-body">
+                  <h5 class="card-title">Add Group Member</h5>
+                  <table class="table table-striped">
+
+                   <thead>
+                       <tr>
+                           <th>Group Name</th>
+                           <th>Group Type</th>
+                           <th>Branch Name</th>
+                           <th>Scheme Id</th>
+                           <th>Auction Date</th>
+                           <!-- <th>Actions</th> -->
+                       </tr>
+                   </thead>
+                   <tbody>
+                       <tr *ngFor="let group of ListOfGroupData| filter:searchText">
+                           <td>{{ group.groupName}}</td>
+                           <td>{{ group.groupType}}</td>
+                           <td>{{ group.branchName }}</td>
+                           <td>{{ group.schemeId }}</td>
+                           <td>{{ group.lauctionDate }}</td>
+                           
+                       </tr>
+                   </tbody>
+                </table>
+                  
+                  
+               </div>
+            </div>
+           </div>
+        </div>
+     </section>
+       
+       
+                
+
+</main>
