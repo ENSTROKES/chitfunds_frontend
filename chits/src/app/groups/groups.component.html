@@ -135,29 +135,33 @@
 
                                                     <thead>
                                                         <tr>
-                                                            <th>Group Name</th>
-                                                            <th>Group Type</th>
-                                                            <th>Branch Name</th>
-                                                            <th>Scheme Id</th>
+                                                            <th >Sl.No</th>
+                                                            <th> Name</th>
+                                                            <th> Type</th>
+                                                            <th> Starting Date</th>
+                                                            <th>Vacant Count</th>
+                                                            <th>Debtors/Creditors</th>
                                                             <th>Auction Date</th>
                                                             <th>Actions</th>
                                                         </tr>
                                                     </thead>
                                                     <tbody>
                                                         <tr *ngFor="let group of ListOfGroupData| filter:searchText">
+                                                            <td>1</td>
                                                             <td>{{ group.groupName}}</td>
                                                             <td>{{ group.groupType}}</td>
                                                             <td>{{ group.branchName }}</td>
                                                             <td>{{ group.schemeId }}</td>
+                                                            <td>{{ group.schemeId }}</td>
                                                             <td>{{ group.lauctionDate }}</td>
                                                             <td>
                                                                 <div class="icon">
-                                                                    <!-- <i class="bi bi-pencil" data-bs-toggle="modal" data-bs-target="#EditGroup" (click)="getGroupbyId(group.id)"></i> &nbsp;
-                                                                    <i class="bi bi-eye" data-bs-toggle="modal" data-bs-target="#ListGroup" (click)="getGroupbyId(group.id)"></i>&nbsp; -->
+                                                                    <i class="bi bi-pencil" data-bs-toggle="modal" data-bs-target="#EditGroup" (click)="getGroupbyId(group.id)"></i> &nbsp;
+                                                                    <i class="bi bi-eye" data-bs-toggle="modal" data-bs-target="#ListGroup" (click)="getGroupbyId(group.id)"></i>&nbsp; 
                                                                     <!-- (click)="userDetails(brnchData.branchID)" -->
 
-                                                                    <!-- <i class="ri-delete-bin-line" (click)="deleteGroupbyId(group.id)"></i>&nbsp; -->
-                                                                    <button type="button" class="btn btn-primary" (click)="goToPage('addgroupmember')"> Modify</button>
+                                                                    <i class="ri-delete-bin-line" (click)="deleteGroupbyId(group.id)"></i>&nbsp;
+                                                                    <!-- <button type="button" class="btn btn-primary" (click)="goToPage('addgroupmember')"> Modify</button> -->
 
                                                                     <div class="modal fade" id="EditGroup" tabindex="-1">
                                                                         <div class="modal-dialog modal-xl">
@@ -247,7 +251,82 @@
                                                                                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                                                                 </div>
                                                                                 <div class="modal-body">
-                                                                                    <div class="col-md-4">
+                                                                                    <div class="row">
+                                                                                        <div class="col-lg-12">
+                                                                                           <div class="card">
+                                                                                              <div class="card-body">
+                                                                                                 <h5 class="card-title"> Group Details</h5>
+                                                                                                 
+                                                                                                 <!-- <button type="button" class="btn btn-primary" style="margin-left:780px; margin-top:-60px;" (click)="goToPage('addmember')"> Add Member </button> -->
+                                                                                                 <table class="table table-striped">
+                                                                             
+                                                                                                  <tbody>
+                                                                                                     <tr>
+                                                                                                        <th scope="col">Group Name</th>
+                                                                             
+                                                                                                        <td>MTP-1</td>
+                                                                                                    </tr>
+                                                                                                    <tr>
+                                                                                                        <th scope="col">Group Type</th>
+                                                                                                        <td>Non-register</td>
+                                                                                                    </tr>
+                                                                                                    <tr>
+                                                                                                        <th scope="col">Branch Name</th>
+                                                                                                        <td>Karamadai</td>
+                                                                                                    </tr>
+                                                                                                    <tr>
+                                                                                                     <th scope="col">Scheme Id</th>
+                                                                                                     <td>10,000-10</td>
+                                                                                                    </tr>
+                                                                                                    <tr>
+                                                                                                     <th scope="col">Auction Date</th>
+                                                                                                     <td>12</td>
+                                                                                                    </tr>
+                                                                             
+                                                                                                  </tbody>
+                                                                                                  
+                                                                                               </table>
+                                                                                                 
+                                                                                                 
+                                                                                              </div>
+                                                                                           </div>
+                                                                             
+                                                                                           <div class="card">
+                                                                                            <div class="card-body">
+                                                                                               <h5 class="card-title">Group Members</h5>
+                                                                                               <table class="table table-striped">
+                                                                             
+                                                                                                <thead>
+                                                                                                    <tr>
+                                                                                                        <th>Ticket.No</th>
+                                                                                                        <th>Name</th>
+                                                                                                        <th>Contact</th>
+                                                                                                        <th>Subscription</th>
+                                                                                                        <th>Prized Status</th>
+                                                                                                        <th>Received </th>
+                                                                                                        <th>Outstanding </th>
+                                                                                                        <th>Last Payment Date</th>
+                                                                                                       
+                                                                                                    </tr>
+                                                                                                </thead>
+                                                                                                <tbody>
+                                                                                                    <!-- <tr *ngFor="let group of ListOfGroupData| filter:searchText">
+                                                                                                        <td>{{ group.groupName}}</td>
+                                                                                                        <td>{{ group.groupType}}</td>
+                                                                                                        <td>{{ group.branchName }}</td>
+                                                                                                        <td>{{ group.schemeId }}</td>
+                                                                                                        <td>{{ group.lauctionDate }}</td>
+                                                                                                        
+                                                                                                    </tr> -->
+                                                                                                </tbody>
+                                                                                             </table>
+                                                                                               
+                                                                                               
+                                                                                            </div>
+                                                                                         </div>
+                                                                                        </div>
+                                                                                     </div>
+                                                                                    <!-- <div class="col-md-4">
                                                                                         <table class="table table-borderless">
 
                                                                                             <tbody>
@@ -326,7 +405,7 @@
 
 
                                                                                         </table>
-                                                                                    </div>
+                                                                                    </div> -->
                                                                                     <div class="modal-footer ">
                                                                                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                                                                                     </div>

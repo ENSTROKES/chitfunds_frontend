@@ -25,7 +25,7 @@ import { PagesFaqComponent } from './pages/pages-faq/pages-faq.component';
 import { PagesLoginComponent } from './pages/pages-login/pages-login.component';
 import { PagesRegisterComponent } from './pages/pages-register/pages-register.component';
 import { UsersProfileComponent } from './pages/users-profile/users-profile.component';
-
+import { FiltergridComponent } from './filtergrid/filtergrid.component';
 import { AuthenticationGuard } from './authentication.guard';
 
 const routes: Routes = [
@@ -60,6 +60,8 @@ const routes: Routes = [
   { path: 'user-profile', component: UsersProfileComponent, },
   { path: 'addgroupmember', component: AddgroupmemberComponent, },
   { path: 'addmember', component: AddmemberComponent, },
+  { path: 'filtergrid', component: FiltergridComponent, },
+ 
 ];
 
 @NgModule({

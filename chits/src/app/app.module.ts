@@ -31,6 +31,8 @@ import { AddgroupmemberComponent } from './addgroupmember/addgroupmember.compone
 import { AddmemberComponent } from './addmember/addmember.component';
 import { SpinnerComponent } from './spinner/spinner.component';
 import { LoadingInterceptor } from './loading.interceptor';
+import { FiltergridComponent } from './filtergrid/filtergrid.component';
+
 
 // import { HashLocationStrategy, LocationStrategy  } from '@angular/common';
 
@@ -66,7 +68,9 @@ import { LoadingInterceptor } from './loading.interceptor';
     PagesLoginComponent,
     AddgroupmemberComponent,
     AddmemberComponent,
-    SpinnerComponent
+    SpinnerComponent,
+    FiltergridComponent,
+    
   ],
   imports: [
     BrowserModule,
