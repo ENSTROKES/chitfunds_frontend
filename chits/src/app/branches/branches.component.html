@@ -18,6 +18,11 @@
                         <div class="search-here">
 
                             <label for="inputName5" class="form-label"> <b>Search</b></label>&nbsp;&nbsp;&nbsp;<input type="text" name="search" [(ngModel)]="searchText" placeholder="Search Here">
+                            <div class="col-md-3"> <label for="inputName5" class="form-label">  <b>Filter</b></label>
+                                <select ngModel name="collectionEmployee" class="form-control">
+                                 <option value="" disable selected hidden>---Select----</option>
+                                </select>
+                            </div>
                         </div>
                         <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#largeModal" style="margin-left:780px; margin-top:-60px;"> Create </button>
                         <div class="modal fade" id="largeModal" tabindex="-1">

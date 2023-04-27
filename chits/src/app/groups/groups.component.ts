@@ -310,8 +310,8 @@ getgroupFormData(data:any): void{
   
 
 
-  goToPage(pageName:string):void{
-    this.router.navigate([`${pageName}`]);
+  goToPage(pageName:string,value:any):void{
+    this.router.navigate([`${pageName}`],{ queryParams: { value }  });
   }              
   
   

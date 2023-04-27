@@ -17,6 +17,11 @@
                         <h5 class="card-title">Receipt</h5>
                         <div class="search-here">
                             <label for="inputName5" class="form-label"> <b>Search</b></label>&nbsp;&nbsp;&nbsp;<input type="text" name="search" [(ngModel)]="searchText" placeholder="Search Here">
+                            <div class="col-md-3"> <label for="inputName5" class="form-label">  <b>Filter</b></label>
+                                <select ngModel name="collectionEmployee" class="form-control">
+                                 <option value="" disable selected hidden>---Select----</option>
+                                </select>
+                            </div>
                         </div>
                         <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#largeModal" style="margin-left:780px; margin-top:-60px;"> Receipt </button>
                         <div class="modal fade" id="largeModal" tabindex="-1">
@@ -54,6 +59,7 @@
                         </option>
                       </select>
                                             </div>
+                                            <div class="col-md-6"> <label for="inputName5" class="form-label">Customer ID</label> <input type="text" class="form-control" ngModel name="receiptId" id="inputName5"></div>
                                             <div class="col-md-6"> <label for="inputName5" class="form-label"> Customer Name</label>
                                                 <select ngModel name="customerName" class="form-control">
                          <option value="" disable selected hidden>---Select----</option>

@@ -27,7 +27,7 @@ import { PagesRegisterComponent } from './pages/pages-register/pages-register.co
 import { UsersProfileComponent } from './pages/users-profile/users-profile.component';
 import { FiltergridComponent } from './filtergrid/filtergrid.component';
 import { AuthenticationGuard } from './authentication.guard';
-
+import { GrouplistComponent } from './grouplist/grouplist.component';
 const routes: Routes = [
   { path: '',redirectTo:'/pages-login', pathMatch: 'full' },
   // { path: 'pages-login', component: PagesLoginComponent,pathMatch: 'full' },
@@ -61,6 +61,7 @@ const routes: Routes = [
   { path: 'addgroupmember', component: AddgroupmemberComponent, },
   { path: 'addmember', component: AddmemberComponent, },
   { path: 'filtergrid', component: FiltergridComponent, },
+  { path: 'grouplist', component: GrouplistComponent, },
  
 ];
 

@@ -40,6 +40,11 @@
                                       <option *ngFor="let user of CategoryName">{{ item }}</option>
                                     </select> -->
                                                     <label for="inputName5" class="form-label"> <b>Search</b></label>&nbsp;&nbsp;&nbsp;<input type="text" name="search" [(ngModel)]="searchText" placeholder="Search Here">
+                                                    <div class="col-md-3"> <label for="inputName5" class="form-label">  <b>Filter</b></label>
+                                                        <select ngModel name="collectionEmployee" class="form-control">
+                                                         <option value="" disable selected hidden>---Select----</option>
+                                                        </select>
+                                                    </div>
                                                 </div>
                                                 <!-- <button style="margin-left:700px; margin-top:-60px;" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#largeModal"> Employee Create </button> -->
                                                 <table class="table table-striped">

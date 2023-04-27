@@ -32,6 +32,7 @@ import { AddmemberComponent } from './addmember/addmember.component';
 import { SpinnerComponent } from './spinner/spinner.component';
 import { LoadingInterceptor } from './loading.interceptor';
 import { FiltergridComponent } from './filtergrid/filtergrid.component';
+import { GrouplistComponent } from './grouplist/grouplist.component';
 
 
 // import { HashLocationStrategy, LocationStrategy  } from '@angular/common';
@@ -70,6 +71,7 @@ import { FiltergridComponent } from './filtergrid/filtergrid.component';
     AddmemberComponent,
     SpinnerComponent,
     FiltergridComponent,
+    GrouplistComponent,
     
   ],
   imports: [

@@ -33,6 +33,12 @@
                                                 <div class="search-here">
 
                                                     <label for="inputName5" class="form-label"> <b>Search</b></label>&nbsp;&nbsp;&nbsp;<input type="text" name="search" [(ngModel)]="searchText" placeholder="Search Here">
+                                                   
+                                                </div>
+                                                <div class="col-md-3"> <label for="inputName5" class="form-label">  <b>Filter</b></label>
+                                                    <select ngModel name="collectionEmployee" class="form-control">
+                                                     <option value="" disable selected hidden>---Select----</option>
+                                                    </select>
                                                 </div>
                                                 <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#largeModal" style="margin-left:780px; margin-top:-60px;"> Create</button>
                                                 <div class="modal fade" id="largeModal" tabindex="-1">
@@ -127,11 +133,12 @@
                                                         <tr>
                                                             <th>S.No</th>
                                                             <th> Name</th>
-                                                            <th> Type</th>
+                                                            <th>Scheme</th>
+                                                            <!-- <th> Type</th> -->
                                                             <th> Starting Date</th>
                                                             <th>Vacant Count</th>
                                                             <th>Debtors/Creditors</th>
-                                                            <th>Auction Date</th>
+                                                            <!-- <th>Auction Date</th> -->
                                                             <th>Actions</th>
                                                         </tr>
                                                     </thead>
@@ -139,15 +146,16 @@
                                                         <tr *ngFor="let group of ListOfGroupData;let i = index">
                                                             <td>{{i+1}}</td>
                                                             <td>{{ group.groupName}}</td>
-                                                            <td>{{ group.groupType}}</td>
+                                                            <td>{{ group.schemeName}}</td>
+                                                            <!-- <td>{{ group.groupType}}</td> -->
                                                             <td>{{ group.startingDate }}</td>
                                                             <td>{{ group.vacantCount }}</td>
                                                             <td></td>
-                                                            <td>{{ group.lauctionDate }}</td>
+                                                            <!-- <td>{{ group.lauctionDate }}</td> -->
                                                             <td>
                                                                 <div class="icon">
                                                                     <i class="bi bi-pencil" data-bs-toggle="modal" data-bs-target="#EditGroup" (click)="getGroupbyId(group.id)"></i> &nbsp;
-                                                                    <i class="bi bi-eye" data-bs-toggle="modal" data-bs-target="#ListGroup" (click)="getGroupmappedcusbyId(group.id)"></i>&nbsp;
+                                                                    <i class="bi bi-eye" routerLink="/grouplist" (click)="goToPage('grouplist',group.id)"></i>&nbsp;
                                                                     <!-- (click)="userDetails(brnchData.branchID)" -->
 
                                                                     <i class="ri-delete-bin-line" (click)="deleteGroupbyId(group.id)"></i>&nbsp;
