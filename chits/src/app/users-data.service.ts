@@ -37,6 +37,9 @@ export class UserDataService {
   fileupload = 'http://15.207.195.199/chitfund/upload';
   getslab='http://15.207.195.199/chitfund/getAllSlab';
   getDocbyid='http://15.207.195.199/chitfund/getImageByCustomer?id=';
+  groupmapcus='http://15.207.195.199/chitfund/customerGroupMapping';
+  grouplistmapdcus="http://15.207.195.199/chitfund/getCustomerForGroup?groupId=";
+  cuslistmappedgrop="http://15.207.195.199/chitfund/getCustomersForCustomerMapping"
   //getDocbyid='http://192.168.1.12:8082/getImageByCustomer?id=3';
   constructor(private http: HttpClient) {
     //employeeData: any;

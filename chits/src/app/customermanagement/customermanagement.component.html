@@ -29,305 +29,305 @@
 
                             </div>
                             <!-- <section class="section"> -->
-                                <div class="row">
-                                    <div class="col-lg-12">
-                                        <div class="card">
-                                            <div class="card-body">
-                                                <h5 class="card-title">Customer List</h5>
-                                                <!-- <button style="margin-left:700px; margin-top:-60px;" type="button" class="btn btn-primary"  data-bs-toggle="tab" data-bs-target="#bordered-justified-profile" id="customerlist"> Customer Create </button> -->
-                                                <!-- <div class="search-here"> -->
-                                                    <!-- <select [(ngModel)]="selectedCategory" (change)="valueSelected()">
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <div class="card">
+                                        <div class="card-body">
+                                            <h5 class="card-title">Customer List</h5>
+                                            <!-- <button style="margin-left:700px; margin-top:-60px;" type="button" class="btn btn-primary"  data-bs-toggle="tab" data-bs-target="#bordered-justified-profile" id="customerlist"> Customer Create </button> -->
+                                            <!-- <div class="search-here"> -->
+                                            <!-- <select [(ngModel)]="selectedCategory" (change)="valueSelected()">
                                    <option *ngFor="let user of CategoryName">{{ item }}</option>
                                  </select> -->
-                                                    <!-- <label for="inputName5" class="form-label"> <b>Search</b></label>&nbsp;&nbsp;&nbsp;<input type="text" name="search" [(ngModel)]="searchText" placeholder="Search Here">
+                                            <!-- <label for="inputName5" class="form-label"> <b>Search</b></label>&nbsp;&nbsp;&nbsp;<input type="text" name="search" [(ngModel)]="searchText" placeholder="Search Here">
                                                 </div> -->
 
-                                                <table class="table datatable">
+                                            <table class="table ">
 
-                                                    <thead>
-                                                        <tr>
-                                                            <th>S.no</th>
-                                                            <th>Branch</th>
-                                                            <th>Name</th>
-                                                            <th>Phone Number</th>
-                                                            <th>Scheme</th>
-                                                            <th>Actions</th>
-                                                        </tr>
-                                                    </thead>
-                                                    <tbody>
-                                                        <tr *ngFor="let customrdata of ListOfCustomerData">
-                                                            <td>{{1}}</td>
-                                                            <td>{{ customrdata.branch_name }}</td>
-                                                            <td>{{ customrdata.personalDetails.name }} {{ customrdata.personalDetails.father }}</td>
-                                                            <td>{{ customrdata.personalDetails.phoneNumber }}</td>
-                                                            <td>{{ customrdata.customerChitDetails[0].scheme }}</td>
-                                                            <td>
-                                                                <div class="icon">
-                                                                    <i class="bi bi-pencil" data-bs-toggle="modal" data-bs-target="#Editcustomer" (click)="getCustomerbyId(customrdata.customerId)"></i> &nbsp;
-                                                                    <i class="bi bi-eye" data-bs-toggle="modal" data-bs-target="#Getcustomer" (click)="getCustomerbyId(customrdata.customerId)"></i>&nbsp;
-                                                                    <!-- (click)="userDetails(brnchData.branchID)" -->
+                                                <thead>
+                                                    <tr>
+                                                        <th>S.no</th>
+                                                        <th>Branch</th>
+                                                        <th>Name</th>
+                                                        <th>Phone Number</th>
+                                                        <th>Scheme</th>
+                                                        <th>Actions</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr *ngFor="let customrdata of ListOfCustomerData;let i = index">
+                                                        <td>{{i+1}}</td>
+                                                        <td>{{ customrdata.branchName }}</td>
+                                                        <td>{{ customrdata.personalDetails.name }} {{ customrdata.personalDetails.father }}</td>
+                                                        <td>{{ customrdata.personalDetails.phoneNumber }}</td>
+                                                        <td>{{ customrdata.customerChitDetails[0].scheme }}</td>
+                                                        <td>
+                                                            <div class="icon">
+                                                                <i class="bi bi-pencil" data-bs-toggle="modal" data-bs-target="#Editcustomer" (click)="getCustomerbyId(customrdata.customerId)"></i> &nbsp;
+                                                                <i class="bi bi-eye" data-bs-toggle="modal" data-bs-target="#Getcustomer" (click)="getCustomerbyId(customrdata.customerId)"></i>&nbsp;
+                                                                <!-- (click)="userDetails(brnchData.branchID)" -->
 
-                                                                    <i class="ri-delete-bin-line" (click)="deleteCustomerbyId(customrdata.customerId)"></i>
-                                                                    <div class="modal fade" id="Editcustomer" tabindex="-1">
-                                                                        <div class="modal-dialog modal-xl">
-                                                                            <div class="modal-content">
-                                                                                <div class="modal-header">
+                                                                <i class="ri-delete-bin-line" (click)="deleteCustomerbyId(customrdata.customerId)"></i>
+                                                                <div class="modal fade" id="Editcustomer" tabindex="-1">
+                                                                    <div class="modal-dialog modal-xl">
+                                                                        <div class="modal-content">
+                                                                            <div class="modal-header">
 
-                                                                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                                                                </div>
-                                                                                <div class="modal-body">
+                                                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                                            </div>
+                                                                            <div class="modal-body">
 
-                                                                                    <form class="row g-3" form class="row g-3" #customerForm="ngForm" (ngSubmit)="getCustomertestData()">
-                                                                                        <h5 class="card-title">Office Details</h5>
-                                                                                        <!-- <div class="col-md-3"> <label for="inputName5" class="form-label"> Customer ID</label>
+                                                                                <form class="row g-3" form class="row g-3" #customerForm="ngForm" (ngSubmit)="getCustomertestData()">
+                                                                                    <h5 class="card-title">Office Details</h5>
+                                                                                    <!-- <div class="col-md-3"> <label for="inputName5" class="form-label"> Customer ID</label>
                                                                                             <input type="text" class="form-control" ngModel name="Customerid" id="inputName5" [(ngModel)]="customerDetailbyid.customerId" >
                                                                                         </div> -->
-                                                                                        <!-- <div class="col-md-3"> <label for="inputName5" class="form-label"> Customer ID</label>
+                                                                                    <!-- <div class="col-md-3"> <label for="inputName5" class="form-label"> Customer ID</label>
                                                                                             <input type="text" class="form-control" ngModel name="customerId" id="inputName5" [(ngModel)]="customerDetailbyid.customerId" readonly>
                                                                                         </div> -->
-                                                                                        <div class="col-md-3"> <label for="inputName5" class="form-label"> Branch Name</label>
-                                                                                            <input type="text" class="form-control" ngModel name="branch_name" id="inputName5" [(ngModel)]="customerDetailbyid.branch_name">
+                                                                                    <div class="col-md-3"> <label for="inputName5" class="form-label"> Branch Name</label>
+                                                                                        <input type="text" class="form-control" ngModel name="branchName" id="inputName5" [(ngModel)]="customerDetailbyid.branchName">
 
 
-                                                                                        </div>
-                                                                                        <div class="col-md-3"> <label for="inputName5" class="form-label">joining date</label>
-                                                                                            <input type="text" class="form-control" ngModel name="joining_date" id="inputName5" [(ngModel)]="customerDetailbyid.joining_date">
-                                                                                        </div>
+                                                                                    </div>
+                                                                                    <div class="col-md-3"> <label for="inputName5" class="form-label">joining date</label>
+                                                                                        <input type="text" class="form-control" ngModel name="joiningDate" id="inputName5" [(ngModel)]="customerDetailbyid.joiningDate">
+                                                                                    </div>
 
-                                                                                        <div class="col-md-3"> <label for="inputName5" class="form-label">Refered Type</label>
-                                                                                            <input type="text" class="form-control" ngModel name="refered_type" id="inputName5" [(ngModel)]="customerDetailbyid.refered_type">
-                                                                                        </div>
-                                                                                        <div class="col-md-3"> <label for="inputName5" class="form-label">Refered By</label>
-                                                                                            <input type="text" class="form-control" ngModel name="refered_by" id="inputName5" [(ngModel)]="customerDetailbyid.refered_by">
+                                                                                    <div class="col-md-3"> <label for="inputName5" class="form-label">Refered Type</label>
+                                                                                        <input type="text" class="form-control" ngModel name="referedType" id="inputName5" [(ngModel)]="customerDetailbyid.referedType">
+                                                                                    </div>
+                                                                                    <div class="col-md-3"> <label for="inputName5" class="form-label">Refered By</label>
+                                                                                        <input type="text" class="form-control" ngModel name="referedBy" id="inputName5" [(ngModel)]="customerDetailbyid.referedBy">
 
 
-                                                                                        </div>
-                                                                                        <h5 class="card-title">Personal Details</h5>
-                                                                                        <div class="col-md-3"> <label for="inputName5" class="form-label">Name</label>
-                                                                                            <input type="text" class="form-control" ngModel name="name" id="inputName5" [(ngModel)]="customerDetailbyid.personalDetails.name">
-                                                                                        </div>
+                                                                                    </div>
+                                                                                    <h5 class="card-title">Personal Details</h5>
+                                                                                    <div class="col-md-3"> <label for="inputName5" class="form-label">Name</label>
+                                                                                        <input type="text" class="form-control" ngModel name="name" id="inputName5" [(ngModel)]="customerDetailbyid.personalDetails.name">
+                                                                                    </div>
 
-                                                                                        <div class="col-md-3"> <label for="inputName5" class="form-label">Father Name</label>
-                                                                                            <input type="text" class="form-control" ngModel name="father" id="inputName5" [(ngModel)]="customerDetailbyid.personalDetails.father">
-                                                                                        </div>
-                                                                                        <div class="col-md-3"> <label for="inputName5" class="form-label">Spouse Name</label>
-                                                                                            <input type="text" class="form-control" ngModel name="spouse_name" id="inputName5" [(ngModel)]="customerDetailbyid.personalDetails.spouse_name">
-                                                                                        </div>
-                                                                                        <div class="col-md-3"> <label for="inputName5" class="form-label">DOB</label>
-                                                                                            <input type="text" class="form-control" ngModel name="dob" id="inputName5" [(ngModel)]="customerDetailbyid.personalDetails.dob">
-                                                                                        </div>
-                                                                                        <div class="col-md-3"> <label for="inputName5" class="form-label">Mobile number</label>
-                                                                                            <input type="text" class="form-control" ngModel name="phoneNumber" id="inputName5" [(ngModel)]="customerDetailbyid.personalDetails.phoneNumber">
-                                                                                        </div>
-                                                                                        <div class="col-md-3"> <label for="inputName5" class="form-label">Alternate Mobile number</label>
-                                                                                            <input type="text" class="form-control" ngModel name="altrPhoneNumber" id="inputName5" [(ngModel)]="customerDetailbyid.personalDetails.altrPhoneNumber">
-                                                                                        </div>
-                                                                                        <div class="col-md-3"> <label for="inputName5" class="form-label">Email ID</label>
-                                                                                            <input type="text" class="form-control" ngModel name="email" id="inputName5" [(ngModel)]="customerDetailbyid.personalDetails.email">
-                                                                                        </div>
-                                                                                        <div class="col-md-3"> <label for="inputName5" class="form-label">Aadhar No.</label>
-                                                                                            <input type="text" class="form-control" ngModel name="aadhar_no" id="inputName5" [(ngModel)]="customerDetailbyid.personalDetails.aadhar_no">
-                                                                                        </div>
-                                                                                        <div class="col-md-3"> <label for="inputName5" class="form-label">Pan No.</label>
-                                                                                            <input type="text" class="form-control" ngModel name="pan" id="inputName5" [(ngModel)]="customerDetailbyid.personalDetails.pan">
-                                                                                        </div>
-                                                                                        <div class="col-md-3"> <label for="inputName5" class="form-label">Gender</label>
-                                                                                            <input type="text" class="form-control" ngModel name="gender" id="inputName5" [(ngModel)]="customerDetailbyid.personalDetails.gender">
-                                                                                        </div>
-                                                                                        <div class="col-md-3"> <label for="inputName5" class="form-label">Occupation</label>
-                                                                                            <input type="text" class="form-control" ngModel name="occupation" id="inputName5" [(ngModel)]="customerDetailbyid.personalDetails.occupation">
-                                                                                        </div>
-                                                                                        <div class="col-md-3"> <label for="inputName5" class="form-label">Monthly Income</label>
-                                                                                            <input type="text" class="form-control" ngModel name="monthly_income" id="inputName5" [(ngModel)]="customerDetailbyid.personalDetails.monthly_income">
-                                                                                        </div>
-                                                                                        <div class="col-md-3"> <label for="inputName5" class="form-label">Marrital Status</label>
-                                                                                            <input type="text" class="form-control" ngModel name="marrital_status" id="inputName5" [(ngModel)]="customerDetailbyid.personalDetails.marrital_status">
-                                                                                        </div>
-                                                                                        <div class="col-md-3"> <label for="inputName5" class="form-label">Address</label>
-                                                                                            <input type="text" class="form-control" ngModel name="address" id="inputName5" [(ngModel)]="customerDetailbyid.personalDetails.address">
-                                                                                        </div>
-                                                                                        <div class="col-md-3"> <label for="inputName5" class="form-label">City</label>
-                                                                                            <input type="text" class="form-control" ngModel name="city" id="inputName5" [(ngModel)]="customerDetailbyid.personalDetails.city">
-                                                                                        </div>
-                                                                                        <div class="col-md-3"> <label for="inputName5" class="form-label">State</label>
-                                                                                            <input type="text" class="form-control" ngModel name="state" id="inputName5" [(ngModel)]="customerDetailbyid.personalDetails.state">
-                                                                                        </div>
-                                                                                        <div class="col-md-3"> <label for="inputName5" class="form-label">Pincode</label>
-                                                                                            <input type="text" class="form-control" ngModel name="pincode" id="inputName5" [(ngModel)]="customerDetailbyid.personalDetails.pincode">
-                                                                                        </div>
-                                                                                        <div class="col-md-3"> <label for="inputName5" class="form-label">Landmark</label>
-                                                                                            <input type="text" class="form-control" ngModel name="landmark" id="inputName5" [(ngModel)]="customerDetailbyid.personalDetails.landmark">
-                                                                                        </div>
-                                                                                        <h5 class="card-title">Nominee Details</h5>
-                                                                                        <div class="col-md-3"> <label for="inputName5" class="form-label">Name</label>
-                                                                                            <input type="text" class="form-control" ngModel name="name" id="inputName5" [(ngModel)]="customerDetailbyid.customerNomineeDetails.name">
-                                                                                        </div>
-                                                                                        <div class="col-md-3"> <label for="inputName5" class="form-label">Relationship</label>
-                                                                                            <input type="text" class="form-control" ngModel name="relationship" id="inputName5" [(ngModel)]="customerDetailbyid.customerNomineeDetails.relationship">
-                                                                                        </div>
-                                                                                        <div class="col-md-3"> <label for="inputName5" class="form-label">Aadhar No.</label>
-                                                                                            <input type="text" class="form-control" ngModel name="adharNumber" id="inputName5" [(ngModel)]="customerDetailbyid.customerNomineeDetails.adharNumber">
-                                                                                        </div>
-                                                                                        <!-- <div class="col-md-3"> <label for="inputName5" class="form-label">Address</label>
+                                                                                    <div class="col-md-3"> <label for="inputName5" class="form-label">Father Name</label>
+                                                                                        <input type="text" class="form-control" ngModel name="father" id="inputName5" [(ngModel)]="customerDetailbyid.personalDetails.father">
+                                                                                    </div>
+                                                                                    <div class="col-md-3"> <label for="inputName5" class="form-label">Spouse Name</label>
+                                                                                        <input type="text" class="form-control" ngModel name="spouse_name" id="inputName5" [(ngModel)]="customerDetailbyid.personalDetails.spouse_name">
+                                                                                    </div>
+                                                                                    <div class="col-md-3"> <label for="inputName5" class="form-label">DOB</label>
+                                                                                        <input type="text" class="form-control" ngModel name="dob" id="inputName5" [(ngModel)]="customerDetailbyid.personalDetails.dob">
+                                                                                    </div>
+                                                                                    <div class="col-md-3"> <label for="inputName5" class="form-label">Mobile number</label>
+                                                                                        <input type="text" class="form-control" ngModel name="phoneNumber" id="inputName5" [(ngModel)]="customerDetailbyid.personalDetails.phoneNumber">
+                                                                                    </div>
+                                                                                    <div class="col-md-3"> <label for="inputName5" class="form-label">Alternate Mobile number</label>
+                                                                                        <input type="text" class="form-control" ngModel name="altrPhoneNumber" id="inputName5" [(ngModel)]="customerDetailbyid.personalDetails.altrPhoneNumber">
+                                                                                    </div>
+                                                                                    <div class="col-md-3"> <label for="inputName5" class="form-label">Email ID</label>
+                                                                                        <input type="text" class="form-control" ngModel name="email" id="inputName5" [(ngModel)]="customerDetailbyid.personalDetails.email">
+                                                                                    </div>
+                                                                                    <div class="col-md-3"> <label for="inputName5" class="form-label">Aadhar No.</label>
+                                                                                        <input type="text" class="form-control" ngModel name="aadhar_no" id="inputName5" [(ngModel)]="customerDetailbyid.personalDetails.aadhar_no">
+                                                                                    </div>
+                                                                                    <div class="col-md-3"> <label for="inputName5" class="form-label">Pan No.</label>
+                                                                                        <input type="text" class="form-control" ngModel name="pan" id="inputName5" [(ngModel)]="customerDetailbyid.personalDetails.pan">
+                                                                                    </div>
+                                                                                    <div class="col-md-3"> <label for="inputName5" class="form-label">Gender</label>
+                                                                                        <input type="text" class="form-control" ngModel name="gender" id="inputName5" [(ngModel)]="customerDetailbyid.personalDetails.gender">
+                                                                                    </div>
+                                                                                    <div class="col-md-3"> <label for="inputName5" class="form-label">Occupation</label>
+                                                                                        <input type="text" class="form-control" ngModel name="occupation" id="inputName5" [(ngModel)]="customerDetailbyid.personalDetails.occupation">
+                                                                                    </div>
+                                                                                    <div class="col-md-3"> <label for="inputName5" class="form-label">Monthly Income</label>
+                                                                                        <input type="text" class="form-control" ngModel name="monthly_income" id="inputName5" [(ngModel)]="customerDetailbyid.personalDetails.monthly_income">
+                                                                                    </div>
+                                                                                    <div class="col-md-3"> <label for="inputName5" class="form-label">Marrital Status</label>
+                                                                                        <input type="text" class="form-control" ngModel name="marrital_status" id="inputName5" [(ngModel)]="customerDetailbyid.personalDetails.marrital_status">
+                                                                                    </div>
+                                                                                    <div class="col-md-3"> <label for="inputName5" class="form-label">Address</label>
+                                                                                        <input type="text" class="form-control" ngModel name="address" id="inputName5" [(ngModel)]="customerDetailbyid.personalDetails.address">
+                                                                                    </div>
+                                                                                    <div class="col-md-3"> <label for="inputName5" class="form-label">City</label>
+                                                                                        <input type="text" class="form-control" ngModel name="city" id="inputName5" [(ngModel)]="customerDetailbyid.personalDetails.city">
+                                                                                    </div>
+                                                                                    <div class="col-md-3"> <label for="inputName5" class="form-label">State</label>
+                                                                                        <input type="text" class="form-control" ngModel name="state" id="inputName5" [(ngModel)]="customerDetailbyid.personalDetails.state">
+                                                                                    </div>
+                                                                                    <div class="col-md-3"> <label for="inputName5" class="form-label">Pincode</label>
+                                                                                        <input type="text" class="form-control" ngModel name="pincode" id="inputName5" [(ngModel)]="customerDetailbyid.personalDetails.pincode">
+                                                                                    </div>
+                                                                                    <div class="col-md-3"> <label for="inputName5" class="form-label">Landmark</label>
+                                                                                        <input type="text" class="form-control" ngModel name="landmark" id="inputName5" [(ngModel)]="customerDetailbyid.personalDetails.landmark">
+                                                                                    </div>
+                                                                                    <h5 class="card-title">Nominee Details</h5>
+                                                                                    <div class="col-md-3"> <label for="inputName5" class="form-label">Name</label>
+                                                                                        <input type="text" class="form-control" ngModel name="name" id="inputName5" [(ngModel)]="customerDetailbyid.customerNomineeDetails.name">
+                                                                                    </div>
+                                                                                    <div class="col-md-3"> <label for="inputName5" class="form-label">Relationship</label>
+                                                                                        <input type="text" class="form-control" ngModel name="relationship" id="inputName5" [(ngModel)]="customerDetailbyid.customerNomineeDetails.relationship">
+                                                                                    </div>
+                                                                                    <div class="col-md-3"> <label for="inputName5" class="form-label">Aadhar No.</label>
+                                                                                        <input type="text" class="form-control" ngModel name="adharNumber" id="inputName5" [(ngModel)]="customerDetailbyid.customerNomineeDetails.adharNumber">
+                                                                                    </div>
+                                                                                    <!-- <div class="col-md-3"> <label for="inputName5" class="form-label">Address</label>
                                                                                             <input type="text" class="form-control" ngModel name="nominee_address" id="inputName5" [(ngModel)]="customerDetailbyid.customerNomineeDetails.nominee_address">
                                                                                         </div>
                                                                                         <div class="col-md-3"> <label for="inputName5" class="form-label">DOB</label>
                                                                                             <input type="text" class="form-control" ngModel name="dob" id="inputName5" [(ngModel)]="customerDetailbyid.customerNomineeDetails.dob">
                                                                                         </div> -->
-                                                                                        <h5 class="card-title">Chit Details</h5>
-                                                                                        <div class="col-md-6"> <label for="inputZip" class="form-label">Scheme</label> <input type="text" class="form-control" id="inputZip" name='scheme' [(ngModel)]="customerDetailbyid.customerChitDetails[0].scheme"
-                                                                                                #name="ngModel"></div>
-                                                                                        <div class="col-md-6"> <label for="inputZip" class="form-label">Chit asking month</label> <input type="text" class="form-control" id="inputZip" name='chit_asking_month' [(ngModel)]="customerDetailbyid.customerChitDetails[0].chit_asking_month"
-                                                                                                #name="ngModel"></div>
-                                                                                        <div class="col-md-6"> <label for="inputZip" class="form-label">Collection Route</label> <input type="text" class="form-control" id="inputZip" name='collection_route' [(ngModel)]="customerDetailbyid.customerChitDetails[0].collection_route"
-                                                                                                #name="ngModel"></div>
-                                                                                        <div class="col-md-6"> <label for="inputName5" class="form-label"> Subscription</label> <input type="text" class="form-control" id="inputName5" name='subscription' [(ngModel)]="customerDetailbyid.customerChitDetails[0].subscription"
-                                                                                                #name="ngModel"></div>
-                                                                                        <!-- <div class="col-md-6"> <label for="inputName5" class="form-label"> Collection Pincode</label> <input type="text" class="form-control" id="inputName5" name='collection_pincode' [(ngModel)]="customerDetailbyid.customerChitDetails[0].collection_pincode"
+                                                                                    <h5 class="card-title">Chit Details</h5>
+                                                                                    <div class="col-md-6"> <label for="inputZip" class="form-label">Scheme</label> <input type="text" class="form-control" id="inputZip" name='scheme' [(ngModel)]="customerDetailbyid.customerChitDetails[0].scheme"
+                                                                                            #name="ngModel"></div>
+                                                                                    <div class="col-md-6"> <label for="inputZip" class="form-label">Chit asking month</label> <input type="text" class="form-control" id="inputZip" name='chit_asking_month' [(ngModel)]="customerDetailbyid.customerChitDetails[0].chit_asking_month"
+                                                                                            #name="ngModel"></div>
+                                                                                    <div class="col-md-6"> <label for="inputZip" class="form-label">Collection Route</label> <input type="text" class="form-control" id="inputZip" name='collection_route' [(ngModel)]="customerDetailbyid.customerChitDetails[0].collection_route"
+                                                                                            #name="ngModel"></div>
+                                                                                    <div class="col-md-6"> <label for="inputName5" class="form-label"> Subscription</label> <input type="text" class="form-control" id="inputName5" name='subscription' [(ngModel)]="customerDetailbyid.customerChitDetails[0].subscription"
+                                                                                            #name="ngModel"></div>
+                                                                                    <!-- <div class="col-md-6"> <label for="inputName5" class="form-label"> Collection Pincode</label> <input type="text" class="form-control" id="inputName5" name='collection_pincode' [(ngModel)]="customerDetailbyid.customerChitDetails[0].collection_pincode"
                                                                                                 #name="ngModel"></div> -->
 
-                                                                                        <div class="col-md-6"> <label for="inputName5" class="form-label">Remarks</label> <input type="text" class="form-control" name='remarks' id="inputName5" [(ngModel)]="customerDetailbyid.customerChitDetails[0].remarks"
-                                                                                                #name="ngModel"></div>
+                                                                                    <div class="col-md-6"> <label for="inputName5" class="form-label">Remarks</label> <input type="text" class="form-control" name='remarks' id="inputName5" [(ngModel)]="customerDetailbyid.customerChitDetails[0].remarks"
+                                                                                            #name="ngModel"></div>
 
-                                                                                        <div class="modal-footer "><button type="submit" class="btn btn-primary">&nbsp; Edit</button>
-                                                                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close
+                                                                                    <div class="modal-footer "><button type="submit" class="btn btn-primary">&nbsp; Edit</button>
+                                                                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close
                                                                                             </button>
-                                                                                        </div>
-                                                                                    </form>
-
-                                                                                </div>
+                                                                                    </div>
+                                                                                </form>
 
                                                                             </div>
+
                                                                         </div>
                                                                     </div>
-                                                                    <div class="modal fade" id="Getcustomer" tabindex="-1">
-                                                                        <div class="modal-dialog modal-xl">
-                                                                            <div class="modal-content">
-                                                                                <div class="modal-header">
+                                                                </div>
+                                                                <div class="modal fade" id="Getcustomer" tabindex="-1">
+                                                                    <div class="modal-dialog modal-xl">
+                                                                        <div class="modal-content">
+                                                                            <div class="modal-header">
 
-                                                                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                                            </div>
+                                                                            <div class="modal-body">
+
+
+                                                                                <div class="col-md-4" style="float: left;">
+                                                                                    <table class="table table-borderless ">
+                                                                                        <tbody>
+                                                                                            <h5 class="card-title">Personal Details</h5>
+                                                                                            <tr>
+                                                                                                <th scope="col">Name</th>
+
+                                                                                                <td>: {{customerDetailbyid.personalDetails.name}}</td>
+                                                                                            </tr>
+                                                                                            <tr>
+                                                                                                <th scope="col">Father Name</th>
+                                                                                                <td>{{customerDetailbyid.personalDetails.father}}</td>
+                                                                                            </tr>
+                                                                                            <tr>
+                                                                                                <th scope="col">Spouse Name</th>
+                                                                                                <td>{{customerDetailbyid.personalDetails.spouse_name}}</td>
+                                                                                            </tr>
+                                                                                            <tr>
+                                                                                                <th scope="col">DOB</th>
+                                                                                                <td>{{customerDetailbyid.personalDetails.dob}}</td>
+                                                                                            </tr>
+                                                                                            <tr>
+                                                                                                <th scope="col">Mobile number</th>
+                                                                                                <td>{{customerDetailbyid.personalDetails.phoneNumber}}</td>
+                                                                                            </tr>
+                                                                                            <tr>
+                                                                                                <th scope="col">Alter Mobile number</th>
+                                                                                                <td>{{customerDetailbyid.personalDetails.altrPhoneNumber}}</td>
+                                                                                            </tr>
+                                                                                            <tr>
+                                                                                                <th scope="col">Email ID</th>
+                                                                                                <td>{{customerDetailbyid.personalDetails.email}}</td><br></tr>
+                                                                                            <tr>
+                                                                                                <th scope="col">Aadhar No.</th>
+                                                                                                <td>{{customerDetailbyid.personalDetails.aadhar_no}}</td>
+                                                                                            </tr>
+                                                                                            <tr>
+                                                                                                <th scope="col">Pan No.</th>
+                                                                                                <td>{{customerDetailbyid.personalDetails.pan}}</td><br></tr>
+                                                                                            <tr>
+                                                                                                <th scope="col">Gender</th>
+                                                                                                <td>{{customerDetailbyid.personalDetails.gender}}</td>
+                                                                                            </tr>
+                                                                                            <tr>
+                                                                                                <th scope="col">Occupation</th>
+                                                                                                <td>{{customerDetailbyid.personalDetails.occupation}}</td>
+                                                                                            </tr>
+                                                                                            <tr>
+                                                                                                <th scope="col">Monthly Income</th>
+                                                                                                <td>{{customerDetailbyid.personalDetails.monthly_income}}</td>
+                                                                                            </tr>
+                                                                                            <tr>
+                                                                                                <th scope="col">Marrital Status</th>
+                                                                                                <td>{{customerDetailbyid.personalDetails.marrital_status}}</td><br></tr>
+                                                                                            <tr>
+                                                                                                <th scope="col">Address</th>
+                                                                                                <td>{{customerDetailbyid.personalDetails.address}}</td>
+                                                                                            </tr>
+                                                                                            <tr>
+                                                                                                <th scope="col">City</th>
+                                                                                                <td>{{customerDetailbyid.personalDetails.city}}</td>
+                                                                                            </tr>
+                                                                                            <tr>
+                                                                                                <th scope="col">State</th>
+                                                                                                <td>{{customerDetailbyid.personalDetails.state}}</td>
+                                                                                            </tr>
+                                                                                            <tr>
+                                                                                                <th scope="col">Pincode</th>
+                                                                                                <td>{{customerDetailbyid.personalDetails.pincode}}</td>
+                                                                                            </tr>
+                                                                                            <tr>
+                                                                                                <th scope="col">Landmark</th>
+                                                                                                <td>{{customerDetailbyid.personalDetails.landmark}}</td>
+                                                                                            </tr>
+                                                                                        </tbody>
+                                                                                    </table>
                                                                                 </div>
-                                                                                <div class="modal-body">
+                                                                                <div class="col-md-4" style="float: left;">
+                                                                                    <table class="table table-borderless ">
 
+                                                                                        <tbody>
 
-                                                                                    <div class="col-md-4" style="float: left;">
-                                                                                        <table class="table table-borderless ">
-                                                                                            <tbody>
-                                                                                                <h5 class="card-title">Personal Details</h5>
-                                                                                                <tr>
-                                                                                                    <th scope="col">Name</th>
-
-                                                                                                    <td>: {{customerDetailbyid.personalDetails.name}}</td>
-                                                                                                </tr>
-                                                                                                <tr>
-                                                                                                    <th scope="col">Father Name</th>
-                                                                                                    <td>{{customerDetailbyid.personalDetails.father}}</td>
-                                                                                                </tr>
-                                                                                                <tr>
-                                                                                                    <th scope="col">Spouse Name</th>
-                                                                                                    <td>{{customerDetailbyid.personalDetails.spouse_name}}</td>
-                                                                                                </tr>
-                                                                                                <tr>
-                                                                                                    <th scope="col">DOB</th>
-                                                                                                    <td>{{customerDetailbyid.personalDetails.dob}}</td>
-                                                                                                </tr>
-                                                                                                <tr>
-                                                                                                    <th scope="col">Mobile number</th>
-                                                                                                    <td>{{customerDetailbyid.personalDetails.phoneNumber}}</td>
-                                                                                                </tr>
-                                                                                                <tr>
-                                                                                                    <th scope="col">Alter Mobile number</th>
-                                                                                                    <td>{{customerDetailbyid.personalDetails.altrPhoneNumber}}</td>
-                                                                                                </tr>
-                                                                                                <tr>
-                                                                                                    <th scope="col">Email ID</th>
-                                                                                                    <td>{{customerDetailbyid.personalDetails.email}}</td><br></tr>
-                                                                                                <tr>
-                                                                                                    <th scope="col">Aadhar No.</th>
-                                                                                                    <td>{{customerDetailbyid.personalDetails.aadhar_no}}</td>
-                                                                                                </tr>
-                                                                                                <tr>
-                                                                                                    <th scope="col">Pan No.</th>
-                                                                                                    <td>{{customerDetailbyid.personalDetails.pan}}</td><br></tr>
-                                                                                                <tr>
-                                                                                                    <th scope="col">Gender</th>
-                                                                                                    <td>{{customerDetailbyid.personalDetails.gender}}</td>
-                                                                                                </tr>
-                                                                                                <tr>
-                                                                                                    <th scope="col">Occupation</th>
-                                                                                                    <td>{{customerDetailbyid.personalDetails.occupation}}</td>
-                                                                                                </tr>
-                                                                                                <tr>
-                                                                                                    <th scope="col">Monthly Income</th>
-                                                                                                    <td>{{customerDetailbyid.personalDetails.monthly_income}}</td>
-                                                                                                </tr>
-                                                                                                <tr>
-                                                                                                    <th scope="col">Marrital Status</th>
-                                                                                                    <td>{{customerDetailbyid.personalDetails.marrital_status}}</td><br></tr>
-                                                                                                <tr>
-                                                                                                    <th scope="col">Address</th>
-                                                                                                    <td>{{customerDetailbyid.personalDetails.address}}</td>
-                                                                                                </tr>
-                                                                                                <tr>
-                                                                                                    <th scope="col">City</th>
-                                                                                                    <td>{{customerDetailbyid.personalDetails.city}}</td>
-                                                                                                </tr>
-                                                                                                <tr>
-                                                                                                    <th scope="col">State</th>
-                                                                                                    <td>{{customerDetailbyid.personalDetails.state}}</td>
-                                                                                                </tr>
-                                                                                                <tr>
-                                                                                                    <th scope="col">Pincode</th>
-                                                                                                    <td>{{customerDetailbyid.personalDetails.pincode}}</td>
-                                                                                                </tr>
-                                                                                                <tr>
-                                                                                                    <th scope="col">Landmark</th>
-                                                                                                    <td>{{customerDetailbyid.personalDetails.landmark}}</td>
-                                                                                                </tr>
-                                                                                            </tbody>
-                                                                                        </table>
-                                                                                    </div>
-                                                                                    <div class="col-md-4" style="float: left;">
-                                                                                        <table class="table table-borderless ">
-
-                                                                                            <tbody>
-
-                                                                                                <h5 class="card-title">Office Details</h5>
-                                                                                                <!-- <tr>
+                                                                                            <h5 class="card-title">Office Details</h5>
+                                                                                            <!-- <tr>
                                                                                                     <th scope="col">Customer ID</th>
                                                                                                     <td>{{customerDetailbyid.customerId}}</td>
                                                                                                 </tr> -->
 
-                                                                                                <tr>
-                                                                                                    <th scope="col">Branch Name</th>
-                                                                                                    <td>{{customerDetailbyid.branch_name}}</td>
-                                                                                                </tr>
+                                                                                            <tr>
+                                                                                                <th scope="col">Branch Name</th>
+                                                                                                <td>{{customerDetailbyid.branchName}}</td>
+                                                                                            </tr>
 
-                                                                                                <tr>
-                                                                                                    <th scope="col">Joining date</th>
-                                                                                                    <td>{{customerDetailbyid.joining_date}}</td><br></tr>
-                                                                                                <tr>
-                                                                                                    <th scope="col">Refered Type</th>
-                                                                                                    <td>{{customerDetailbyid.refered_type}}</td>
-                                                                                                </tr>
-                                                                                                <tr>
-                                                                                                    <th scope="col">Refered By</th>
-                                                                                                    <td>{{customerDetailbyid.refered_by}}</td><br></tr>
-                                                                                            </tbody>
-                                                                                        </table>
-                                                                                    </div>
-                                                                                    <div class="col-md-4" style="float: left;">
-                                                                                        <table class="table table-borderless ">
-                                                                                            <tbody>
-                                                                                                <h5 class="card-title">Nominee Details</h5>
-                                                                                                <tr>
-                                                                                                    <th scope="col">Name</th>
-                                                                                                    <td>{{customerDetailbyid.customerNomineeDetails.name}}</td><br></tr>
-                                                                                                <tr>
-                                                                                                    <th scope="col">Relationship</th>
-                                                                                                    <td>{{customerDetailbyid.customerNomineeDetails.relationship}}</td>
-                                                                                                </tr>
-                                                                                                <!-- <tr>
+                                                                                            <tr>
+                                                                                                <th scope="col">Joining date</th>
+                                                                                                <td>{{customerDetailbyid.joiningDate}}</td><br></tr>
+                                                                                            <tr>
+                                                                                                <th scope="col">Refered Type</th>
+                                                                                                <td>{{customerDetailbyid.referedType}}</td>
+                                                                                            </tr>
+                                                                                            <tr>
+                                                                                                <th scope="col">Refered By</th>
+                                                                                                <td>{{customerDetailbyid.referedBy}}</td><br></tr>
+                                                                                        </tbody>
+                                                                                    </table>
+                                                                                </div>
+                                                                                <div class="col-md-4" style="float: left;">
+                                                                                    <table class="table table-borderless ">
+                                                                                        <tbody>
+                                                                                            <h5 class="card-title">Nominee Details</h5>
+                                                                                            <tr>
+                                                                                                <th scope="col">Name</th>
+                                                                                                <td>{{customerDetailbyid.customerNomineeDetails.name}}</td><br></tr>
+                                                                                            <tr>
+                                                                                                <th scope="col">Relationship</th>
+                                                                                                <td>{{customerDetailbyid.customerNomineeDetails.relationship}}</td>
+                                                                                            </tr>
+                                                                                            <!-- <tr>
                                                                                                     <th scope="col">Address</th>
                                                                                                     <td>{{customerDetailbyid.customerNomineeDetails.nominee_address}}</td>
                                                                                                 </tr>
@@ -335,87 +335,87 @@
                                                                                                     <th scope="col">DOB</th>
                                                                                                     <td>{{customerDetailbyid.customerNomineeDetails.dob}}</td>
                                                                                                 </tr> -->
-                                                                                                <tr>
-                                                                                                    <th scope="col">Aadhar NO.</th>
-                                                                                                    <td>{{customerDetailbyid.customerNomineeDetails.adharNumber}}</td>
-                                                                                                </tr>
-                                                                                            </tbody>
-                                                                                        </table>
-                                                                                    </div>
-                                                                                    <div class="col-md-4" style="float: left;">
-                                                                                        <table class="table table-borderless ">
-                                                                                            <tbody>
-                                                                                                <h5 class="card-title">Chit Details</h5>
-                                                                                                <tr>
-                                                                                                    <th scope="col">Scheme</th>
+                                                                                            <tr>
+                                                                                                <th scope="col">Aadhar NO.</th>
+                                                                                                <td>{{customerDetailbyid.customerNomineeDetails.adharNumber}}</td>
+                                                                                            </tr>
+                                                                                        </tbody>
+                                                                                    </table>
+                                                                                </div>
+                                                                                <div class="col-md-4" style="float: left;">
+                                                                                    <table class="table table-borderless ">
+                                                                                        <tbody>
+                                                                                            <h5 class="card-title">Chit Details</h5>
+                                                                                            <tr>
+                                                                                                <th scope="col">Scheme</th>
 
-                                                                                                    <td>{{customerDetailbyid.customerChitDetails[0].scheme}}</td>
-                                                                                                </tr>
-                                                                                                <tr>
-                                                                                                    <th scope="col">Subscription</th>
-                                                                                                    <td>{{customerDetailbyid.customerChitDetails[0].subscription}}</td>
-                                                                                                </tr>
-                                                                                                <tr>
-                                                                                                    <th scope="col">Collection Route</th>
-                                                                                                    <td>{{customerDetailbyid.customerChitDetails[0].collection_route}}</td>
-                                                                                                </tr>
-                                                                                                <!-- <tr>
+                                                                                                <td>{{customerDetailbyid.customerChitDetails[0].scheme}}</td>
+                                                                                            </tr>
+                                                                                            <tr>
+                                                                                                <th scope="col">Subscription</th>
+                                                                                                <td>{{customerDetailbyid.customerChitDetails[0].subscription}}</td>
+                                                                                            </tr>
+                                                                                            <tr>
+                                                                                                <th scope="col">Collection Route</th>
+                                                                                                <td>{{customerDetailbyid.customerChitDetails[0].collection_route}}</td>
+                                                                                            </tr>
+                                                                                            <!-- <tr>
                                                                                                     <th scope="col">Collection Pincode</th>
                                                                                                     <td>{{customerDetailbyid.customerChitDetails[0].collection_pincode}}</td>
                                                                                                 </tr> -->
-                                                                                                <tr>
-                                                                                                    <th scope="col">chit Asking Month</th>
-                                                                                                    <td>{{customerDetailbyid.customerChitDetails[0].chit_asking_month}}</td>
-                                                                                                </tr>
-                                                                                                <tr>
-                                                                                                    <th scope="col">Remarks</th>
-                                                                                                    <td>{{customerDetailbyid.customerChitDetails[0].remarks}}</td>
-                                                                                                </tr>
-                                                                                            </tbody>
+                                                                                            <tr>
+                                                                                                <th scope="col">chit Asking Month</th>
+                                                                                                <td>{{customerDetailbyid.customerChitDetails[0].chit_asking_month}}</td>
+                                                                                            </tr>
+                                                                                            <tr>
+                                                                                                <th scope="col">Remarks</th>
+                                                                                                <td>{{customerDetailbyid.customerChitDetails[0].remarks}}</td>
+                                                                                            </tr>
+                                                                                        </tbody>
 
 
-                                                                                        </table>
-
-                                                                                    </div>
-
-                                                                                    <div class="modal-footer ">
-                                                                                        <!-- <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close
-                                                                                          </button> -->
-
-                                                                                        <button (click)="yophoto.click()"><a href="{{this.PhotoUrl}}" download #yophoto></a> Photo </button>
-
-                                                                                        <button (click)="yoaadhar.click()"> <a href="{{this.AdharUrl}}" download #yoaadhar></a>Aadhar </button>
-
-                                                                                        <button (click)="yopan.click()"><a href="{{this.PanUrl}}" download #yopan></a> Pan </button>
-
-                                                                                        <button (click)="yoappfrm.click()"> <a href="{{this.ApplicationUrl}}" download #yoappfrm></a>Application Form </button>
-                                                                                    </div>
-
-
-
-
-
-
-
+                                                                                    </table>
 
                                                                                 </div>
 
+                                                                                <div class="modal-footer ">
+                                                                                    <!-- <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close
+                                                                                          </button> -->
+
+                                                                                    <button (click)="yophoto.click()"><a href="{{this.PhotoUrl}}" download #yophoto></a> Photo </button>
+
+                                                                                    <button (click)="yoaadhar.click()"> <a href="{{this.AdharUrl}}" download #yoaadhar></a>Aadhar </button>
+
+                                                                                    <button (click)="yopan.click()"><a href="{{this.PanUrl}}" download #yopan></a> Pan </button>
+
+                                                                                    <button (click)="yoappfrm.click()"> <a href="{{this.ApplicationUrl}}" download #yoappfrm></a>Application Form </button>
+                                                                                </div>
+
+
+
+
+
+
+
+
                                                                             </div>
+
                                                                         </div>
                                                                     </div>
-
-
-
                                                                 </div>
-                                                            </td>
-                                                        </tr>
 
-                                                    </tbody>
-                                                </table>
-                                            </div>
+
+
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+
+                                                </tbody>
+                                            </table>
                                         </div>
                                     </div>
                                 </div>
+                            </div>
                             <!-- </section> -->
                         </div>
 
@@ -433,25 +433,25 @@
                                             <form class="row g-3" #customerForm="ngForm" (ngSubmit)="getCustomerFormData()">
                                                 <!-- <form class="row g-3"> -->
                                                 <div class="col-md-6"> <label for="inputName5" class="required"> Branch Name</label>
-                                                    <select name="branch_name" [(ngModel)]="customer.branch_name" class="form-control" #name="ngModel">
+                                                    <select name="branchName" [(ngModel)]="customer.branchName" class="form-control" #name="ngModel">
                                              <option value="" disable selected hidden>---Select----</option>
                                              <option *ngFor="let branchData of ListOfBranchData" [value]="branchData.officeName">
                                                 {{branchData.officeName}}
                                           </option>
                                           </select>
                                                 </div>
-                                                <div class="col-md-6"> <label for="inputName5" class="required"> Joining Date</label> <input matInput type="date" class="form-control" name="joining_date" [(ngModel)]="customer.joining_date" #name="ngModel" id="inputName5" required></div>
+                                                <div class="col-md-6"> <label for="inputName5" class="required"> Joining Date</label> <input matInput type="date" class="form-control" name="joiningDate" [(ngModel)]="customer.joiningDate" #name="ngModel" id="inputName5" required></div>
                                                 <!-- <div class="col-md-6"> <label for="inputName5" class="form-label"> Guarantor</label> <input type="text" name="Guarantor" [(ngModel)]="customer.guarantor" #name="ngModel" class="form-control" id="inputName5"></div> -->
-                                                <!-- <div class="col-md-6"> <label for="inputName5" class="form-label"> Referred Type</label> <input name="referredtype" [(ngModel)]="customer.refered_type" #name="ngModel" type="text" class="form-control" id="inputName5"></div> -->
+                                                <!-- <div class="col-md-6"> <label for="inputName5" class="form-label"> Referred Type</label> <input name="referredtype" [(ngModel)]="customer.referedType" #name="ngModel" type="text" class="form-control" id="inputName5"></div> -->
                                                 <div class="col-md-6"> <label for="inputName5" class="required"> Referred Type</label>
-                                                    <select name="referredtype" [(ngModel)]="customer.refered_type" class="form-control" #name="ngModel">
+                                                    <select name="referredtype" [(ngModel)]="customer.referedType" class="form-control" #name="ngModel">
                                              <option value="" disable selected hidden>---Select----</option>
                                              <option value="Employee" >Employee</option>
                                              <option value="Customer">Customer</option>
                                              <option value="Others">Others</option>
                                           </select>
                                                 </div>
-                                                <div class="col-md-6"> <label for="inputName5" class="required"> Referred By</label> <input name="regerredby" [(ngModel)]="customer.refered_by" #name="ngModel" type="text" class="form-control" id="inputName5">
+                                                <div class="col-md-6"> <label for="inputName5" class="required"> Referred By</label> <input name="regerredby" [(ngModel)]="customer.referedBy" #name="ngModel" type="text" class="form-control" id="inputName5">
 
                                                 </div>
                                                 <h5 class="card-title">Personal Details</h5>

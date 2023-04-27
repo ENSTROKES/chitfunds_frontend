@@ -3,6 +3,9 @@ import { Group } from '../model/groupbyid.model';
 import { HttpClient } from '@angular/common/http';
 import { UserDataService } from '../users-data.service';
 import { Router } from '@angular/router';
+import { Customer } from '../model/customer.model';
+import { ActivatedRoute } from '@angular/router';
+import { GroupMap } from '../model/groupmapping.model';
 
 @Component({
   selector: 'app-addmember',
@@ -14,12 +17,24 @@ export class AddmemberComponent implements OnInit {
   searchText: any;
   grpres:any;
   ListOfGroupData:any;
+  isDisplayed:any;
+  grpmapreslt:any;
+  vaccent:any;
+  cusmapcheck:any;
+  groupmrm :GroupMap={
+    groupId: '',
+    customerId:[]
+  };
+  custmapresponse:any;
+  ListOfCustMapData:any;
+  value:any;
   GroupDetailsbyId: Group={
     id: ' ' ,
     branchName: ' ' ,
     groupType: ' ' ,
     groupName: ' ',
     schemeId:' ',
+    schemeName:'',
     lauctionDate: ' ',
     auctionFromDate: ' ' ,
     auctioToDate: ' ' ,
@@ -33,10 +48,59 @@ export class AddmemberComponent implements OnInit {
     fdbank: ' ' ,
     fdbranch: ' ' ,
     psonumber: ' ' ,
-    psodate: ' ' 
+    psodate: ' ' ,
+    vacantCount:'',
     }
 
-  constructor(private http: HttpClient, private userData:UserDataService ,private router:Router) { 
+    GetCustomerForMap : Customer = {
+      // customerId:'',
+      branchName:'',
+      joiningDate:'',
+      customerId:0,
+      referedType:'',
+      referedBy:'',
+      personalDetails:{
+        customerPersonalId:0,
+                       name:'',
+                       father:'',
+                       spouse_name:'',
+                       dob:'',
+                       aadhar_no:'',
+                       pan:'',
+                       gender:'',
+                       occupation:'',
+                       monthly_income:'',
+                       marrital_status:'',
+                       address:'',
+                       pincode:'',
+                       state:'',
+                       city:'',
+                       landmark:'',
+                       phoneNumber:'',
+                       altrPhoneNumber:'',
+                       email:''
+                                      },                                
+      customerNomineeDetails:{    nomineeId:0,                              
+                              name:'',
+                              
+                              relationship:'',
+                              
+                              adharNumber:'',
+                              createdDate: 0 
+                              },
+                              customerChitDetails:[{scheme  :  ' ',
+   subscription  :  ' ',
+   collection_route  :  ' ',
+  
+  chit_asking_month  :  ' ',
+  remarks  :  ' ',
+  createdDate: 0 ,
+  chitId:0,
+}]
+      }
+
+
+  constructor(private http: HttpClient, private userData:UserDataService ,private router:Router,private route: ActivatedRoute) { 
     this.userData.group().subscribe((data) =>{
       this.grpres=data;
     Object.keys(this.grpres).forEach(prop => {
@@ -46,6 +110,20 @@ export class AddmemberComponent implements OnInit {
     });
     
     })
+
+
+    // get all customer for mapping method
+this.http.get(this.userData.cuslistmappedgrop).subscribe((data) =>{
+  this.custmapresponse=data;
+  console.log("AllData" +JSON.stringify(data));
+  
+Object.keys(this.custmapresponse).forEach(prop => {
+if(prop=="object"){
+  this.ListOfCustMapData = this.custmapresponse[prop];
+}
+});
+
+})
     
   }
   getGroupbyId(data:any): void{
@@ -66,8 +144,81 @@ export class AddmemberComponent implements OnInit {
     
     })
        }
-       
+
+///Method to get cutomer id from checkbox
+       GroupMappingCustomer(event:any,data:any){
+        this.route.queryParams.subscribe(params => {
+          this.vaccent = +params['vaccent'];
+        });
+        console.log(this.vaccent);
+  
+        if(event.target.checked==true){
+          this.isDisplayed = true;
+          console.log("array_size"+Object.keys(this.groupmrm.customerId).length);
+           if(Object.keys(this.groupmrm.customerId).length <  this.vaccent)
+           {
+            this.groupmrm.customerId.push(data);
+            console.log( this.groupmrm);
+            console.log( this.isDisplayed);
+           }
+           else(window.confirm('There is No Vaccent to add the Customer'))
+           {
+            
+           }
+           
+        }
+        else{
+          this.isDisplayed = false;
+          this.groupmrm.customerId = this.groupmrm.customerId.filter(num => num !== data);
+          console.log( this.groupmrm.customerId);
+          console.log( this.isDisplayed);
+        }}
+
+      //  Test(){
+      //   this.route.queryParams.subscribe(params => {
+      //     this.value = params['value'];
+      //   });
+      //   console.log(this.value);
+      //   console.log( this.groupmrm.customerId);
+      //  }
+
+       getgroupFormData(): void{
+
+        this.route.queryParams.subscribe(params => {
+          this.groupmrm.groupId = params['value'];
+        });
+        console.log(this.groupmrm.groupId)
+          //console.log("AllData" +JSON.stringify(data)); 
+         
+          this.http.post(this.userData.groupmapcus, this.groupmrm).subscribe((result)=>{
+           this.grpmapreslt = result;
+            
+           Object.keys(this.grpmapreslt).forEach(prop => {
+              console.log("data : " +prop);
+                console.log("value : "+this.grpmapreslt[prop]);
+                 if(prop=="responseCode"){
+                // this.ListOfEmpData = this.reslt[prop];
+                  if(this.grpmapreslt[prop]=="200"){
+                    if(window.confirm('Customer mapped successfully')){
+                      location.reload();
+                    }else(window.confirm('Error mapping customer'))
+                    {
+                      location.reload();
+                    }
+                  }
+                  }
+              });
+            })
+           }
+
+
+
+       goToPage(pageName:string):void{
+        this.router.navigate([`${pageName}`]);
+      } 
   ngOnInit(): void {
   }
+
+  
 
 }

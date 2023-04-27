@@ -26,7 +26,7 @@ interface USERS {
 })
 export class CustomermanagementComponent implements OnInit {
   customerForm = new FormGroup({
-    refered_by: new FormControl('',[Validators.required])
+    referedBy: new FormControl('',[Validators.required])
   })
      
     
@@ -64,11 +64,11 @@ custreditresp:any;
 customerresult: any;
 customer : Customer = {
   
-  branch_name:'',
-  joining_date:'',
+  branchName:'',
+  joiningDate:'',
   customerId:0,
-  refered_type:'',
-  refered_by:'',
+  referedType:'',
+  referedBy:'',
   personalDetails:{customerPersonalId:0,
                    name:'',
                    father:'',
@@ -112,11 +112,11 @@ customer : Customer = {
   idoutput:any;
   customerDetailbyid : Customer = {
     // customerId:'',
-    branch_name:'',
-    joining_date:'',
+    branchName:'',
+    joiningDate:'',
     customerId:0,
-    refered_type:'',
-    refered_by:'',
+    referedType:'',
+    referedBy:'',
     personalDetails:{customerPersonalId:0,
                      name:'',
                      father:'',
@@ -159,11 +159,11 @@ customer : Customer = {
     customerdelete:any;
     customerDeletebyid : Customer = {
       // customerId:'',
-      branch_name:'',
-      joining_date:'',
+      branchName:'',
+      joiningDate:'',
       customerId:0,
-      refered_type:'',
-      refered_by:'',
+      referedType:'',
+      referedBy:'',
       personalDetails:{
         customerPersonalId:0,
                        name:'',
@@ -292,7 +292,7 @@ Document : docbyid[] = [{
 
 // myForm() {
 //   this.customerForm = this.fb.group({
-//     refered_by: ['', Validators.required ]
+//     referedBy: ['', Validators.required ]
 //   });
 // }
 getUserFormData(data:any){

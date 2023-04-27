@@ -3,11 +3,11 @@ import { customerNomineeDetails } from  './cusNomineeDetails.model' ;
 import { customerChitDetails } from './customerchitdetails.model';
 export class Customer {
         customerId:any;
-        branch_name:string;
-        joining_date:string;
+        branchName:string;
+        joiningDate:string;
         
-        refered_type:string;
-        refered_by:string;
+        referedType:string;
+        referedBy:string;
         personalDetails: PersonalDetails;
         customerNomineeDetails:customerNomineeDetails;
         customerChitDetails:customerChitDetails[];

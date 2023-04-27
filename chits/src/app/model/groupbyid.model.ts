@@ -4,6 +4,7 @@ export class Group {
   groupType: string; 
   groupName: string;
   schemeId: string;
+  schemeName:string;
   lauctionDate: string;
   auctionFromDate: string; 
   auctioToDate: string; 
@@ -18,4 +19,5 @@ export class Group {
   fdbranch: string; 
   psonumber: string; 
   psodate: string; 
+  vacantCount:string;
 }

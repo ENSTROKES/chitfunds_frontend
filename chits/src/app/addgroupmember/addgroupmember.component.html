@@ -1,18 +1,18 @@
 <main id="main" class="main">
     <div class="pagetitle">
-       <h1>Add Group Member</h1>
-       <nav>
-          <ol class="breadcrumb">
-             <li class="breadcrumb-item"><a routerLink="/">Home</a></li>
-             <li class="breadcrumb-item"> Group</li>
-             <li class="breadcrumb-item active">Add Group Member</li>
-          </ol>
-       </nav>
+        <h1>Add Group Member</h1>
+        <nav>
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a routerLink="/">Home</a></li>
+                <li class="breadcrumb-item"> Group</li>
+                <li class="breadcrumb-item active">Add Group Member</li>
+            </ol>
+        </nav>
     </div>
     <section class="section">
         <div class="row">
-           <div class="col-lg-12">
-              <!-- <div class="card">
+            <div class="col-lg-12">
+                <!-- <div class="card">
                  <div class="card-body">
                     <h5 class="card-title"> Group Details</h5>
                     
@@ -50,40 +50,42 @@
                  </div>
               </div> -->
 
-              <div class="card">
-               <div class="card-body">
-                  <h5 class="card-title">Group Members</h5>
-                  <table class="table table-striped">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Group Members</h5>
+                        <table class="table table-striped">
 
-                   <thead>
-                       <tr>
-                           <th>S.No</th>
-                           <th>Group</th>
-                           <th>Scheme</th>
-                           <th>Vacant Count</th>
-                           <th>Actions</th>
-                       </tr>
-                   </thead>
-                   <tbody>
-                       <tr >
-                           <!-- <td>{{ group.groupName}}</td>
-                           <td>{{ group.groupType}}</td>
-                           <td>{{ group.branchName }}</td>
-                           <td>{{ group.schemeId }}</td> -->
-                           <td><button class="btn btn-primary" (click)="goToPage('addmember')"> Add Member </button></td>
-                           
-                       </tr>
-                   </tbody>
-                </table>
-                  
-                  
-               </div>
+                            <thead>
+                                <tr>
+                                    <th>S.No</th>
+                                    <th>Group</th>
+                                    <th>Scheme</th>
+                                    <th>Vacant Count</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let group of ListOfGroupData;let i = index">
+                                    <td>{{i+1}}</td>
+                                    <td>{{ group.groupName}}</td>
+                                    <td>{{ group.schemeName }}</td>
+                                    <td>{{ group.vacantCount }}</td>
+
+
+                                    <td><button class="btn btn-primary" (click)="goToPage('addmember',group.id,group.vacantCount)"> Add Member </button></td>
+
+                                </tr>
+                            </tbody>
+                        </table>
+
+
+                    </div>
+                </div>
             </div>
-           </div>
         </div>
-     </section>
-       
-       
-                
+    </section>
+
+
+
 
 </main>

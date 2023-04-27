@@ -3,6 +3,8 @@ import { Component, OnInit } from '@angular/core';
 import { UserDataService } from '../users-data.service';
 import { Group } from '../model/groupbyid.model';
 import { Router } from '@angular/router';
+import { Customer } from '../model/customer.model';
+
 @Component({
   selector: 'app-addgroupmember',
   templateUrl: './addgroupmember.component.html',
@@ -13,12 +15,15 @@ export class AddgroupmemberComponent implements OnInit {
   ListOfGroupData:any;
   grpres:any;
   grpidoutput:any;
+
+
   GroupDetailsbyId: Group={
     id: ' ' ,
     branchName: ' ' ,
     groupType: ' ' ,
     groupName: ' ',
     schemeId:' ',
+    schemeName:'',
     lauctionDate: ' ',
     auctionFromDate: ' ' ,
     auctioToDate: ' ' ,
@@ -32,8 +37,12 @@ export class AddgroupmemberComponent implements OnInit {
     fdbank: ' ' ,
     fdbranch: ' ' ,
     psonumber: ' ' ,
-    psodate: ' ' 
+    psodate: ' ' ,
+    vacantCount:''
     }
+
+
+   
 
   constructor(private http: HttpClient, private userData:UserDataService,private router:Router) {
     this.userData.group().subscribe((data) =>{
@@ -46,7 +55,20 @@ export class AddgroupmemberComponent implements OnInit {
     
     })
 
+
+
+
+
+
+
    }
+
+
+
+
+
+
+
 // Get Group by ID
 
 getGroupbyId(data:any): void{
@@ -67,8 +89,8 @@ getGroupbyId(data:any): void{
   
   })
      }
-     goToPage(pageName:string):void{
-      this.router.navigate([`${pageName}`]);
+     goToPage(pageName:string,value:any,vaccent:any):void{
+      this.router.navigate([`${pageName}`],{ queryParams: { value , vaccent}  });
     } 
   ngOnInit(): void {
   }

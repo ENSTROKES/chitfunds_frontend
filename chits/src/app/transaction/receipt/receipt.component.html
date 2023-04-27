@@ -32,7 +32,7 @@
                                                 <select ngModel name="branchName" class="form-control">
                             <option value="" disable selected hidden>---Select----</option>
                             <option *ngFor="let branchData of ListOfBranchData"   [ngValue]="{groupId:  branchData.branchId, branchName: branchData.officeName}">
-                              {{ branchData.branchId}} {{ branchData.officeName}}
+                              {{ branchData.officeName}}
                          </option>
                          </select>
                                             </div>
@@ -44,7 +44,7 @@
                         </option>
                      </select>
                                             </div>
-                                            <div class="col-md-6"> <label for="inputName5" class="form-label">Receipt ID</label> <input type="text" class="form-control" ngModel name="receiptDate" id="inputName5"></div>
+                                            <div class="col-md-6"> <label for="inputName5" class="form-label">Receipt ID</label> <input type="text" class="form-control" ngModel name="receiptId" id="inputName5"></div>
                                             <div class="col-md-6"> <label for="inputName5" class="form-label">Receipt Date</label> <input type="date" class="form-control" ngModel name="receiptDate" id="inputName5"></div>
                                             <div class="col-md-6"> <label for="inputName5" class="form-label">  Collection Employee</label>
                                                 <select ngModel name="collectionEmployee" class="form-control">
@@ -113,7 +113,7 @@
                             </thead>
                             <tbody>
                                 <tr *ngFor="let receipt of ListOfReceiptData|filter:searchText">
-                                    <td>{{ receipt.reportId }}</td>
+                                    <td>{{ receipt.receiptId }}</td>
                                     <td>{{ receipt.branchName }}</td>
                                     <td>{{ receipt.receiptDate }}</td>
                                     <td>{{ receipt.customerName }}</td>

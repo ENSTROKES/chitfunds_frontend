@@ -3,6 +3,8 @@ import { HttpClient } from '@angular/common/http';
 import {UserDataService} from 'src/app/users-data.service';
 import { Group } from '../model/groupbyid.model';
 import { Router } from '@angular/router';
+import { GroupMapCusList } from '../model/groupmapcustlist.model';
+
 @Component({
   selector: 'app-groups',
   templateUrl: './groups.component.html',
@@ -12,6 +14,8 @@ export class GroupsComponent implements OnInit {
   isDisplayed: boolean | undefined;
   searchText: any;
   users:any;
+  slaboutpt:any;
+  listofslabdata:any;
   //branch
   response:any;
   ListOfBranchData:any;
@@ -26,12 +30,17 @@ export class GroupsComponent implements OnInit {
   grpidoutput:any;
   //grp delete
   groupdelete:any;
+  grpmapidoutput:any;
+  stringformid:any;
+  stringformvalue:any
+
   GroupDeletebyId: Group={
     id: ' ' ,
     branchName: ' ' ,
     groupType: ' ' ,
     groupName: ' ',
     schemeId:' ',
+    schemeName:'',
     lauctionDate: ' ',
     auctionFromDate: ' ' ,
     auctioToDate: ' ' ,
@@ -45,6 +54,7 @@ export class GroupsComponent implements OnInit {
     fdbank: ' ' ,
     fdbranch: ' ' ,
     psonumber: ' ' ,
+    vacantCount:'',
     psodate: ' ' 
     }
 
@@ -56,6 +66,7 @@ export class GroupsComponent implements OnInit {
   groupType: ' ' ,
   groupName: ' ',
   schemeId:' ',
+  schemeName:'',
   lauctionDate: ' ',
   auctionFromDate: ' ' ,
   auctioToDate: ' ' ,
@@ -69,8 +80,29 @@ export class GroupsComponent implements OnInit {
   fdbank: ' ' ,
   fdbranch: ' ' ,
   psonumber: ' ' ,
+  vacantCount:'',
   psodate: ' ' 
   }
+
+//groupmap cu details by id
+GroupMappdetails: GroupMapCusList ={
+  mappingId :  ' ' ,
+             groupId :  ' ' ,
+             groupName :  ' ' ,
+             customerName :   ' ' ,
+             customerId :  ' ' ,
+             contactNumber :   ' ' ,
+             modeOfSubscription :   ' ' ,
+             prizedStatus :  ' ' ,
+             collection_route :    ' ' ,
+             collection_pincode :  ' ' ,
+             receivedAmount :  ' ' ,
+             outStandingAmount :  ' ' ,
+             created_date :  ' ' ,
+             updatedDate :  ' ' ,
+             joiningDate :  ' ' ,
+             lastPayedDate :  ' ' ,
+}
 
 
   //spinner
@@ -93,6 +125,19 @@ export class GroupsComponent implements OnInit {
     });
     
     })
+
+
+ // get all slab method
+ this.http.get(this.userData.getslab).subscribe((data) =>{
+  this.slaboutpt=data;
+Object.keys(this.slaboutpt).forEach(prop => {
+if(prop=="object"){
+  this.listofslabdata = this.slaboutpt[prop];
+  //console.log("GetData" +this.userData.branchbyidurl);
+}
+});
+
+})
 
 
     //get all branch
@@ -136,11 +181,20 @@ click() {
 getgroupFormData(data:any): void{
   //  console.log("GetData" +data.officeName);
     console.log("AllData" +JSON.stringify(data)); 
+    console.log("slab id and name"+ data.schemeId.slabid+"  "+data.schemeId.slabname)
     //console.log("GetData" +this.userData.headOffice);
    //console.log(new Date("2015/04/29 11:24:00").getTime()
+   this.stringformid=data.schemeId.slabid.toString();
+   this.stringformvalue=data.schemeId.slabname.toString() +"-"+ data.schemeId.slabinst.toString();
+   console.log(this.stringformid);
+   console.log(this.stringformvalue);
+
+   data.schemeName=this.stringformvalue;
+   data.schemeId=this.stringformid;
+
     this.http.post(this.userData.creategrp, data).subscribe((result)=>{
      this.grpreslt = result;
-      
+    
      Object.keys(this.grpreslt).forEach(prop => {
         console.log("data : " +prop);
           console.log("value : "+this.grpreslt[prop]);
@@ -158,6 +212,11 @@ getgroupFormData(data:any): void{
         });
       })
      }
+
+
+
+
+     
 
      // Get Group by ID
 
@@ -179,6 +238,28 @@ getgroupFormData(data:any): void{
     
     })
        }
+
+
+/// Get group mapped customer list
+       getGroupmappedcusbyId(data:any): void{
+        // console.log("GetData" +data);
+         
+         // console.log("AllData" +JSON.stringify(data));
+            
+         //console.log(new Date("2015/04/29 11:24:00").getTime());
+         
+         this.http.get(this.userData.grouplistmapdcus+data).subscribe((data) =>{
+          this.grpmapidoutput=data;
+        Object.keys(this.grpmapidoutput).forEach(prop => {
+        if(prop=="object"){
+          this.GroupMappdetails = this.grpmapidoutput[prop];
+          //console.log("GetData" +this.userData.branchbyidurl);
+        }
+        });
+        
+        })
+           }
+
        //grpip mapping post
        getgrpMappingFormData(data:any): void{
         //  console.log("GetData" +data.officeName);
