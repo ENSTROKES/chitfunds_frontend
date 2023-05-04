@@ -36,7 +36,7 @@
                                             <div class="col-md-6"> <label for="inputName5" class="form-label"> Branch Name</label>
                                                 <select ngModel name="branchName" class="form-control">
                             <option value="" disable selected hidden>---Select----</option>
-                            <option *ngFor="let branchData of ListOfBranchData"   [ngValue]="{groupId:  branchData.branchId, branchName: branchData.officeName}">
+                            <option *ngFor="let branchData of ListOfBranchData"   >
                               {{ branchData.officeName}}
                          </option>
                          </select>
@@ -44,7 +44,7 @@
                                             <div class="col-md-6"> <label for="inputName5" class="form-label"> Select Group</label>
                                                 <select ngModel name="selectEnrollment" class="form-control">
                         <option value="" disable selected hidden>---Select----</option>
-                        <option *ngFor="let grpData of ListOfGroupData">
+                        <option *ngFor="let grpData of ListOfGroupData" [ngValue]="{groupId:  grpData.id, groupName: grpData.groupName}">
                            {{grpData.groupName}}
                         </option>
                      </select>
@@ -54,16 +54,16 @@
                                             <div class="col-md-6"> <label for="inputName5" class="form-label">  Collection Employee</label>
                                                 <select ngModel name="collectionEmployee" class="form-control">
                          <option value="" disable selected hidden>---Select----</option>
-                         <option *ngFor="let empData of ListOfEmpData">
+                         <option *ngFor="let empData of ListOfEmpData" [ngValue]="{empId:  empData.emp_code, empName: empData.first_name}">
                            {{empData.first_name}}
                         </option>
                       </select>
                                             </div>
-                                            <div class="col-md-6"> <label for="inputName5" class="form-label">Customer ID</label> <input type="text" class="form-control" ngModel name="receiptId" id="inputName5"></div>
+                                            <!-- <div class="col-md-6"> <label for="inputName5" class="form-label">Customer ID</label> <input type="text" class="form-control" ngModel name="receiptId" id="inputName5"></div> -->
                                             <div class="col-md-6"> <label for="inputName5" class="form-label"> Customer Name</label>
                                                 <select ngModel name="customerName" class="form-control">
                          <option value="" disable selected hidden>---Select----</option>
-                         <option *ngFor="let cusData of ListOfCustomerData">
+                         <option *ngFor="let cusData of ListOfCustomerData" [ngValue]="{cusId:  cusData.customerId, cusName: cusData.personalDetails.name}">
                            {{cusData.personalDetails.name}}
                         </option>
                          

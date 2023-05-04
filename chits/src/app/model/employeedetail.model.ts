@@ -1,4 +1,5 @@
 export class EmployeeID {
+  _id:any;
   emp_code: string;
   branch_name: string; 
   salution: string; 

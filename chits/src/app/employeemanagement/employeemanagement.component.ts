@@ -50,6 +50,7 @@ button = 'Submit';
   empidoutput:any;
   EmployeeDetailsByID : EmployeeID= {
     emp_code: ' ',
+    _id:'',
     branch_name: ' ' ,
     salution: ' ' ,
     first_name: ' ' ,
@@ -86,6 +87,7 @@ button = 'Submit';
   }
   EmployeeDeleteByID:  EmployeeID= {
     emp_code: ' ',
+    _id:'',
     branch_name: ' ' ,
     salution: ' ' ,
     first_name: ' ' ,

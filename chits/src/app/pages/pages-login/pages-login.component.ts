@@ -66,7 +66,7 @@ export class PagesLoginComponent implements OnInit {
             console.log("value : "+this.loginout[prop]);
              if(prop=="responseCode"){
             // this.ListOfEmpData = this.reslt[prop];
-              if(this.loginout[prop]=="1000"){
+              if(this.loginout[prop]=="200"){
                 localStorage.setItem("SeesionUser", this.username);
                 this.router.navigate(["/dashboard"]);
                 }else

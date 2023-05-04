@@ -17,7 +17,10 @@
                         <h5 class="card-title">Add Group Member</h5>
                         <div class="col-md-3"> <label for="inputName5" class="form-label">  <b>Filter</b></label>
                             <select ngModel name="collectionEmployee" class="form-control">
-                             <option value="" disable selected hidden>---Select----</option>
+                             <option value=""  disable selected hidden>All Customer</option>
+                             <option>Scheme</option>
+                             <option value="nonmappedcustomer"  >Non Mapped</option>
+                             <option value="allcustomer" >All Customer</option>
                             </select>
                         </div>
                         <table class="table table-striped">
@@ -53,9 +56,9 @@
                                     <td>
                                         <div class="icon">
                                             <div class="form-check">
-                                                <input class="form-check-input"  type="checkbox" id="gridCheck1" (change)="GroupMappingCustomer($event,customrdata.customerId)">
+                                                <input class="form-check-input" type="checkbox" id="gridCheck1" (change)="GroupMappingCustomer($event,customrdata._id)">
                                                 <!-- <i style=" margin-left:10px; " class="bi bi-eye " data-bs-toggle="modal " data-bs-target="#ListGroup " (click)="getGroupbyId(group.id) "></i> -->
-                                                <i style="margin-left:10px; " class="bi bi-eye " data-bs-toggle="modal "></i>
+                                                <i style="margin-left:10px; " class="bi bi-eye " data-bs-toggle="modal " data-bs-target="#ListGroup " (click)="getGroupbyId(customrdata._id) "></i>
                                             </div>
                                         </div>
                                         <div class="modal fade " id="ListGroup " tabindex="-1 ">

@@ -36,6 +36,7 @@ export class GroupsComponent implements OnInit {
 
   GroupDeletebyId: Group={
     id: ' ' ,
+    _id:null,
     branchName: ' ' ,
     groupType: ' ' ,
     groupName: ' ',
@@ -63,6 +64,7 @@ export class GroupsComponent implements OnInit {
   GroupDetailsbyId: Group={
   id: ' ' ,
   branchName: ' ' ,
+  _id:null,
   groupType: ' ' ,
   groupName: ' ',
   schemeId:' ',
@@ -88,6 +90,7 @@ export class GroupsComponent implements OnInit {
 GroupMappdetails: GroupMapCusList ={
   mappingId :  ' ' ,
              groupId :  ' ' ,
+             _id:null,
              groupName :  ' ' ,
              customerName :   ' ' ,
              customerId :  ' ' ,

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { Group } from '../model/groupbyid.model';
 import { HttpClient } from '@angular/common/http';
 import { UserDataService } from '../users-data.service';
@@ -6,6 +6,8 @@ import { Router } from '@angular/router';
 import { Customer } from '../model/customer.model';
 import { ActivatedRoute } from '@angular/router';
 import { GroupMap } from '../model/groupmapping.model';
+
+
 
 @Component({
   selector: 'app-addmember',
@@ -30,6 +32,7 @@ export class AddmemberComponent implements OnInit {
   value:any;
   GroupDetailsbyId: Group={
     id: ' ' ,
+    _id:null,
     branchName: ' ' ,
     groupType: ' ' ,
     groupName: ' ',
@@ -54,6 +57,7 @@ export class AddmemberComponent implements OnInit {
 
     GetCustomerForMap : Customer = {
       // customerId:'',
+      _id:'',
       branchName:'',
       joiningDate:'',
       customerId:0,
@@ -100,7 +104,7 @@ export class AddmemberComponent implements OnInit {
       }
 
 
-  constructor(private http: HttpClient, private userData:UserDataService ,private router:Router,private route: ActivatedRoute) { 
+  constructor(private http: HttpClient, private userData:UserDataService ,private router:Router,private route: ActivatedRoute,private cdRef: ChangeDetectorRef) { 
     this.userData.group().subscribe((data) =>{
       this.grpres=data;
     Object.keys(this.grpres).forEach(prop => {
@@ -113,19 +117,41 @@ export class AddmemberComponent implements OnInit {
 
 
     // get all customer for mapping method
-this.http.get(this.userData.cuslistmappedgrop).subscribe((data) =>{
-  this.custmapresponse=data;
-  console.log("AllData" +JSON.stringify(data));
+// this.http.get(this.userData.cuslistmappedgrop).subscribe((data) =>{
+//   this.custmapresponse=data;
+//   console.log("AllData" +JSON.stringify(data));
   
-Object.keys(this.custmapresponse).forEach(prop => {
-if(prop=="object"){
-  this.ListOfCustMapData = this.custmapresponse[prop];
-}
-});
+// Object.keys(this.custmapresponse).forEach(prop => {
+// if(prop=="object"){
+//   this.ListOfCustMapData = this.custmapresponse[prop];
+// }
+// });
 
-})
+// })
     
   }
+
+
+
+getCusDatabyFilter(type:any){
+  this.http.get(this.userData.cuslistmappedgrop+type).subscribe((data) =>{
+    this.custmapresponse=data;
+    console.log("AllData" +JSON.stringify(data));
+    
+  Object.keys(this.custmapresponse).forEach(prop => {
+  if(prop=="object"){
+    this.ListOfCustMapData = this.custmapresponse[prop];
+    // ('#my-datatable').DataTable.ajax.reload();
+  }
+  });
+  
+  })
+}
+
+
+
+
+
   getGroupbyId(data:any): void{
     // console.log("GetData" +data);
      
@@ -155,7 +181,7 @@ if(prop=="object"){
         if(event.target.checked==true){
           this.isDisplayed = true;
           console.log("array_size"+Object.keys(this.groupmrm.customerId).length);
-           if(Object.keys(this.groupmrm.customerId).length <  this.vaccent)
+           if(Object.keys(this.groupmrm.customerId).length <  3)
            {
             this.groupmrm.customerId.push(data);
             console.log( this.groupmrm);
@@ -217,8 +243,24 @@ if(prop=="object"){
         this.router.navigate([`${pageName}`]);
       } 
   ngOnInit(): void {
+    this.getCusDatabyFilter("allcustomer");
   }
-
+  // reloadTable(): void {
+  //   // this.getCusDatabyFilter("nonmappedcustomer");
+  //   this.http.get(this.userData.cuslistmappedgrop+'nonmappedcustomer').subscribe((data) =>{
+  //     this.custmapresponse=data;
+  //     console.log("AllData" +JSON.stringify(data));
+      
+  //   Object.keys(this.custmapresponse).forEach(prop => {
+  //   if(prop=="object"){
+  //     this.ListOfCustMapData = this.custmapresponse[prop];
+  //     // ('#my-datatable').DataTable.ajax.reload();
+  //   }
+  //   });
+    
+  //   })
+  //   this.cdRef.detectChanges();
   
+  //   }
 
 }

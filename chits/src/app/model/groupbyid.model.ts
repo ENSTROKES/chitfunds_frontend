@@ -1,5 +1,6 @@
 export class Group {
   id: string; 
+  _id:any;
   branchName: string; 
   groupType: string; 
   groupName: string;

@@ -41,11 +41,11 @@
                                  </select> -->
                                             <!-- <label for="inputName5" class="form-label"> <b>Search</b></label>&nbsp;&nbsp;&nbsp;<input type="text" name="search" [(ngModel)]="searchText" placeholder="Search Here">
                                                 </div> -->
-                                                <div class="col-md-3"> <label for="inputName5" class="form-label">  <b>Filter</b></label>
-                                                    <select ngModel name="collectionEmployee" class="form-control">
+                                            <div class="col-md-3"> <label for="inputName5" class="form-label">  <b>Filter</b></label>
+                                                <select ngModel name="collectionEmployee" class="form-control">
                                                      <option value="" disable selected hidden>---Select----</option>
                                                     </select>
-                                                </div>
+                                            </div>
                                             <table class="table ">
 
                                                 <thead>
@@ -67,11 +67,11 @@
                                                         <td>{{ customrdata.customerChitDetails[0].scheme }}</td>
                                                         <td>
                                                             <div class="icon">
-                                                                <i class="bi bi-pencil" data-bs-toggle="modal" data-bs-target="#Editcustomer" (click)="getCustomerbyId(customrdata.customerId)"></i> &nbsp;
-                                                                <i class="bi bi-eye" data-bs-toggle="modal" data-bs-target="#Getcustomer" (click)="getCustomerbyId(customrdata.customerId)"></i>&nbsp;
+                                                                <i class="bi bi-pencil" data-bs-toggle="modal" data-bs-target="#Editcustomer" (click)="getCustomerbyId(customrdata._id)"></i> &nbsp;
+                                                                <i class="bi bi-eye" data-bs-toggle="modal" data-bs-target="#Getcustomer" (click)="getCustomerbyId(customrdata._id)"></i>&nbsp;
                                                                 <!-- (click)="userDetails(brnchData.branchID)" -->
 
-                                                                <i class="ri-delete-bin-line" (click)="deleteCustomerbyId(customrdata.customerId)"></i>
+                                                                <i class="ri-delete-bin-line" (click)="deleteCustomerbyId(customrdata._id)"></i>
                                                                 <div class="modal fade" id="Editcustomer" tabindex="-1">
                                                                     <div class="modal-dialog modal-xl">
                                                                         <div class="modal-content">
@@ -383,16 +383,16 @@
                                                                                 </div>
 
                                                                                 <div class="modal-footer ">
-                                                                                    <!-- <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close
-                                                                                          </button> -->
+                                                                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close
+                                                                                          </button>
 
-                                                                                    <button (click)="yophoto.click()"><a href="{{this.PhotoUrl}}" download #yophoto></a> Photo </button>
+                                                                                    <!-- <button (click)="yophoto.click()"><a href="{{this.PhotoUrl}}" download #yophoto></a> Photo </button>
 
                                                                                     <button (click)="yoaadhar.click()"> <a href="{{this.AdharUrl}}" download #yoaadhar></a>Aadhar </button>
 
                                                                                     <button (click)="yopan.click()"><a href="{{this.PanUrl}}" download #yopan></a> Pan </button>
 
-                                                                                    <button (click)="yoappfrm.click()"> <a href="{{this.ApplicationUrl}}" download #yoappfrm></a>Application Form </button>
+                                                                                    <button (click)="yoappfrm.click()"> <a href="{{this.ApplicationUrl}}" download #yoappfrm></a>Application Form </button> -->
                                                                                 </div>
 
 
@@ -558,7 +558,7 @@
                                                 <h5 class="card-title">Chit Details</h5>
                                                 <div class="col-md-6"> <label for="inputName5" class="required"> Scheme</label>
                                                     <select ngModel name="schemeId" class="form-control" [(ngModel)]="customer.customerChitDetails[0].scheme" #name="ngModel">
-                                       <option value="" disable selected hidden>---Select----</option>
+                                                        <option value="" disable selected hidden>---Select----</option>
                                        <option *ngFor="let slabData of listofslabdata" [value]="slabData.chitValue">{{slabData.chitValue}}-{{slabData.installment}}</option>
                                        
                                     </select>
@@ -567,7 +567,7 @@
                                                         #name="ngModel"></div>
                                                 <div class="col-md-6"> <label for="inputName5" class="form-label"> Subscription</label> <select class="form-select" aria-label="Default select example" name="subscription" id="inputName5" [(ngModel)]="customer.customerChitDetails[0].subscription"
                                                         #name="ngModel">
-                                                <option value="" disable selected hidden>Select</option>
+                                                        <option value="" disable selected hidden>---Select----</option>
                                                     <option value="Daily">Daily</option>
                                                     <option value="Weekly">Weekly</option>
                                                     <option value="Monthly">Monthly</option>
@@ -581,7 +581,7 @@
                                                     <label for="inputName5" class="form-label"> Remarks</label>
                                                     <div class="form-floating"><textarea class="form-control" id="floatingTextarea" style="height: 100px;"></textarea><label for="floatingTextarea"></label></div>
                                                 </div>  -->
-                                                <div class="card">
+                                                <!-- <div class="card">
                                                     <div class="card-body">
                                                         <h5 class="card-title">Customer document upload section</h5>
                                                         <form class="row g-3">
@@ -598,20 +598,20 @@
                                                             <div class="row mb-3">
                                                                 <label for="inputNumber" class="col-sm-2 ">Pan</label>
                                                                 <div class="col-sm-5"> <input name="pancard" class="form-control" type="file" id="formFile" (change)="onpanFileChanged($event)"></div>
-                                                            </div>
-                                                            <!-- <div class="row mb-3">
+                                                            </div> -->
+                                                <!-- <div class="row mb-3">
                                                                 <label for="inputNumber" class="col-sm-2 col-form-label">Signature Upload</label>
                                                                 <div class="col-sm-5"> <input name="signature" class="form-control" type="file" id="formFile" (change)="onsignFileChanged($event)"></div>
                                                             </div> -->
-                                                            <div class="row mb-3">
+                                                <!-- <div class="row mb-3">
                                                                 <label for="inputNumber" class="col-sm-2 ">Application form </label>
                                                                 <div class="col-sm-5"> <input name="applicationForm" class="form-control" type="file" id="formFile" (change)="onappfrmFileChanged($event)"></div>
-                                                            </div>
-                                                            <!-- <div class="text-center"> <button type="submit" class="btn btn-primary" (click)="onUpload(1)" value="upload">Submit</button>&nbsp; <button type="reset" class="btn btn-secondary">Reset</button></div> -->
+                                                            </div> -->
+                                                <!-- <div class="text-center"> <button type="submit" class="btn btn-primary" (click)="onUpload(1)" value="upload">Submit</button>&nbsp; <button type="reset" class="btn btn-secondary">Reset</button></div> -->
 
-                                                        </form>
+                                                <!-- </form>
                                                     </div>
-                                                </div>
+                                                </div> -->
                                                 <div class="text-center"> <button type="submit" class="btn btn-primary" [disabled]="customerForm.invalid">&nbsp; Submit</button>&nbsp;
                                                     <!-- <i class="spinner-border" style="width: 20px; height: 20px;"[ngClass]="{'spinner-border': isLoading}"></i>
                                                     [disabled]="isLoading" (click)="click()" -->

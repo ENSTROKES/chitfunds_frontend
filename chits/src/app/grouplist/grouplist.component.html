@@ -17,7 +17,7 @@
                         <h5 class="card-title"> Group Details</h5>
 
                         <!-- <button type="button" class="btn btn-primary" style="margin-left:780px; margin-top:-60px;" (click)="goToPage('addmember')"> Add Member </button> -->
-                        
+
                         <table class="table table-striped">
 
                             <thead>
@@ -26,17 +26,17 @@
                                     <th>Scheme Name</th>
                                     <th>Auction Date</th>
                                     <th>FD details</th>
-                                    
+
 
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr *ngFor="let grp of GroupDetailsbyId| filter:searchText">
-                                    <td>{{ grp.groupName}}</td>
-                                    <td>{{ grp.schemeName}}</td>
+                                <tr>
+                                    <td>{{ GroupDetailsbyId.groupName}}</td>
+                                    <td>{{ GroupDetailsbyId.schemeName}}</td>
                                     <td>12</td>
                                     <td></td>
-                                  
+
 
                                 </tr>
                             </tbody>
@@ -65,17 +65,16 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr *ngFor="let group of GroupMappdetails| filter:searchText">
-                                    <td>{{ group.mappingId}}</td>
-                                    <td>{{ group.customerName}}</td>
-                                    <td>{{ group.contactNumber }}</td>
-                                    <td>{{ group.modeOfSubscription }}</td>
-                                    <td>{{group.prizedStatus}}</td>
-
-                                    <td>{{ group.receivedAmount }}</td>
-                                    <td>{{group.outStandingAmount}}</td>
-                                    <td>{{group.lastPayedDate}}</td>
-                                    <td>{{group.collection_route}}</td>
+                                <tr *ngFor="let grp of GroupMappdetails">
+                                    <td>{{ grp.mappingId}}</td>
+                                    <td>{{ grp.customerName}}</td>
+                                    <td>{{ grp.contactNumber }}</td>
+                                    <td>{{ grp.modeOfSubscription }}</td>
+                                    <td>{{grp.prizedStatus}}</td>
+                                    <td>{{ grp.receivedAmount }}</td>
+                                    <td>{{grp.outStandingAmount}}</td>
+                                    <td>{{grp.lastPayedDate}}</td>
+                                    <td>{{grp.collection_route}}</td>
 
                                 </tr>
                             </tbody>

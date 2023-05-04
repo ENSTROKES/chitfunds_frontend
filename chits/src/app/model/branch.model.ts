@@ -1,4 +1,5 @@
 export class Branch {
+  _id:any;
   branchId: string ;
   officeName: string;
   phoneNumber: string;

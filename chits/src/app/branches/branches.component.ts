@@ -25,6 +25,7 @@ export class BranchesComponent implements OnInit {
   BranchDetailsById: Array<Branch>=[] ; //branchID
   BranchDetailById: Branch={ branchId: ' ',
   officeName: ' ',
+  _id:'',
   phoneNumber: ' ',
   emailID: ' ',
   address: ' ',
@@ -47,6 +48,7 @@ export class BranchesComponent implements OnInit {
 branchdelete:any;
 BranchDeleteById: Branch={ branchId: ' ',
   officeName: ' ',
+  _id:'',
   phoneNumber: ' ',
   emailID: ' ',
   address: ' ',

@@ -1,5 +1,6 @@
 export class GroupMapCusList {
              mappingId : any ;
+             _id:any;
              groupId : any ;
              groupName : any ;
              customerName :  any  ;

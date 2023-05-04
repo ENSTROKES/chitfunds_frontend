@@ -33,7 +33,7 @@
                                                 <div class="search-here">
 
                                                     <label for="inputName5" class="form-label"> <b>Search</b></label>&nbsp;&nbsp;&nbsp;<input type="text" name="search" [(ngModel)]="searchText" placeholder="Search Here">
-                                                   
+
                                                 </div>
                                                 <div class="col-md-3"> <label for="inputName5" class="form-label">  <b>Filter</b></label>
                                                     <select ngModel name="collectionEmployee" class="form-control">
@@ -75,7 +75,7 @@
                                                                     <div class="col-md-6"> <label for="inputName5" class="required"> Scheme</label>
                                                                         <select ngModel name="schemeId" class="form-control" #name="ngModel">
                                                            <option value="" disable selected hidden>---Select----</option>
-                                                           <option *ngFor="let slabData of listofslabdata"    [ngValue]="{slabid: slabData.slabId, slabname : slabData.chitValue,slabinst: slabData.installment }">{{slabData.chitValue}}-{{slabData.installment}}</option>
+                                                           <option *ngFor="let slabData of listofslabdata"    [ngValue]="{slabid: slabData._id, slabname : slabData.chitValue,slabinst: slabData.installment }">{{slabData.chitValue}}-{{slabData.installment}}</option>
                                                            
                                                         </select>
                                                                     </div>
@@ -154,11 +154,11 @@
                                                             <!-- <td>{{ group.lauctionDate }}</td> -->
                                                             <td>
                                                                 <div class="icon">
-                                                                    <i class="bi bi-pencil" data-bs-toggle="modal" data-bs-target="#EditGroup" (click)="getGroupbyId(group.id)"></i> &nbsp;
-                                                                    <i class="bi bi-eye" routerLink="/grouplist" (click)="goToPage('grouplist',group.id)"></i>&nbsp;
+                                                                    <i class="bi bi-pencil" data-bs-toggle="modal" data-bs-target="#EditGroup" (click)="getGroupbyId(group._id)"></i> &nbsp;
+                                                                    <i class="bi bi-eye" routerLink="/grouplist" (click)="goToPage('grouplist',group._id)"></i>&nbsp;
                                                                     <!-- (click)="userDetails(brnchData.branchID)" -->
 
-                                                                    <i class="ri-delete-bin-line" (click)="deleteGroupbyId(group.id)"></i>&nbsp;
+                                                                    <i class="ri-delete-bin-line" (click)="deleteGroupbyId(group._id)"></i>&nbsp;
                                                                     <!-- <button type="button" class="btn btn-primary" (click)="goToPage('addgroupmember')"> Modify</button> -->
 
                                                                     <div class="modal fade" id="EditGroup" tabindex="-1">

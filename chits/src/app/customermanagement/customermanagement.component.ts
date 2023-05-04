@@ -63,7 +63,7 @@ customerupresponse:any;
 custreditresp:any;
 customerresult: any;
 customer : Customer = {
-  
+  _id: null,
   branchName:'',
   joiningDate:'',
   customerId:0,
@@ -112,6 +112,7 @@ customer : Customer = {
   idoutput:any;
   customerDetailbyid : Customer = {
     // customerId:'',
+    _id:'',
     branchName:'',
     joiningDate:'',
     customerId:0,
@@ -159,6 +160,7 @@ customer : Customer = {
     customerdelete:any;
     customerDeletebyid : Customer = {
       // customerId:'',
+      _id:'',
       branchName:'',
       joiningDate:'',
       customerId:0,
@@ -373,22 +375,22 @@ this.customer.customerChitDetails[0].createdDate=timestamp;
      Object.keys(this.customerresult).forEach(prop => {
         console.log("data : " +prop);
         
-          console.log("value : "+this.customerresult[prop]);
-           if(prop=="responseCode"){
-            this.customerupresponse= this.customerresult[prop];
-          }
-          if(prop=="object"){
-            this.customeridupload=this.customerresult[prop];
-          }
+          // console.log("value : "+this.customerresult[prop]);
+          //  if(prop=="responseCode"){
+          //   this.customerupresponse= this.customerresult[prop];
+          // }
+          // if(prop=="object"){
+          //   this.customeridupload=this.customerresult[prop];
+          // }
           // this.ListOfEmpData = this.reslt[prop];
-            // if(this.customerresult[prop]=="200"){
-            //   // if(window.confirm('Customer is created successfully')){
-            //   //   location.reload();
-            //   // }else{
-            //   //   location.reload();
-            //   // }
-            //   this.onUpload(6);
-            // }
+            if(this.customerresult[prop]=="200"){
+              if(window.confirm('Customer is created successfully')){
+                location.reload();
+              }else{
+                location.reload();
+              }
+              // this.onUpload(6);
+            }
             
         });
        

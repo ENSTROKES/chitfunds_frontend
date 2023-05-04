@@ -19,6 +19,7 @@ export class AddgroupmemberComponent implements OnInit {
 
   GroupDetailsbyId: Group={
     id: ' ' ,
+    _id:null,
     branchName: ' ' ,
     groupType: ' ' ,
     groupName: ' ',
