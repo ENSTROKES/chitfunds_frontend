@@ -42,10 +42,13 @@
                                             <!-- <label for="inputName5" class="form-label"> <b>Search</b></label>&nbsp;&nbsp;&nbsp;<input type="text" name="search" [(ngModel)]="searchText" placeholder="Search Here">
                                                 </div> -->
                                             <div class="col-md-3"> <label for="inputName5" class="form-label">  <b>Filter</b></label>
-                                                <select ngModel name="collectionEmployee" class="form-control">
+                                                <select ngModel name="collectionEmployee"  class="form-control">
                                                      <option value="" disable selected hidden>---Select----</option>
                                                     </select>
+                                                    <button type="button " class="btn btn-primary " data-bs-dismiss="modal"  >Search</button>
                                             </div>
+                                            <!-- [(ngModel)]="selectedValue" -->
+                                            <!-- (click)="searchFilter(selectedValue)" -->
                                             <table class="table ">
 
                                                 <thead>

@@ -559,6 +559,22 @@ if (window.confirm('Customer craeted successfully without documents')) {
                     }
   }
   }
+  // searchFilter(type:any){
+  //   console.log(this.selectedValue);
+  //   this.http.get(this.userData.cuslistmappedgrop+type).subscribe((data) =>{
+  //     this.custmapresponse=data;
+  //     console.log("AllData" +JSON.stringify(data));
+      
+  //   Object.keys(this.custmapresponse).forEach(prop => {
+  //   if(prop=="object"){
+  //     this.ListOfCustMapData = this.custmapresponse[prop];
+  //     // ('#my-datatable').DataTable.ajax.reload();
+  //   }
+  //   });
+    
+  //   })
+  // }
+
 // getCustomerFormData(): void
 //   {
 //     console.log(this.customer);

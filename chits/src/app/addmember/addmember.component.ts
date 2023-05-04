@@ -22,7 +22,12 @@ export class AddmemberComponent implements OnInit {
   isDisplayed:any;
   grpmapreslt:any;
   vaccent:any;
+  selectedValue:any;
   cusmapcheck:any;
+  maxNo=false;
+  checked=false;
+
+
   groupmrm :GroupMap={
     groupId: '',
     customerId:[]
@@ -181,15 +186,16 @@ getCusDatabyFilter(type:any){
         if(event.target.checked==true){
           this.isDisplayed = true;
           console.log("array_size"+Object.keys(this.groupmrm.customerId).length);
-           if(Object.keys(this.groupmrm.customerId).length <  3)
+           if(Object.keys(this.groupmrm.customerId).length <  2)
            {
             this.groupmrm.customerId.push(data);
             console.log( this.groupmrm);
             console.log( this.isDisplayed);
            }
-           else(window.confirm('There is No Vaccent to add the Customer'))
+           else
            {
-            
+            this.maxNo = true;
+            this.checked = true;
            }
            
         }
@@ -242,8 +248,24 @@ getCusDatabyFilter(type:any){
        goToPage(pageName:string):void{
         this.router.navigate([`${pageName}`]);
       } 
+      searchFilter(type:any){
+        console.log(this.selectedValue);
+        this.http.get(this.userData.cuslistmappedgrop+type).subscribe((data) =>{
+          this.custmapresponse=data;
+          console.log("AllData" +JSON.stringify(data));
+          
+        Object.keys(this.custmapresponse).forEach(prop => {
+        if(prop=="object"){
+          this.ListOfCustMapData = this.custmapresponse[prop];
+          // ('#my-datatable').DataTable.ajax.reload();
+        }
+        });
+        
+        })
+      }
+      
   ngOnInit(): void {
-    this.getCusDatabyFilter("allcustomer");
+    // this.getCusDatabyFilter("allcustomer");
   }
   // reloadTable(): void {
   //   // this.getCusDatabyFilter("nonmappedcustomer");
