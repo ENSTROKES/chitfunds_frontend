@@ -151,10 +151,10 @@
                                     <td>
                                         <div class="icon">
                                             <i class="bi bi-pencil" data-bs-toggle="modal" data-bs-target="#Editbranch" (click)="getBranchbyId(brnchData._id)"></i> &nbsp;
-                                            <i class="bi bi-eye" data-bs-toggle="modal" data-bs-target="#Getbranch" (click)="getBranchbyId(brnchData.branchId)"></i>&nbsp;
+                                            <i class="bi bi-eye" data-bs-toggle="modal" data-bs-target="#Getbranch" (click)="getBranchbyId(brnchData._id)"></i>&nbsp;
                                             <!-- (click)="userDetails(brnchData.branchID)" -->
 
-                                            <i class="ri-delete-bin-line" (click)="deleteBranchbyId(brnchData.branchId)"></i>
+                                            <i class="ri-delete-bin-line" (click)="deleteBranchbyId(brnchData._id)"></i>
                                             <div class="modal fade" id="Editbranch" tabindex="-1">
                                                 <div class="modal-dialog modal-xl">
                                                     <div class="modal-content">

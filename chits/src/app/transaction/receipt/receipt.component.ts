@@ -41,6 +41,7 @@ emp_name:any;
 emp_id:any;
 cus_name:any;
 cus_id:any;
+collect_route:any;
 //spinner
 button = 'Submit';
   isLoading = false;
@@ -133,8 +134,8 @@ click() {
     //  console.log("GetData" +data.officeName);
       console.log("AllData" +JSON.stringify(data));
     //console.log("name and id : "+ data.branchName.groupId)
-    this.group_id = data.selectEnrollment.groupId;
-    this.group_name = data.selectEnrollment.branchName;
+    this.group_id = data.selectEnrollment.groupid;
+    this.group_name = data.selectEnrollment.gropName;
     data.selectEnrollment = this.group_name;
     data.groupId = this.group_id;
 
@@ -145,8 +146,10 @@ click() {
 
     this.cus_id = data.customerName.cusId;
     this.cus_name = data.customerName.cusName;
+    this.collect_route = data.customerName.collectroute;
     data.customerName = this.cus_name;
     data.customerId = this.cus_id;
+    data.collectionRoute = this.collect_route;
 
     console.log("AllData after set id " +JSON.stringify(data));
 
