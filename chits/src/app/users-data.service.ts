@@ -39,7 +39,9 @@ export class UserDataService {
   getDocbyid='http://3.111.255.69/chitfund/getImageByCustomer?id=';
   groupmapcus='http://3.111.255.69/chitfund/customerGroupMapping';
   grouplistmapdcus="http://3.111.255.69/chitfund/getCustomerForGroup?groupId=";
-  cuslistmappedgrop="http://3.111.255.69/chitfund/getCustomersForCustomerMapping?type="
+  cuslistmappedgrop="http://3.111.255.69/chitfund/getCustomersForCustomerMapping?type=";
+  getroute="http://3.111.255.69/chitfund/getRouteForLedger";
+  getrecipetbycusid="http://3.111.255.69/chitfund/getReceiptByCustomerId?id=";
   //getDocbyid='http://192.168.1.12:8082/getImageByCustomer?id=3';
   constructor(private http: HttpClient) {
     //employeeData: any;

@@ -5,7 +5,7 @@ import { Group } from '../model/groupbyid.model';
 import { Params, Router } from '@angular/router';
 import { GroupMapCusList } from '../model/groupmapcustlist.model';
 import { ActivatedRoute } from '@angular/router';
-
+import { Reciptbycusid } from '../model/reciptbycuid.model';
 
 @Component({
   selector: 'app-grouplist',
@@ -65,6 +65,25 @@ export class GrouplistComponent implements OnInit {
   grpidvalue: any;
   
   groupmrm: any;
+  recptcusid:any;
+  // listrecipetnycusid:any;
+
+  // reciptbyCusid : Reciptbycusid=[{
+  //            receiptId : '',
+  //            branchName :'',
+  //            receiptDate : '',
+  //            collectionEmployee :  '',
+  //            customerName :  '',
+  //            selectEnrollment : '',
+  //            receiptType :   '',
+  //            billAmount : '',
+  //            customerId : '',
+  //            groupId : '',
+  //            employeeId :'',
+  //            collectionRoute : '',
+  //            paymentMode : '',
+  // }];
+  receiptByCustomerId:any;
   
   constructor(private http: HttpClient, private userData:UserDataService ,private router:Router,private route: ActivatedRoute) { 
     
@@ -102,7 +121,26 @@ export class GrouplistComponent implements OnInit {
     
   }
   
-  
+  // Get reciept by ID
+
+  getrecieptId(data:any): void{
+    // console.log("GetData" +data);
+     
+     // console.log("AllData" +JSON.stringify(data));
+        
+     //console.log(new Date("2015/04/29 11:24:00").getTime());
+     
+     this.http.get(this.userData.getrecipetbycusid+data).subscribe((data) =>{
+      this.recptcusid=data;
+    Object.keys(this.recptcusid).forEach(prop => {
+    if(prop=="object"){
+      this.receiptByCustomerId = this.recptcusid[prop];
+      console.log("GetData" +this.receiptByCustomerId);
+    }
+    });
+    
+    })
+       }
 
 
 

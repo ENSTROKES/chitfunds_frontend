@@ -180,23 +180,23 @@ getCusDatabyFilter(type:any){
        GroupMappingCustomer(event:any,data:any){
         this.route.queryParams.subscribe(params => {
           this.vaccent = +params['vaccent'];
+          this.groupmrm.groupId = params['value'];
         });
-        console.log(this.vaccent);
-  
+        console.log("vac"+this.vaccent);
+        console.log("gr"+this.groupmrm.groupId);
         if(event.target.checked==true){
           this.isDisplayed = true;
           console.log("array_size"+Object.keys(this.groupmrm.customerId).length);
-           if(Object.keys(this.groupmrm.customerId).length <  2)
+           if(Object.keys(this.groupmrm.customerId).length <   this.vaccent)
            {
             this.groupmrm.customerId.push(data);
             console.log( this.groupmrm);
             console.log( this.isDisplayed);
            }
-           else
-           {
-            this.maxNo = true;
-            this.checked = true;
-           }
+          //  else
+          //  {
+           
+          //  }
            
         }
         else{
@@ -216,10 +216,10 @@ getCusDatabyFilter(type:any){
 
        getgroupFormData(): void{
 
-        this.route.queryParams.subscribe(params => {
-          this.groupmrm.groupId = params['value'];
-        });
-        console.log(this.groupmrm.groupId)
+        // this.route.queryParams.subscribe(params => {
+        //   this.groupmrm.groupId = +params['value'];
+        // });
+        //console.log("grpid"+this.groupmrm.groupId)
           //console.log("AllData" +JSON.stringify(data)); 
          
           this.http.post(this.userData.groupmapcus, this.groupmrm).subscribe((result)=>{

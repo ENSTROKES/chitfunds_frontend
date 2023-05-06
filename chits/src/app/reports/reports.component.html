@@ -1,6 +1,6 @@
 <main id="main" class="main">
     <div class="pagetitle">
-        <h1>Groups</h1>
+        <h1>Reports</h1>
         <nav>
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a routerLink="/">Home</a></li>
@@ -11,51 +11,54 @@
     </div>
     <section class="section">
         <div class="row">
-            
-                
-                    <div class="col-lg-12">
-                        <div class="card">
-                            <div class="card-body">
-                                <h5 class="card-title"></h5>
-                                <div class="search-here">
 
-                                    <label for="inputName5" class="form-label"> <b>Search</b></label>&nbsp;&nbsp;&nbsp;<input type="text" name="search"  placeholder="Search Here">
-                                    <!-- [(ngModel)]="searchText" -->
-                                </div>
-                                <div class="col-md-3"> <label for="inputName5" class="form-label">  <b>Filter</b></label>
-                                    <select ngModel name="collectionEmployee" class="form-control">
-                                     <option value="" disable selected hidden>---Select----</option>
-                                    </select>
-                                    <button type="button " style="margin-left:270px; margin-top:-65px;"   class="btn btn-primary " data-bs-dismiss="modal" >Search</button>
 
-                                </div>
-                                <table class="table table-striped">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title"></h5>
+                        <div class="search-here">
 
-                                    <thead>
-                                        <tr>
-                                            <th>S.No</th>
-                                            <th> Name</th>
-                                            <th>Scheme</th>
-                                            <!-- <th> Type</th> -->
-                                            <th> Starting Date</th>
-                                            <th>Vacant Count</th>
-                                            <th>Debtors/Creditors</th>
-                                            <!-- <th>Auction Date</th> -->
-                                            <th>Actions</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr *ngFor="let group of ListOfGroupData;let i = index">
-                                            <td>{{i+1}}</td>
-                                            <td>{{ group.groupName}}</td>
-                                            <td>{{ group.schemeName}}</td>
-                                            
-                                            <td>{{ group.startingDate }}</td>
-                                            <td>{{ group.vacantCount }}</td>
-                                            <td></td>
-                                            
-                                            <td>
-                                                <!-- <div class="icon">
+                            <label for="inputName5" class="form-label"> <b>Search</b></label>&nbsp;&nbsp;&nbsp;<input type="text" name="search" placeholder="Search Here">
+                            <!-- [(ngModel)]="searchText" -->
+                        </div>
+                        <!-- <div class="col-md-3"> <label for="inputName5" class="form-label">  <b>Filter</b></label>
+                            <select ngModel name="route" [(ngModel)]="selectedValue" class="form-control">
+                             <option value="" disabled selected hidden>---Select----</option>
+                             <option>Scheme</option>
+                             <option value="nonmappedcustomer"  >Non Mapped</option>
+                             <option value="allcustomer" >All Customer</option>
+                            </select>
+                            <button type="button " style="margin-left:270px; margin-top:-65px;" class="btn btn-primary " data-bs-dismiss="modal" (click)="searchFilter(selectedValue)">Search</button>
+
+                        </div> -->
+                        <table class="table table-striped">
+
+                            <thead>
+                                <tr>
+                                    <th>S.No</th>
+                                    <th> Name</th>
+                                    <th>Scheme</th>
+                                    <!-- <th> Type</th> -->
+                                    <th> Starting Date</th>
+                                    <th>Vacant Count</th>
+                                    <th>Debtors/Creditors</th>
+                                    <!-- <th>Auction Date</th> -->
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let group of ListOfGroupData;let i = index">
+                                    <td>{{i+1}}</td>
+                                    <td>{{ group.groupName}}</td>
+                                    <td>{{ group.schemeName}}</td>
+
+                                    <td>{{ group.startingDate }}</td>
+                                    <td>{{ group.vacantCount }}</td>
+                                    <td></td>
+
+                                    <td>
+                                        <!-- <div class="icon">
                                                     
                                                     <i class="bi bi-eye" routerLink="/grouplist" (click)="goToPage('grouplist',group._id)"></i>&nbsp;
                                                     
@@ -130,15 +133,15 @@
                                                     </div>
 
                                                 </div> -->
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                        
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
                     </div>
-                    </div>
-       
+
+                </div>
+            </div>
+
         </div>
     </section>
 </main>

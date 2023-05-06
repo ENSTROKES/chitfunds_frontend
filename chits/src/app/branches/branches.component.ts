@@ -22,7 +22,7 @@ export class BranchesComponent implements OnInit {
   ListOfHeadData:any; //headoffice
   searchText:any;
   idoutput:any ;
-  BranchDetailsById: Array<Branch>=[] ; //branchID
+  //BranchDetailsById: Array<Branch>=[] ; //branchID
   BranchDetailById: Branch={ branchId: ' ',
   officeName: ' ',
   _id:'',

@@ -75,10 +75,83 @@
                                     <td>{{grp.outStandingAmount}}</td>
                                     <td>{{grp.lastPayedDate}}</td>
                                     <td>{{grp.collection_route}}</td>
+                                    <td>
+                                        <div class="icon">
 
+                                            <i class="bi bi-eye" data-bs-toggle="modal" data-bs-target="#Getbranch" (click)=" getrecieptId(grp.customerId)"></i>&nbsp;
+
+
+                                            <div class="modal fade" id="Getbranch" tabindex="-1">
+                                                <div class="modal-dialog modal-xl">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+
+                                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                        </div>
+                                                        <div class="modal-body">
+
+                                                            <div class="col-md-4">
+                                                                <table class="table table-striped">
+
+                                                                    <thead>
+                                                                        <tr>
+                                                                            <th>Receipt ID</th>
+                                                                            <th>Date</th>
+                                                                            <th>Type</th>
+                                                                            <th>Employee</th>
+                                                                            <th>Amount</th>
+                                                                            <th>Payment Mode</th>
+                                                                            <th>collectionRoute </th>
+
+
+                                                                        </tr>
+                                                                    </thead>
+                                                                    <tbody>
+                                                                        <tr *ngFor="let rcp of receiptByCustomerId ">
+                                                                            <td>{{rcp.receiptId}}</td>
+                                                                            <td>{{rcp.receiptDate}}</td>
+                                                                            <td>{{rcp.receiptType}}</td>
+                                                                            <td>{{rcp.collectionEmployee}}</td>
+                                                                            <td>{{rcp.billAmount}}</td>
+                                                                            <td>{{rcp.paymentMode}}</td>
+                                                                            <td>{{rcp.collectionRoute}}</td>
+                                                                            <!-- <td>{{ grp.mappingId}}</td>
+                                                                            <td>{{ grp.customerName}}</td>
+                                                                            <td>{{ grp.contactNumber }}</td>
+                                                                            <td>{{ grp.modeOfSubscription }}</td>
+                                                                            <td>{{grp.prizedStatus}}</td>
+                                                                            <td>{{ grp.receivedAmount }}</td>
+                                                                            <td>{{grp.outStandingAmount}}</td>
+                                                                            <td>{{grp.lastPayedDate}}</td>
+                                                                            <td>{{grp.collection_route}}</td> -->
+                                                                        </tr>
+                                                                    </tbody>
+
+
+                                                                </table>
+                                                            </div>
+                                                            <div class="modal-footer ">
+                                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close
+                                                              </button>
+                                                            </div>
+
+                                                        </div>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+
+
+
+                                        </div>
+                                    </td>
                                 </tr>
                             </tbody>
                         </table>
+                        <div class="modal-footer ">
+                            <button type="button " class="btn btn-primary " data-bs-dismiss="modal " (click)="goToPage('groups')">Back</button>
+
+                        </div>
 
 
                     </div>
