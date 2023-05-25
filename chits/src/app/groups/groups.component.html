@@ -3,9 +3,10 @@
         <h1>Groups</h1>
         <nav>
             <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a routerLink="/">Home</a></li>
                 <li class="breadcrumb-item">Groups</li>
-                <li class="breadcrumb-item active">Tabs</li>
+                <li class="breadcrumb-item"><a routerLink="/groups">Group list</a></li>
+                <!-- 
+                <li class="breadcrumb-item active">Tabs</li> -->
             </ol>
         </nav>
     </div>
@@ -29,18 +30,64 @@
                                     <div class="col-lg-12">
                                         <div class="card">
                                             <div class="card-body">
-                                                <h5 class="card-title"></h5>
-                                                <div class="search-here">
+                                                <div class="row">
+                                                    <h5 class="card-title" style="padding-left: 10px;">Group List</h5>
+                                                    <div class="col-md-2">
+                                                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#largeModal" style="margin-left:930px; margin-top:-60px;"> Create</button>
+                                                    </div>
+                                                </div>
+                                                <!-- <h5 class="card-title"></h5> -->
+                                                <!-- <div class="search-here">
 
                                                     <label for="inputName5" class="form-label"> <b>Search</b></label>&nbsp;&nbsp;&nbsp;<input type="text" name="search" [(ngModel)]="searchText" placeholder="Search Here">
 
+                                                </div> -->
+
+                                                <div class="row">
+                                                    <div class="col-md-2"> <label for="inputName5" class="form-label"> <b>Scheme</b> <span style="color:red">*</span></label>
+                                                        <select ngModel name="grpfilterscheme" class="form-control" [(ngModel)]="grpfilterscheme" #name="ngModel">
+                                             <!-- <option value="all" >All</option> -->
+                                           <!-- <option value="" disable selected hidden>---Select----</option> -->
+                                           <option [selected]="true" [ngValue]="grpselectvalue">---Select---</option>
+                                           <option *ngFor="let slabData of listofslabdata"    [value]="slabData._id">{{slabData.chitValue}}-{{slabData.installment}}</option>
+                                           
+                                        </select>
+                                                    </div>
+                                                    <div class="col-md-2"> <label for="inputName5" class="form-label">  <b>Type</b></label>
+                                                        <select ngModel name="collectionEmployee" class="form-control">
+                                                        <option [selected]="true" [ngValue]="grpselectvalue">---Select---</option>
+                                                        <option value="all" >All</option>
+                                                 <option value="true" >Register</option>
+                                                 <option value="false" >Non-Register</option>
+                                                </select>
+
+                                                    </div>
+                                                    <div class="col-md-2"> <label for="inputName5" class="form-label">  <b>Date</b></label>
+                                                        <select ngModel name="collectionEmployee" [(ngModel)]="grpfilterdatetyp" class="form-control">
+                                                        <option [selected]="true" [ngValue]="dateselectedvalye">---Select---</option>
+                                                 <option value="Startdate" >Start Date</option>
+                                                 <option value="auctiondate" >Auction Date</option>
+                                                </select>
+
+                                                    </div>
+
+                                                    <div class="col-md-2" *ngIf=" grpfilterdatetyp == 'auctiondate'">
+                                                        <label for="inputName5" class="form-label">  <b>Auction Date</b></label>
+                                                        <input type="number" class="form-control" [(ngModel)]="grpfilterdateinp" maxlength="200" />
+                                                    </div>
+                                                    <div class="col-md-2" *ngIf="grpfilterdatetyp == 'Startdate' ">
+                                                        <label for="inputName5" class="form-label">  <b>Start Date</b></label>
+                                                        <input type="date" class="form-control" [(ngModel)]="grpfilterdateinp" maxlength="200" />
+                                                    </div>
+
+                                                    <div class="col-md-2">
+                                                        <button type="button" style="margin-top:32px;" class="btn btn-primary" data-bs-dismiss="modal" (click)="searchFilter(grpfilterscheme,grpfiltertype,grpfilterdatetyp,grpfilterdateinp)">Search</button>
+                                                    </div>
+
+
                                                 </div>
-                                                <div class="col-md-3"> <label for="inputName5" class="form-label">  <b>Filter</b></label>
-                                                    <select ngModel name="collectionEmployee" class="form-control">
-                                                     <option value="" disable selected hidden>---Select----</option>
-                                                    </select>
-                                                </div>
-                                                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#largeModal" style="margin-left:780px; margin-top:-60px;"> Create</button>
+
+
                                                 <div class="modal fade" id="largeModal" tabindex="-1">
                                                     <div class="modal-dialog modal-lg">
                                                         <div class="modal-content">
@@ -88,14 +135,16 @@
                                                                         <div class="col-sm-4"> <input type="time" ngModel name="auctioToDate" class="form-control"></div>
                                                                     </div>
                                                                     <div class="col-md-4"> <label for="inputName5" class="form-label"> Starting Date</label> <input type="date" ngModel name="startingDate" class="form-control" id="inputName5"></div>
-                                                                    <!-- <div class="col-md-4"> <label for="inputName5" class="form-label">  Commission percentage</label> <input type="number" ngModel name="companyCommissionPercentage" class="form-control" id="inputName5"></div><br> -->
+                                                                    <!-- <div class="col-md-4"> <label for="inputName5" class="form-label">  Commission percentage</label> <input type="number" ngModel name="companyCommissionPercentage" class="form-control
+                                                           " id="inputName5"></div><br> -->
 
 
+                                                                    <label class="form-check-label" for="gridCheck1" style="margin-top: -10px; padding-top: 30px; " class="required"> If Group Type register: <span style="color:red">*</span></label>
 
-                                                                    <label class="form-check-label" for="gridCheck1" style="margin-top: -10px; padding-top: 30px;"> If Group Type register: &nbsp; Yes</label>
-                                                                    <input class="form-check-input" style="margin-top: -20px;margin-left: 220px; " type="checkbox" ngModel name="groupType" (change)="showHideText($event);">
-                                                                    <label class="form-check-label" for="gridCheck2" style="margin-top: -25px; margin-left: 250px;"> No</label>
-                                                                    <input class="form-check-input" style="margin-top: -20px;margin-left: 290px; " type="checkbox" ngModel name="groupType">
+                                                                    <label class="form-check-label" for="gridCheck1" style="margin-top: -20px; padding-top: 30px;"> Yes</label>
+                                                                    <input class="form-check-input" style="margin-top: -20px;margin-left: 40px;" type="checkbox" ngModel name="groupType" (change)="showHideText($event);">
+                                                                    <label class="form-check-label" for="gridCheck2" style="margin-top: -25px; margin-left: 60px;"> No</label>
+                                                                    <input class="form-check-input" style="margin-top: -20px;margin-left: 95px;" type="checkbox" ngModel name="groupType">
 
                                                                     <div *ngIf="isDisplayed">
                                                                         <div class="row">
@@ -103,7 +152,8 @@
                                                                             <div class="col-md-6"> <label for="inputName5" class="form-label"> Total FD </label> <input type="number" ngModel name="totalFD" class="form-control" id="inputName5"></div>
                                                                         </div>
                                                                         <div class="row">
-                                                                            <div class="col-md-6"> <label for="inputName5" class="form-label"> Rate of Interest</label> <input type="number" ngModel name="rateOfInterest" class="form-control" id="inputName5"></div>
+                                                                            <div class="col-md-6"> <label for="inputName5" class="form-label"> Rate of Interest</label> <input type="number" ngModel name="rateOfInterest" class="form-control
+                                                           " id="inputName5"></div>
                                                                             <div class="col-md-6"> <label for="inputName5" class="form-label"> FD Date</label> <input type="date" ngModel name="fDDate" class="form-control" id="inputName5"></div>
                                                                         </div>
                                                                         <div class="row">
@@ -143,93 +193,93 @@
                                                         </tr>
                                                     </thead>
                                                     <tbody>
-                                                        <tr *ngFor="let group of ListOfGroupData;let i = index">
+                                                        <tr *ngFor="let group of ListOfGroupfilData;let i=index">
                                                             <td>{{i+1}}</td>
                                                             <td>{{ group.groupName}}</td>
                                                             <td>{{ group.schemeName}}</td>
                                                             <!-- <td>{{ group.groupType}}</td> -->
-                                                            <td>{{ group.startingDate }}</td>
+                                                            <td>{{ group.startingDate | date:'dd-MM-yy'}}</td>
                                                             <td>{{ group.vacantCount }}</td>
                                                             <td></td>
                                                             <!-- <td>{{ group.lauctionDate }}</td> -->
                                                             <td>
                                                                 <div class="icon">
                                                                     <i class="bi bi-pencil" data-bs-toggle="modal" data-bs-target="#EditGroup" (click)="getGroupbyId(group._id)"></i> &nbsp;
-                                                                    <i class="bi bi-eye" routerLink="/grouplist" (click)="goToPage('grouplist',group._id)"></i>&nbsp;
+                                                                    <i class="bi bi-eye" routerLink="/grouplist" (click)="goToPage( 'grouplist',group._id)"></i>&nbsp;
                                                                     <!-- (click)="userDetails(brnchData.branchID)" -->
 
                                                                     <i class="ri-delete-bin-line" (click)="deleteGroupbyId(group._id)"></i>&nbsp;
-                                                                    <!-- <button type="button" class="btn btn-primary" (click)="goToPage('addgroupmember')"> Modify</button> -->
+                                                                    <!-- <button type="button" class="btn btn-primary" (click)="goToPage( 'addgroupmember')"> Modify</button> -->
 
                                                                     <div class="modal fade" id="EditGroup" tabindex="-1">
                                                                         <div class="modal-dialog modal-xl">
                                                                             <div class="modal-content">
                                                                                 <div class="modal-header">
-
+                                                                                    <h5 class="modal-title">Group Edit</h5>
                                                                                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                                                                 </div>
                                                                                 <div class="modal-body">
 
                                                                                     <form class="row g-3" #groupForm="ngForm" (ngSubmit)="getgroupFormData(groupForm.value)">
                                                                                         <div class="col-md-3"> <label for="inputName5" class="form-label"> Group ID</label>
-                                                                                            <input type="text" class="form-control" ngModel name="id" id="inputName5" [(ngModel)]="GroupDetailsbyId.id " readonly>
+                                                                                            <input type="text" class="form-control" ngModel name="id" id="inputName5" [(ngModel)]="GroupDetailsbyId.id" readonly>
                                                                                         </div>
-                                                                                        <div class="col-md-3 "> <label for="inputName5 " class="form-label "> Branch Name</label>
-                                                                                            <input type="text " class="form-control " ngModel name="branchName" id="inputName5 " [(ngModel)]="GroupDetailsbyId.branchName ">
+                                                                                        <div class="col-md-3"> <label for="inputName5" class="form-label"> Branch Name</label>
+                                                                                            <input type="text" class="form-control" ngModel name="branchName" id="inputName5" [(ngModel)]="GroupDetailsbyId.branchName">
                                                                                         </div>
-                                                                                        <div class="col-md-3 "> <label for="inputName5 " class="form-label "> Group Type</label>
-                                                                                            <input type="text " class="form-control " ngModel name="groupType" id="inputName5 " [(ngModel)]="GroupDetailsbyId.groupType ">
+                                                                                        <div class="col-md-3"> <label for="inputName5" class="form-label"> Group Type</label>
+                                                                                            <input type="text" class="form-control" ngModel name="groupType" id="inputName5" [(ngModel)]="GroupDetailsbyId.groupType">
                                                                                         </div>
-                                                                                        <div class="col-md-3 "> <label for="inputName5 " class="form-label "> Group Name</label>
-                                                                                            <input type="text " class="form-control " ngModel name="groupName" id="inputName5 " [(ngModel)]="GroupDetailsbyId.groupName ">
+                                                                                        <div class="col-md-3"> <label for="inputName5" class="form-label"> Group Name</label>
+                                                                                            <input type="text" class="form-control" ngModel name="groupName" id="inputName5" [(ngModel)]="GroupDetailsbyId.groupName">
                                                                                         </div>
-                                                                                        <div class="col-md-3 "> <label for="inputName5 " class="form-label "> Scheme</label>
-                                                                                            <input type="text " class="form-control " ngModel name="schemeId" id="inputName5 " [(ngModel)]="GroupDetailsbyId.schemeId ">
+                                                                                        <div class="col-md-3"> <label for="inputName5" class="form-label"> Scheme</label>
+                                                                                            <input type="text" class="form-control" ngModel name="schemeId" id="inputName5" [(ngModel)]="GroupDetailsbyId.schemeId">
                                                                                         </div>
-                                                                                        <div class="col-md-3 "> <label for="inputName5 " class="form-label "> Auction Date</label>
-                                                                                            <input type="text " class="form-control " ngModel name="lauctionDate" id="inputName5 " [(ngModel)]="GroupDetailsbyId.lauctionDate ">
+                                                                                        <div class="col-md-3"> <label for="inputName5" class="form-label"> Auction Date</label>
+                                                                                            <input type="text" class="form-control" ngModel name="lauctionDate" id="inputName5" [(ngModel)]="GroupDetailsbyId.lauctionDate">
                                                                                         </div>
-                                                                                        <div class="col-md-3 "> <label for="inputName5 " class="form-label "> Time From</label>
-                                                                                            <input type="text " class="form-control " ngModel name="auctionFromDate" id="inputName5 " [(ngModel)]="GroupDetailsbyId.auctionFromDate ">
+                                                                                        <div class="col-md-3"> <label for="inputName5" class="form-label"> Time From</label>
+                                                                                            <input type="text" class="form-control" ngModel name="auctionFromDate" id="inputName5" [(ngModel)]="GroupDetailsbyId.auctionFromDate">
                                                                                         </div>
-                                                                                        <div class="col-md-3 "> <label for="inputName5 " class="form-label "> Time To</label>
-                                                                                            <input type="text " class="form-control " ngModel name="auctioToDate" id="inputName5 " [(ngModel)]="GroupDetailsbyId.auctioToDate ">
+                                                                                        <div class="col-md-3"> <label for="inputName5" class="form-label"> Time To</label>
+                                                                                            <input type="text" class="form-control" ngModel name="auctioToDate" id="inputName5" [(ngModel)]="GroupDetailsbyId.auctioToDate">
                                                                                         </div>
-                                                                                        <div class="col-md-3 "> <label for="inputName5 " class="form-label "> Starting Date</label>
-                                                                                            <input type="date" class="form-control " ngModel name="startingDate" id="inputName5 " [(ngModel)]="GroupDetailsbyId.startingDate ">
+                                                                                        <div class="col-md-3"> <label for="inputName5" class="form-label"> Starting Date</label>
+                                                                                            <input type="date" class="form-control" ngModel name="startingDate" id="inputName5" [(ngModel)]="GroupDetailsbyId.startingDate">
                                                                                         </div>
-                                                                                        <div class="col-md-3 "> <label for="inputName5 " class="form-label "> Commission Percentage</label>
-                                                                                            <input type="text " class="form-control " ngModel name="companyCommissionPercentage" id="inputName5 " [(ngModel)]="GroupDetailsbyId.companyCommissionPercentage ">
+                                                                                        <div class="col-md-3"> <label for="inputName5" class="form-label"> Commission Percentage</label>
+                                                                                            <input type="text" class="form-control" ngModel name="companyCommissionPercentage" id="inputName5" [(ngModel)]="GroupDetailsbyId.companyCommissionPercentage">
                                                                                         </div>
-                                                                                        <div class="col-md-3 "> <label for="inputName5 " class="form-label "> Total FD</label>
-                                                                                            <input type="text " class="form-control " ngModel name="totalFD" id="inputName5 " [(ngModel)]="GroupDetailsbyId.totalFD ">
+                                                                                        <div class="col-md-3"> <label for="inputName5" class="form-label"> Total FD</label>
+                                                                                            <input type="text" class="form-control" ngModel name="totalFD" id="inputName5" [(ngModel)]="GroupDetailsbyId.totalFD">
                                                                                         </div>
-                                                                                        <div class="col-md-3 "> <label for="inputName5 " class="form-label "> Rate Of Interest</label>
-                                                                                            <input type="text " class="form-control " ngModel name="rateOfInterest" id="inputName5 " [(ngModel)]="GroupDetailsbyId.rateOfInterest ">
+                                                                                        <div class="col-md-3"> <label for="inputName5" class="form-label"> Rate Of Interest</label>
+                                                                                            <input type="text" class="form-control" ngModel name="rateOfInterest" id="inputName5" [(ngModel)]="GroupDetailsbyId.rateOfInterest">
                                                                                         </div>
-                                                                                        <div class="col-md-3 "> <label for="inputName5 " class="form-label "> FD Date</label>
-                                                                                            <input type="text " class="form-control " ngModel name="fDDate" id="inputName5 " [(ngModel)]="GroupDetailsbyId.fDDate ">
+                                                                                        <div class="col-md-3"> <label for="inputName5" class="form-label"> FD Date</label>
+                                                                                            <input type="text" class="form-control" ngModel name="fDDate" id="inputName5" [(ngModel)]="GroupDetailsbyId.fDDate">
                                                                                         </div>
-                                                                                        <div class="col-md-3 "> <label for="inputName5 " class="form-label "> Maturity Amount</label>
-                                                                                            <input type="text " class="form-control " ngModel name="maturityAmount" id="inputName5 " [(ngModel)]="GroupDetailsbyId.maturityAmount ">
+                                                                                        <div class="col-md-3"> <label for="inputName5" class="form-label"> Maturity Amount</label>
+                                                                                            <input type="text" class="form-control" ngModel name="maturityAmount" id="inputName5" [(ngModel)]="GroupDetailsbyId.maturityAmount">
                                                                                         </div>
-                                                                                        <div class="col-md-3 "> <label for="inputName5 " class="form-label "> FD Number</label>
-                                                                                            <input type="text " class="form-control " ngModel name="fdnumber" id="inputName5 " [(ngModel)]="GroupDetailsbyId.fdnumber ">
+                                                                                        <div class="col-md-3"> <label for="inputName5" class="form-label"> FD Number</label>
+                                                                                            <input type="text" class="form-control" ngModel name="fdnumber" id="inputName5" [(ngModel)]="GroupDetailsbyId.fdnumber">
                                                                                         </div>
-                                                                                        <div class="col-md-3 "> <label for="inputName5 " class="form-label "> FD bank</label>
-                                                                                            <input type="text " class="form-control " ngModel name="fdbank" id="inputName5 " [(ngModel)]="GroupDetailsbyId.fdbank ">
+                                                                                        <div class="col-md-3"> <label for="inputName5" class="form-label"> FD bank</label>
+                                                                                            <input type="text" class="form-control" ngModel name="fdbank" id="inputName5" [(ngModel)]="GroupDetailsbyId.fdbank">
                                                                                         </div>
-                                                                                        <div class="col-md-3 "> <label for="inputName5 " class="form-label "> FD Branch</label>
-                                                                                            <input type="text " class="form-control " ngModel name="fdbranch" id="inputName5 " [(ngModel)]="GroupDetailsbyId.fdbranch ">
+                                                                                        <div class="col-md-3"> <label for="inputName5" class="form-label"> FD Branch</label>
+                                                                                            <input type="text" class="form-control" ngModel name="fdbranch" id="inputName5" [(ngModel)]="GroupDetailsbyId.fdbranch">
                                                                                         </div>
-                                                                                        <div class="col-md-3 "> <label for="inputName5 " class="form-label "> PSO Number</label>
-                                                                                            <input type="text " class="form-control " ngModel name="psonumber" id="inputName5 " [(ngModel)]="GroupDetailsbyId.psonumber ">
+                                                                                        <div class="col-md-3"> <label for="inputName5" class="form-label"> PSO Number</label>
+                                                                                            <input type="text" class="form-control" ngModel name="psonumber" id="inputName5" [(ngModel)]="GroupDetailsbyId.psonumber">
                                                                                         </div>
-                                                                                        <div class="col-md-3 "> <label for="inputName5 " class="form-label "> PSO Date</label>
-                                                                                            <input type="date" class="form-control " ngModel name="psodate" id="inputName5 " [(ngModel)]="GroupDetailsbyId.psodate ">
+                                                                                        <div class="col-md-3"> <label for="inputName5" class="form-label"> PSO Date</label>
+                                                                                            <input type="date" class="form-control" ngModel name="psodate" id="inputName5" [(ngModel)]="GroupDetailsbyId.psodate">
                                                                                         </div>
 
-                                                                                        <div class="modal-footer "><button type="submit" class="btn btn-primary">&nbsp; Edit</button>&nbsp;
+                                                                                        <div class="modal-footer"><button type="submit" class="btn btn-primary">&nbsp; Edit</button>&nbsp;
                                                                                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close
                                                                    </button>
                                                                                         </div>
@@ -255,7 +305,7 @@
                                                                                                 <div class="card-body">
                                                                                                     <h5 class="card-title"> Group Details</h5>
 
-                                                                                                    <!-- <button type="button" class="btn btn-primary" style="margin-left:780px; margin-top:-60px;" (click)="goToPage('addmember')"> Add Member </button> -->
+                                                                                                    <!-- <button type="button" class="btn btn-primary" style="margin-left:780px; margin-top:-60px;" (click)="goToPage( 'addmember')"> Add Member </button> -->
                                                                                                     <table class="table table-striped">
 
                                                                                                         <tbody>
@@ -416,7 +466,7 @@
 
                                                                                         </table>
                                                                                     </div> -->
-                                                                                    <div class="modal-footer ">
+                                                                                    <div class="modal-footer">
                                                                                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                                                                                     </div>
 

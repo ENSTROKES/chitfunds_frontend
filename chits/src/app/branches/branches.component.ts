@@ -27,6 +27,7 @@ export class BranchesComponent implements OnInit {
   officeName: ' ',
   _id:'',
   phoneNumber: ' ',
+  branchCode:'',
   emailID: ' ',
   address: ' ',
   pincode: ' ',
@@ -48,6 +49,7 @@ export class BranchesComponent implements OnInit {
 branchdelete:any;
 BranchDeleteById: Branch={ branchId: ' ',
   officeName: ' ',
+  branchCode:'',
   _id:'',
   phoneNumber: ' ',
   emailID: ' ',
@@ -75,7 +77,7 @@ BranchDeleteById: Branch={ branchId: ' ',
     }
   }
 
-  
+  brchselectvalue:any;
   
   
   
@@ -84,15 +86,15 @@ BranchDeleteById: Branch={ branchId: ' ',
 
     
     //get branch method
-    this.userData.branch().subscribe((data) =>{
-      this.response=data;
-  Object.keys(this.response).forEach(prop => {
-    if(prop=="object"){
-      this.ListOfBranchData = this.response[prop];
-    }
-  });
+  //   this.userData.branch().subscribe((data) =>{
+  //     this.response=data;
+  // Object.keys(this.response).forEach(prop => {
+  //   if(prop=="object"){
+  //     this.ListOfBranchData = this.response[prop];
+  //   }
+  // });
     
-  })
+  // })
 
   //getbranchbyid
 //   this.userData.branchbyID().subscribe((data) =>{
@@ -154,7 +156,7 @@ if(prop=="object"){
   getBranchbyId(data:any): void{
     // console.log("GetData" +data);
      
-     // console.log("AllData" +JSON.stringify(data));
+      console.log("AllData" +JSON.stringify(data));
         
      //console.log(new Date("2015/04/29 11:24:00").getTime());
      
@@ -163,7 +165,7 @@ if(prop=="object"){
     Object.keys(this.idoutput).forEach(prop => {
     if(prop=="object"){
       this.BranchDetailById = this.idoutput[prop];
-      //console.log("GetData" +this.userData.branchbyidurl);
+      console.log("GetData" +this.BranchDetailById._id);
     }
     });
     
@@ -225,6 +227,27 @@ getbranchFormData(data:any): void{
       }
   
   
+      // branch filter
+      offctyp:any;
+      url_value:any;
+      searchFilter(offctype:any){
+        console.log(offctype);
+        this.url_value= this.userData.branchurl;
+
+        if (offctype != undefined && offctype !="All"){
+          this.url_value+=("?headOffice="+offctype);
+        }
+
+        this.http.get(this.url_value).subscribe((data) =>{
+          this.response=data;
+      Object.keys(this.response).forEach(prop => {
+        if(prop=="object"){
+          this.ListOfBranchData = this.response[prop];
+        }
+      });
+        
+      })
+      }
 
   showHideText(event:any){
   

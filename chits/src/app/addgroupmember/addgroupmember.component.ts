@@ -15,7 +15,9 @@ export class AddgroupmemberComponent implements OnInit {
   ListOfGroupData:any;
   grpres:any;
   grpidoutput:any;
-
+  grpfilterscheme:any;
+  grpfiltertype:any;
+  grpselectvalue:any;
 
   GroupDetailsbyId: Group={
     id: ' ' ,
@@ -42,8 +44,8 @@ export class AddgroupmemberComponent implements OnInit {
     vacantCount:''
     }
 
-
-   
+    slaboutpt:any;
+    listofslabdata:any;
 
   constructor(private http: HttpClient, private userData:UserDataService,private router:Router) {
     this.userData.group().subscribe((data) =>{
@@ -57,7 +59,17 @@ export class AddgroupmemberComponent implements OnInit {
     })
 
 
+ // get all slab method
+ this.http.get(this.userData.getslab).subscribe((data) =>{
+  this.slaboutpt=data;
+Object.keys(this.slaboutpt).forEach(prop => {
+if(prop=="object"){
+  this.listofslabdata = this.slaboutpt[prop];
+  //console.log("GetData" +this.userData.branchbyidurl);
+}
+});
 
+})
 
 
 
@@ -93,6 +105,90 @@ getGroupbyId(data:any): void{
      goToPage(pageName:string,value:any,vaccent:any):void{
       this.router.navigate([`${pageName}`],{ queryParams: { value , vaccent}  });
     } 
+
+//Group filter
+scheme_value:any;
+grp_type:any;
+start_date:any;
+auc_date:any;
+url_value:any;
+ListOfGroupfilData:any;
+grpfilres:any;
+searchFilter(scheme_id:any,type:any){
+console.log("sec  "+scheme_id);
+console.log("type  "+type);
+
+
+//filter with only scheme
+if(scheme_id != undefined && scheme_id !="all" )
+{
+  console.log("loop - 1");
+this.url_value="?scheme="+scheme_id;
+if(type!= undefined &&type!="all" ){
+  this.url_value+=("&register="+type);
+  
+  }
+  this.http.get(this.userData.getAllgrp+this.url_value).subscribe((data) =>{
+    this.grpfilres=data;
+  Object.keys(this.grpfilres).forEach(prop => {
+  if(prop=="object"){
+    this.ListOfGroupfilData = this.grpfilres[prop];
+    this.url_value="";
+  }
+  });
+  
+  })
+
+}
+
+
+if(type!= undefined &&type!="all" && (scheme_id == undefined || scheme_id =="all")){
+  console.log("loop - 2");
+ 
+  this.url_value=("?register="+type);
+  console.log( this.url_value);
+  this.http.get(this.userData.getAllgrp+this.url_value).subscribe((data) =>{
+    this.grpfilres=data;
+  Object.keys(this.grpfilres).forEach(prop => {
+  if(prop=="object"){
+    this.ListOfGroupfilData = this.grpfilres[prop];
+    this.url_value="";
+  }
+  });
+  
+  })
+  
+}
+
+
+
+
+//for particular scheme
+
+
+
+//for all scheme
+if(scheme_id == "all" &&(type=="all" || type==undefined)){
+  console.log("loop - 3");
+this.http.get(this.userData.getAllgrp).subscribe((data) =>{
+  this.grpfilres=data;
+Object.keys(this.grpfilres).forEach(prop => {
+if(prop=="object"){
+  this.ListOfGroupfilData = this.grpfilres[prop];
+}
+});
+
+})
+}
+
+
+
+}
+
+
+
+
+
   ngOnInit(): void {
   }
 

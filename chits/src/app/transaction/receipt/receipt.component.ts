@@ -30,7 +30,9 @@ export class ReceiptComponent implements OnInit {
   ListOfGroupData:any;
 //customer
 ListOfCustomerData:any;
-custmresponse:any
+custmresponse:any;
+
+recprelpop = true;
 
 //recipt
 ListOfReceiptData:any;
@@ -51,17 +53,25 @@ button = 'Submit';
       loading: false
     }
   }
+
+  //filter
+  routeValue:any;
+  routeoutpt:any;
+  listofroutedata:any;
+  recptype:any;
+  recpdate:any;
+  recptselectvalue:any;
   constructor(private http: HttpClient, private userData: UserDataService) {
 // get all receipt
-this.userData.receipt().subscribe((data) =>{
-  this.receiptres=data;
-Object.keys(this.receiptres).forEach(prop => {
-if(prop=="object"){
-  this.ListOfReceiptData = this.receiptres[prop];
-}
-});
+// this.userData.receipt().subscribe((data) =>{
+//   this.receiptres=data;
+// Object.keys(this.receiptres).forEach(prop => {
+// if(prop=="object"){
+//   this.ListOfReceiptData = this.receiptres[prop];
+// }
+// });
 
-})
+// })
 
 
 
@@ -114,6 +124,18 @@ if(prop=="object"){
 })
 
 
+// get all route 
+this.http.get(this.userData.getroute).subscribe((data) =>{
+  this.routeoutpt=data;
+Object.keys(this.routeoutpt).forEach(prop => {
+if(prop=="object"){
+  this.listofroutedata = this.routeoutpt[prop];
+  //console.log("GetData" +this.userData.branchbyidurl);
+}
+});
+
+})
+
 
   }
 //spinner
@@ -129,51 +151,167 @@ click() {
   }, 2000)
 }
   //create reciept
-
+  collectionEmployee:any;
   getrecieptFormData(data:any): void{
     //  console.log("GetData" +data.officeName);
-      console.log("AllData" +JSON.stringify(data));
+    console.log("AllData post method" +JSON.stringify(data));
+    console.log("groupid"+data.collectionEmployee.empId);
     //console.log("name and id : "+ data.branchName.groupId)
-    this.group_id = data.selectEnrollment.groupid;
-    this.group_name = data.selectEnrollment.gropName;
-    data.selectEnrollment = this.group_name;
-    data.groupId = this.group_id;
+    data.groupId = this.selectEnrollmentval.groupId;
+    data.selectEnrollment = this.selectEnrollmentval.groupName;
+ 
+    data.employeeId = this.collectionEmployee.empId;
+    data.collectionEmployee = data.collectionEmployee.empName;
+    
 
-    this.emp_id = data.collectionEmployee.empId;
-    this.emp_name = data.collectionEmployee.empName;
-    data.collectionEmployee = this.emp_name;
-    data.employeeId = this.emp_id;
-
-    this.cus_id = data.customerName.cusId;
-    this.cus_name = data.customerName.cusName;
-    this.collect_route = data.customerName.collectroute;
-    data.customerName = this.cus_name;
-    data.customerId = this.cus_id;
-    data.collectionRoute = this.collect_route;
+    data.customerId = data.customerName.cusId;
+    data.customerName = data.customerName.cusName;
+    data.collectionRoute = data.customerName.collectroute;
+    
 
     console.log("AllData after set id " +JSON.stringify(data));
 
-      this.http.post(this.userData.createreceipt, data).subscribe((result)=>{
-       this.recptreslt = result;
+      // this.http.post(this.userData.createreceipt, data).subscribe((result)=>{
+      //  this.recptreslt = result;
         
-       Object.keys(this.recptreslt).forEach(prop => {
-          console.log("data : " +prop);
-            console.log("value : "+this.recptreslt[prop]);
-             if(prop=="responseCode"){
-            // this.ListOfEmpData = this.reslt[prop];
-              if(this.recptreslt[prop]=="200"){
-                if(window.confirm('Receipt is created successfully')){
-                  location.reload();
-                }else(window.confirm('Error in creating receipt'))
-                {
-                  location.reload();
-                }
-              }
+      //  Object.keys(this.recptreslt).forEach(prop => {
+      //     console.log("data : " +prop);
+      //       console.log("value : "+this.recptreslt[prop]);
+      //        if(prop=="responseCode"){
+      //       // this.ListOfEmpData = this.reslt[prop];
+      //         if(this.recptreslt[prop]=="200"){
+      //           if(window.confirm('Receipt is created successfully')){
+      //             location.reload();
+      //             // this.recprelpop=false;
+      //           }else(window.confirm('Error in creating receipt'))
+      //           {
+      //             location.reload();
+      //             // this.recprelpop=false;
+      //           }
+      //         }
 
-              }
-          });
-        })
+      //         }
+      //     });
+      //   })
        }
+
+
+
+      // filter
+      url_value=this.userData.getReceipt;
+      //routeall_value:any;
+      searchFilter(routeValue:any,recptype:any,recpdate:any){
+        console.log("rout:"+routeValue);
+        console.log("type:"+recptype);
+        console.log("date:"+recpdate);
+        
+        // filter with specific route , type and if date entered
+        if(routeValue != undefined && routeValue !="All"  )
+              {
+                this.url_value+="?branch="+routeValue;
+                if(recptype != undefined && recptype != "All"){
+                
+            
+                this.url_value +="&type="+recptype;
+                }
+
+               if(recpdate != undefined )
+               {
+                this.url_value +="&billDate="+recpdate;
+                
+               }
+            }
+
+        // filter with all route , specific type and if date entered
+            else if( (routeValue =="All" || routeValue == undefined) && recptype != undefined && recptype != "All" ){
+              
+                this.url_value +="?type="+recptype;
+
+             if(recpdate != undefined )
+              {
+                this.url_value +="&billDate="+recpdate;
+                
+              }
+            }
+
+        // filter with all route and type if date entered
+       else if( (routeValue =="All" || routeValue == undefined) && (recptype == "All"||recptype == undefined) && recpdate != undefined ){
+       
+       if(recpdate != undefined )
+        {
+          this.url_value +="?billDate="+recpdate;
+          
+        }
+      }
+
+        this.http.get(this.url_value).subscribe((data) =>{
+          this.receiptres=data;
+        Object.keys(this.receiptres).forEach(prop => {
+        if(prop=="object"){
+          this.ListOfReceiptData = this.receiptres[prop];
+          this.url_value=this.userData.getReceipt;
+        }
+        });
+        
+        })
+              
+
+      }
+
+
+      grpidvalue:any;
+      grpidoutput:any;
+      GroupDetailsbyId:any;
+  //group details by id 
+  recpdetailsbygrpid(data:any){
+
+    console.log("GetData" +data);
+    this.http.get(this.userData.groupbyidurl+data).subscribe((data) =>{
+      this.grpidoutput=data;
+    Object.keys(this.grpidoutput).forEach(prop => {
+    if(prop=="object"){
+      this.GroupDetailsbyId = this.grpidoutput[prop];
+      //console.log("GetData" +this.userData.branchbyidurl);
+    }
+    });
+    
+    })
+  }
+
+  //recepit creation
+  selectEnrollmentval:any;
+  grpmapidoutput:any;
+  GroupMappdetails:any;
+recepitcreation(data:any){
+  // console.log("AllData" +JSON.stringify(data));
+
+console.log("id -"+this.selectEnrollmentval.groupId);
+console.log("name -"+this.selectEnrollmentval.groupName);
+
+/// get method group customer details by id
+this.http.get(this.userData.grouplistmapdcus+this.selectEnrollmentval.groupId).subscribe((data) =>{
+  this.grpmapidoutput=data;
+Object.keys(this.grpmapidoutput).forEach(prop => {
+if(prop=="object"){
+  this.GroupMappdetails = this.grpmapidoutput[prop];
+  //console.log("GetData" +this.GroupMappdetails);
+  // enabling form
+  this.recprelpop=true;
+}
+});
+
+})
+
+}
+
+
+
+
+
+
+
+
+
 
   ngOnInit(): void {
     this.userData.getNameList().subscribe((data: any) => {

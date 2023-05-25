@@ -1,21 +1,31 @@
-import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
-import { Group } from '../model/groupbyid.model';
+import { ChangeDetectorRef, Component, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
+import { TabComponent } from "@syncfusion/ej2-angular-navigations";
 import { HttpClient } from '@angular/common/http';
-import { UserDataService } from '../users-data.service';
-import { Router } from '@angular/router';
-import { Customer } from '../model/customer.model';
-import { ActivatedRoute } from '@angular/router';
+import {UserDataService} from 'src/app/users-data.service';
+import { Customer } from '../model/customer.model'; 
+import { slab } from '../model/slab.module';
+import { CustomerService } from '../model/customer.service';
+import { HttpEventType } from '@angular/common/http';
+import { FormBuilder, FormGroup, Validators,FormControl } from '@angular/forms';
+import { docbyid } from '../model/getdocbyid.model';
 import { GroupMap } from '../model/groupmapping.model';
+import { Group } from '../model/groupbyid.model';
 
-
+interface USERS {
+  id: Number;
+  name: String;
+  username: String;
+  email: String;
+}
 
 @Component({
-  selector: 'app-addmember',
-  templateUrl: './addmember.component.html',
-  styleUrls: ['./addmember.component.css']
+  selector: 'app-ledger',
+  templateUrl: './ledger.component.html',
+  styleUrls: ['./ledger.component.css']
 })
 
-export class AddmemberComponent implements OnInit {
+export class LedgerComponent implements OnInit {
   grpidoutput:any;
   filterselc = false;
   searchText: any;
@@ -28,8 +38,8 @@ export class AddmemberComponent implements OnInit {
   cusmapcheck:any;
   maxNo=false;
   checked=false;
-  catselectvalue:any;
-  slabValue:any;
+  rotselectvalue:any;
+
   groupmrm :GroupMap={
     groupId: '',
     customerId:[]
@@ -66,12 +76,12 @@ export class AddmemberComponent implements OnInit {
       // customerId:'',
       _id:'',
       branchName:'',
-      customerGenId:'',
       joiningDate:'',
+      customerGenId:'',
+      branchCode:'',
       customerId:0,
       referedType:'',
       referedBy:'',
-      branchCode:'',
       personalDetails:{
         customerPersonalId:0,
                        name:'',
@@ -113,6 +123,10 @@ export class AddmemberComponent implements OnInit {
       }
       listofslabdata:any;
       slaboutpt:any;
+      routeoutpt:any;
+      listofroutedata:any;
+      ledgpresponse:any;
+      ListOfledrotData:any;
 
   constructor(private http: HttpClient, private userData:UserDataService ,private router:Router,private route: ActivatedRoute,private cdRef: ChangeDetectorRef) { 
     this.userData.group().subscribe((data) =>{
@@ -137,6 +151,18 @@ if(prop=="object"){
 
 })
 
+
+// get all route 
+this.http.get(this.userData.getroute).subscribe((data) =>{
+  this.routeoutpt=data;
+Object.keys(this.routeoutpt).forEach(prop => {
+if(prop=="object"){
+  this.listofroutedata = this.routeoutpt[prop];
+  //console.log("GetData" +this.userData.branchbyidurl);
+}
+});
+
+})
 
     // get all customer for mapping method
 // this.http.get(this.userData.cuslistmappedgrop).subscribe((data) =>{
@@ -196,28 +222,24 @@ getCusDatabyFilter(type:any){
 ///Method to get cutomer id from checkbox
        GroupMappingCustomer(event:any,data:any){
         this.route.queryParams.subscribe(params => {
-          this.vaccent = +params['vaccent'] ;
+          this.vaccent = +params['vaccent'];
           this.groupmrm.groupId = params['value'];
         });
-        console.log("vac"+(this.vaccent));
+        console.log("vac"+this.vaccent);
         console.log("gr"+this.groupmrm.groupId);
-        console.log("len"+(this.groupmrm.customerId).length);
         if(event.target.checked==true){
           this.isDisplayed = true;
           console.log("array_size"+Object.keys(this.groupmrm.customerId).length);
-           if(Object.keys(this.groupmrm.customerId).length <= (this.vaccent))
+           if(Object.keys(this.groupmrm.customerId).length <   this.vaccent)
            {
             this.groupmrm.customerId.push(data);
             console.log( this.groupmrm);
             console.log( this.isDisplayed);
-            if(Object.keys(this.groupmrm.customerId).length == (this.vaccent)){
-              this.maxNo = true;
-            }
            }
-            else
-            {
-              this.maxNo = true;
-            }
+          //  else
+          //  {
+           
+          //  }
            
         }
         else{
@@ -225,7 +247,6 @@ getCusDatabyFilter(type:any){
           this.groupmrm.customerId = this.groupmrm.customerId.filter(num => num !== data);
           console.log( this.groupmrm.customerId);
           console.log( this.isDisplayed);
-          this.maxNo = false;
         }}
 
       //  Test(){
@@ -254,12 +275,10 @@ getCusDatabyFilter(type:any){
                 // this.ListOfEmpData = this.reslt[prop];
                   if(this.grpmapreslt[prop]=="200"){
                     if(window.confirm('Customer mapped successfully')){
-                      this.router.navigate(['addgroupmember']);
-                      
+                      location.reload();
                     }else(window.confirm('Error mapping customer'))
                     {
-                      this.router.navigate(['addgroupmember']);
-                      
+                      location.reload();
                     }
                   }
                   }
@@ -272,26 +291,20 @@ getCusDatabyFilter(type:any){
        goToPage(pageName:string):void{
         this.router.navigate([`${pageName}`]);
       } 
-
-
-
-      
-        searchFilter(type:any,slabval:any){
-          console.log("sec  "+slabval);
-          console.log("type  "+type);
-
-        this.http.get(this.userData.cuslistmappedgrop+type).subscribe((data) =>{
-          this.custmapresponse=data;
+      searchFilter(type:any){
+        console.log(this.selectedValue);
+        this.http.get(this.userData.getledgerbyroute+type).subscribe((data) =>{
+          this.ledgpresponse=data;
           console.log("AllData" +JSON.stringify(data));
-        Object.keys(this.custmapresponse).forEach(prop => {
+          
+        Object.keys(this.ledgpresponse).forEach(prop => {
         if(prop=="object"){
-          this.ListOfCustMapData = this.custmapresponse[prop];
+          this.ListOfledrotData = this.ledgpresponse[prop];
           // ('#my-datatable').DataTable.ajax.reload();
         }
         });
+        
         })
-
-
       }
 
 

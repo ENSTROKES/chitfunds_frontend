@@ -53,10 +53,38 @@
                 <div class="card">
                     <div class="card-body">
                         <h5 class="card-title">Group Members</h5>
-                        <div class="col-md-3"> <label for="inputName5" class="form-label">  <b>Filter</b></label>
+                        <!-- <div class="col-md-3"> <label for="inputName5" class="form-label">  <b>Filter</b></label>
                             <select ngModel name="collectionEmployee" class="form-control">
                              <option value="" disable selected hidden>---Select----</option>
                             </select>
+                        </div> -->
+                        <div class="row">
+                            <div class="col-md-2"> <label for="inputName5" class="form-label"> <b>Scheme</b><span style="color:red">*</span></label>
+                                <select ngModel name="grpfilterscheme" class="form-control" [(ngModel)]="grpfilterscheme" #name="ngModel">
+                     <!-- <option value="all" >All</option> -->
+                   <!-- <option value="" disable selected hidden>---Select----</option> -->
+                   <option [selected]="true" [ngValue]="grpselectvalue">---Select---</option>
+                   <option value="all" >All</option>
+                   <option *ngFor="let slabData of listofslabdata"    [value]="slabData._id">{{slabData.chitValue}}-{{slabData.installment}}</option>
+                   
+                </select>
+                            </div>
+                            <div class="col-md-2"> <label for="inputName5" class="form-label">  <b>Type</b><span style="color:red">*</span></label>
+                                <select ngModel name="collectionEmployee" [(ngModel)]="grpfiltertype" class="form-control">
+                                <option [selected]="true" [ngValue]="grpselectvalue">---Select---</option>
+                                <option value="all" >All</option>
+                         <option value="true" >Register</option>
+                         <option value="false" >Non-Register</option>
+                        </select>
+
+                            </div>
+
+
+                            <div class="col-md-2">
+                                <button type="button" style="margin-top:32px;" class="btn btn-primary" data-bs-dismiss="modal" (click)="searchFilter(grpfilterscheme,grpfiltertype)">Search</button>
+                            </div>
+
+
                         </div>
                         <table class="table table-striped">
 
@@ -70,14 +98,14 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr *ngFor="let group of ListOfGroupData;let i = index">
+                                <tr *ngFor="let group of ListOfGroupfilData;let i=index">
                                     <td>{{i+1}}</td>
                                     <td>{{ group.groupName}}</td>
                                     <td>{{ group.schemeName }}</td>
                                     <td>{{ group.vacantCount }}</td>
 
 
-                                    <td><button class="btn btn-primary" (click)="goToPage('addmember',group._id,group.vacantCount)"> Add Member </button></td>
+                                    <td><button class="btn btn-primary" [disabled]="!group.vacantCount" (click)="goToPage('addmember',group._id,group.vacantCount)"> Add Member </button></td>
 
                                 </tr>
                             </tbody>

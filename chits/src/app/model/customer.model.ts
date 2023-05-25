@@ -6,6 +6,8 @@ export class Customer {
         branchName:string;
         joiningDate:string;
         _id:any;
+        customerGenId:any;
+        branchCode:any;
         referedType:string;
         referedBy:string;
         personalDetails: PersonalDetails;

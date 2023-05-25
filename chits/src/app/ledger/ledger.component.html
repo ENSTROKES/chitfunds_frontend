@@ -1,0 +1,95 @@
+<main id="main" class="main">
+    <div class="pagetitle">
+        <h1>Ledger</h1>
+        <nav>
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a routerLink="/">Home</a></li>
+                <li class="breadcrumb-item">Ledger</li>
+                <li class="breadcrumb-item active">Tabs</li>
+            </ol>
+        </nav>
+    </div>
+    <section class="section">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title"></h5>
+                        <div class="row">
+                            <div class="col-md-2"> <label for="inputName5" class="form-label">  <b>Route</b></label>
+                                <select ngModel name="collectionEmployee" [(ngModel)]="selectedValue" class="form-control">
+                                
+                                    <option [selected]="true" [ngValue]="rotselectvalue">---Select---</option>
+                                <option *ngFor="let routeData of listofroutedata" [ngValue]="routeData._id">{{routeData._id}}</option>
+                                </select>
+
+                            </div>
+                            <!-- <div class="col-md-2"> <label for="inputName5" class="form-label"> <b>Scheme</b></label>
+                                <select ngModel name="schemeId" class="form-control" #name="ngModel">
+                 <option value="" disable selected hidden>---Select----</option>
+                 <option *ngFor="let slabData of listofslabdata"    [ngValue]="{slabid: slabData._id, slabname : slabData.chitValue,slabinst: slabData.installment }">{{slabData.chitValue}}-{{slabData.installment}}</option>
+                 
+              </select>
+                            </div> -->
+
+                            <!-- <div class="col-md-3"> <label for="inputName5" class="form-label">  <b>Data</b></label><input type="number" ngModel name="" class="form-control" id="inputName5" [disabled]="selectedValue == 'allcustomer'"></div> -->
+                            <div class="col-md-2">
+
+                                <button type="button " style="margin-top:32px;" class="btn btn-primary " data-bs-dismiss="modal" (click)="searchFilter(selectedValue)">Search</button></div>
+                        </div>
+
+
+                        <table class="table table-hover">
+
+                            <thead>
+                                <tr>
+                                    <th>S.No</th>
+                                    <th> Ticket NO</th>
+                                    <th> customerName</th>
+                                    <th> groupName</th>
+                                    <th>collectionRoute</th>
+                                    <th>pendingAmount</th>
+                                    <th>paidAmount</th>
+                                    <th>lastPaiedDate</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let ledgerdata of ListOfledrotData;let i = index">
+                                    <td>{{i+1}}</td>
+                                    <td>{{ ledgerdata.ticketNumber }}</td>
+                                    <td>{{ ledgerdata.customerName }}</td>
+                                    <td>{{ledgerdata.groupName}}</td>
+                                    <td>{{ledgerdata.collectionRoute}}</td>
+                                    <td>{{ ledgerdata.pendingAmount}}</td>
+                                    <td>{{ ledgerdata.paidAmount}}</td>
+                                    <td>{{ ledgerdata.lastPaiedDate | date:'dd-MM-yy'}}</td>
+
+                                    <td>
+
+
+                                    </td>
+
+                                </tr>
+                            </tbody>
+                        </table>
+                        <div class="modal-footer ">
+                            <button type="button " class="btn btn-primary " data-bs-dismiss="modal " (click)="goToPage('addgroupmember')">Back</button>
+                            <button type="button " class="btn btn-primary " data-bs-dismiss="modal " (click)="getgroupFormData()">Save</button>
+                        </div>
+
+
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+
+
+
+
+</main>
+<script>
+</script>

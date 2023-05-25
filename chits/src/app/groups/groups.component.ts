@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import {UserDataService} from 'src/app/users-data.service';
 import { Group } from '../model/groupbyid.model';
@@ -33,7 +33,8 @@ export class GroupsComponent implements OnInit {
   grpmapidoutput:any;
   stringformid:any;
   stringformvalue:any
-
+  grpselectvalue:any;
+  dateselectedvalye:any;
   GroupDeletebyId: Group={
     id: ' ' ,
     _id:null,
@@ -108,6 +109,13 @@ GroupMappdetails: GroupMapCusList ={
 }
 
 
+//filter
+grpfiltertype:any;
+grpfilterscheme:any;
+grpfilterdatetyp:any;
+grpfilterdateinp:any;
+grpfilres:any;
+ListOfGroupfilData:any;
   //spinner
   button = 'Submit';
   isLoading = false;
@@ -119,15 +127,15 @@ GroupMappdetails: GroupMapCusList ={
   }
   constructor(private http: HttpClient, private userData:UserDataService, private router:Router) { 
     //get all group
-    this.userData.group().subscribe((data) =>{
-      this.grpres=data;
-    Object.keys(this.grpres).forEach(prop => {
-    if(prop=="object"){
-      this.ListOfGroupData = this.grpres[prop];
-    }
-    });
+    // this.userData.group().subscribe((data) =>{
+    //   this.grpres=data;
+    // Object.keys(this.grpres).forEach(prop => {
+    // if(prop=="object"){
+    //   this.ListOfGroupData = this.grpres[prop];
+    // }
+    // });
     
-    })
+    // })
 
 
  // get all slab method
@@ -312,6 +320,66 @@ getgroupFormData(data:any): void{
               }
   
 
+              //Group filter
+              scheme_value:any;
+                grp_type:any;
+                start_date:any;
+                auc_date:any;
+                url_value:any;
+            searchFilter(scheme_id:any,type:any,datetype:any,dateinput:any){
+                console.log("sec  "+scheme_id);
+                console.log("type  "+type);
+                console.log("daty "+datetype);
+                console.log("dainp "+dateinput);
+                
+              //filter with only scheme
+              if(scheme_id != undefined )
+              {
+                this.url_value="?scheme="+scheme_id;
+                
+              }
+              if(type!= undefined &&type!="all" ){
+                this.url_value+=("&register="+type);
+                
+              }
+              if(datetype == "Startdate" && dateinput!= undefined){
+
+                this.url_value+=("&startDate="+dateinput);
+               
+              }
+              if(datetype == "auctiondate" && dateinput!= undefined){
+
+                this.url_value+=("&auctionDate="+dateinput);
+              }
+
+              //for particular scheme
+              if(scheme_id != "all" ){
+                this.http.get(this.userData.getAllgrp+this.url_value).subscribe((data) =>{
+                  this.grpfilres=data;
+                Object.keys(this.grpfilres).forEach(prop => {
+                if(prop=="object"){
+                  this.ListOfGroupfilData = this.grpfilres[prop];
+                }
+                });
+                
+                })
+              }
+              //for all scheme
+              if(scheme_id == "all" ){
+                this.http.get(this.userData.getAllgrp).subscribe((data) =>{
+                  this.grpfilres=data;
+                Object.keys(this.grpfilres).forEach(prop => {
+                if(prop=="object"){
+                  this.ListOfGroupfilData = this.grpfilres[prop];
+                }
+                });
+                
+                })
+              }
+              
+            
+
+              }
 
   goToPage(pageName:string,value:any):void{
     this.router.navigate([`${pageName}`],{ queryParams: { value }  });

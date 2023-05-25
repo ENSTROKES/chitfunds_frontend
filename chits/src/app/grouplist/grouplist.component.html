@@ -66,14 +66,14 @@
                             </thead>
                             <tbody>
                                 <tr *ngFor="let grp of GroupMappdetails">
-                                    <td>{{ grp.mappingId}}</td>
+                                    <td>{{ grp.ticketNumber}}</td>
                                     <td>{{ grp.customerName}}</td>
                                     <td>{{ grp.contactNumber }}</td>
                                     <td>{{ grp.modeOfSubscription }}</td>
                                     <td>{{grp.prizedStatus}}</td>
                                     <td>{{ grp.receivedAmount }}</td>
                                     <td>{{grp.outStandingAmount}}</td>
-                                    <td>{{grp.lastPayedDate}}</td>
+                                    <td>{{grp.lastPayedDate | date :'dd-MM-YYYY'}}</td>
                                     <td>{{grp.collection_route}}</td>
                                     <td>
                                         <div class="icon">

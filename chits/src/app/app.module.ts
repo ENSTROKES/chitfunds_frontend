@@ -33,6 +33,8 @@ import { SpinnerComponent } from './spinner/spinner.component';
 import { LoadingInterceptor } from './loading.interceptor';
 import { FiltergridComponent } from './filtergrid/filtergrid.component';
 import { GrouplistComponent } from './grouplist/grouplist.component';
+import { ReportsComponent } from './reports/reports.component';
+import { LedgerComponent } from './ledger/ledger.component';
 
 
 // import { HashLocationStrategy, LocationStrategy  } from '@angular/common';
@@ -72,6 +74,8 @@ import { GrouplistComponent } from './grouplist/grouplist.component';
     SpinnerComponent,
     FiltergridComponent,
     GrouplistComponent,
+    ReportsComponent,
+    LedgerComponent,
     
   ],
   imports: [

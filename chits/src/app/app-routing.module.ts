@@ -28,6 +28,7 @@ import { UsersProfileComponent } from './pages/users-profile/users-profile.compo
 import { FiltergridComponent } from './filtergrid/filtergrid.component';
 import { AuthenticationGuard } from './authentication.guard';
 import { GrouplistComponent } from './grouplist/grouplist.component';
+import { LedgerComponent } from './ledger/ledger.component';
 const routes: Routes = [
   { path: '',redirectTo:'/pages-login', pathMatch: 'full' },
   { path: 'pages-login', component: PagesLoginComponent,pathMatch: 'full' },
@@ -40,7 +41,7 @@ const routes: Routes = [
   { path: 'closure', component: ClosureComponent,canActivate:[AuthenticationGuard]},
   { path: 'committedchitdetail', component: CommittedchitdetailComponent,canActivate:[AuthenticationGuard]},
   { path: 'minutesofauction', component: MinutesofauctionComponent,canActivate:[AuthenticationGuard]},
-  
+  { path: 'ledger', component:LedgerComponent,canActivate:[AuthenticationGuard]},
   { path: 'customermanagement', component: CustomermanagementComponent,canActivate:[AuthenticationGuard]},
   { path: 'employeemanagement', component: EmployeemanagementComponent,canActivate:[AuthenticationGuard]},
   { path: 'groups', component: GroupsComponent,canActivate:[AuthenticationGuard]},

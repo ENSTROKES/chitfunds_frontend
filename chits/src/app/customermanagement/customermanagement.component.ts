@@ -33,7 +33,7 @@ export class CustomermanagementComponent implements OnInit {
 
   
 
-
+  rotselectvalue:any;
 
   @ViewChild("adaptiveTab")
   public tabObj!: TabComponent;
@@ -67,6 +67,8 @@ customer : Customer = {
   branchName:'',
   joiningDate:'',
   customerId:0,
+  customerGenId:'',
+  branchCode:'',
   referedType:'',
   referedBy:'',
   personalDetails:{customerPersonalId:0,
@@ -107,13 +109,67 @@ customer : Customer = {
   chitId:0,
 }]
   }
+  //update customer
+  updatecustomer : Customer = {
+    _id: null,
+    branchName:'',
+    joiningDate:'',
+    customerId:0,
+    customerGenId:'',
+    branchCode:'',
+    referedType:'',
+    referedBy:'',
+    personalDetails:{customerPersonalId:0,
+                     name:'',
+                     father:'',
+                     spouse_name:'',
+                     dob:'',
+                     aadhar_no:'',
+                     pan:'',
+                     gender:'',
+                     occupation:'',
+                     monthly_income:'',
+                     marrital_status:'',
+                     address:'',
+                     pincode:'',
+                     state:'',
+                     city:'',
+                     landmark:'',
+                     phoneNumber:'',
+                     email:'',
+                     altrPhoneNumber:''
+                                    },                                
+    customerNomineeDetails:{   nomineeId:0,                             
+                            name:'',
+                           
+                            relationship:'',
+                           
+                            adharNumber:'',
+                            createdDate: 0 
+                            },
+                            customerChitDetails:[{scheme  :  ' ',
+                            createdDate: 0 ,
+     subscription  :  ' ',
+     collection_route  :  ' ',
+     
+    chit_asking_month  :  ' ',
+    remarks  :  ' ',
+    chitId:0,
+  }]
+    }
+
+
+
+
 
   // get customer by id
   idoutput:any;
   customerDetailbyid : Customer = {
     // customerId:'',
     _id:'',
+    customerGenId:'',
     branchName:'',
+    branchCode:'',
     joiningDate:'',
     customerId:0,
     referedType:'',
@@ -161,7 +217,9 @@ customer : Customer = {
     customerDeletebyid : Customer = {
       // customerId:'',
       _id:'',
+      customerGenId:'',
       branchName:'',
+      branchCode:'',
       joiningDate:'',
       customerId:0,
       referedType:'',
@@ -240,10 +298,11 @@ Document : docbyid[] = [{
   category:'',
   link:'',
 }]
-
-
-
-
+routeoutpt:any;
+listofroutedata:any;
+routeValue:any;
+filslabValue:any;
+slabselectvalue:any;
 
   constructor(private http: HttpClient, private userData:UserDataService,private fb: FormBuilder ) { 
    
@@ -260,7 +319,7 @@ Document : docbyid[] = [{
 
 
 
-    // get all customer method
+   // get all customer method
     this.userData.customer().subscribe((data) =>{
       this.custmresponse=data;
       console.log("AllData" +JSON.stringify(data));
@@ -280,6 +339,18 @@ Document : docbyid[] = [{
     Object.keys(this.slaboutpt).forEach(prop => {
     if(prop=="object"){
       this.listofslabdata = this.slaboutpt[prop];
+      //console.log("GetData" +this.userData.branchbyidurl);
+    }
+    });
+    
+    })
+
+//get all route method
+    this.http.get(this.userData.getroute).subscribe((data) =>{
+      this.routeoutpt=data;
+    Object.keys(this.routeoutpt).forEach(prop => {
+    if(prop=="object"){
+      this.listofroutedata = this.routeoutpt[prop];
       //console.log("GetData" +this.userData.branchbyidurl);
     }
     });
@@ -351,13 +422,19 @@ getCustomertestData(): void{
         })
 }
 
-
+branchname:any;
+branchcode:any;
 // Create customer post
-getCustomerFormData(): void{
+getCustomerFormData(data:any): void{
 
   const current = new Date();
 const timestamp = current.getTime();
 console.log(current,timestamp);
+
+this.customer.branchName = data.branchName.brnchname;
+this.customer.branchCode= data.branchName.brnchcode;
+
+
 
 this.customer.customerNomineeDetails.createdDate=timestamp;
 this.customer.customerChitDetails[0].createdDate=timestamp;
@@ -371,39 +448,66 @@ this.customer.customerChitDetails[0].createdDate=timestamp;
   console.log("data"+this.customer.personalDetails.father);
     this.http.post(this.userData.createcustomer,this.customer ).subscribe((result)=>{
      this.customerresult = result;
-       // console.log(this.customer);
+       console.log(this.customer);
      Object.keys(this.customerresult).forEach(prop => {
         console.log("data : " +prop);
         
-          // console.log("value : "+this.customerresult[prop]);
-          //  if(prop=="responseCode"){
-          //   this.customerupresponse= this.customerresult[prop];
-          // }
-          // if(prop=="object"){
-          //   this.customeridupload=this.customerresult[prop];
-          // }
-          // this.ListOfEmpData = this.reslt[prop];
             if(this.customerresult[prop]=="200"){
               if(window.confirm('Customer is created successfully')){
                 location.reload();
               }else{
                 location.reload();
               }
-              // this.onUpload(6);
+              
             }
             
         });
        
-        console.log(this.customerupresponse,this.customeridupload);
-        if(this.customerupresponse== 200){
-          this.onUpload(this.customeridupload);
-        }
+       
+      })
+     }
+
+     upcustomerresult:any;
+// update customer
+updateCustomerFormData(data:any): void{
+
+  const current = new Date();
+const timestamp = current.getTime();
+console.log(current,timestamp);
+// this.customer.branchName = data.branchName.brnchname;
+// this.customer.branchCode= data.branchName.brnchcode;
+// this.customer.customerNomineeDetails.createdDate=timestamp;
+// this.customer.customerChitDetails[0].createdDate=timestamp;
+  // console.log("GetData" +data);
+  console.log("AllData" +JSON.stringify(this.updatecustomer));
+    // console.log("Hello World");
+    //console.log("GetData" +this.userData.headOffice);
+   //console.log(new Date("2015/04/29 11:24:00").getTime());
+  // console.log("data"+this.customer.personalDetails.name);
+  // console.log("data"+this.customer.personalDetails.father);
+    this.http.post(this.userData.createcustomer,this.updatecustomer ).subscribe((result)=>{
+     this.upcustomerresult = result;
+     
+     Object.keys(this.upcustomerresult).forEach(prop => {
+        console.log("data : " +prop);
+     
+            if(this.upcustomerresult[prop]=="200"){
+              if(window.confirm('Customer is created successfully')){
+                location.reload();
+              }else{
+                location.reload();
+              }
+            }
+            
+        });
+       
+    
       })
      }
 
 // Get customer by id
 getCustomerbyId(custid:any): void{
-  // console.log("GetData" +data);
+  
    
    //console.log("AllData" +JSON.stringify(data));
       
@@ -411,12 +515,13 @@ getCustomerbyId(custid:any): void{
    
 
    this.http.get(this.userData.customerbyidurl+custid).subscribe((data) =>{
+    console.log("AllData" +JSON.stringify(data));
     this.idoutput=data;
   Object.keys(this.idoutput).forEach(prop => {
   if(prop=="object"){
     this.customerDetailbyid = this.idoutput[prop];
     //console.log("GetData" +this.userData.branchbyidurl);
-    this.getDocumentbyId(custid);
+    // this.getDocumentbyId(custid);
   }
   });
   
@@ -426,33 +531,33 @@ getCustomerbyId(custid:any): void{
 
 
      // Get Document by id
-getDocumentbyId(custId:any): void{
-  // console.log("GetData" +data);
+// getDocumentbyId(custId:any): void{
+//   // console.log("GetData" +data);
    
-   // console.log("AllData" +JSON.stringify(data));
+//    // console.log("AllData" +JSON.stringify(data));
       
-   //console.log(new Date("2015/04/29 11:24:00").getTime());
-   console.log("Heloo1");
-   this.http.get(this.userData.getDocbyid+custId).subscribe((data) =>{
-    this.docoupt=data;
-    Object.keys(this.docoupt).forEach(prop => {
-  if(prop=="object"){
-    this.Document = this.docoupt[prop];
-    console.log("Heloo");
-    console.log("Documents response : " + this.Document[0].link);
-    console.log("Documents response : " + this.Document[1].link);
-    console.log("Documents response : " + this.Document[2].link);
-    console.log("Documents response : " + this.Document[3].link);
+//    //console.log(new Date("2015/04/29 11:24:00").getTime());
+//    console.log("Heloo1");
+//    this.http.get(this.userData.getDocbyid+custId).subscribe((data) =>{
+//     this.docoupt=data;
+//     Object.keys(this.docoupt).forEach(prop => {
+//   if(prop=="object"){
+//     this.Document = this.docoupt[prop];
+//     console.log("Heloo");
+//     console.log("Documents response : " + this.Document[0].link);
+//     console.log("Documents response : " + this.Document[1].link);
+//     console.log("Documents response : " + this.Document[2].link);
+//     console.log("Documents response : " + this.Document[3].link);
 
-    this.PhotoUrl = this.Document[0].link;
-    this.AdharUrl = this.Document[1].link;
-    this.PanUrl = this.Document[2].link;
-    this.ApplicationUrl = this.Document[3].link;
-  }
-  });
+//     this.PhotoUrl = this.Document[0].link;
+//     this.AdharUrl = this.Document[1].link;
+//     this.PanUrl = this.Document[2].link;
+//     this.ApplicationUrl = this.Document[3].link;
+//   }
+//   });
   
-  })
-     }
+//   })
+//      }
 
 
      //delete customer
@@ -582,6 +687,25 @@ if (window.confirm('Customer craeted successfully without documents')) {
 //    // this.route.navigate(['list']);
 //   }// Get customer by id
 
+cusurl_value=this.userData.getAllcustomer;
+searchFilter(route:any,slab:any){
+
+if(route != undefined && route!='All'&& slab != undefined && slab!='All'){
+  this.cusurl_value+="?collectionRoute="+route+"&scheme="+slab;
+  
+}
+this.http.get(this.cusurl_value).subscribe((data) =>{
+    this.custmresponse=data;
+    console.log("AllData" +JSON.stringify(data));
+    
+  Object.keys(this.custmresponse).forEach(prop => {
+  if(prop=="object"){
+    this.ListOfCustomerData = this.custmresponse[prop];
+  }
+  });
+  
+  })
+}
 
 
   ngOnInit(): void {

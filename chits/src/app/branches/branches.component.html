@@ -15,7 +15,7 @@
                 <div class="card">
                     <div class="card-body">
                         <h5 class="card-title">Branch table</h5>
-                        <div class="search-here">
+                        <!-- <div class="search-here">
 
                             <label for="inputName5" class="form-label"> <b>Search</b></label>&nbsp;&nbsp;&nbsp;<input type="text" name="search" [(ngModel)]="searchText" placeholder="Search Here">
                             <div class="col-md-3"> <label for="inputName5" class="form-label">  <b>Filter</b></label>
@@ -23,8 +23,23 @@
                                  <option value="" disable selected hidden>---Select----</option>
                                 </select>
                             </div>
+                        </div> -->
+                        <div class="row">
+                            <div class="col-md-2"> <label for="inputName5" class="form-label">  <b>Type</b><span style="color:red">*</span></label>
+                                <select ngModel name="headoffice" [(ngModel)]="offctyp" class="form-control">
+                                    <option [selected]="true" [ngValue]="brchselectvalue">---Select---</option>
+                            <option value="All" >All</option>
+                             <option value="true" >Head Office</option>
+                             <option value="false" >Branch Office</option>
+                    </select>
+
+                            </div>
+                            <div class="col-md-2">
+                                <button type="button" style="margin-top:32px;" class="btn btn-primary" data-bs-dismiss="modal" (click)="searchFilter(offctyp)">Search</button>
+                            </div>
                         </div>
-                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#largeModal" style="margin-left:780px; margin-top:-60px;"> Create </button>
+
+                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#largeModal" style="margin-left:900px; margin-top:-63px;"> Create </button>
                         <div class="modal fade" id="largeModal" tabindex="-1">
                             <div class="modal-dialog modal-lg">
                                 <div class="modal-content">
@@ -40,6 +55,7 @@
                                                     <!-- <h5 class="card-title">Group Form</h5> -->
                                                     <form class="row g-3" #branchForm="ngForm" (ngSubmit)="getbranchFormData(branchForm.value)">
                                                         <div class="col-md-4"> <label for="inputName5" class="form-label">Office Name</label> <input type="text" class="form-control" id="inputName5" ngModel name="officeName"></div>
+                                                        <div class="col-md-4"> <label for="inputName5" class="form-label">Branch Code</label> <input type="text" class="form-control" id="inputName5" ngModel name="branchCode" maxlength="3"></div>
                                                         <div class="col-md-6">
                                                             <label for="inputName5" class="form-label"> Mobile Number </label>
                                                             <div class="input-group w-50"><span class="input-group-text">+91</span> <input type="text" ngModel name="phoneNumber" maxlength="10" class="form-control"></div>
@@ -165,8 +181,12 @@
                                                         <div class="modal-body">
 
                                                             <form class="row g-3" #branchForm="ngForm" (ngSubmit)="getbranchFormData(branchForm.value)">
+
                                                                 <div class="col-md-6"> <label for="inputName5" class="form-label">Branch ID</label>
                                                                     <input type="text" class="form-control" ngModel name="branchId" id="inputName5" [(ngModel)]="BranchDetailById.branchId" readonly>
+                                                                </div>
+                                                                <div class="col-md-6"> <label for="inputName5" class="form-label">Branch Code</label>
+                                                                    <input type="text" class="form-control" ngModel name="branchCode" id="inputName5" [(ngModel)]="BranchDetailById.branchCode" readonly>
                                                                 </div>
                                                                 <div class="col-md-6"> <label for="inputName5" class="form-label">Branch Name</label>
                                                                     <input type="text" class="form-control" ngModel name="officeName" id="inputName5" [(ngModel)]="BranchDetailById.officeName">
@@ -185,6 +205,9 @@
                                                                 <div class="col-md-6"> <label for="inputName5" class="form-label">Pincode</label> <input type="text" class="form-control" ngModel name="pincode" id="inputName5" [(ngModel)]="BranchDetailById.pincode"></div>
                                                                 <div class="col-md-6"> <label for="inputName5" class="form-label">Landmark</label> <input type="text" class="form-control" ngModel name="landmark" id="inputName5" [(ngModel)]="BranchDetailById.landmark"></div>
                                                                 <div class="col-md-6"> <label for="inputName5" class="form-label">Remarks</label> <input type="text" class="form-control" ngModel name="remarks" id="inputName5" [(ngModel)]="BranchDetailById.remarks"></div>
+                                                                <div class="col-md-6">
+                                                                    <input type="text" class="form-control" ngModel name="_id" id="inputName5" [(ngModel)]="BranchDetailById._id" hidden>
+                                                                </div>
 
                                                                 <div class="modal-footer "><button type="submit" class="btn btn-primary">&nbsp; Edit</button>&nbsp;
                                                                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close
@@ -215,6 +238,10 @@
                                                                         <tr>
                                                                             <th scope="col">Branch Name</th>
                                                                             <td>{{BranchDetailById.officeName}}</td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <th scope="col">Branch Code</th>
+                                                                            <td>{{BranchDetailById.branchCode}}</td>
                                                                         </tr>
                                                                         <tr>
                                                                             <th scope="col">Mobile Number</th>

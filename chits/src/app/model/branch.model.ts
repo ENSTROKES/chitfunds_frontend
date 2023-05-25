@@ -4,6 +4,7 @@ export class Branch {
   officeName: string;
   phoneNumber: string;
   emailID: string;
+  branchCode:any;
   address: string;
   pincode: string;
   state: string;

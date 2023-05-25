@@ -41,20 +41,38 @@
                                  </select> -->
                                             <!-- <label for="inputName5" class="form-label"> <b>Search</b></label>&nbsp;&nbsp;&nbsp;<input type="text" name="search" [(ngModel)]="searchText" placeholder="Search Here">
                                                 </div> -->
-                                            <div class="col-md-3"> <label for="inputName5" class="form-label">  <b>Filter</b></label>
-                                                <select ngModel name="collectionEmployee"  class="form-control">
-                                                     <option value="" disable selected hidden>---Select----</option>
-                                                    </select>
-                                                    <button type="button " class="btn btn-primary " data-bs-dismiss="modal"  >Search</button>
-                                            </div>
+
                                             <!-- [(ngModel)]="selectedValue" -->
                                             <!-- (click)="searchFilter(selectedValue)" -->
-                                            <table class="table ">
+                                            <!-- <div class="row">
+                                                <div class="col-md-2"> <label for="inputName5" class="form-label">  <b>Route</b></label>
+                                                    <select ngModel name="collectionEmployee" [(ngModel)]="routeValue" class="form-control">
+                                                    
+                                                        <option [selected]="true" [ngValue]="rotselectvalue">---Select---</option>
+                                                        <option value="All">All</option>
+                                                    <option *ngFor="let routeData of listofroutedata" [value]="routeData._id">{{routeData._id}}</option>
+                                                    </select>
+
+                                                </div>
+                                                <div class="col-md-2"> <label for="inputName5" class="form-label"> <b>Scheme</b></label>
+                                                    <select ngModel name="schemeId" class="form-control" [(ngModel)]="filslabValue">
+                                                        <option [selected]="true" [ngValue]="slabselectvalue">---Select---</option>
+                                                        <option value="All">All</option>
+                                                        <option *ngFor="let slabData of listofslabdata"   [value]="slabData._id">{{slabData.chitValue}}-{{slabData.installment}}</option>
+                                     
+                                  </select>
+                                                </div>
+                                                <div class="col-md-2">
+
+                                                    <button type="button " style="margin-top:32px;" class="btn btn-primary " data-bs-dismiss="modal" (click)="searchFilter(routeValue,filslabValue)">Search</button></div>
+                                            </div> -->
+
+                                            <table class="table table-hover">
 
                                                 <thead>
                                                     <tr>
                                                         <th>S.no</th>
-                                                        <th>Branch</th>
+                                                        <th>ID</th>
                                                         <th>Name</th>
                                                         <th>Phone Number</th>
                                                         <th>Scheme</th>
@@ -64,7 +82,7 @@
                                                 <tbody>
                                                     <tr *ngFor="let customrdata of ListOfCustomerData;let i = index">
                                                         <td>{{i+1}}</td>
-                                                        <td>{{ customrdata.branchName }}</td>
+                                                        <td>{{ customrdata.customerGenId }}</td>
                                                         <td>{{ customrdata.personalDetails.name }} {{ customrdata.personalDetails.father }}</td>
                                                         <td>{{ customrdata.personalDetails.phoneNumber }}</td>
                                                         <td>{{ customrdata.customerChitDetails[0].scheme }}</td>
@@ -83,37 +101,30 @@
                                                                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                                                             </div>
                                                                             <div class="modal-body">
-
-                                                                                <form class="row g-3" form class="row g-3" #customerForm="ngForm" (ngSubmit)="getCustomertestData()">
-                                                                                    <h5 class="card-title">Office Details</h5>
-                                                                                    <!-- <div class="col-md-3"> <label for="inputName5" class="form-label"> Customer ID</label>
-                                                                                            <input type="text" class="form-control" ngModel name="Customerid" id="inputName5" [(ngModel)]="customerDetailbyid.customerId" >
-                                                                                        </div> -->
-                                                                                    <!-- <div class="col-md-3"> <label for="inputName5" class="form-label"> Customer ID</label>
-                                                                                            <input type="text" class="form-control" ngModel name="customerId" id="inputName5" [(ngModel)]="customerDetailbyid.customerId" readonly>
-                                                                                        </div> -->
+                                                                                <form class="row g-3" form class="row g-3" #upcustomerForm="ngForm" (ngSubmit)="updateCustomerFormData(upcustomerForm.value)">
+                                                                                    <div class="col-md-3"> <label for="inputName5" class="form-label"> Customer ID</label>
+                                                                                        <input type="text" class="form-control" ngModel name="customerGenId" id="inputName5" [(ngModel)]="customerDetailbyid.customerGenId" readonly>
+                                                                                    </div>
+                                                                                    <div class="col-md-3"> <label for="inputName5" class="form-label"> xcus ID</label>
+                                                                                        <input type="number" class="form-control" ngModel name="customerId" id="inputName5" [(ngModel)]="customerDetailbyid.customerId" readonly>
+                                                                                    </div>
                                                                                     <div class="col-md-3"> <label for="inputName5" class="form-label"> Branch Name</label>
                                                                                         <input type="text" class="form-control" ngModel name="branchName" id="inputName5" [(ngModel)]="customerDetailbyid.branchName">
-
-
                                                                                     </div>
                                                                                     <div class="col-md-3"> <label for="inputName5" class="form-label">joining date</label>
                                                                                         <input type="text" class="form-control" ngModel name="joiningDate" id="inputName5" [(ngModel)]="customerDetailbyid.joiningDate">
                                                                                     </div>
-
                                                                                     <div class="col-md-3"> <label for="inputName5" class="form-label">Refered Type</label>
                                                                                         <input type="text" class="form-control" ngModel name="referedType" id="inputName5" [(ngModel)]="customerDetailbyid.referedType">
                                                                                     </div>
                                                                                     <div class="col-md-3"> <label for="inputName5" class="form-label">Refered By</label>
                                                                                         <input type="text" class="form-control" ngModel name="referedBy" id="inputName5" [(ngModel)]="customerDetailbyid.referedBy">
-
-
                                                                                     </div>
                                                                                     <h5 class="card-title">Personal Details</h5>
+
                                                                                     <div class="col-md-3"> <label for="inputName5" class="form-label">Name</label>
                                                                                         <input type="text" class="form-control" ngModel name="name" id="inputName5" [(ngModel)]="customerDetailbyid.personalDetails.name">
                                                                                     </div>
-
                                                                                     <div class="col-md-3"> <label for="inputName5" class="form-label">Father Name</label>
                                                                                         <input type="text" class="form-control" ngModel name="father" id="inputName5" [(ngModel)]="customerDetailbyid.personalDetails.father">
                                                                                     </div>
@@ -121,7 +132,7 @@
                                                                                         <input type="text" class="form-control" ngModel name="spouse_name" id="inputName5" [(ngModel)]="customerDetailbyid.personalDetails.spouse_name">
                                                                                     </div>
                                                                                     <div class="col-md-3"> <label for="inputName5" class="form-label">DOB</label>
-                                                                                        <input type="text" class="form-control" ngModel name="dob" id="inputName5" [(ngModel)]="customerDetailbyid.personalDetails.dob">
+                                                                                        <input type="date" class="form-control" ngModel name="dob" id="inputName5" [(ngModel)]="customerDetailbyid.personalDetails.dob">
                                                                                     </div>
                                                                                     <div class="col-md-3"> <label for="inputName5" class="form-label">Mobile number</label>
                                                                                         <input type="text" class="form-control" ngModel name="phoneNumber" id="inputName5" [(ngModel)]="customerDetailbyid.personalDetails.phoneNumber">
@@ -166,21 +177,16 @@
                                                                                         <input type="text" class="form-control" ngModel name="landmark" id="inputName5" [(ngModel)]="customerDetailbyid.personalDetails.landmark">
                                                                                     </div>
                                                                                     <h5 class="card-title">Nominee Details</h5>
-                                                                                    <div class="col-md-3"> <label for="inputName5" class="form-label">Name</label>
-                                                                                        <input type="text" class="form-control" ngModel name="name" id="inputName5" [(ngModel)]="customerDetailbyid.customerNomineeDetails.name">
-                                                                                    </div>
+                                                                                    <!-- <div class="col-md-3"> <label for="inputName5" class="form-label">Name</label>
+                                                                                        <input type="text" class="form-control" ngModel name="nomineename" id="inputName5" [(ngModel)]="customerDetailbyid.customerNomineeDetails.name">
+                                                                                    </div> -->
                                                                                     <div class="col-md-3"> <label for="inputName5" class="form-label">Relationship</label>
                                                                                         <input type="text" class="form-control" ngModel name="relationship" id="inputName5" [(ngModel)]="customerDetailbyid.customerNomineeDetails.relationship">
                                                                                     </div>
                                                                                     <div class="col-md-3"> <label for="inputName5" class="form-label">Aadhar No.</label>
                                                                                         <input type="text" class="form-control" ngModel name="adharNumber" id="inputName5" [(ngModel)]="customerDetailbyid.customerNomineeDetails.adharNumber">
                                                                                     </div>
-                                                                                    <!-- <div class="col-md-3"> <label for="inputName5" class="form-label">Address</label>
-                                                                                            <input type="text" class="form-control" ngModel name="nominee_address" id="inputName5" [(ngModel)]="customerDetailbyid.customerNomineeDetails.nominee_address">
-                                                                                        </div>
-                                                                                        <div class="col-md-3"> <label for="inputName5" class="form-label">DOB</label>
-                                                                                            <input type="text" class="form-control" ngModel name="dob" id="inputName5" [(ngModel)]="customerDetailbyid.customerNomineeDetails.dob">
-                                                                                        </div> -->
+
                                                                                     <h5 class="card-title">Chit Details</h5>
                                                                                     <div class="col-md-6"> <label for="inputZip" class="form-label">Scheme</label> <input type="text" class="form-control" id="inputZip" name='scheme' [(ngModel)]="customerDetailbyid.customerChitDetails[0].scheme"
                                                                                             #name="ngModel"></div>
@@ -190,17 +196,33 @@
                                                                                             #name="ngModel"></div>
                                                                                     <div class="col-md-6"> <label for="inputName5" class="form-label"> Subscription</label> <input type="text" class="form-control" id="inputName5" name='subscription' [(ngModel)]="customerDetailbyid.customerChitDetails[0].subscription"
                                                                                             #name="ngModel"></div>
-                                                                                    <!-- <div class="col-md-6"> <label for="inputName5" class="form-label"> Collection Pincode</label> <input type="text" class="form-control" id="inputName5" name='collection_pincode' [(ngModel)]="customerDetailbyid.customerChitDetails[0].collection_pincode"
-                                                                                                #name="ngModel"></div> -->
+
 
                                                                                     <div class="col-md-6"> <label for="inputName5" class="form-label">Remarks</label> <input type="text" class="form-control" name='remarks' id="inputName5" [(ngModel)]="customerDetailbyid.customerChitDetails[0].remarks"
                                                                                             #name="ngModel"></div>
+                                                                                    <div class="col-md-3">
+                                                                                        <input type="text" class="form-control" ngModel name="_id" id="inputName5" [(ngModel)]="customerDetailbyid._id" readonly>
+                                                                                    </div>
 
                                                                                     <div class="modal-footer "><button type="submit" class="btn btn-primary">&nbsp; Edit</button>
                                                                                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close
-                                                                                            </button>
+                                                                                          </button>
                                                                                     </div>
+
                                                                                 </form>
+                                                                                <!-- <form class="row g-3" form class="row g-3" #customerForm="ngForm" (ngSubmit)="updateCustomerFormData(customerForm.value)">
+                                                                                    <h5 class="card-title">Office Details</h5>
+                                                                                  
+                                                                                    
+                                                                                    
+
+                                                                                    
+                                                                                    
+
+                                                                                    
+                                                                                    
+                                                                                    
+                                                                                </form> -->
 
                                                                             </div>
 
@@ -301,10 +323,13 @@
 
                                                                                             <h5 class="card-title">Office Details</h5>
                                                                                             <!-- <tr>
-                                                                                                    <th scope="col">Customer ID</th>
-                                                                                                    <td>{{customerDetailbyid.customerId}}</td>
-                                                                                                </tr> -->
-
+                                                                                                  <th scope="col">Customer ID</th>
+                                                                                                  <td>{{customerDetailbyid.customerId}}</td>
+                                                                                              </tr> -->
+                                                                                            <tr>
+                                                                                                <th scope="col">Customer ID</th>
+                                                                                                <td>{{customerDetailbyid.customerGenId}}</td>
+                                                                                            </tr>
                                                                                             <tr>
                                                                                                 <th scope="col">Branch Name</th>
                                                                                                 <td>{{customerDetailbyid.branchName}}</td>
@@ -335,13 +360,13 @@
                                                                                                 <td>{{customerDetailbyid.customerNomineeDetails.relationship}}</td>
                                                                                             </tr>
                                                                                             <!-- <tr>
-                                                                                                    <th scope="col">Address</th>
-                                                                                                    <td>{{customerDetailbyid.customerNomineeDetails.nominee_address}}</td>
-                                                                                                </tr>
-                                                                                                <tr>
-                                                                                                    <th scope="col">DOB</th>
-                                                                                                    <td>{{customerDetailbyid.customerNomineeDetails.dob}}</td>
-                                                                                                </tr> -->
+                                                                                                  <th scope="col">Address</th>
+                                                                                                  <td>{{customerDetailbyid.customerNomineeDetails.nominee_address}}</td>
+                                                                                              </tr>
+                                                                                              <tr>
+                                                                                                  <th scope="col">DOB</th>
+                                                                                                  <td>{{customerDetailbyid.customerNomineeDetails.dob}}</td>
+                                                                                              </tr> -->
                                                                                             <tr>
                                                                                                 <th scope="col">Aadhar NO.</th>
                                                                                                 <td>{{customerDetailbyid.customerNomineeDetails.adharNumber}}</td>
@@ -367,9 +392,9 @@
                                                                                                 <td>{{customerDetailbyid.customerChitDetails[0].collection_route}}</td>
                                                                                             </tr>
                                                                                             <!-- <tr>
-                                                                                                    <th scope="col">Collection Pincode</th>
-                                                                                                    <td>{{customerDetailbyid.customerChitDetails[0].collection_pincode}}</td>
-                                                                                                </tr> -->
+                                                                                                  <th scope="col">Collection Pincode</th>
+                                                                                                  <td>{{customerDetailbyid.customerChitDetails[0].collection_pincode}}</td>
+                                                                                              </tr> -->
                                                                                             <tr>
                                                                                                 <th scope="col">chit Asking Month</th>
                                                                                                 <td>{{customerDetailbyid.customerChitDetails[0].chit_asking_month}}</td>
@@ -387,15 +412,15 @@
 
                                                                                 <div class="modal-footer ">
                                                                                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close
-                                                                                          </button>
+                                                                                        </button>
 
                                                                                     <!-- <button (click)="yophoto.click()"><a href="{{this.PhotoUrl}}" download #yophoto></a> Photo </button>
-
-                                                                                    <button (click)="yoaadhar.click()"> <a href="{{this.AdharUrl}}" download #yoaadhar></a>Aadhar </button>
-
-                                                                                    <button (click)="yopan.click()"><a href="{{this.PanUrl}}" download #yopan></a> Pan </button>
-
-                                                                                    <button (click)="yoappfrm.click()"> <a href="{{this.ApplicationUrl}}" download #yoappfrm></a>Application Form </button> -->
+                                            
+                                                                                  <button (click)="yoaadhar.click()"> <a href="{{this.AdharUrl}}" download #yoaadhar></a>Aadhar </button>
+                                            
+                                                                                  <button (click)="yopan.click()"><a href="{{this.PanUrl}}" download #yopan></a> Pan </button>
+                                            
+                                                                                  <button (click)="yoappfrm.click()"> <a href="{{this.ApplicationUrl}}" download #yoappfrm></a>Application Form </button> -->
                                                                                 </div>
 
 
@@ -419,6 +444,8 @@
 
                                                 </tbody>
                                             </table>
+
+
                                         </div>
                                     </div>
                                 </div>
@@ -437,12 +464,12 @@
                                     <div class="card">
                                         <div class="card-body">
                                             <h5 class="card-title">Office Details</h5>
-                                            <form class="row g-3" #customerForm="ngForm" (ngSubmit)="getCustomerFormData()">
+                                            <form class="row g-3" #customerForm="ngForm" (ngSubmit)="getCustomerFormData(customerForm.value)">
                                                 <!-- <form class="row g-3"> -->
                                                 <div class="col-md-6"> <label for="inputName5" class="required"> Branch Name</label>
                                                     <select name="branchName" [(ngModel)]="customer.branchName" class="form-control" #name="ngModel">
                                              <option value="" disable selected hidden>---Select----</option>
-                                             <option *ngFor="let branchData of ListOfBranchData" [value]="branchData.officeName">
+                                             <option *ngFor="let branchData of ListOfBranchData" [ngValue]="{brnchname: branchData.officeName, brnchcode:branchData.branchCode }">
                                                 {{branchData.officeName}}
                                           </option>
                                           </select>
@@ -568,7 +595,7 @@
                                                 </div>
                                                 <div class="col-md-6"> <label for="inputZip" class="form-label">Chit asking month</label> <input type="text" class="form-control" id="inputZip" name='chit_asking_month' [(ngModel)]="customer.customerChitDetails[0].chit_asking_month"
                                                         #name="ngModel"></div>
-                                                <div class="col-md-6"> <label for="inputName5" class="form-label"> Subscription</label> <select class="form-select" aria-label="Default select example" name="subscription" id="inputName5" [(ngModel)]="customer.customerChitDetails[0].subscription"
+                                                <div class="col-md-6"> <label for="inputName5" class="form-label" class="required"> Subscription</label> <select class="form-select" aria-label="Default select example" name="subscription" id="inputName5" [(ngModel)]="customer.customerChitDetails[0].subscription"
                                                         #name="ngModel">
                                                         <option value="" disable selected hidden>---Select----</option>
                                                     <option value="Daily">Daily</option>
