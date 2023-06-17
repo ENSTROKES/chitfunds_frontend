@@ -32,7 +32,7 @@ export class ReceiptComponent implements OnInit {
 ListOfCustomerData:any;
 custmresponse:any;
 
-recprelpop = true;
+recprelpop = false;
 
 //recipt
 ListOfReceiptData:any;
@@ -152,47 +152,51 @@ click() {
 }
   //create reciept
   collectionEmployee:any;
+  selectEnrollment:any;
+  tdata:any;
   getrecieptFormData(data:any): void{
     //  console.log("GetData" +data.officeName);
     console.log("AllData post method" +JSON.stringify(data));
-    console.log("groupid"+data.collectionEmployee.empId);
+    console.log("groupid"+this.grpidvalue.groupid);
     //console.log("name and id : "+ data.branchName.groupId)
-    data.groupId = this.selectEnrollmentval.groupId;
-    data.selectEnrollment = this.selectEnrollmentval.groupName;
+    data.groupId = this.grpidvalue.groupid;
+    data.selectEnrollment = this.grpidvalue.gropName;
  
-    data.employeeId = this.collectionEmployee.empId;
+    data.employeeId = data.collectionEmployee.empId;
     data.collectionEmployee = data.collectionEmployee.empName;
     
-
+    console.log("cusid"+data.customerName.custicket);
     data.customerId = data.customerName.cusId;
-    data.customerName = data.customerName.cusName;
     data.collectionRoute = data.customerName.collectroute;
-    
+    data.ticketNumber = data.customerName.custicket;
+    data.customerName = data.customerName.cusName;
 
+console.log("cusid"+data.customerName.custicket);
+console.log("cusid"+data.ticketNumber);
     console.log("AllData after set id " +JSON.stringify(data));
 
-      // this.http.post(this.userData.createreceipt, data).subscribe((result)=>{
-      //  this.recptreslt = result;
+      this.http.post(this.userData.createreceipt, data).subscribe((result)=>{
+       this.recptreslt = result;
         
-      //  Object.keys(this.recptreslt).forEach(prop => {
-      //     console.log("data : " +prop);
-      //       console.log("value : "+this.recptreslt[prop]);
-      //        if(prop=="responseCode"){
-      //       // this.ListOfEmpData = this.reslt[prop];
-      //         if(this.recptreslt[prop]=="200"){
-      //           if(window.confirm('Receipt is created successfully')){
-      //             location.reload();
-      //             // this.recprelpop=false;
-      //           }else(window.confirm('Error in creating receipt'))
-      //           {
-      //             location.reload();
-      //             // this.recprelpop=false;
-      //           }
-      //         }
+       Object.keys(this.recptreslt).forEach(prop => {
+          console.log("data : " +prop);
+            console.log("value : "+this.recptreslt[prop]);
+             if(prop=="responseCode"){
+            // this.ListOfEmpData = this.reslt[prop];
+              if(this.recptreslt[prop]=="200"){
+                if(window.confirm('Receipt is created successfully')){
+                  location.reload();
+                  // this.recprelpop=false;
+                }else(window.confirm('Error in creating receipt'))
+                {
+                  location.reload();
+                  // this.recprelpop=false;
+                }
+              }
 
-      //         }
-      //     });
-      //   })
+              }
+          });
+        })
        }
 
 
@@ -266,12 +270,14 @@ click() {
   recpdetailsbygrpid(data:any){
 
     console.log("GetData" +data);
-    this.http.get(this.userData.groupbyidurl+data).subscribe((data) =>{
+    this.http.get(this.userData.grouplistmapdcus+data).subscribe((data) =>{
       this.grpidoutput=data;
     Object.keys(this.grpidoutput).forEach(prop => {
     if(prop=="object"){
       this.GroupDetailsbyId = this.grpidoutput[prop];
-      //console.log("GetData" +this.userData.branchbyidurl);
+      this.recprelpop=true;
+      console.log("Recpt grp filter");
+      // console.log("AllData" +JSON.stringify(this.GroupDetailsbyId));
     }
     });
     
@@ -279,30 +285,30 @@ click() {
   }
 
   //recepit creation
-  selectEnrollmentval:any;
+ // selectEnrollmentval:any;
   grpmapidoutput:any;
   GroupMappdetails:any;
-recepitcreation(data:any){
-  // console.log("AllData" +JSON.stringify(data));
+// recepitcreation(data:any){
+//   // console.log("AllData" +JSON.stringify(data));
 
-console.log("id -"+this.selectEnrollmentval.groupId);
-console.log("name -"+this.selectEnrollmentval.groupName);
+// console.log("id -"+this.selectEnrollmentval.groupId);
+// console.log("name -"+this.selectEnrollmentval.groupName);
 
-/// get method group customer details by id
-this.http.get(this.userData.grouplistmapdcus+this.selectEnrollmentval.groupId).subscribe((data) =>{
-  this.grpmapidoutput=data;
-Object.keys(this.grpmapidoutput).forEach(prop => {
-if(prop=="object"){
-  this.GroupMappdetails = this.grpmapidoutput[prop];
-  //console.log("GetData" +this.GroupMappdetails);
-  // enabling form
-  this.recprelpop=true;
-}
-});
+// /// get method group customer details by id
+// this.http.get(this.userData.grouplistmapdcus+this.selectEnrollmentval.groupId).subscribe((data) =>{
+//   this.grpmapidoutput=data;
+// Object.keys(this.grpmapidoutput).forEach(prop => {
+// if(prop=="object"){
+//   this.GroupMappdetails = this.grpmapidoutput[prop];
+//   console.log("Recpt creatiom");
+//   // enabling form
+//   this.recprelpop=true;
+// }
+// });
 
-})
+// })
 
-}
+// }
 
 
 

@@ -150,6 +150,7 @@
                             <thead>
                                 <tr>
                                     <th>Office Name</th>
+                                    <th>Branch Code</th>
                                     <th>Phone Number</th>
                                     <th>Email ID</th>
                                     <th>Head Office Name</th>
@@ -160,6 +161,7 @@
                             <tbody>
                                 <tr *ngFor="let brnchData of ListOfBranchData | filter:searchText">
                                     <td>{{ brnchData.officeName }}</td>
+                                    <td>{{ brnchData.branchCode }}</td>
                                     <td>{{ brnchData.phoneNumber}}</td>
                                     <td>{{ brnchData.emailID }}</td>
                                     <td>{{ brnchData.headOfficeName }}</td>

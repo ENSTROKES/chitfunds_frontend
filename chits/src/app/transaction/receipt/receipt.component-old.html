@@ -63,7 +63,7 @@
                                             <div class="col-md-6"> <label for="inputName5" class="form-label"> Customer Name</label>
                                                 <select ngModel name="customerName" class="form-control">
                          <option value="" disable selected hidden>---Select----</option>
-                         <option *ngFor="let cusData of ListOfCustomerData" [ngValue]="{cusId:  cusData._id, cusName: cusData.personalDetails.name, collectroute: cusData.customerChitDetails[0].collection_route}">
+                         <option *ngFor="let cusData of ListOfCustomerData" [ngValue]="{cusId:  cusData.customerId, cusName: cusData.personalDetails.name, collectroute: cusData.customerChitDetails[0].collection_route}">
                            {{cusData.personalDetails.name}}
                         </option>
                          

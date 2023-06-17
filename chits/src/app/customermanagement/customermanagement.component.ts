@@ -9,6 +9,9 @@ import { CustomerService } from '../model/customer.service';
 import { HttpEventType } from '@angular/common/http';
 import { FormBuilder, FormGroup, Validators,FormControl } from '@angular/forms';
 import { docbyid } from '../model/getdocbyid.model';
+import Swal from 'sweetalert2';
+import { interval } from 'rxjs';
+
 
 interface USERS {
   id: Number;
@@ -407,6 +410,7 @@ getCustomertestData(): void{
          // console.log(this.customer);
        Object.keys(this.custreditresp).forEach(prop => {
           console.log("data : " +prop);
+          console.log("data : " +this.custreditresp[prop]);
           if(prop=="responseCode"){
             // this.ListOfEmpData = this.reslt[prop];
               if(this.custreditresp[prop]=="200"){
@@ -467,43 +471,43 @@ this.customer.customerChitDetails[0].createdDate=timestamp;
       })
      }
 
-     upcustomerresult:any;
-// update customer
-updateCustomerFormData(data:any): void{
+//      upcustomerresult:any;
+// // update customer
+// updateCustomerFormData(): void{
 
-  const current = new Date();
-const timestamp = current.getTime();
-console.log(current,timestamp);
-// this.customer.branchName = data.branchName.brnchname;
-// this.customer.branchCode= data.branchName.brnchcode;
-// this.customer.customerNomineeDetails.createdDate=timestamp;
-// this.customer.customerChitDetails[0].createdDate=timestamp;
-  // console.log("GetData" +data);
-  console.log("AllData" +JSON.stringify(this.updatecustomer));
-    // console.log("Hello World");
-    //console.log("GetData" +this.userData.headOffice);
-   //console.log(new Date("2015/04/29 11:24:00").getTime());
-  // console.log("data"+this.customer.personalDetails.name);
-  // console.log("data"+this.customer.personalDetails.father);
-    this.http.post(this.userData.createcustomer,this.updatecustomer ).subscribe((result)=>{
-     this.upcustomerresult = result;
+//   const current = new Date();
+// const timestamp = current.getTime();
+// console.log(current,timestamp);
+// // this.customer.branchName = data.branchName.brnchname;
+// // this.customer.branchCode= data.branchName.brnchcode;
+// // this.customer.customerNomineeDetails.createdDate=timestamp;
+// // this.customer.customerChitDetails[0].createdDate=timestamp;
+//   // console.log("GetData" +data);
+//   console.log("AllData" +JSON.stringify(this.customerDetailbyid));
+//     // console.log("Hello World");
+//     //console.log("GetData" +this.userData.headOffice);
+//    //console.log(new Date("2015/04/29 11:24:00").getTime());
+//   // console.log("data"+this.customer.personalDetails.name);
+//   // console.log("data"+this.customer.personalDetails.father);
+//     this.http.post(this.userData.createcustomer,this.customerDetailbyid  ).subscribe((result)=>{
+//      this.upcustomerresult = result;
      
-     Object.keys(this.upcustomerresult).forEach(prop => {
-        console.log("data : " +prop);
+//      Object.keys(this.upcustomerresult).forEach(prop => {
+//         console.log("data : " +prop);
      
-            if(this.upcustomerresult[prop]=="200"){
-              if(window.confirm('Customer is created successfully')){
-                location.reload();
-              }else{
-                location.reload();
-              }
-            }
+//             if(this.upcustomerresult[prop]=="200"){
+//               if(window.confirm('Customer is Updated successfully')){
+//                 location.reload();
+//               }else{
+//                 location.reload();
+//               }
+//             }
             
-        });
+//         });
        
     
-      })
-     }
+//       })
+//      }
 
 // Get customer by id
 getCustomerbyId(custid:any): void{
@@ -560,28 +564,70 @@ getCustomerbyId(custid:any): void{
 //      }
 
 
-     //delete customer
-     deleteCustomerbyId(data:any): void{
+    //  //delete customer
+    //  deleteCustomerbyId(data:any): void{
            
-      this.http.delete(this.userData.deletecustomer+data).subscribe((data) =>{
-     if(confirm('Are you sure to delete?'))
-       this.customerdelete=data;
-     Object.keys(this.customerdelete).forEach(prop => {
-       if(prop=="responseCode"){
-         // this.ListOfEmpData = this.reslt[prop];
-           if(this.customerdelete[prop]=="200"){
-             if(window.confirm('Customer deleted successfully')){
-               location.reload();
-             }else{
-               location.reload();
-             }
-           }
-           }
-     });
+    //   this.http.delete(this.userData.deletecustomer+data).subscribe((data) =>{
+    //  if(confirm('Are you sure to delete?'))
+    //    this.customerdelete=data;
+    //  Object.keys(this.customerdelete).forEach(prop => {
+    //    if(prop=="responseCode"){
+    //      // this.ListOfEmpData = this.reslt[prop];
+    //        if(this.customerdelete[prop]=="200"){
+    //          if(window.confirm('Customer deleted successfully')){
+    //            location.reload();
+    //          }else{
+    //            location.reload();
+    //          }
+    //        }
+    //        }
+    //  });
      
-     })
+    //  })
+    //     }
+     //delete customer
+    deleteCustomerbyId(data:any): void{
+     
+      Swal.fire({
+        title: 'Are you sure?',
+        text: 'You will not be able to recover this action!',
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonText: 'Yes, delete it!',
+        cancelButtonText: 'No, keep it',
+      }).then((result) => {
+  
+        if (result.isConfirmed) {
+          console.log('Clicked Yes, File deleted!');
+          this.http.delete(this.userData.deletecustomer+data).subscribe((data) =>{
+            this.customerdelete=data;
+            Object.keys(this.customerdelete).forEach(prop => {
+              if(prop=="responseCode"){
+                // this.ListOfEmpData = this.reslt[prop];
+                  if(this.customerdelete[prop]=="200"){
+                    
+                    Swal.fire({
+                      position: 'center',
+                      icon: 'success',
+                      title: 'Customer Deleted successfully',
+                      showConfirmButton: false,
+                    })
+                    setTimeout(() => {
+                      location.reload();
+                    }, 1000);
+                  }
+                  }
+            });
+          })
+  
+        } else if (result.isDismissed) {
+  
+          console.log('Clicked No, File is safe!');
+  
         }
-     
+      })
+       
+    }
        //Gets called when the user selects an image
        aadhar: any;
        pan:any;

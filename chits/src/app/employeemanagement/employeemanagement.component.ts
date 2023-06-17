@@ -196,6 +196,33 @@ console.log(new Date("2015/04/29 11:24:00").getTime());
    })
 }
 
+//update employee
+upresponse:any;
+updateEmpFormData(updata:any): void{
+  console.log("AllData" +JSON.stringify(updata));
+console.log(new Date("2015/04/29 11:24:00").getTime());
+  this.http.put(this.userData.empupdate,updata).subscribe((result)=>{
+   this.upresponse = result;
+    
+   Object.keys(this.upresponse).forEach(prop => {
+    
+      console.log("data : " +prop);
+       console.log("value : "+this.upresponse[prop]);
+       if(prop=="responseCode"){
+        // this.ListOfEmpData = this.reslt[prop];
+          if(this.upresponse[prop]=="200"){
+            if(window.confirm('Employee is updated successfully')){
+              location.reload();
+            }else{
+              location.reload();
+            }
+          }
+          }
+      
+     });
+   })
+}
+
 
      // Get Group by ID
 

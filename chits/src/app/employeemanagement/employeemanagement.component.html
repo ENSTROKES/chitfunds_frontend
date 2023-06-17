@@ -71,8 +71,11 @@
                                                                                 </div>
                                                                                 <div class="modal-body">
 
-                                                                                    <form class="row g-3" #employeeForm="ngForm" (ngSubmit)="getEmpFormData(employeeForm.value)">
+                                                                                    <form class="row g-3" #employeeForm="ngForm" (ngSubmit)="updateEmpFormData(employeeForm.value)">
                                                                                         <h5 class="card-title"> Employee Details</h5>
+                                                                                        <div class="col-md-2"> <label for="inputName5" class="form-label"> Employee ID</label>
+                                                                                            <input type="text" class="form-control" ngModel name="_id" id="inputName5" [(ngModel)]="EmployeeDetailsByID._id" readonly>
+                                                                                        </div>
                                                                                         <div class="col-md-2"> <label for="inputName5" class="form-label"> Employee ID</label>
                                                                                             <input type="text" class="form-control" ngModel name="emp_code" id="inputName5" [(ngModel)]="EmployeeDetailsByID.emp_code" readonly>
                                                                                         </div>

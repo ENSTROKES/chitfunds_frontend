@@ -34,10 +34,12 @@
                                     <div class="card">
                                         <div class="card-body">
                                             <div class="row">
-                                                <h5 class="card-title" style="padding-left: 10px;"></h5>
+                                                <!-- <h5 class="card-title" style="padding-left: 10px;"></h5>
                                                 <div class="col-md-2">
                                                     <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#largeModal" style="margin-left:900px; margin-top:-63.5px;"> Receipt </button>
-                                                </div>
+                                                </div> -->
+                                                <h2></h2>
+                                                <br>
                                             </div>
 
 
@@ -237,22 +239,27 @@
 
 
                                             <div class="modal-body">
+
+
+
+
                                                 <form class="row g-3" #recieptForm="ngForm" (ngSubmit)="getrecieptFormData(recieptForm.value)">
                                                     <div class="row">
                                                         <div class="col-md-6"> <label for="inputName5" class="form-label"> Select Group</label>
-                                                            <select ngModel name="selectEnrollment" class="form-control">
-                                <option value="" disable selected hidden>---Select----</option>
-                                <option value="none" >None</option>
+                                                            <select [(ngModel)]="grpidvalue" name="selectEnrollment" class="form-control">
+                                                                <option [selected]="true" [ngValue]="recptselectvalue">---Select---</option>
+                                <!-- <option value="none" >None</option> -->
                                 <option *ngFor="let grpData of ListOfGroupData" [ngValue]="{groupid:  grpData._id, gropName: grpData.groupName}">
                                    {{grpData.groupName}}
                                 </option>
                              </select>
                                                         </div>
                                                         <div class="col-md-6" style="padding-top: 30px;">
-                                                            <button class="btn btn-primary">&nbsp;Next</button>
+                                                            <button class="btn btn-primary" (click)="recpdetailsbygrpid(grpidvalue.groupid)">&nbsp;Next</button>
                                                         </div>
                                                     </div>
-                                                    <div class="row" style="padding-top: 30px;">
+
+                                                    <div class="row" style="padding-top: 30px;" *ngIf="recprelpop">
                                                         <p>---------------------------------------------------------------------</p>
                                                         <div class="col-md-6"> <label for="inputName5" class="form-label"> Branch Name</label>
                                                             <select ngModel name="branchName" class="form-control">
@@ -277,8 +284,8 @@
                                                         <div class="col-md-6"> <label for="inputName5" class="form-label"> Customer Name</label>
                                                             <select ngModel name="customerName" class="form-control">
                                  <option value="" disable selected hidden>---Select----</option>
-                                 <option *ngFor="let cusData of ListOfCustomerData" [ngValue]="{cusId:  cusData._id, cusName: cusData.personalDetails.name, collectroute: cusData.customerChitDetails[0].collection_route}">
-                                   {{cusData.personalDetails.name}}
+                                 <option *ngFor="let cusData of GroupDetailsbyId" [ngValue]="{cusId:  cusData.customerId, cusName: cusData.customerName, collectroute: cusData.collection_route , custicket : cusData.ticketNumber}">
+                                   {{cusData.customerName}} - {{cusData.ticketNumber}}
                                 </option>
                                  
                               </select>
@@ -290,7 +297,7 @@
                                  <option value="Document Fee">Document Fee</option>
                                  <option value="RF Amount">RF Amount</option>
                                  <option value="Normal">Normal</option>
-                                 <option value="Advance">Advance</option>
+                                 <!-- <option value="Advance">Advance</option> -->
                               </select>
                                                         </div>
                                                         <div class="col-md-6">
@@ -300,11 +307,11 @@
                                                         <div class="col-md-6"> <label for="inputName5" class="form-label"> Payment Mode</label>
                                                             <select ngModel name="paymentMode" class="form-control">
                                 <option value="" disable selected hidden>---Select----</option>
-                                <option value="Document Fee">Cash</option>
-                                <option value="RF Amount">Credit Card</option>
-                                <option value="Normal">Debit Card</option>
-                                <option value="Normal">Cheque</option>
-                                <option value="Advance">UPI payment method</option>
+                                <option value="Cash">Cash</option>
+                                <option value="CreditCard">Credit Card</option>
+                                <option value="DebitCard">Debit Card</option>
+                                <option value="Cheque">Cheque</option>
+                                <option value="UPI">UPI payment method</option>
                              </select>
                                                         </div>
                                                     </div>

@@ -275,10 +275,15 @@ getCusDatabyFilter(type:any){
 
 
 
-      
+      filturl:any;
         searchFilter(type:any,slabval:any){
           console.log("sec  "+slabval);
           console.log("type  "+type);
+          
+        // if (slabval != undefined && type != undefined){
+        //   this.filturl=("?type="+type+"&slabId="+slabval)
+
+        // }  
 
         this.http.get(this.userData.cuslistmappedgrop+type).subscribe((data) =>{
           this.custmapresponse=data;
