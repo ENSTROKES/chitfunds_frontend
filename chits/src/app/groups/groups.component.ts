@@ -4,6 +4,7 @@ import {UserDataService} from 'src/app/users-data.service';
 import { Group } from '../model/groupbyid.model';
 import { Router } from '@angular/router';
 import { GroupMapCusList } from '../model/groupmapcustlist.model';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-groups',
@@ -125,6 +126,9 @@ ListOfGroupfilData:any;
       loading: false
     }
   }
+
+  totalGroup: any;
+pageNumber: number = 1;
   constructor(private http: HttpClient, private userData:UserDataService, private router:Router) { 
     //get all group
     // this.userData.group().subscribe((data) =>{
@@ -136,7 +140,13 @@ ListOfGroupfilData:any;
     // });
     
     // })
+    this.searchFilter("all","all");
 
+
+//get customer count fot pagenation
+this.http.get(this.userData.getgroupcount).subscribe((data) =>{
+  this.totalGroup=data;
+})
 
  // get all slab method
  this.http.get(this.userData.getslab).subscribe((data) =>{
@@ -191,6 +201,7 @@ click() {
 
 getgroupFormData(data:any): void{
   //  console.log("GetData" +data.officeName);
+
     console.log("AllData" +JSON.stringify(data)); 
     console.log("slab id and name"+ data.schemeId.slabid+"  "+data.schemeId.slabname)
     //console.log("GetData" +this.userData.headOffice);
@@ -202,26 +213,44 @@ getgroupFormData(data:any): void{
 
    data.schemeName=this.stringformvalue;
    data.schemeId=this.stringformid;
+   if (data.groupType === '')
+   {
+    data.groupType="false";
+    console.log(data.groupType);
+   }
 
     this.http.post(this.userData.creategrp, data).subscribe((result)=>{
      this.grpreslt = result;
     
-     Object.keys(this.grpreslt).forEach(prop => {
-        console.log("data : " +prop);
-          console.log("value : "+this.grpreslt[prop]);
-           if(prop=="responseCode"){
-          // this.ListOfEmpData = this.reslt[prop];
-            if(this.grpreslt[prop]=="200"){
-              if(window.confirm('Group is created successfully')){
-                location.reload();
-              }else(window.confirm('Error creating group'))
-              {
-                location.reload();
-              }
-            }
-            }
+     if(this.grpreslt.responseCode=="200"){
+      {   
+        Swal.fire({
+          position: 'center',
+          icon: 'success',
+          title: 'Group Created successfully!',
+          showConfirmButton: false,
+        })
+        setTimeout(() => {
+          location.reload();
+        }, 1000);
+      }
+      
+    }
+    else {
+      {    
+        Swal.fire({
+          position: 'center',
+          icon: 'error',
+          title: 'Error with Group Creation!',
+          showConfirmButton: false,
+        })
+        setTimeout(() => {
+          location.reload();
+        }, 1000);
+      }
+    }
         });
-      })
+      // })
      }
 
 
@@ -298,88 +327,156 @@ getgroupFormData(data:any): void{
           }
 
           // group delete method
+          gropdelete:any;
           deleteGroupbyId(data:any): void{
            
-            this.http.delete(this.userData.deletegroup+data).subscribe((data) =>{
-           if(confirm('Are you sure to delete?'))
-             this.groupdelete=data;
-           Object.keys(this.groupdelete).forEach(prop => {
-             if(prop=="responseCode"){
-               // this.ListOfEmpData = this.reslt[prop];
-                 if(this.groupdelete[prop]=="200"){
-                   if(window.confirm('Group deleted successfully')){
-                     location.reload();
-                   }else{
-                     location.reload();
-                   }
-                 }
-                 }
-           });
-           
-           })
-              }
+            
+              Swal.fire({
+                title: 'Are you sure?',
+                text: 'You will not be able to recover this action!',
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonText: 'Yes, delete it!',
+                cancelButtonText: 'No, keep it',
+                customClass: {
+                  confirmButton: 'my-confirm-button-class',
+                  cancelButton: 'my-cancel-button-class',
+                  title:'my-alert-title-class',
+                  
+                }
+              }).then((result) => {
+          
+                if (result.isConfirmed) {
+                  console.log('Clicked Yes, File deleted!');
+                  this.http.delete(this.userData.deletegroup+data).subscribe((data) =>{
+                    this.gropdelete=data;
+                    
+                     
+                          if(this.gropdelete.responseCode =="200"){
+                            
+                            Swal.fire({
+                              position: 'center',
+                              icon: 'success',
+                              title: 'Group Deleted successfully',
+                              showConfirmButton: false,
+                            })
+                            setTimeout(() => {
+                              location.reload();
+                            }, 1000);
+                          }
+                          else {
+                            {    
+                              Swal.fire({
+                                position: 'center',
+                                icon: 'error',
+                                title: 'Error with Group Deletion!',
+                                showConfirmButton: false,
+                              })
+                              setTimeout(() => {
+                                location.reload();
+                              }, 1000);
+                            }
+                          }
+                        })
+                      } 
+                        
+                        else if (result.isDismissed) {
+          
+                  console.log('Clicked No, File is safe!');
+          
+                }
+              })
+               
+            }
   
 
-              //Group filter
-              scheme_value:any;
-                grp_type:any;
-                start_date:any;
-                auc_date:any;
-                url_value:any;
-            searchFilter(scheme_id:any,type:any,datetype:any,dateinput:any){
-                console.log("sec  "+scheme_id);
-                console.log("type  "+type);
-                console.log("daty "+datetype);
-                console.log("dainp "+dateinput);
-                
-              //filter with only scheme
-              if(scheme_id != undefined )
-              {
-                this.url_value="?scheme="+scheme_id;
-                
-              }
-              if(type!= undefined &&type!="all" ){
-                this.url_value+=("&register="+type);
-                
-              }
-              if(datetype == "Startdate" && dateinput!= undefined){
+             //Group filter
+scheme_value:any;
+grp_type:any;
+start_date:any;
+auc_date:any;
+url_value:any;
+//ListOfGroupfilData:any;
+//grpfilres:any;
+scheme_id:any;
+grpouptype:any;
+type:any;
+searchFilter(scheme_id:any,type:any){
+console.log("sec  "+scheme_id);
+console.log("type  "+type);
 
-                this.url_value+=("&startDate="+dateinput);
-               
-              }
-              if(datetype == "auctiondate" && dateinput!= undefined){
 
-                this.url_value+=("&auctionDate="+dateinput);
-              }
+//filter with only scheme
+if(scheme_id != undefined && scheme_id !="all" )
+{
+  console.log("loop - 1");
+this.url_value="?scheme="+scheme_id;
+if(type!= undefined &&type!="all" ){
+  this.url_value+=("&register="+type);
+  
+  }
+  this.http.get(this.userData.getAllgrp+this.url_value).subscribe((data) =>{
+    this.grpfilres=data;
+  Object.keys(this.grpfilres).forEach(prop => {
+  if(prop=="object"){
+    this.ListOfGroupfilData = this.grpfilres[prop];
+    this.url_value="";
+  }
+  });
+  
+  })
 
-              //for particular scheme
-              if(scheme_id != "all" ){
-                this.http.get(this.userData.getAllgrp+this.url_value).subscribe((data) =>{
-                  this.grpfilres=data;
-                Object.keys(this.grpfilres).forEach(prop => {
-                if(prop=="object"){
-                  this.ListOfGroupfilData = this.grpfilres[prop];
-                }
-                });
-                
-                })
-              }
-              //for all scheme
-              if(scheme_id == "all" ){
-                this.http.get(this.userData.getAllgrp).subscribe((data) =>{
-                  this.grpfilres=data;
-                Object.keys(this.grpfilres).forEach(prop => {
-                if(prop=="object"){
-                  this.ListOfGroupfilData = this.grpfilres[prop];
-                }
-                });
-                
-                })
-              }
-              
-            
+}
 
-              }
+
+if(type!= undefined &&type!="all" && (scheme_id == undefined || scheme_id =="all")){
+  console.log("loop - 2");
+ 
+  this.url_value=("?register="+type);
+  console.log( this.url_value);
+  this.http.get(this.userData.getAllgrp+this.url_value).subscribe((data) =>{
+    this.grpfilres=data;
+  Object.keys(this.grpfilres).forEach(prop => {
+  if(prop=="object"){
+    this.ListOfGroupfilData = this.grpfilres[prop];
+    this.url_value="";
+  }
+  });
+  
+  })
+  
+}
+
+
+
+
+//for particular scheme
+
+
+
+//for all scheme
+if(scheme_id == "all" &&(type=="all" || type==undefined)){
+  console.log("loop - 3");
+this.http.get(this.userData.getAllgrp).subscribe((data) =>{
+  this.grpfilres=data;
+Object.keys(this.grpfilres).forEach(prop => {
+if(prop=="object"){
+  this.ListOfGroupfilData = this.grpfilres[prop];
+}
+});
+
+})
+}
+
+
+
+}
+
+changePage(event: number) {
+  this.pageNumber = event;
+  this.searchFilter(this.scheme_id,this.type);
+}
+
 
   goToPage(pageName:string,value:any):void{
     this.router.navigate([`${pageName}`],{ queryParams: { value }  });

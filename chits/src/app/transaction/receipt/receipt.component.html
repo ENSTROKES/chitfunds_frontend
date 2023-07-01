@@ -43,7 +43,7 @@
                                             </div>
 
 
-                                            <div class="row">
+                                            <div class="row" style="padding-bottom: 8px !important;">
                                                 <div class="col-md-2"> <label for="inputName5" class="form-label">  <b>Route</b></label>
                                                     <select ngModel name="collectionEmployee" [(ngModel)]="routeValue" class="form-control">
                                                     
@@ -58,8 +58,8 @@
                                                     
                                                         <option [selected]="true" [ngValue]="recptselectvalue">---Select---</option>
                                                     <option value="All">All</option>
-                                                    <option value="Document Fee">DocumentFee</option>
-                                                    <option value="RF Amount">RFAmount</option>
+                                                    <option value="DocumentFee">DocumentFee</option>
+                                                    <option value="RFAmount">RFAmount</option>
                                                     <option value="Normal">Normal</option>
                                                     <option value="Advance">Advance</option>
                                                     </select>
@@ -152,6 +152,9 @@
                                                     </div>
                                                 </div>
                                             </div>
+                                            <div class="d-flex " style="justify-content: right !important;">
+                                                <pagination-controls (pageChange)="changePage($event)"></pagination-controls>
+                                            </div>
                                             <table class="table table-striped">
 
                                                 <thead>
@@ -168,7 +171,9 @@
                                                     </tr>
                                                 </thead>
                                                 <tbody>
-                                                    <tr *ngFor="let receipt of ListOfReceiptData|filter:searchText">
+                                                    <tr *ngFor="let receipt of ListOfReceiptData | paginate: {  itemsPerPage: 10,
+                                                        currentPage: pageNumber,
+                                                        totalItems: totalReceipt };let i = index">
                                                         <td>{{ receipt.receiptId }}</td>
                                                         <td>{{ receipt.branchName }}</td>
                                                         <td>{{ receipt.receiptDate }}</td>
@@ -186,7 +191,9 @@
                                                 </tbody>
                                             </table>
 
-
+                                            <div class="d-flex " style="justify-content: right !important;">
+                                                <pagination-controls (pageChange)="changePage($event)"></pagination-controls>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -239,10 +246,6 @@
 
 
                                             <div class="modal-body">
-
-
-
-
                                                 <form class="row g-3" #recieptForm="ngForm" (ngSubmit)="getrecieptFormData(recieptForm.value)">
                                                     <div class="row">
                                                         <div class="col-md-6"> <label for="inputName5" class="form-label"> Select Group</label>

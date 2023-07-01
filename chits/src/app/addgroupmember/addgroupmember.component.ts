@@ -47,7 +47,20 @@ export class AddgroupmemberComponent implements OnInit {
     slaboutpt:any;
     listofslabdata:any;
 
+    totalGroup: any;
+    pageNumber: number = 1;
+
   constructor(private http: HttpClient, private userData:UserDataService,private router:Router) {
+
+
+    this.searchFilter("all","all");
+
+
+    //get customer count fot pagenation
+    this.http.get(this.userData.getgroupcount).subscribe((data) =>{
+      this.totalGroup=data;
+    })
+
     this.userData.group().subscribe((data) =>{
       this.grpres=data;
     Object.keys(this.grpres).forEach(prop => {
@@ -114,6 +127,8 @@ auc_date:any;
 url_value:any;
 ListOfGroupfilData:any;
 grpfilres:any;
+scheme_id:any;
+type:any;
 searchFilter(scheme_id:any,type:any){
 console.log("sec  "+scheme_id);
 console.log("type  "+type);
@@ -185,7 +200,10 @@ if(prop=="object"){
 
 }
 
-
+changePage(event: number) {
+  this.pageNumber = event;
+  this.searchFilter(this.scheme_id,this.type);
+}
 
 
 

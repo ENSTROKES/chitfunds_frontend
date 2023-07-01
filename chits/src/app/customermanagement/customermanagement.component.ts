@@ -13,6 +13,7 @@ import Swal from 'sweetalert2';
 import { interval } from 'rxjs';
 
 
+
 interface USERS {
   id: Number;
   name: String;
@@ -30,6 +31,7 @@ interface USERS {
 export class CustomermanagementComponent implements OnInit {
   customerForm = new FormGroup({
     referedBy: new FormControl('',[Validators.required])
+    
   })
      
     
@@ -305,7 +307,12 @@ routeoutpt:any;
 listofroutedata:any;
 routeValue:any;
 filslabValue:any;
-slabselectvalue:any;
+slabselectvalue:any;  
+filbranchValue:any;
+//For paination
+totalCustomers: any;
+pageNumber: number = 1;
+  idleTimeoutService: any;
 
   constructor(private http: HttpClient, private userData:UserDataService,private fb: FormBuilder ) { 
    
@@ -320,21 +327,28 @@ slabselectvalue:any;
   })
 
 
+//get customer count fot pagenation
+this.http.get(this.userData.getcustomercount).subscribe((data) =>{
+  this.totalCustomers=data;
+console.log("count"+ this.totalCustomers)
 
+})
 
    // get all customer method
-    this.userData.customer().subscribe((data) =>{
-      this.custmresponse=data;
-      console.log("AllData" +JSON.stringify(data));
+    // this.userData.customer().subscribe((data) =>{
+    //   this.custmresponse=data;
+    //   console.log("AllData" +JSON.stringify(data));
       
-    Object.keys(this.custmresponse).forEach(prop => {
-    if(prop=="object"){
-      this.ListOfCustomerData = this.custmresponse[prop];
-    }
-    });
+    // Object.keys(this.custmresponse).forEach(prop => {
+    // if(prop=="object"){
+    //   this.ListOfCustomerData = this.custmresponse[prop];
+    // }
+    // });
     
-    })
+    // })
 
+this.getCustomerlist("All","All","All");
+    
 
       // get all slab method
     this.http.get(this.userData.getslab).subscribe((data) =>{
@@ -365,7 +379,53 @@ slabselectvalue:any;
 
     
 }
+cusfilurl:any;
+filbranch:any;
+route:any;
+filslab:any;
+getCustomerlist(filbranch:any,route:any,filslab:any){
+  console.log("bra" +filbranch);
+  console.log("rt" +route);
+  console.log("slab" +filslab);
+  this.cusfilurl=(this.userData.getAllcustomer + '?size=10&page=' + this.pageNumber);
 
+//add branch
+if(filbranch != undefined && filbranch != "All"){
+  this.cusfilurl+=("&branch="+filbranch);
+  }
+
+//add route
+  if(route != undefined && route != "All"){
+  this.cusfilurl+=("&collectionRoute="+route);
+  }
+ 
+//add slab
+  if(filslab != undefined && filslab != "All"){
+    this.cusfilurl+=("&scheme="+filslab);
+  }
+
+
+
+console.log("url  = " + this.cusfilurl);
+
+
+  this.http.get(this.cusfilurl).subscribe((data) =>{
+    this.custmresponse=data;
+    console.log("AllData" +JSON.stringify(data));
+    
+  Object.keys(this.custmresponse).forEach(prop => {
+  if(prop=="object"){
+    this.ListOfCustomerData = this.custmresponse[prop];
+  }
+  });
+  
+  })
+  this.cusfilurl=(this.userData.getAllcustomer + '?size=10&page=' + this.pageNumber);
+}
+changePage(event: number) {
+  this.pageNumber = event;
+  this.getCustomerlist(this.filbranch,this.route,this.filslab);
+}
 // myForm() {
 //   this.customerForm = this.fb.group({
 //     referedBy: ['', Validators.required ]
@@ -408,22 +468,37 @@ getCustomertestData(): void{
       this.http.post(this.userData.createcustomer,this.customerDetailbyid ).subscribe((result)=>{
        this.custreditresp = result;
          // console.log(this.customer);
-       Object.keys(this.custreditresp).forEach(prop => {
-          console.log("data : " +prop);
-          console.log("data : " +this.custreditresp[prop]);
-          if(prop=="responseCode"){
-            // this.ListOfEmpData = this.reslt[prop];
-              if(this.custreditresp[prop]=="200"){
-                if(window.confirm('Customer Changed successfully')){
-                  location.reload();
-                }else{
-                  location.reload();
-                }
-              }
-              }
-         
-          });
-        })
+      //  Object.keys(this.custreditresp).forEach(prop => {
+      //     console.log("data : " +prop);
+      //     console.log("data : " +this.custreditresp[prop]);
+      if(this.custreditresp.responseCode=="200"){
+        {   
+          Swal.fire({
+            position: 'center',
+            icon: 'success',
+            title: 'Changes Updated successfully!',
+            showConfirmButton: false,
+          })
+          setTimeout(() => {
+            location.reload();
+          }, 1000);
+        }
+        
+      }
+      else {
+        {    
+          Swal.fire({
+            position: 'center',
+            icon: 'error',
+            title: 'Error with Updation!',
+            showConfirmButton: false,
+          })
+          setTimeout(() => {
+            location.reload();
+          }, 1000);
+        }
+      }
+         })
 }
 
 branchname:any;
@@ -453,22 +528,42 @@ this.customer.customerChitDetails[0].createdDate=timestamp;
     this.http.post(this.userData.createcustomer,this.customer ).subscribe((result)=>{
      this.customerresult = result;
        console.log(this.customer);
-     Object.keys(this.customerresult).forEach(prop => {
-        console.log("data : " +prop);
+       console.log("res123s : "+this.customerresult.responseCode);
+    //  Object.keys(this.customerresult).forEach(prop => {
+    //     console.log("res : " +this.customerresult[prop]);
         
-            if(this.customerresult[prop]=="200"){
-              if(window.confirm('Customer is created successfully')){
-                location.reload();
-              }else{
-                location.reload();
+            if(this.customerresult.responseCode=="200"){
+              {   
+                Swal.fire({
+                  position: 'center',
+                  icon: 'success',
+                  title: 'Customer Created successfully!',
+                  showConfirmButton: false,
+                })
+                setTimeout(() => {
+                  location.reload();
+                }, 1000);
               }
               
+            }
+            else {
+              {    
+                Swal.fire({
+                  position: 'center',
+                  icon: 'error',
+                  title: 'Error with Customer Creation!',
+                  showConfirmButton: false,
+                })
+                setTimeout(() => {
+                  location.reload();
+                }, 1000);
+              }
             }
             
         });
        
        
-      })
+      // })
      }
 
 //      upcustomerresult:any;
@@ -595,16 +690,21 @@ getCustomerbyId(custid:any): void{
         showCancelButton: true,
         confirmButtonText: 'Yes, delete it!',
         cancelButtonText: 'No, keep it',
+        customClass: {
+          confirmButton: 'my-confirm-button-class',
+          cancelButton: 'my-cancel-button-class',
+          title:'my-alert-title-class',
+          
+        }
       }).then((result) => {
   
         if (result.isConfirmed) {
           console.log('Clicked Yes, File deleted!');
           this.http.delete(this.userData.deletecustomer+data).subscribe((data) =>{
             this.customerdelete=data;
-            Object.keys(this.customerdelete).forEach(prop => {
-              if(prop=="responseCode"){
-                // this.ListOfEmpData = this.reslt[prop];
-                  if(this.customerdelete[prop]=="200"){
+            
+             
+                  if(this.customerdelete.responseCode =="200"){
                     
                     Swal.fire({
                       position: 'center',
@@ -616,11 +716,23 @@ getCustomerbyId(custid:any): void{
                       location.reload();
                     }, 1000);
                   }
+                  else {
+                    {    
+                      Swal.fire({
+                        position: 'center',
+                        icon: 'error',
+                        title: 'Error with Customer Deletion!',
+                        showConfirmButton: false,
+                      })
+                      setTimeout(() => {
+                        location.reload();
+                      }, 1000);
+                    }
                   }
-            });
-          })
-  
-        } else if (result.isDismissed) {
+                })
+              } 
+                
+                else if (result.isDismissed) {
   
           console.log('Clicked No, File is safe!');
   
@@ -733,29 +845,30 @@ if (window.confirm('Customer craeted successfully without documents')) {
 //    // this.route.navigate(['list']);
 //   }// Get customer by id
 
-cusurl_value=this.userData.getAllcustomer;
-searchFilter(route:any,slab:any){
+// cusurl_value=this.userData.getAllcustomer;
+// searchFilter(route:any,slab:any,branch:any){
 
-if(route != undefined && route!='All'&& slab != undefined && slab!='All'){
-  this.cusurl_value+="?collectionRoute="+route+"&scheme="+slab;
+// if(route != undefined && route!='All'&& slab != undefined && slab!='All'){
+//   this.cusurl_value+="?collectionRoute="+route+"&scheme="+slab;
   
-}
-this.http.get(this.cusurl_value).subscribe((data) =>{
-    this.custmresponse=data;
-    console.log("AllData" +JSON.stringify(data));
+// }
+
+// this.http.get(this.cusurl_value).subscribe((data) =>{
+//     this.custmresponse=data;
+//     console.log("AllData" +JSON.stringify(data));
     
-  Object.keys(this.custmresponse).forEach(prop => {
-  if(prop=="object"){
-    this.ListOfCustomerData = this.custmresponse[prop];
-  }
-  });
+//   Object.keys(this.custmresponse).forEach(prop => {
+//   if(prop=="object"){
+//     this.ListOfCustomerData = this.custmresponse[prop];
+//   }
+//   });
   
-  })
-}
+//   })
+// }
 
 
   ngOnInit(): void {
-    
+    this.idleTimeoutService.setIdleTimeout(5);
 }
 }
 

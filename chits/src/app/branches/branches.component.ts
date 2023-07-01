@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import {UserDataService} from 'src/app/users-data.service';
 import { FormGroup, FormControl, Validators,NgForm} from '@angular/forms';
 import {Branch} from 'src/app/model/branch.model';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-branches',
@@ -79,7 +80,8 @@ BranchDeleteById: Branch={ branchId: ' ',
 
   brchselectvalue:any;
   
-  
+  totalBranches: any;
+ pageNumber: number = 1; 
   
   
   constructor(private http: HttpClient, private userData:UserDataService, ) {
@@ -117,6 +119,14 @@ BranchDeleteById: Branch={ branchId: ' ',
 
 // })
 
+//get branch count fot pagenation
+this.http.get(this.userData.getbranchcount).subscribe((data) =>{
+  this.totalBranches=data;
+
+
+})
+
+this.searchFilter(true);
 
 //head office
 this.userData.head().subscribe((data) =>{
@@ -186,56 +196,119 @@ getbranchFormData(data:any): void{
   this.http.post(this.userData.createbrnch, data).subscribe((result)=>{
     
    this.reslt = result;
-   Object.keys(this.reslt).forEach(prop => {
-      console.log("data : " +prop);
-        console.log("value : "+this.reslt[prop]);
-         if(prop=="responseCode"){
-        // this.ListOfEmpData = this.reslt[prop];
-          if(this.reslt[prop]=="200"){
-            if(window.confirm('Branch is created successfully')){
-              location.reload();
-            }else{
-              location.reload();
-            }
-          }
-          }
-      });
+   if(this.reslt.responseCode=="200"){
+    {   
+      Swal.fire({
+        position: 'center',
+        icon: 'success',
+        title: 'Barnch Created successfully!',
+        showConfirmButton: false,
+      })
+      setTimeout(() => {
+        
+        location.reload();
+      }, 1000);
+    }
+    
+  }
+  else {
+    {    
+      Swal.fire({
+        position: 'center',
+        icon: 'error',
+        title: 'Error with Branch Creation!',
+        showConfirmButton: false,
+      })
+      setTimeout(() => {
+       
+        location.reload();
+      }, 1000);
+    }
+  }
+  //  Object.keys(this.reslt).forEach(prop => {
+  //     console.log("data : " +prop);
+  //       console.log("value : "+this.reslt[prop]);
+  //        if(prop=="responseCode"){
+  //       // this.ListOfEmpData = this.reslt[prop];
+  //         if(this.reslt[prop]=="200"){
+  //           if(window.confirm('Branch is created successfully')){
+  //             location.reload();
+  //           }else{
+  //             location.reload();
+  //           }
+  //         }
+  //         }
+  //     });
     })
    }
 
    //delete branch
    
    deleteBranchbyId(data:any): void{
-           
+    Swal.fire({
+      title: 'Are you sure?',
+      text: 'You will not be able to recover this action!',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonText: 'Yes, delete it!',
+      cancelButtonText: 'No, keep it',
+      customClass: {
+        confirmButton: 'my-confirm-button-class',
+        cancelButton: 'my-cancel-button-class',
+        title:'my-alert-title-class',
+        
+      }
+    }).then((result) => {
+
+      if (result.isConfirmed) {
     this.http.delete(this.userData.deletebranch+data).subscribe((data) =>{
    if(confirm('Are you sure to delete?'))
      this.branchdelete=data;
-   Object.keys(this.branchdelete).forEach(prop => {
-     if(prop=="responseCode"){
-       // this.ListOfEmpData = this.reslt[prop];
-         if(this.branchdelete[prop]=="200"){
-           if(window.confirm('Branch deleted successfully')){
-             location.reload();
-           }else{
-             location.reload();
-           }
-         }
-         }
-   });
+     if(this.branchdelete.responseCode=="200"){
+      {   
+        Swal.fire({
+          position: 'center',
+          icon: 'success',
+          title: 'Barnch Deleted successfully!',
+          showConfirmButton: false,
+        })
+        setTimeout(() => {
+          
+          location.reload();
+        }, 1000);
+      }
+      
+    }
    
    })
+      }else {
+        {    
+          Swal.fire({
+            position: 'center',
+            icon: 'error',
+            title: 'Error with Branch Deletion!',
+            showConfirmButton: false,
+          })
+          setTimeout(() => {
+           
+            location.reload();
+          }, 1000);
+        }
       }
+    
+    });
   
-  
+    }
       // branch filter
+      
       offctyp:any;
       url_value:any;
       searchFilter(offctype:any){
         console.log(offctype);
-        this.url_value= this.userData.branchurl;
+        this.url_value= this.userData.branchurl+'?size=10&page=' + this.pageNumber;
 
         if (offctype != undefined && offctype !="All"){
-          this.url_value+=("?headOffice="+offctype);
+          this.url_value+=("&headOffice="+offctype);
         }
 
         this.http.get(this.url_value).subscribe((data) =>{
@@ -247,6 +320,10 @@ getbranchFormData(data:any): void{
       });
         
       })
+      }
+      changePage(event: number) {
+        this.pageNumber = event;
+        this.searchFilter(this.offctyp);
       }
 
   showHideText(event:any){

@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import {UserDataService} from 'src/app/users-data.service';
 import { FormGroup, NgForm} from '@angular/forms';  
 import { EmployeeID } from '../model/employeedetail.model';
+import Swal from 'sweetalert2';
 
 interface USERS {
     id: Number;
@@ -177,23 +178,36 @@ console.log(new Date("2015/04/29 11:24:00").getTime());
   this.userData.createUser(data).subscribe((result)=>{
    this.response = result;
     
-   Object.keys(this.response).forEach(prop => {
+   if(this.response.responseCode=="200"){
+    {   
+      Swal.fire({
+        position: 'center',
+        icon: 'success',
+        title: 'Employee Created successfully!',
+        showConfirmButton: false,
+      })
+      setTimeout(() => {
+        location.reload();
+      }, 1000);
+    }
     
-      console.log("data : " +prop);
-       console.log("value : "+this.response[prop]);
-       if(prop=="responseCode"){
-        // this.ListOfEmpData = this.reslt[prop];
-          if(this.response[prop]=="200"){
-            if(window.confirm('Employee is created successfully')){
-              location.reload();
-            }else{
-              location.reload();
-            }
-          }
-          }
+  }
+  else {
+    {    
+      Swal.fire({
+        position: 'center',
+        icon: 'error',
+        title: 'Error with Employee Creation!',
+        showConfirmButton: false,
+      })
+      setTimeout(() => {
+        location.reload();
+      }, 1000);
+    }
+  }
       
      });
-   })
+   
 }
 
 //update employee
@@ -204,23 +218,36 @@ console.log(new Date("2015/04/29 11:24:00").getTime());
   this.http.put(this.userData.empupdate,updata).subscribe((result)=>{
    this.upresponse = result;
     
-   Object.keys(this.upresponse).forEach(prop => {
+   if(this.upresponse.responseCode=="200"){
+    {   
+      Swal.fire({
+        position: 'center',
+        icon: 'success',
+        title: 'Emplopyee Updated successfully!',
+        showConfirmButton: false,
+      })
+      setTimeout(() => {
+        location.reload();
+      }, 1000);
+    }
     
-      console.log("data : " +prop);
-       console.log("value : "+this.upresponse[prop]);
-       if(prop=="responseCode"){
-        // this.ListOfEmpData = this.reslt[prop];
-          if(this.upresponse[prop]=="200"){
-            if(window.confirm('Employee is updated successfully')){
-              location.reload();
-            }else{
-              location.reload();
-            }
-          }
-          }
+  }
+  else {
+    {    
+      Swal.fire({
+        position: 'center',
+        icon: 'error',
+        title: 'Error with Emplopyee Updation!',
+        showConfirmButton: false,
+      })
+      setTimeout(() => {
+        location.reload();
+      }, 1000);
+    }
+  }
       
      });
-   })
+   
 }
 
 
@@ -244,26 +271,26 @@ console.log(new Date("2015/04/29 11:24:00").getTime());
       
       })
       }
-         deleteEmployeebyId(data:any): void{
+        //  deleteEmployeebyId(data:any): void{
            
-           this.http.delete(this.userData.deleteemployee+data).subscribe((data) =>{
-          if(confirm('Are you sure to delete?'))
-            this.empdelete=data;
-          Object.keys(this.empdelete).forEach(prop => {
-            if(prop=="responseCode"){
-              // this.ListOfEmpData = this.reslt[prop];
-                if(this.empdelete[prop]=="200"){
-                  if(window.confirm('Employee is deleted successfully')){
-                    location.reload();
-                  }else{
-                    location.reload();
-                  }
-                }
-                }
-          });
+        //    this.http.delete(this.userData.deleteemployee+data).subscribe((data) =>{
+        //   if(confirm('Are you sure to delete?'))
+        //     this.empdelete=data;
+        //   Object.keys(this.empdelete).forEach(prop => {
+        //     if(prop=="responseCode"){
+        //       // this.ListOfEmpData = this.reslt[prop];
+        //         if(this.empdelete[prop]=="200"){
+        //           if(window.confirm('Employee is deleted successfully')){
+        //             location.reload();
+        //           }else{
+        //             location.reload();
+        //           }
+        //         }
+        //         }
+        //   });
           
-          })
-             }
+        //   })
+        //      }
 
 
 
@@ -278,15 +305,65 @@ edit(user_id:any){
  el:any;
  
 
- delete(user_id:any){
-  
-  this.userData.delete(user_id).subscribe((result) =>
-  {
-    if(confirm('Are you sure to delete?'))
-    console.log(result);
-    //this.ngOnInit();
+ employeedelete:any;
+ deleteEmployeebyId(data:any): void{
+  Swal.fire({
+    title: 'Are you sure?',
+    text: 'You will not be able to recover this action!',
+    icon: 'warning',
+    showCancelButton: true,
+    confirmButtonText: 'Yes, delete it!',
+    cancelButtonText: 'No, keep it',
+    customClass: {
+      confirmButton: 'my-confirm-button-class',
+      cancelButton: 'my-cancel-button-class',
+      title:'my-alert-title-class',
+      
+    }
+  }).then((result) => {
+
+    if (result.isConfirmed) {
+      console.log('Clicked Yes, File deleted!');
+      this.http.delete(this.userData.deleteemployee+data).subscribe((data) =>{
+        this.employeedelete=data;
+        
+         
+              if(this.employeedelete.responseCode =="200"){
+                
+                Swal.fire({
+                  position: 'center',
+                  icon: 'success',
+                  title: 'Employee Deleted successfully',
+                  showConfirmButton: false,
+                })
+                setTimeout(() => {
+                  location.reload();
+                }, 1000);
+              }
+              else {
+                {    
+                  Swal.fire({
+                    position: 'center',
+                    icon: 'error',
+                    title: 'Error with Employee Deletion!',
+                    showConfirmButton: false,
+                  })
+                  setTimeout(() => {
+                    location.reload();
+                  }, 1000);
+                }
+              }
+            })
+          } 
+            
+            else if (result.isDismissed) {
+
+      console.log('Clicked No, File is safe!');
+
+    }
   })
- }
+   
+}
 
   ngOnInit(): void {
     this.CategoryName = this.userData.CategoryName;

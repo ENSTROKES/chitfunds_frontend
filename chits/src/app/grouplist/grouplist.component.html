@@ -48,6 +48,7 @@
                 <div class="card">
                     <div class="card-body">
                         <h5 class="card-title">Group Members</h5>
+                        <!-- <div class="table-container"> -->
                         <table class="table table-striped">
 
                             <thead>
@@ -56,11 +57,13 @@
                                     <th>Name</th>
                                     <th>Contact</th>
                                     <th>Subscription</th>
-                                    <th>Prized Status</th>
+                                    <!-- <th>Prized Status</th> -->
+                                    <th>Joining Date</th>
                                     <th>Received </th>
                                     <th>Outstanding </th>
                                     <th>Last Payment Date</th>
-                                    <th>Collection Group</th>
+                                    <!-- <th>Collection Route</th> -->
+                                    <th>Actions</th>
 
                                 </tr>
                             </thead>
@@ -70,11 +73,36 @@
                                     <td>{{ grp.customerName}}</td>
                                     <td>{{ grp.contactNumber }}</td>
                                     <td>{{ grp.modeOfSubscription }}</td>
-                                    <td>{{grp.prizedStatus}}</td>
+                                    <!-- <td>{{grp.prizedStatus}}</td> -->
+                                    <td>{{grp.joiningDate | date :'dd-MM-YYYY' }}
+                                    </td>
                                     <td>{{ grp.receivedAmount }}</td>
-                                    <td>{{grp.outStandingAmount}}</td>
+                                    <td>
+                                        <!-- <div class="data-item" [ngClass]="{ 'up-arrow': grp.outStandingAmount > 0, 'down-arrow': grp.outStandingAmount < 0 }">
+                                            <i class="bi bi-arrow-down-circle-fill"></i>&nbsp;
+                                            <span class="value">{{ grp.outStandingAmount }}</span>
+                                        </div> -->
+                                        <div *ngIf="grp.outStandingAmount > 0; then trueBlock; else falseBlock"></div>
+
+                                        <ng-template #trueBlock>
+                                            <i class="bi bi-arrow-down-circle-fill down-arrow"></i>&nbsp;
+                                            <span class="value down-arrow">{{ grp.outStandingAmount }}</span>
+                                        </ng-template>
+
+                                        <ng-template #falseBlock>
+                                            <ng-template [ngIf]="grp.outStandingAmount < 0">
+                                                <i class="bi bi-arrow-up-circle-fill up-arrow"></i>&nbsp;
+                                                <span class="value up-arrow">{{ grp.outStandingAmount * (-1)}}</span>
+                                            </ng-template>
+
+                                            <ng-template [ngIf]="grp.outStandingAmount == 0">
+                                                <i class="bi bi-dash-circle-fill dash-arrow"></i>&nbsp;
+                                                <span class=" dash-arrow"> {{this.grp.outStandingAmount }}</span>
+                                            </ng-template>
+                                        </ng-template>
+                                    </td>
                                     <td>{{grp.lastPayedDate | date :'dd-MM-YYYY'}}</td>
-                                    <td>{{grp.collection_route}}</td>
+                                    <!-- <td>{{grp.collection_route}}</td> -->
                                     <td>
                                         <div class="icon">
 
@@ -148,6 +176,7 @@
                                 </tr>
                             </tbody>
                         </table>
+                        <!-- </div> -->
                         <div class="modal-footer ">
                             <button type="button " class="btn btn-primary " data-bs-dismiss="modal " (click)="goToPage('groups')">Back</button>
 

@@ -35,6 +35,10 @@ import { FiltergridComponent } from './filtergrid/filtergrid.component';
 import { GrouplistComponent } from './grouplist/grouplist.component';
 import { ReportsComponent } from './reports/reports.component';
 import { LedgerComponent } from './ledger/ledger.component';
+import { NgxPaginationModule } from 'ngx-pagination';
+import { BnNgIdleService } from 'bn-ng-idle';
+import { MinusPipe } from './minus.pipe';
+
 
 
 
@@ -78,6 +82,7 @@ import { LedgerComponent } from './ledger/ledger.component';
     GrouplistComponent,
     ReportsComponent,
     LedgerComponent,
+    MinusPipe,
     
   ],
   imports: [
@@ -87,13 +92,15 @@ import { LedgerComponent } from './ledger/ledger.component';
     Ng2SearchPipeModule,
     // MbscModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    NgxPaginationModule,
+ 
     
   ],
-  
+   
   providers: [
     // {provide : LocationStrategy , useClass: HashLocationStrategy}
-    AuthguradServiceService,
+    AuthguradServiceService,BnNgIdleService,
   {
     provide: HTTP_INTERCEPTORS, useClass: LoadingInterceptor, multi: true
   }

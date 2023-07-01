@@ -2,3 +2,17 @@
 
 
 /* @import "bootstarp/dist/css/bootstrap.css"; */
+
+.my-confirm-button-class {
+    background-color: #0C52A6 !important;
+    color: white !important;
+}
+
+.my-cancel-button-class {
+    background-color: rgb(119, 119, 119) !important;
+    color: white !important;
+}
+
+.my-alert-title-class {
+    font-weight: 800;
+}

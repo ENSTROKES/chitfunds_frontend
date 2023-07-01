@@ -1,11 +1,11 @@
 <main id="main" class="main">
     <div class="pagetitle">
-        <h1>Add Group Member</h1>
+        <h1>Group Mapping</h1>
         <nav>
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a routerLink="/">Home</a></li>
-                <li class="breadcrumb-item"> Group</li>
-                <li class="breadcrumb-item active">Add Group Member</li>
+                <li class="breadcrumb-item"> <a routerLink="/Group">Group</a></li>
+                <li class="breadcrumb-item active">Group Mapping</li>
             </ol>
         </nav>
     </div>
@@ -52,13 +52,13 @@
 
                 <div class="card">
                     <div class="card-body">
-                        <h5 class="card-title">Group Members</h5>
+                        <!-- <h5 class="card-title">Group Members</h5> -->
                         <!-- <div class="col-md-3"> <label for="inputName5" class="form-label">  <b>Filter</b></label>
                             <select ngModel name="collectionEmployee" class="form-control">
                              <option value="" disable selected hidden>---Select----</option>
                             </select>
                         </div> -->
-                        <div class="row">
+                        <div class="row" style="padding-bottom: 8px !important;">
                             <div class="col-md-2"> <label for="inputName5" class="form-label"> <b>Scheme</b><span style="color:red">*</span></label>
                                 <select ngModel name="grpfilterscheme" class="form-control" [(ngModel)]="grpfilterscheme" #name="ngModel">
                      <!-- <option value="all" >All</option> -->
@@ -86,6 +86,9 @@
 
 
                         </div>
+                        <div class="d-flex " style="justify-content: right !important;">
+                            <pagination-controls (pageChange)="changePage($event)"></pagination-controls>
+                        </div>
                         <table class="table table-striped">
 
                             <thead>
@@ -98,7 +101,9 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr *ngFor="let group of ListOfGroupfilData;let i=index">
+                                <tr *ngFor="let group of ListOfGroupfilData| paginate: {  itemsPerPage: 10,
+                                    currentPage: pageNumber,
+                                    totalItems: totalGroup };let i = index">
                                     <td>{{i+1}}</td>
                                     <td>{{ group.groupName}}</td>
                                     <td>{{ group.schemeName }}</td>
@@ -110,7 +115,9 @@
                                 </tr>
                             </tbody>
                         </table>
-
+                        <div class="d-flex " style="justify-content: right !important;">
+                            <pagination-controls (pageChange)="changePage($event)"></pagination-controls>
+                        </div>
 
                     </div>
                 </div>

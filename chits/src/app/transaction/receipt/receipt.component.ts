@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { UserDataService } from 'src/app/users-data.service';
 import { Observable } from 'rxjs';
+import Swal from 'sweetalert2';
 interface USERS {
   id: Number;
   name: String;
@@ -61,6 +62,13 @@ button = 'Submit';
   recptype:any;
   recpdate:any;
   recptselectvalue:any;
+
+//For paination
+totalReceipt: any;
+pageNumber: number = 1;
+
+
+
   constructor(private http: HttpClient, private userData: UserDataService) {
 // get all receipt
 // this.userData.receipt().subscribe((data) =>{
@@ -73,6 +81,12 @@ button = 'Submit';
 
 // })
 
+this.searchFilter("All" ,"All" ,this.recpdate);
+
+
+this.http.get(this.userData.getreceiptcount).subscribe((data) =>{
+  this.totalReceipt=data;
+})
 
 
 
@@ -177,76 +191,66 @@ console.log("cusid"+data.ticketNumber);
 
       this.http.post(this.userData.createreceipt, data).subscribe((result)=>{
        this.recptreslt = result;
-        
-       Object.keys(this.recptreslt).forEach(prop => {
-          console.log("data : " +prop);
-            console.log("value : "+this.recptreslt[prop]);
-             if(prop=="responseCode"){
-            // this.ListOfEmpData = this.reslt[prop];
-              if(this.recptreslt[prop]=="200"){
-                if(window.confirm('Receipt is created successfully')){
-                  location.reload();
-                  // this.recprelpop=false;
-                }else(window.confirm('Error in creating receipt'))
-                {
-                  location.reload();
-                  // this.recprelpop=false;
-                }
-              }
 
-              }
+       if(this.recptreslt.responseCode=="200"){
+        {   
+          Swal.fire({
+            position: 'center',
+            icon: 'success',
+            title: 'Receipt Created successfully!',
+            showConfirmButton: false,
+          })
+          setTimeout(() => {
+            location.reload();
+          }, 1000);
+        }
+        
+      }
+      else {
+        {    
+          Swal.fire({
+            position: 'center',
+            icon: 'error',
+            title: 'Error with Receipt Creation!',
+            showConfirmButton: false,
+          })
+          setTimeout(() => {
+            location.reload();
+          }, 1000);
+        }
+      }
+       
+             
           });
-        })
+        
        }
 
 
 
       // filter
-      url_value=this.userData.getReceipt;
+      url_value=(this.userData.getReceipt+ '?size=10&page=' + this.pageNumber);
       //routeall_value:any;
+      
       searchFilter(routeValue:any,recptype:any,recpdate:any){
         console.log("rout:"+routeValue);
         console.log("type:"+recptype);
         console.log("date:"+recpdate);
-        
+        this.url_value=(this.userData.getReceipt+ '?size=10&page=' + this.pageNumber);
         // filter with specific route , type and if date entered
-        if(routeValue != undefined && routeValue !="All"  )
+        if(routeValue != undefined && routeValue !="All" )
               {
-                this.url_value+="?branch="+routeValue;
-                if(recptype != undefined && recptype != "All"){
-                
-            
-                this.url_value +="&type="+recptype;
-                }
-
-               if(recpdate != undefined )
-               {
-                this.url_value +="&billDate="+recpdate;
-                
-               }
-            }
-
-        // filter with all route , specific type and if date entered
-            else if( (routeValue =="All" || routeValue == undefined) && recptype != undefined && recptype != "All" ){
-              
-                this.url_value +="?type="+recptype;
-
-             if(recpdate != undefined )
-              {
-                this.url_value +="&billDate="+recpdate;
-                
+                this.url_value+="&branch="+routeValue;
               }
-            }
+        if(recptype != undefined && recptype !="All" )
+              {
+                this.url_value+="&type="+recptype;
+              }
+        if(recpdate != undefined && recpdate !="All" )
+              {
+                this.url_value+="&billDate="+recpdate;
+              }
 
-        // filter with all route and type if date entered
-       else if( (routeValue =="All" || routeValue == undefined) && (recptype == "All"||recptype == undefined) && recpdate != undefined ){
-       
-       if(recpdate != undefined )
-        {
-          this.url_value +="?billDate="+recpdate;
-          
-        }
-      }
+        
 
         this.http.get(this.url_value).subscribe((data) =>{
           this.receiptres=data;
@@ -258,8 +262,12 @@ console.log("cusid"+data.ticketNumber);
         });
         
         })
-              
+      this.url_value=(this.userData.getReceipt+ '?size=10&page=' + this.pageNumber);        
 
+      }
+      changePage(event: number) {
+        this.pageNumber = event;
+        this.searchFilter(this.routeValue,this.recptype,this.recpdate);
       }
 
 

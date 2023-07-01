@@ -1,10 +1,10 @@
 <main id="main" class="main">
     <div class="pagetitle">
-        <h1>Groups</h1>
+        <h1>Group</h1>
         <nav>
             <ol class="breadcrumb">
-                <li class="breadcrumb-item">Groups</li>
-                <li class="breadcrumb-item"><a routerLink="/groups">Group list</a></li>
+                <li class="breadcrumb-item"><a routerLink="/">Home</a></li>
+                <li class="breadcrumb-item active">Group</li>
                 <!-- 
                 <li class="breadcrumb-item active">Tabs</li> -->
             </ol>
@@ -30,12 +30,12 @@
                                     <div class="col-lg-12">
                                         <div class="card">
                                             <div class="card-body">
-                                                <div class="row">
+                                                <!-- <div class="row">
                                                     <h5 class="card-title" style="padding-left: 10px;">Group List</h5>
                                                     <div class="col-md-2">
                                                         <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#largeModal" style="margin-left:930px; margin-top:-60px;"> Create</button>
                                                     </div>
-                                                </div>
+                                                </div> -->
                                                 <!-- <h5 class="card-title"></h5> -->
                                                 <!-- <div class="search-here">
 
@@ -43,18 +43,20 @@
 
                                                 </div> -->
 
-                                                <div class="row">
+                                                <div class="row" style="padding-bottom: 8px !important;">
                                                     <div class="col-md-2"> <label for="inputName5" class="form-label"> <b>Scheme</b> <span style="color:red">*</span></label>
                                                         <select ngModel name="grpfilterscheme" class="form-control" [(ngModel)]="grpfilterscheme" #name="ngModel">
                                              <!-- <option value="all" >All</option> -->
                                            <!-- <option value="" disable selected hidden>---Select----</option> -->
                                            <option [selected]="true" [ngValue]="grpselectvalue">---Select---</option>
-                                           <option *ngFor="let slabData of listofslabdata"    [value]="slabData._id">{{slabData.chitValue}}-{{slabData.installment}}</option>
+                                           <option value="all" >All</option>
+                                           <option *ngFor="let slabData of listofslabdata"    [value]="slabData._id">
+                                            {{slabData.chitValue}}-{{slabData.installment}}</option>
                                            
                                         </select>
                                                     </div>
                                                     <div class="col-md-2"> <label for="inputName5" class="form-label">  <b>Type</b></label>
-                                                        <select ngModel name="collectionEmployee" class="form-control">
+                                                        <select ngModel name="grpouptype" [(ngModel)]="grpouptype" class="form-control">
                                                         <option [selected]="true" [ngValue]="grpselectvalue">---Select---</option>
                                                         <option value="all" >All</option>
                                                  <option value="true" >Register</option>
@@ -62,8 +64,15 @@
                                                 </select>
 
                                                     </div>
-                                                    <div class="col-md-2"> <label for="inputName5" class="form-label">  <b>Date</b></label>
-                                                        <select ngModel name="collectionEmployee" [(ngModel)]="grpfilterdatetyp" class="form-control">
+                                                    <div class="col-md-2">
+                                                        <button type="button" style="margin-top:32px;" class="btn btn-primary" data-bs-dismiss="modal" (click)="searchFilter(grpfilterscheme,grpouptype)">Search</button>
+                                                    </div>
+                                                    <div class="col-md-2">
+
+                                                        <button type="button" style="margin-top:32px;margin-left: 350px !important;" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#largeModal"> Create</button>
+                                                    </div>
+                                                    <!-- <div class="col-md-2"> <label for="inputName5" class="form-label" hidden>  <b>Date</b></label >
+                                                        <select ngModel name="collectionEmployee" [(ngModel)]="grpfilterdatetyp" class="form-control" hidden>
                                                         <option [selected]="true" [ngValue]="dateselectedvalye">---Select---</option>
                                                  <option value="Startdate" >Start Date</option>
                                                  <option value="auctiondate" >Auction Date</option>
@@ -78,11 +87,9 @@
                                                     <div class="col-md-2" *ngIf="grpfilterdatetyp == 'Startdate' ">
                                                         <label for="inputName5" class="form-label">  <b>Start Date</b></label>
                                                         <input type="date" class="form-control" [(ngModel)]="grpfilterdateinp" maxlength="200" />
-                                                    </div>
+                                                    </div> -->
 
-                                                    <div class="col-md-2">
-                                                        <button type="button" style="margin-top:32px;" class="btn btn-primary" data-bs-dismiss="modal" (click)="searchFilter(grpfilterscheme,grpfiltertype,grpfilterdatetyp,grpfilterdateinp)">Search</button>
-                                                    </div>
+
 
 
                                                 </div>
@@ -143,8 +150,8 @@
 
                                                                     <label class="form-check-label" for="gridCheck1" style="margin-top: -20px; padding-top: 30px;"> Yes</label>
                                                                     <input class="form-check-input" style="margin-top: -20px;margin-left: 40px;" type="checkbox" ngModel name="groupType" (change)="showHideText($event);">
-                                                                    <label class="form-check-label" for="gridCheck2" style="margin-top: -25px; margin-left: 60px;"> No</label>
-                                                                    <input class="form-check-input" style="margin-top: -20px;margin-left: 95px;" type="checkbox" ngModel name="groupType">
+                                                                    <!-- <label class="form-check-label" for="gridCheck2" style="margin-top: -25px; margin-left: 60px;"> No</label>
+                                                                    <input class="form-check-input" style="margin-top: -20px;margin-left: 95px;" type="checkbox" ngModel name="groupType"> -->
 
                                                                     <div *ngIf="isDisplayed">
                                                                         <div class="row">
@@ -177,6 +184,9 @@
                                                         </div>
                                                     </div>
                                                 </div>
+                                                <div class="d-flex " style="justify-content: right !important;">
+                                                    <pagination-controls (pageChange)="changePage($event)"></pagination-controls>
+                                                </div>
                                                 <table class="table table-striped">
 
                                                     <thead>
@@ -193,7 +203,9 @@
                                                         </tr>
                                                     </thead>
                                                     <tbody>
-                                                        <tr *ngFor="let group of ListOfGroupfilData;let i=index">
+                                                        <tr *ngFor="let group of ListOfGroupfilData | paginate: {  itemsPerPage: 10,
+                                                            currentPage: pageNumber,
+                                                            totalItems: totalGroup };let i = index">
                                                             <td>{{i+1}}</td>
                                                             <td>{{ group.groupName}}</td>
                                                             <td>{{ group.schemeName}}</td>
@@ -481,6 +493,9 @@
                                                         </tr>
                                                     </tbody>
                                                 </table>
+                                                <div class="d-flex " style="justify-content: right !important;">
+                                                    <pagination-controls (pageChange)="changePage($event)"></pagination-controls>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>

@@ -1,0 +1,20 @@
+.data-item {
+    display: flex;
+    align-items: center;
+}
+
+.up-arrow {
+    color: green;
+}
+
+.down-arrow {
+    color: red;
+}
+
+.dash-arrow {
+    color: orange;
+}
+
+.value {
+    margin-right: 8px;
+}

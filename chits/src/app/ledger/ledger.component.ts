@@ -40,10 +40,10 @@ export class LedgerComponent implements OnInit {
   checked=false;
   rotselectvalue:any;
 
-  groupmrm :GroupMap={
-    groupId: '',
-    customerId:[]
-  };
+  // groupmrm :GroupMap={
+  //   groupId: '',
+  //   customerId:[]
+  // };
   custmapresponse:any;
   ListOfCustMapData:any;
   value:any;
@@ -220,34 +220,34 @@ getCusDatabyFilter(type:any){
        }
 
 ///Method to get cutomer id from checkbox
-       GroupMappingCustomer(event:any,data:any){
-        this.route.queryParams.subscribe(params => {
-          this.vaccent = +params['vaccent'];
-          this.groupmrm.groupId = params['value'];
-        });
-        console.log("vac"+this.vaccent);
-        console.log("gr"+this.groupmrm.groupId);
-        if(event.target.checked==true){
-          this.isDisplayed = true;
-          console.log("array_size"+Object.keys(this.groupmrm.customerId).length);
-           if(Object.keys(this.groupmrm.customerId).length <   this.vaccent)
-           {
-            this.groupmrm.customerId.push(data);
-            console.log( this.groupmrm);
-            console.log( this.isDisplayed);
-           }
-          //  else
-          //  {
+      //  GroupMappingCustomer(event:any,data:any){
+      //   this.route.queryParams.subscribe(params => {
+      //     this.vaccent = +params['vaccent'];
+      //     this.groupmrm.groupId = params['value'];
+      //   });
+      //   console.log("vac"+this.vaccent);
+      //   console.log("gr"+this.groupmrm.groupId);
+      //   if(event.target.checked==true){
+      //     this.isDisplayed = true;
+      //     console.log("array_size"+Object.keys(this.groupmrm.customerId).length);
+      //      if(Object.keys(this.groupmrm.customerId).length <   this.vaccent)
+      //      {
+      //       this.groupmrm.customerId.push(data);
+      //       console.log( this.groupmrm);
+      //       console.log( this.isDisplayed);
+      //      }
+      //     //  else
+      //     //  {
            
-          //  }
+      //     //  }
            
-        }
-        else{
-          this.isDisplayed = false;
-          this.groupmrm.customerId = this.groupmrm.customerId.filter(num => num !== data);
-          console.log( this.groupmrm.customerId);
-          console.log( this.isDisplayed);
-        }}
+      //   }
+      //   else{
+      //     this.isDisplayed = false;
+      //     this.groupmrm.customerId = this.groupmrm.customerId.filter(num => num !== data);
+      //     console.log( this.groupmrm.customerId);
+      //     console.log( this.isDisplayed);
+      //   }}
 
       //  Test(){
       //   this.route.queryParams.subscribe(params => {
@@ -257,34 +257,34 @@ getCusDatabyFilter(type:any){
       //   console.log( this.groupmrm.customerId);
       //  }
 
-       getgroupFormData(): void{
+      //  getgroupFormData(): void{
 
-        // this.route.queryParams.subscribe(params => {
-        //   this.groupmrm.groupId = +params['value'];
-        // });
-        //console.log("grpid"+this.groupmrm.groupId)
-          //console.log("AllData" +JSON.stringify(data)); 
+      //   // this.route.queryParams.subscribe(params => {
+      //   //   this.groupmrm.groupId = +params['value'];
+      //   // });
+      //   //console.log("grpid"+this.groupmrm.groupId)
+      //     //console.log("AllData" +JSON.stringify(data)); 
          
-          this.http.post(this.userData.groupmapcus, this.groupmrm).subscribe((result)=>{
-           this.grpmapreslt = result;
+      //     this.http.post(this.userData.groupmapcus, this.groupmrm).subscribe((result)=>{
+      //      this.grpmapreslt = result;
             
-           Object.keys(this.grpmapreslt).forEach(prop => {
-              console.log("data : " +prop);
-                console.log("value : "+this.grpmapreslt[prop]);
-                 if(prop=="responseCode"){
-                // this.ListOfEmpData = this.reslt[prop];
-                  if(this.grpmapreslt[prop]=="200"){
-                    if(window.confirm('Customer mapped successfully')){
-                      location.reload();
-                    }else(window.confirm('Error mapping customer'))
-                    {
-                      location.reload();
-                    }
-                  }
-                  }
-              });
-            })
-           }
+      //      Object.keys(this.grpmapreslt).forEach(prop => {
+      //         console.log("data : " +prop);
+      //           console.log("value : "+this.grpmapreslt[prop]);
+      //            if(prop=="responseCode"){
+      //           // this.ListOfEmpData = this.reslt[prop];
+      //             if(this.grpmapreslt[prop]=="200"){
+      //               if(window.confirm('Customer mapped successfully')){
+      //                 location.reload();
+      //               }else(window.confirm('Error mapping customer'))
+      //               {
+      //                 location.reload();
+      //               }
+      //             }
+      //             }
+      //         });
+      //       })
+      //      }
 
 
 

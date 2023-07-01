@@ -10,40 +10,47 @@ export class UserDataService {
   get(user_id: any) {
     throw new Error('Method not implemented.');
   }
+  
   data = String;
-
+  urlstrng= "https://api.vanmohportal.com/"
+ // urlstrng= "http://3.111.255.69/chitfund/"
   // url = 'https://jsonplaceholder.typicode.com/users';
-  url = 'http://3.111.255.69/chitfund/getAllEmployee';
-  createurl = 'http://3.111.255.69/chitfund/createEmployee';
-  empupdate='http://3.111.255.69/chitfund/updateEmployee';
-  branchurl = 'http://3.111.255.69/chitfund/getAllBranches';
-  branchbyidurl = 'http://3.111.255.69/chitfund/getBranchById?id=';
-  headurl='http://3.111.255.69/chitfund/getAllHeadOffice';
-  createbrnch = 'http://3.111.255.69/chitfund/createBranch';
-  creategrp = 'http://3.111.255.69/chitfund/createGroup';
-  createreceipt = 'http://3.111.255.69/chitfund/createReceipt';
-  getAllgrp ='http://3.111.255.69/chitfund/getAllGroup';
-  getAllcustomer ='http://3.111.255.69/chitfund/getAllCustomers';
-  getReceipt ='http://3.111.255.69/chitfund/getAllReceipt';
-  createcustomer='http://3.111.255.69/chitfund/createCustomer';
-  customerbyidurl='http://3.111.255.69/chitfund/getCustomerById?id=';
-  groupbyidurl='http://3.111.255.69/chitfund/getGroupById?id=';
-  employeebyidurl='http://3.111.255.69/chitfund/getEmployeeById?id=';
-  loginurl='http://3.111.255.69/chitfund/userLogin?userName=';
-  creategroupMapping = 'http://3.111.255.69/chitfund/createCustomerGroupMapping';
-  deleteemployee = 'http://3.111.255.69/chitfund/deleteEmployeeById?id=';
-  deletegroup = 'http://3.111.255.69/chitfund/deleteGroupById?id=';
-  deletecustomer = 'http://3.111.255.69/chitfund/deleteCustomerById?id=';
-  deletebranch = 'http://3.111.255.69/chitfund/deleteBranchById?id=';
-  fileupload = 'http://3.111.255.69/chitfund/upload';
-  getslab='http://3.111.255.69/chitfund/getAllSlab';
-  getDocbyid='http://3.111.255.69/chitfund/getImageByCustomer?id=';
-  groupmapcus='http://3.111.255.69/chitfund/customerGroupMapping';
-  grouplistmapdcus="http://3.111.255.69/chitfund/getCustomerForGroup?groupId=";
-  cuslistmappedgrop="http://3.111.255.69/chitfund/getCustomersForCustomerMapping?type=";
-  getroute="http://3.111.255.69/chitfund/getRouteForLedger";
-  getledgerbyroute="http://3.111.255.69/chitfund/getLedgerByRoute?route=";
-  getrecipetbycusid="http://3.111.255.69/chitfund/getReceiptByCustomerId?id=";
+  url = this.urlstrng +'getAllEmployee';
+  createurl = this.urlstrng +'createEmployee';
+  empupdate=this.urlstrng +'updateEmployee';
+  branchurl = this.urlstrng +'getAllBranches';
+  branchbyidurl = this.urlstrng +'getBranchById?id=';
+  headurl=this.urlstrng +'getAllHeadOffice';
+  createbrnch = this.urlstrng +'createBranch';
+  creategrp = this.urlstrng +'createGroup';
+  createreceipt = this.urlstrng +'createReceipt';
+  getAllgrp =this.urlstrng +'getAllGroup';
+  getAllcustomer =this.urlstrng +'getAllCustomers';
+  getReceipt =this.urlstrng +'getAllReceipt';
+  createcustomer=this.urlstrng +'createCustomer';
+  customerbyidurl=this.urlstrng +'getCustomerById?id=';
+  groupbyidurl=this.urlstrng +'getGroupById?id=';
+  employeebyidurl=this.urlstrng +'getEmployeeById?id=';
+  loginurl=this.urlstrng +'userLogin?userName=';
+  //loginurl='https://api.vanmohportal.com/userLogin?userName=';
+  creategroupMapping = this.urlstrng +'createCustomerGroupMapping';
+  deleteemployee = this.urlstrng +'deleteEmployeeById?id=';
+  deletegroup = this.urlstrng +'deleteGroupById?id=';
+  deletecustomer = this.urlstrng +'deleteCustomerById?id=';
+  deletebranch = this.urlstrng +'deleteBranchById?id=';
+  fileupload = this.urlstrng +'upload';
+  getslab=this.urlstrng +'getAllSlab';
+  getDocbyid=this.urlstrng +'getImageByCustomer?id=';
+  groupmapcus=this.urlstrng +'customerGroupMapping';
+  grouplistmapdcus=this.urlstrng +"getCustomerForGroup?groupId=";
+  cuslistmappedgrop=this.urlstrng +"getCustomersForCustomerMapping?type=";
+  getroute=this.urlstrng +"getRouteForLedger";
+  getledgerbyroute=this.urlstrng +"getLedgerByRoute?route=";
+  getrecipetbycusid=this.urlstrng +"getReceiptByCustomerId?id=";
+  getcustomercount=this.urlstrng +"getCustomersCount";
+  getgroupcount=this.urlstrng +"getGroupCount";
+  getreceiptcount=this.urlstrng +"getReceiptCount";
+  getbranchcount=this.urlstrng +"getBranchCount";
  
   //getDocbyid='http://192.168.1.12:8082/getImageByCustomer?id=3';
   constructor(private http: HttpClient) {

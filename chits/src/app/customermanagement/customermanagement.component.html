@@ -44,7 +44,19 @@
 
                                             <!-- [(ngModel)]="selectedValue" -->
                                             <!-- (click)="searchFilter(selectedValue)" -->
-                                            <!-- <div class="row">
+                                            <div class="row">
+
+                                                <div class="col-md-2"> <label for="inputName5" class="form-label">  <b>Branch Name</b></label>
+                                                    <select ngModel name="branchName" [(ngModel)]="filbranchValue" class="form-control">
+                                                    
+                                                        <option [selected]="true" [ngValue]="rotselectvalue">---Select---</option>
+                                                        <option value="All">All</option>
+                                                        <option *ngFor="let branchData of ListOfBranchData" [ngValue]="branchData.officeName">
+                                                            {{branchData.officeName}}
+                                                      </option>
+                                                    </select>
+
+                                                </div>
                                                 <div class="col-md-2"> <label for="inputName5" class="form-label">  <b>Route</b></label>
                                                     <select ngModel name="collectionEmployee" [(ngModel)]="routeValue" class="form-control">
                                                     
@@ -54,6 +66,7 @@
                                                     </select>
 
                                                 </div>
+
                                                 <div class="col-md-2"> <label for="inputName5" class="form-label"> <b>Scheme</b></label>
                                                     <select ngModel name="schemeId" class="form-control" [(ngModel)]="filslabValue">
                                                         <option [selected]="true" [ngValue]="slabselectvalue">---Select---</option>
@@ -64,14 +77,16 @@
                                                 </div>
                                                 <div class="col-md-2">
 
-                                                    <button type="button " style="margin-top:32px;" class="btn btn-primary " data-bs-dismiss="modal" (click)="searchFilter(routeValue,filslabValue)">Search</button></div>
-                                            </div> -->
-
+                                                    <button type="button " style="margin-top:32px;" class="btn btn-primary " data-bs-dismiss="modal" (click)="getCustomerlist(filbranchValue,routeValue,filslabValue)">Search</button></div>
+                                            </div>
+                                            <div class="d-flex " style="justify-content: right !important;">
+                                                <pagination-controls (pageChange)="changePage($event)"></pagination-controls>
+                                            </div>
                                             <table class="table table-hover">
 
                                                 <thead>
                                                     <tr>
-                                                        <th>S.no</th>
+                                                        <!-- <th>S.no</th> -->
                                                         <th>ID</th>
                                                         <th>Name</th>
                                                         <th>Phone Number</th>
@@ -80,8 +95,10 @@
                                                     </tr>
                                                 </thead>
                                                 <tbody>
-                                                    <tr *ngFor="let customrdata of ListOfCustomerData;let i = index">
-                                                        <td>{{i+1}}</td>
+                                                    <tr *ngFor="let customrdata of ListOfCustomerData | paginate: {  itemsPerPage: 10,
+                                                        currentPage: pageNumber,
+                                                        totalItems: totalCustomers };let i = index">
+                                                        <!-- <td>{{i+1}}</td> -->
                                                         <td>{{ customrdata.customerGenId }}</td>
                                                         <td>{{ customrdata.personalDetails.name }} {{ customrdata.personalDetails.father }}</td>
                                                         <td>{{ customrdata.personalDetails.phoneNumber }}</td>
@@ -445,7 +462,9 @@
 
                                                 </tbody>
                                             </table>
-
+                                            <div class="d-flex " style="justify-content: right !important;">
+                                                <pagination-controls (pageChange)="changePage($event)"></pagination-controls>
+                                            </div>
 
                                         </div>
                                     </div>
