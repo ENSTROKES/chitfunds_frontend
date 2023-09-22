@@ -18,10 +18,13 @@
     "@angular/platform-browser": "^14.0.0",
     "@angular/platform-browser-dynamic": "^14.0.0",
     "@angular/router": "^14.0.0",
+    "@canvasjs/angular-charts": "^1.0.3",
     "@syncfusion/ej2-angular-navigations": "^20.4.48",
+    "@types/file-saver": "^2.0.5",
     "angular-font-awesome": "^3.1.2",
     "bn-ng-idle": "^2.0.5",
     "bootstrap": "^5.3.0",
+    "file-saver": "^2.0.5",
     "font-awesome": "^4.7.0",
     "mobiscroll-angular": "^4.0.0",
     "ng2-search-filter": "^0.5.1",
@@ -29,6 +32,7 @@
     "rxjs": "~7.5.0",
     "sweetalert2": "^11.4.8",
     "tslib": "^2.3.0",
+    "xlsx": "^0.18.5",
     "zone.js": "~0.11.4"
   },
   "devDependencies": {

@@ -1,1 +1,50 @@
-<p>reports works!</p>
+<main id="main" class="main">
+    <!-- <div class="col-md-2">
+
+        <button type="button" style="margin-top:32px;margin-left: 350px !important;" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#largeModal" (click)="exportAsXLSX()"> download</button>
+    </div> -->
+    <section class="section">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Export Data</h5>
+                        <div class="row" style="padding-bottom: 8px !important;">
+                            <div class="col-md-2"> <label for="inputName5" class="form-label">  <b>For</b></label >
+                                <select ngModel name="collectionEmployee" [(ngModel)]="grpfilterdatetyp" class="form-control" >
+                                <option [selected]="true" [ngValue]="dateselectedvalye">---Select---</option>
+                         <option value="Group" >Group</option>
+                         <option value="Route" >Route</option>
+                        </select>
+
+                            </div>
+
+                            <div class="col-md-2" *ngIf=" grpfilterdatetyp == 'Route'">
+                                <label for="inputName5" class="form-label">  <b>Route</b></label>
+                                <select ngModel name="collectionEmployee" [(ngModel)]="selectedValue" class="form-control">
+                                
+                                    <option [selected]="true" [ngValue]="rotselectvalue">---Select---</option>
+                                <option *ngFor="let routeData of listofroutedatafrfilter" [ngValue]="routeData._id">{{routeData._id}}</option>
+                                </select>
+                            </div>
+                            <div class="col-md-2" *ngIf="grpfilterdatetyp == 'Group' ">
+                                <label for="inputName5" class="form-label">  <b>Group</b></label>
+                                <select ngModel name="collectionEmployee" [(ngModel)]="selectedValue" class="form-control">
+                                
+                                    <option [selected]="true" [ngValue]="grpselectedvalue">---Select---</option>
+                                <option *ngFor="let grpData of listofgrpdata" [ngValue]="grpData._id">{{grpData.groupName}}</option>
+                                </select>
+                            </div>
+
+                            <div class="col-md-2">
+
+                                <button type="button" style="margin-top:32px;margin-left: 350px !important;" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#largeModal" (click)="exportAsXLSX(grpfilterdatetyp,selectedValue)"> download</button>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>

@@ -330,14 +330,14 @@ pageNumber: number = 1;
 //get customer count fot pagenation
 this.http.get(this.userData.getcustomercount).subscribe((data) =>{
   this.totalCustomers=data;
-console.log("count"+ this.totalCustomers)
+//console.log("count"+ this.totalCustomers)
 
 })
 
    // get all customer method
     // this.userData.customer().subscribe((data) =>{
     //   this.custmresponse=data;
-    //   console.log("AllData" +JSON.stringify(data));
+    //   //console.log("AllData" +JSON.stringify(data));
       
     // Object.keys(this.custmresponse).forEach(prop => {
     // if(prop=="object"){
@@ -356,7 +356,7 @@ this.getCustomerlist("All","All","All");
     Object.keys(this.slaboutpt).forEach(prop => {
     if(prop=="object"){
       this.listofslabdata = this.slaboutpt[prop];
-      //console.log("GetData" +this.userData.branchbyidurl);
+      ////console.log("GetData" +this.userData.branchbyidurl);
     }
     });
     
@@ -368,7 +368,7 @@ this.getCustomerlist("All","All","All");
     Object.keys(this.routeoutpt).forEach(prop => {
     if(prop=="object"){
       this.listofroutedata = this.routeoutpt[prop];
-      //console.log("GetData" +this.userData.branchbyidurl);
+      ////console.log("GetData" +this.userData.branchbyidurl);
     }
     });
     
@@ -384,9 +384,9 @@ filbranch:any;
 route:any;
 filslab:any;
 getCustomerlist(filbranch:any,route:any,filslab:any){
-  console.log("bra" +filbranch);
-  console.log("rt" +route);
-  console.log("slab" +filslab);
+  //console.log("bra" +filbranch);
+  //console.log("rt" +route);
+  //console.log("slab" +filslab);
   this.cusfilurl=(this.userData.getAllcustomer + '?size=10&page=' + this.pageNumber);
 
 //add branch
@@ -406,12 +406,12 @@ if(filbranch != undefined && filbranch != "All"){
 
 
 
-console.log("url  = " + this.cusfilurl);
+//console.log("url  = " + this.cusfilurl);
 
 
   this.http.get(this.cusfilurl).subscribe((data) =>{
     this.custmresponse=data;
-    console.log("AllData" +JSON.stringify(data));
+    //console.log("AllData" +JSON.stringify(data));
     
   Object.keys(this.custmresponse).forEach(prop => {
   if(prop=="object"){
@@ -456,21 +456,21 @@ getUserFormData(data:any){
 getCustomertestData(): void{
   const current = new Date();
   const timestamp = current.getTime();
-  console.log(current,timestamp);
+  //console.log(current,timestamp);
   this.customerDetailbyid.customerNomineeDetails.createdDate=timestamp;
   this.customerDetailbyid.customerChitDetails[0].createdDate=timestamp;
-    // console.log("AllData" +JSON.stringify(this.customer));
-    // console.log("data"+this.customerDetailbyid.personalDetails.name);
-    // console.log("data"+this.customerDetailbyid.personalDetails.father);
+    // //console.log("AllData" +JSON.stringify(this.customer));
+    // //console.log("data"+this.customerDetailbyid.personalDetails.name);
+    // //console.log("data"+this.customerDetailbyid.personalDetails.father);
 
-    console.log("AllData" +JSON.stringify(this.customerDetailbyid));
+    //console.log("AllData" +JSON.stringify(this.customerDetailbyid));
 
       this.http.post(this.userData.createcustomer,this.customerDetailbyid ).subscribe((result)=>{
        this.custreditresp = result;
-         // console.log(this.customer);
+         // //console.log(this.customer);
       //  Object.keys(this.custreditresp).forEach(prop => {
-      //     console.log("data : " +prop);
-      //     console.log("data : " +this.custreditresp[prop]);
+      //     //console.log("data : " +prop);
+      //     //console.log("data : " +this.custreditresp[prop]);
       if(this.custreditresp.responseCode=="200"){
         {   
           Swal.fire({
@@ -508,7 +508,7 @@ getCustomerFormData(data:any): void{
 
   const current = new Date();
 const timestamp = current.getTime();
-console.log(current,timestamp);
+//console.log(current,timestamp);
 
 this.customer.branchName = data.branchName.brnchname;
 this.customer.branchCode= data.branchName.brnchcode;
@@ -517,20 +517,20 @@ this.customer.branchCode= data.branchName.brnchcode;
 
 this.customer.customerNomineeDetails.createdDate=timestamp;
 this.customer.customerChitDetails[0].createdDate=timestamp;
-  // console.log("GetData" +data);
-  console.log("AllData" +JSON.stringify(this.customer));
+  // //console.log("GetData" +data);
+  //console.log("AllData" +JSON.stringify(this.customer));
   
-    // console.log("Hello World");
-    //console.log("GetData" +this.userData.headOffice);
-   //console.log(new Date("2015/04/29 11:24:00").getTime());
-  console.log("data"+this.customer.personalDetails.name);
-  console.log("data"+this.customer.personalDetails.father);
+    // //console.log("Hello World");
+    ////console.log("GetData" +this.userData.headOffice);
+   ////console.log(new Date("2015/04/29 11:24:00").getTime());
+  //console.log("data"+this.customer.personalDetails.name);
+  //console.log("data"+this.customer.personalDetails.father);
     this.http.post(this.userData.createcustomer,this.customer ).subscribe((result)=>{
      this.customerresult = result;
-       console.log(this.customer);
-       console.log("res123s : "+this.customerresult.responseCode);
+       //console.log(this.customer);
+       //console.log("res123s : "+this.customerresult.responseCode);
     //  Object.keys(this.customerresult).forEach(prop => {
-    //     console.log("res : " +this.customerresult[prop]);
+    //     //console.log("res : " +this.customerresult[prop]);
         
             if(this.customerresult.responseCode=="200"){
               {   
@@ -572,23 +572,23 @@ this.customer.customerChitDetails[0].createdDate=timestamp;
 
 //   const current = new Date();
 // const timestamp = current.getTime();
-// console.log(current,timestamp);
+// //console.log(current,timestamp);
 // // this.customer.branchName = data.branchName.brnchname;
 // // this.customer.branchCode= data.branchName.brnchcode;
 // // this.customer.customerNomineeDetails.createdDate=timestamp;
 // // this.customer.customerChitDetails[0].createdDate=timestamp;
-//   // console.log("GetData" +data);
-//   console.log("AllData" +JSON.stringify(this.customerDetailbyid));
-//     // console.log("Hello World");
-//     //console.log("GetData" +this.userData.headOffice);
-//    //console.log(new Date("2015/04/29 11:24:00").getTime());
-//   // console.log("data"+this.customer.personalDetails.name);
-//   // console.log("data"+this.customer.personalDetails.father);
+//   // //console.log("GetData" +data);
+//   //console.log("AllData" +JSON.stringify(this.customerDetailbyid));
+//     // //console.log("Hello World");
+//     ////console.log("GetData" +this.userData.headOffice);
+//    ////console.log(new Date("2015/04/29 11:24:00").getTime());
+//   // //console.log("data"+this.customer.personalDetails.name);
+//   // //console.log("data"+this.customer.personalDetails.father);
 //     this.http.post(this.userData.createcustomer,this.customerDetailbyid  ).subscribe((result)=>{
 //      this.upcustomerresult = result;
      
 //      Object.keys(this.upcustomerresult).forEach(prop => {
-//         console.log("data : " +prop);
+//         //console.log("data : " +prop);
      
 //             if(this.upcustomerresult[prop]=="200"){
 //               if(window.confirm('Customer is Updated successfully')){
@@ -608,18 +608,18 @@ this.customer.customerChitDetails[0].createdDate=timestamp;
 getCustomerbyId(custid:any): void{
   
    
-   //console.log("AllData" +JSON.stringify(data));
+   ////console.log("AllData" +JSON.stringify(data));
       
-   //console.log(new Date("2015/04/29 11:24:00").getTime());
+   ////console.log(new Date("2015/04/29 11:24:00").getTime());
    
 
    this.http.get(this.userData.customerbyidurl+custid).subscribe((data) =>{
-    console.log("AllData" +JSON.stringify(data));
+    //console.log("AllData" +JSON.stringify(data));
     this.idoutput=data;
   Object.keys(this.idoutput).forEach(prop => {
   if(prop=="object"){
     this.customerDetailbyid = this.idoutput[prop];
-    //console.log("GetData" +this.userData.branchbyidurl);
+    ////console.log("GetData" +this.userData.branchbyidurl);
     // this.getDocumentbyId(custid);
   }
   });
@@ -631,22 +631,22 @@ getCustomerbyId(custid:any): void{
 
      // Get Document by id
 // getDocumentbyId(custId:any): void{
-//   // console.log("GetData" +data);
+//   // //console.log("GetData" +data);
    
-//    // console.log("AllData" +JSON.stringify(data));
+//    // //console.log("AllData" +JSON.stringify(data));
       
-//    //console.log(new Date("2015/04/29 11:24:00").getTime());
-//    console.log("Heloo1");
+//    ////console.log(new Date("2015/04/29 11:24:00").getTime());
+//    //console.log("Heloo1");
 //    this.http.get(this.userData.getDocbyid+custId).subscribe((data) =>{
 //     this.docoupt=data;
 //     Object.keys(this.docoupt).forEach(prop => {
 //   if(prop=="object"){
 //     this.Document = this.docoupt[prop];
-//     console.log("Heloo");
-//     console.log("Documents response : " + this.Document[0].link);
-//     console.log("Documents response : " + this.Document[1].link);
-//     console.log("Documents response : " + this.Document[2].link);
-//     console.log("Documents response : " + this.Document[3].link);
+//     //console.log("Heloo");
+//     //console.log("Documents response : " + this.Document[0].link);
+//     //console.log("Documents response : " + this.Document[1].link);
+//     //console.log("Documents response : " + this.Document[2].link);
+//     //console.log("Documents response : " + this.Document[3].link);
 
 //     this.PhotoUrl = this.Document[0].link;
 //     this.AdharUrl = this.Document[1].link;
@@ -699,7 +699,7 @@ getCustomerbyId(custid:any): void{
       }).then((result) => {
   
         if (result.isConfirmed) {
-          console.log('Clicked Yes, File deleted!');
+          //console.log('Clicked Yes, File deleted!');
           this.http.delete(this.userData.deletecustomer+data).subscribe((data) =>{
             this.customerdelete=data;
             
@@ -734,7 +734,7 @@ getCustomerbyId(custid:any): void{
                 
                 else if (result.isDismissed) {
   
-          console.log('Clicked No, File is safe!');
+          //console.log('Clicked No, File is safe!');
   
         }
       })
@@ -757,27 +757,27 @@ getCustomerbyId(custid:any): void{
   public onaadharFileChanged(event:any) {
     //Select File
     this.aadhar = event.target.files[0];
-    console.log("data",this.aadhar );
+    //console.log("data",this.aadhar );
   }
   public onpanFileChanged(event:any) {
     //Select File
     this.pan = event.target.files[0];
-    console.log("data",this.pan );
+    //console.log("data",this.pan );
   }
   public onphotoFileChanged(event:any) {
     //Select File
     this.photo = event.target.files[0];
-    console.log("data",this.photo );
+    //console.log("data",this.photo );
   }
   public onappfrmFileChanged(event:any) {
     //Select File
     this.appfrm = event.target.files[0];
-    console.log("data",this.appfrm );
+    //console.log("data",this.appfrm );
   }
   // public onsignFileChanged(event:any) {
   //   //Select File
   //   this.sign = event.target.files[0];
-  //   console.log("data",this.sign );
+  //   //console.log("data",this.sign );
   // }
   //Gets called when the user clicks on submit to upload the image
   onUpload(id:any) {
@@ -795,7 +795,7 @@ getCustomerbyId(custid:any): void{
     uploadImageData.append('customerId', this.customerId);
     
     //Make a call to the Spring Boot Application to save the image
-    console.log("userdata",uploadImageData);
+    //console.log("userdata",uploadImageData);
     this.http.post(this.userData.fileupload, uploadImageData, this.customerId )
       .subscribe((response) => {
         
@@ -823,10 +823,10 @@ if (window.confirm('Customer craeted successfully without documents')) {
   }
   }
   // searchFilter(type:any){
-  //   console.log(this.selectedValue);
+  //   //console.log(this.selectedValue);
   //   this.http.get(this.userData.cuslistmappedgrop+type).subscribe((data) =>{
   //     this.custmapresponse=data;
-  //     console.log("AllData" +JSON.stringify(data));
+  //     //console.log("AllData" +JSON.stringify(data));
       
   //   Object.keys(this.custmapresponse).forEach(prop => {
   //   if(prop=="object"){
@@ -840,7 +840,7 @@ if (window.confirm('Customer craeted successfully without documents')) {
 
 // getCustomerFormData(): void
 //   {
-//     console.log(this.customer);
+//     //console.log(this.customer);
 //     this._cusService.getCustomerFormData(this.customer);
 //    // this.route.navigate(['list']);
 //   }// Get customer by id
@@ -855,7 +855,7 @@ if (window.confirm('Customer craeted successfully without documents')) {
 
 // this.http.get(this.cusurl_value).subscribe((data) =>{
 //     this.custmresponse=data;
-//     console.log("AllData" +JSON.stringify(data));
+//     //console.log("AllData" +JSON.stringify(data));
     
 //   Object.keys(this.custmresponse).forEach(prop => {
 //   if(prop=="object"){

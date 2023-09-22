@@ -38,7 +38,8 @@ import { LedgerComponent } from './ledger/ledger.component';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { BnNgIdleService } from 'bn-ng-idle';
 import { MinusPipe } from './minus.pipe';
-
+import { ExcelService } from './excel.service';
+import { CanvasJSAngularChartsModule } from '@canvasjs/angular-charts';
 
 
 
@@ -94,7 +95,7 @@ import { MinusPipe } from './minus.pipe';
     FormsModule,
     ReactiveFormsModule,
     NgxPaginationModule,
- 
+    CanvasJSAngularChartsModule
     
   ],
    
@@ -103,8 +104,9 @@ import { MinusPipe } from './minus.pipe';
     AuthguradServiceService,BnNgIdleService,
   {
     provide: HTTP_INTERCEPTORS, useClass: LoadingInterceptor, multi: true
-  }
+  },ExcelService
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  
 })
 export class AppModule { }

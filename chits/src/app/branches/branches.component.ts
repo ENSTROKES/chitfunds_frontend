@@ -164,18 +164,18 @@ if(prop=="object"){
 // GGet BRANCH by ID
 
   getBranchbyId(data:any): void{
-    // console.log("GetData" +data);
+    // //console.log("GetData" +data);
      
-      console.log("AllData" +JSON.stringify(data));
+      //console.log("AllData" +JSON.stringify(data));
         
-     //console.log(new Date("2015/04/29 11:24:00").getTime());
+     ////console.log(new Date("2015/04/29 11:24:00").getTime());
      
      this.http.get(this.userData.branchbyidurl+data).subscribe((data) =>{
       this.idoutput=data;
     Object.keys(this.idoutput).forEach(prop => {
     if(prop=="object"){
       this.BranchDetailById = this.idoutput[prop];
-      console.log("GetData" +this.BranchDetailById._id);
+      //console.log("GetData" +this.BranchDetailById._id);
     }
     });
     
@@ -188,10 +188,10 @@ if(prop=="object"){
 // create Branch
 
 getbranchFormData(data:any): void{
- console.log("GetData" +data);
-  console.log("AllData" +JSON.stringify(data));
-  //console.log("GetData" +this.userData.headOffice);
- //console.log(new Date("2015/04/29 11:24:00").getTime());
+ //console.log("GetData" +data);
+  //console.log("AllData" +JSON.stringify(data));
+  ////console.log("GetData" +this.userData.headOffice);
+ ////console.log(new Date("2015/04/29 11:24:00").getTime());
  
   this.http.post(this.userData.createbrnch, data).subscribe((result)=>{
     
@@ -226,8 +226,8 @@ getbranchFormData(data:any): void{
     }
   }
   //  Object.keys(this.reslt).forEach(prop => {
-  //     console.log("data : " +prop);
-  //       console.log("value : "+this.reslt[prop]);
+  //     //console.log("data : " +prop);
+  //       //console.log("value : "+this.reslt[prop]);
   //        if(prop=="responseCode"){
   //       // this.ListOfEmpData = this.reslt[prop];
   //         if(this.reslt[prop]=="200"){
@@ -304,7 +304,7 @@ getbranchFormData(data:any): void{
       offctyp:any;
       url_value:any;
       searchFilter(offctype:any){
-        console.log(offctype);
+        //console.log(offctype);
         this.url_value= this.userData.branchurl+'?size=10&page=' + this.pageNumber;
 
         if (offctype != undefined && offctype !="All"){

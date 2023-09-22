@@ -12,8 +12,8 @@ export class UserDataService {
   }
   
   data = String;
-  urlstrng= "https://api.vanmohportal.com/"
- // urlstrng= "http://3.111.255.69/chitfund/"
+  // urlstrng= "https://api.vanmohportal.com/"
+ urlstrng= "http://3.109.252.15/chitfund/"
   // url = 'https://jsonplaceholder.typicode.com/users';
   url = this.urlstrng +'getAllEmployee';
   createurl = this.urlstrng +'createEmployee';
@@ -51,7 +51,8 @@ export class UserDataService {
   getgroupcount=this.urlstrng +"getGroupCount";
   getreceiptcount=this.urlstrng +"getReceiptCount";
   getbranchcount=this.urlstrng +"getBranchCount";
- 
+  exportledgerbyroute=this.urlstrng+"exportLedgerByRoute?route=";
+ exportledgerbygroup=this.urlstrng+"exportLedgerByGroup?group=";
   //getDocbyid='http://192.168.1.12:8082/getImageByCustomer?id=3';
   constructor(private http: HttpClient) {
     //employeeData: any;
@@ -86,7 +87,7 @@ export class UserDataService {
   //create employee
   createUser(data: any) {
     
-    console.log("createUser" + data);
+    //console.log("createUser" + data);
 
     return this.http.post(this.createurl, data);
   }
@@ -102,7 +103,7 @@ export class UserDataService {
    //create branch
    createbranch(data: any) {
     
-    console.log("createbranch" + data);
+    //console.log("createbranch" + data);
 
     return this.http.post(this.createbrnch, data);
   }

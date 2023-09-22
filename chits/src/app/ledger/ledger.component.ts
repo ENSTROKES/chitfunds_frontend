@@ -128,6 +128,7 @@ export class LedgerComponent implements OnInit {
       ledgpresponse:any;
       ListOfledrotData:any;
 
+
   constructor(private http: HttpClient, private userData:UserDataService ,private router:Router,private route: ActivatedRoute,private cdRef: ChangeDetectorRef) { 
     this.userData.group().subscribe((data) =>{
       this.grpres=data;
@@ -145,7 +146,7 @@ export class LedgerComponent implements OnInit {
 Object.keys(this.slaboutpt).forEach(prop => {
 if(prop=="object"){
   this.listofslabdata = this.slaboutpt[prop];
-  //console.log("GetData" +this.userData.branchbyidurl);
+  ////console.log("GetData" +this.userData.branchbyidurl);
 }
 });
 
@@ -158,7 +159,7 @@ this.http.get(this.userData.getroute).subscribe((data) =>{
 Object.keys(this.routeoutpt).forEach(prop => {
 if(prop=="object"){
   this.listofroutedata = this.routeoutpt[prop];
-  //console.log("GetData" +this.userData.branchbyidurl);
+  ////console.log("GetData" +this.userData.branchbyidurl);
 }
 });
 
@@ -167,7 +168,7 @@ if(prop=="object"){
     // get all customer for mapping method
 // this.http.get(this.userData.cuslistmappedgrop).subscribe((data) =>{
 //   this.custmapresponse=data;
-//   console.log("AllData" +JSON.stringify(data));
+//   //console.log("AllData" +JSON.stringify(data));
   
 // Object.keys(this.custmapresponse).forEach(prop => {
 // if(prop=="object"){
@@ -184,7 +185,7 @@ if(prop=="object"){
 getCusDatabyFilter(type:any){
   this.http.get(this.userData.cuslistmappedgrop+type).subscribe((data) =>{
     this.custmapresponse=data;
-    console.log("AllData" +JSON.stringify(data));
+    //console.log("AllData" +JSON.stringify(data));
     
   Object.keys(this.custmapresponse).forEach(prop => {
   if(prop=="object"){
@@ -201,18 +202,18 @@ getCusDatabyFilter(type:any){
 
 
   getGroupbyId(data:any): void{
-    // console.log("GetData" +data);
+    // //console.log("GetData" +data);
      
-     // console.log("AllData" +JSON.stringify(data));
+     // //console.log("AllData" +JSON.stringify(data));
         
-     //console.log(new Date("2015/04/29 11:24:00").getTime());
+     ////console.log(new Date("2015/04/29 11:24:00").getTime());
      
      this.http.get(this.userData.groupbyidurl+data).subscribe((data) =>{
       this.grpidoutput=data;
     Object.keys(this.grpidoutput).forEach(prop => {
     if(prop=="object"){
       this.GroupDetailsbyId = this.grpidoutput[prop];
-      //console.log("GetData" +this.userData.branchbyidurl);
+      ////console.log("GetData" +this.userData.branchbyidurl);
     }
     });
     
@@ -225,16 +226,16 @@ getCusDatabyFilter(type:any){
       //     this.vaccent = +params['vaccent'];
       //     this.groupmrm.groupId = params['value'];
       //   });
-      //   console.log("vac"+this.vaccent);
-      //   console.log("gr"+this.groupmrm.groupId);
+      //   //console.log("vac"+this.vaccent);
+      //   //console.log("gr"+this.groupmrm.groupId);
       //   if(event.target.checked==true){
       //     this.isDisplayed = true;
-      //     console.log("array_size"+Object.keys(this.groupmrm.customerId).length);
+      //     //console.log("array_size"+Object.keys(this.groupmrm.customerId).length);
       //      if(Object.keys(this.groupmrm.customerId).length <   this.vaccent)
       //      {
       //       this.groupmrm.customerId.push(data);
-      //       console.log( this.groupmrm);
-      //       console.log( this.isDisplayed);
+      //       //console.log( this.groupmrm);
+      //       //console.log( this.isDisplayed);
       //      }
       //     //  else
       //     //  {
@@ -245,16 +246,16 @@ getCusDatabyFilter(type:any){
       //   else{
       //     this.isDisplayed = false;
       //     this.groupmrm.customerId = this.groupmrm.customerId.filter(num => num !== data);
-      //     console.log( this.groupmrm.customerId);
-      //     console.log( this.isDisplayed);
+      //     //console.log( this.groupmrm.customerId);
+      //     //console.log( this.isDisplayed);
       //   }}
 
       //  Test(){
       //   this.route.queryParams.subscribe(params => {
       //     this.value = params['value'];
       //   });
-      //   console.log(this.value);
-      //   console.log( this.groupmrm.customerId);
+      //   //console.log(this.value);
+      //   //console.log( this.groupmrm.customerId);
       //  }
 
       //  getgroupFormData(): void{
@@ -262,15 +263,15 @@ getCusDatabyFilter(type:any){
       //   // this.route.queryParams.subscribe(params => {
       //   //   this.groupmrm.groupId = +params['value'];
       //   // });
-      //   //console.log("grpid"+this.groupmrm.groupId)
-      //     //console.log("AllData" +JSON.stringify(data)); 
+      //   ////console.log("grpid"+this.groupmrm.groupId)
+      //     ////console.log("AllData" +JSON.stringify(data)); 
          
       //     this.http.post(this.userData.groupmapcus, this.groupmrm).subscribe((result)=>{
       //      this.grpmapreslt = result;
             
       //      Object.keys(this.grpmapreslt).forEach(prop => {
-      //         console.log("data : " +prop);
-      //           console.log("value : "+this.grpmapreslt[prop]);
+      //         //console.log("data : " +prop);
+      //           //console.log("value : "+this.grpmapreslt[prop]);
       //            if(prop=="responseCode"){
       //           // this.ListOfEmpData = this.reslt[prop];
       //             if(this.grpmapreslt[prop]=="200"){
@@ -292,10 +293,10 @@ getCusDatabyFilter(type:any){
         this.router.navigate([`${pageName}`]);
       } 
       searchFilter(type:any){
-        console.log(this.selectedValue);
+        //console.log(this.selectedValue);
         this.http.get(this.userData.getledgerbyroute+type).subscribe((data) =>{
           this.ledgpresponse=data;
-          console.log("AllData" +JSON.stringify(data));
+          //console.log("AllData" +JSON.stringify(data));
           
         Object.keys(this.ledgpresponse).forEach(prop => {
         if(prop=="object"){
@@ -312,6 +313,18 @@ getCusDatabyFilter(type:any){
         this.filterselc = !this.filterselc
       }
 
+      // fetchDataAndDownloadExcel(): void {
+      //   const route = 'MTP';
+      //   this.apiService.getLedgerByRoute(route).subscribe(
+      //     (response) => {
+      //       this.apiService.downloadExcelFile(response, 'ledger.xlsx');
+      //     },
+      //     (error) => {
+      //       console.error('Error fetching data:', error);
+      //     }
+      //   );
+      // }
+
       
   ngOnInit(): void {
     // this.getCusDatabyFilter("allcustomer");
@@ -320,7 +333,7 @@ getCusDatabyFilter(type:any){
   //   // this.getCusDatabyFilter("nonmappedcustomer");
   //   this.http.get(this.userData.cuslistmappedgrop+'nonmappedcustomer').subscribe((data) =>{
   //     this.custmapresponse=data;
-  //     console.log("AllData" +JSON.stringify(data));
+  //     //console.log("AllData" +JSON.stringify(data));
       
   //   Object.keys(this.custmapresponse).forEach(prop => {
   //   if(prop=="object"){

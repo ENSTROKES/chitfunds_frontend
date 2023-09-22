@@ -4,4 +4,6 @@ export class groupMapCusDetaisl {
   subscription:any;
   cusgenid:any;
   cusname:any;
+  selectedMonth:any;
+  selectedYear:any;
 }

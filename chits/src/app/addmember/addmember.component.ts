@@ -118,6 +118,13 @@ export class AddmemberComponent implements OnInit {
       dateselectedvalye:any;
       grpfilterdatetyp:any;
       grpfiltersubtyp:any;
+
+
+      selectedMonth: string ;
+      selectedYear: string | undefined;
+      months: string[] = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+      years: number[] = [2019,2020,2021,2022,2023]; // Modify the range of years as needed
+  
   constructor(private http: HttpClient, private userData:UserDataService ,private router:Router,private route: ActivatedRoute,private cdRef: ChangeDetectorRef) { 
     this.userData.group().subscribe((data) =>{
       this.grpres=data;
@@ -135,7 +142,7 @@ export class AddmemberComponent implements OnInit {
 Object.keys(this.slaboutpt).forEach(prop => {
 if(prop=="object"){
   this.listofslabdata = this.slaboutpt[prop];
-  //console.log("GetData" +this.userData.branchbyidurl);
+  ////console.log("GetData" +this.userData.branchbyidurl);
 }
 });
 
@@ -145,7 +152,7 @@ if(prop=="object"){
     // get all customer for mapping method
 // this.http.get(this.userData.cuslistmappedgrop).subscribe((data) =>{
 //   this.custmapresponse=data;
-//   console.log("AllData" +JSON.stringify(data));
+//   //console.log("AllData" +JSON.stringify(data));
   
 // Object.keys(this.custmapresponse).forEach(prop => {
 // if(prop=="object"){
@@ -154,7 +161,7 @@ if(prop=="object"){
 // });
 
 // })
-console.log( this.groupmrm);
+//console.log( this.groupmrm);
     
   }
 
@@ -163,7 +170,7 @@ console.log( this.groupmrm);
 getCusDatabyFilter(type:any){
   this.http.get(this.userData.cuslistmappedgrop+type).subscribe((data) =>{
     this.custmapresponse=data;
-    console.log("AllData" +JSON.stringify(data));
+    //console.log("AllData" +JSON.stringify(data));
     
   Object.keys(this.custmapresponse).forEach(prop => {
   if(prop=="object"){
@@ -180,18 +187,18 @@ getCusDatabyFilter(type:any){
 
 
   getGroupbyId(data:any): void{
-    // console.log("GetData" +data);
+    // //console.log("GetData" +data);
      
-     // console.log("AllData" +JSON.stringify(data));
+     // //console.log("AllData" +JSON.stringify(data));
         
-     //console.log(new Date("2015/04/29 11:24:00").getTime());
+     ////console.log(new Date("2015/04/29 11:24:00").getTime());
      
      this.http.get(this.userData.groupbyidurl+data).subscribe((data) =>{
       this.grpidoutput=data;
     Object.keys(this.grpidoutput).forEach(prop => {
     if(prop=="object"){
       this.GroupDetailsbyId = this.grpidoutput[prop];
-      //console.log("GetData" +this.userData.branchbyidurl);
+      ////console.log("GetData" +this.userData.branchbyidurl);
     }
     });
     
@@ -204,17 +211,17 @@ getCusDatabyFilter(type:any){
           this.vaccent = +params['vaccent'] ;
           this.groupmrm.groupId = params['value'];
         });
-        console.log("vac"+(this.vaccent));
-        console.log("gr"+this.groupmrm.groupId);
-        console.log("len"+(this.groupmrm.customerDetails).length);
+        //console.log("vac"+(this.vaccent));
+        //console.log("gr"+this.groupmrm.groupId);
+        //console.log("len"+(this.groupmrm.customerDetails).length);
         if(event.target.checked==true){
           this.isDisplayed = true;
-          console.log("array_size"+Object.keys(this.groupmrm.customerDetails).length);
+          //console.log("array_size"+Object.keys(this.groupmrm.customerDetails).length);
            if(Object.keys(this.groupmrm.customerDetails).length <= (this.vaccent))
            {
-            this.groupmrm.customerDetails.push({cutomerId:cusid,joiningDate:'',subscription:'',cusgenid:genid,cusname:(firstname+" "+lastname)});
-            console.log( this.groupmrm);
-            console.log( this.isDisplayed);
+            this.groupmrm.customerDetails.push({cutomerId:cusid,joiningDate:'',subscription:'',cusgenid:genid,cusname:(firstname+" "+lastname),selectedMonth:this.selectedMonth,selectedYear:this.selectedYear});
+            //console.log( this.groupmrm);
+            //console.log( this.isDisplayed);
             if(Object.keys(this.groupmrm.customerDetails).length == (this.vaccent)){
               this.maxNo = true;
             }
@@ -236,8 +243,8 @@ getCusDatabyFilter(type:any){
             this.groupmrm.customerDetails.splice(index, 1);
           }
 
-          console.log( this.groupmrm.customerDetails);
-          console.log( this.isDisplayed);
+          //console.log( this.groupmrm.customerDetails);
+          //console.log( this.isDisplayed);
           this.maxNo = false;
         }}
 
@@ -245,47 +252,74 @@ getCusDatabyFilter(type:any){
       //   this.route.queryParams.subscribe(params => {
       //     this.value = params['value'];
       //   });
-      //   console.log(this.value);
-      //   console.log( this.groupmrm.customerId);
+      //   //console.log(this.value);
+      //   //console.log( this.groupmrm.customerId);
       //  }
 
 
       addDatesToArray() {
         // mapping the choosen joining dates and mode of subscription to respective customers
-        const selectedCustomers = this.groupmrm.customerDetails.filter(customerDetails => customerDetails.joiningDate !== '',(customerDetails: { subscription: string; }) => customerDetails.subscription !== '');
-        const cusDetailswithDate = selectedCustomers.map(customerDetails => customerDetails.joiningDate,(customerDetails: { subscription: any; }) => customerDetails.subscription);
-        // const cusDetailswithDate = selectedCustomers.map((customerDetails: { joiningDate: Date, subscription: any }) => {
-        //   const timestamp = customerDetails.joiningDate.getTime();
-        //   return { ...customerDetails, joiningDate: timestamp };
-        // });
-        //convert string date to timestamp
-        const cusDetailswithtimestp = this.groupmrm.customerDetails.map(customers => {
-          
-          const timestamp = new Date(customers.joiningDate).getTime();
-          console.log("after conv"+timestamp);
-          return { ...customers, joiningDate: timestamp };
-        });
+        // const selectedCustomers = this.groupmrm.customerDetails.filter(customerDetails => customerDetails.joiningDate !== '',(customerDetails: { subscription: string; }) => customerDetails.subscription !== '');
+        // const cusDetailswithDate = selectedCustomers.map(customerDetails => customerDetails.joiningDate,(customerDetails: { subscription: any; }) => customerDetails.subscription);
+        const selectedCustomers = this.groupmrm.customerDetails.filter(customerDetails => customerDetails.selectedMonth !== '',(customerDetails: { subscription: string; }) => customerDetails.subscription !== '');
+        const cusDetailswithDate = selectedCustomers.map(customerDetails => customerDetails.selectedMonth,(customerDetails: { subscription: any; }) => customerDetails.subscription);
+        
 
+// Function to convert selectedMonth and selectedYear to a valid joiningDate
+function convertToJoiningDate(selectedMonth: string, selectedYear: string): string {
+  const monthNames: { [key: string]: number } = {
+    january: 0,
+    february: 1,
+    march: 2,
+    april: 3,
+    may: 4,
+    june: 5,
+    july: 6,
+    august: 7,
+    september: 8,
+    october: 9,
+    november: 10,
+    december: 11,
+  };
 
-//replace string date with timestamp 
-        for (const groupCustomer of this.groupmrm.customerDetails) {
-          for (const cusDetail of cusDetailswithtimestp) {
-            if (groupCustomer.cutomerId === cusDetail.cutomerId) {
+  const monthIndex = monthNames[selectedMonth.toLowerCase()];
+  const year = Number(selectedYear);
+  const date = new Date(year, monthIndex, 1);
 
-              groupCustomer.joiningDate = cusDetail.joiningDate.toString();
-              break; // Once matched, exit the loop for the current customer
-            }
-          }
-        }
+  const day = date.getDate().toString().padStart(2, "0");
+  const month = (date.getMonth() + 1).toString().padStart(2, "0");
+  const formattedDate = `${day}-${month}-${year}`;
+
+  return formattedDate;
+}
+
+// Function to convert the date string to a timestamp
+function convertToTimestamp(dateString: string): number {
+  const [day, month, year] = dateString.split("-");
+  const timestamp = new Date(`${year}-${month}-${day}`).getTime();
+  return timestamp;
+}
+
+// Updating joiningDate for each object in customerDetails
+this.groupmrm.customerDetails.forEach((customer) => {
+  const { selectedMonth, selectedYear } = customer;
+  customer.joiningDate = convertToJoiningDate(selectedMonth, selectedYear);
+  customer.joiningDate = convertToTimestamp(customer.joiningDate);
+});
+// Now the customerDetails array has the joiningDate updated for each object
+console.log("After date converion-1",this.groupmrm.customerDetails);
+
         
         
         // Remove the cusgenid and cusname 
         for (let customer of this.groupmrm.customerDetails) {
           delete customer.cusgenid;
           delete customer.cusname;
+          delete customer.selectedMonth;
+          delete customer.selectedYear;
         }
-        console.log('Selected Dates:', cusDetailswithtimestp);
-        console.log( this.groupmrm);
+        // console.log('Selected Dates:', cusDetailswithtimestp);
+        console.log("after deletion" ,this.groupmrm);
 
 
 
@@ -358,18 +392,18 @@ getCusDatabyFilter(type:any){
       recptcusid:any;
       receiptByCustomerId:any;
       getrecieptId(data:any): void{
-        // console.log("GetData" +data);
+        // //console.log("GetData" +data);
          
-         // console.log("AllData" +JSON.stringify(data));
+         // //console.log("AllData" +JSON.stringify(data));
             
-         //console.log(new Date("2015/04/29 11:24:00").getTime());
+         ////console.log(new Date("2015/04/29 11:24:00").getTime());
          
          this.http.get(this.userData.getrecipetbycusid+data).subscribe((data) =>{
           this.recptcusid=data;
         Object.keys(this.recptcusid).forEach(prop => {
         if(prop=="object"){
           this.receiptByCustomerId = this.recptcusid[prop];
-          console.log("GetData" +this.receiptByCustomerId);
+          //console.log("GetData" +this.receiptByCustomerId);
         }
         });
         
@@ -381,15 +415,15 @@ getCusDatabyFilter(type:any){
       //   // this.route.queryParams.subscribe(params => {
       //   //   this.groupmrm.groupId = +params['value'];
       //   // });
-      //   console.log("grpid"+jdate)
-      //     //console.log("AllData" +JSON.stringify(data)); 
+      //   //console.log("grpid"+jdate)
+      //     ////console.log("AllData" +JSON.stringify(data)); 
          
       //     this.http.post(this.userData.groupmapcus, this.groupmrm).subscribe((result)=>{
       //      this.grpmapreslt = result;
             
       //      Object.keys(this.grpmapreslt).forEach(prop => {
-      //         console.log("data : " +prop);
-      //           console.log("value : "+this.grpmapreslt[prop]);
+      //         //console.log("data : " +prop);
+      //           //console.log("value : "+this.grpmapreslt[prop]);
       //            if(prop=="responseCode"){
       //           // this.ListOfEmpData = this.reslt[prop];
       //             if(this.grpmapreslt[prop]=="200"){
@@ -417,8 +451,8 @@ getCusDatabyFilter(type:any){
 
       filturl:any;
         searchFilter(type:any,slabval:any){
-          console.log("sec  "+slabval);
-          console.log("type  "+type);
+          //console.log("sec  "+slabval);
+          //console.log("type  "+type);
           
         // if (slabval != undefined && type != undefined){
         //   this.filturl=("?type="+type+"&slabId="+slabval)
@@ -427,7 +461,7 @@ getCusDatabyFilter(type:any){
 
         this.http.get(this.userData.cuslistmappedgrop+type).subscribe((data) =>{
           this.custmapresponse=data;
-          console.log("AllData" +JSON.stringify(data));
+          //console.log("AllData" +JSON.stringify(data));
         Object.keys(this.custmapresponse).forEach(prop => {
         if(prop=="object"){
           this.ListOfCustMapData = this.custmapresponse[prop];
@@ -452,7 +486,7 @@ getCusDatabyFilter(type:any){
   //   // this.getCusDatabyFilter("nonmappedcustomer");
   //   this.http.get(this.userData.cuslistmappedgrop+'nonmappedcustomer').subscribe((data) =>{
   //     this.custmapresponse=data;
-  //     console.log("AllData" +JSON.stringify(data));
+  //     //console.log("AllData" +JSON.stringify(data));
       
   //   Object.keys(this.custmapresponse).forEach(prop => {
   //   if(prop=="object"){

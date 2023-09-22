@@ -154,7 +154,7 @@ this.http.get(this.userData.getgroupcount).subscribe((data) =>{
 Object.keys(this.slaboutpt).forEach(prop => {
 if(prop=="object"){
   this.listofslabdata = this.slaboutpt[prop];
-  //console.log("GetData" +this.userData.branchbyidurl);
+  ////console.log("GetData" +this.userData.branchbyidurl);
 }
 });
 
@@ -200,23 +200,23 @@ click() {
 // Create Group Method
 
 getgroupFormData(data:any): void{
-  //  console.log("GetData" +data.officeName);
+  //  //console.log("GetData" +data.officeName);
 
-    console.log("AllData" +JSON.stringify(data)); 
-    console.log("slab id and name"+ data.schemeId.slabid+"  "+data.schemeId.slabname)
-    //console.log("GetData" +this.userData.headOffice);
-   //console.log(new Date("2015/04/29 11:24:00").getTime()
+    //console.log("AllData" +JSON.stringify(data)); 
+    //console.log("slab id and name"+ data.schemeId.slabid+"  "+data.schemeId.slabname)
+    ////console.log("GetData" +this.userData.headOffice);
+   ////console.log(new Date("2015/04/29 11:24:00").getTime()
    this.stringformid=data.schemeId.slabid.toString();
    this.stringformvalue=data.schemeId.slabname.toString() +"-"+ data.schemeId.slabinst.toString();
-   console.log(this.stringformid);
-   console.log(this.stringformvalue);
+   //console.log(this.stringformid);
+   //console.log(this.stringformvalue);
 
    data.schemeName=this.stringformvalue;
    data.schemeId=this.stringformid;
    if (data.groupType === '')
    {
     data.groupType="false";
-    console.log(data.groupType);
+    //console.log(data.groupType);
    }
 
     this.http.post(this.userData.creategrp, data).subscribe((result)=>{
@@ -261,18 +261,18 @@ getgroupFormData(data:any): void{
      // Get Group by ID
 
   getGroupbyId(data:any): void{
-    // console.log("GetData" +data);
+    // //console.log("GetData" +data);
      
-     // console.log("AllData" +JSON.stringify(data));
+     // //console.log("AllData" +JSON.stringify(data));
         
-     //console.log(new Date("2015/04/29 11:24:00").getTime());
+     ////console.log(new Date("2015/04/29 11:24:00").getTime());
      
      this.http.get(this.userData.groupbyidurl+data).subscribe((data) =>{
       this.grpidoutput=data;
     Object.keys(this.grpidoutput).forEach(prop => {
     if(prop=="object"){
       this.GroupDetailsbyId = this.grpidoutput[prop];
-      //console.log("GetData" +this.userData.branchbyidurl);
+      ////console.log("GetData" +this.userData.branchbyidurl);
     }
     });
     
@@ -282,18 +282,18 @@ getgroupFormData(data:any): void{
 
 /// Get group mapped customer list
        getGroupmappedcusbyId(data:any): void{
-        // console.log("GetData" +data);
+        // //console.log("GetData" +data);
          
-         // console.log("AllData" +JSON.stringify(data));
+         // //console.log("AllData" +JSON.stringify(data));
             
-         //console.log(new Date("2015/04/29 11:24:00").getTime());
+         ////console.log(new Date("2015/04/29 11:24:00").getTime());
          
          this.http.get(this.userData.grouplistmapdcus+data).subscribe((data) =>{
           this.grpmapidoutput=data;
         Object.keys(this.grpmapidoutput).forEach(prop => {
         if(prop=="object"){
           this.GroupMappdetails = this.grpmapidoutput[prop];
-          //console.log("GetData" +this.userData.branchbyidurl);
+          ////console.log("GetData" +this.userData.branchbyidurl);
         }
         });
         
@@ -302,15 +302,15 @@ getgroupFormData(data:any): void{
 
        //grpip mapping post
        getgrpMappingFormData(data:any): void{
-        //  console.log("GetData" +data.officeName);
-          console.log("AllData" +JSON.stringify(data));
+        //  //console.log("GetData" +data.officeName);
+          //console.log("AllData" +JSON.stringify(data));
       
           this.http.post(this.userData.creategroupMapping, data).subscribe((result)=>{
            this.grpMappingreslt = result;
             
            Object.keys(this.grpMappingreslt).forEach(prop => {
-              console.log("data : " +prop);
-                console.log("value : "+this.grpMappingreslt[prop]);
+              //console.log("data : " +prop);
+                //console.log("value : "+this.grpMappingreslt[prop]);
                  if(prop=="responseCode"){
                 // this.ListOfEmpData = this.reslt[prop];
                   if(this.grpMappingreslt[prop]=="200"){
@@ -347,7 +347,7 @@ getgroupFormData(data:any): void{
               }).then((result) => {
           
                 if (result.isConfirmed) {
-                  console.log('Clicked Yes, File deleted!');
+                  //console.log('Clicked Yes, File deleted!');
                   this.http.delete(this.userData.deletegroup+data).subscribe((data) =>{
                     this.gropdelete=data;
                     
@@ -382,7 +382,7 @@ getgroupFormData(data:any): void{
                         
                         else if (result.isDismissed) {
           
-                  console.log('Clicked No, File is safe!');
+                  //console.log('Clicked No, File is safe!');
           
                 }
               })
@@ -402,14 +402,14 @@ scheme_id:any;
 grpouptype:any;
 type:any;
 searchFilter(scheme_id:any,type:any){
-console.log("sec  "+scheme_id);
-console.log("type  "+type);
+//console.log("sec  "+scheme_id);
+//console.log("type  "+type);
 
 
 //filter with only scheme
 if(scheme_id != undefined && scheme_id !="all" )
 {
-  console.log("loop - 1");
+  //console.log("loop - 1");
 this.url_value="?scheme="+scheme_id;
 if(type!= undefined &&type!="all" ){
   this.url_value+=("&register="+type);
@@ -430,10 +430,10 @@ if(type!= undefined &&type!="all" ){
 
 
 if(type!= undefined &&type!="all" && (scheme_id == undefined || scheme_id =="all")){
-  console.log("loop - 2");
+  //console.log("loop - 2");
  
   this.url_value=("?register="+type);
-  console.log( this.url_value);
+  //console.log( this.url_value);
   this.http.get(this.userData.getAllgrp+this.url_value).subscribe((data) =>{
     this.grpfilres=data;
   Object.keys(this.grpfilres).forEach(prop => {
@@ -456,7 +456,7 @@ if(type!= undefined &&type!="all" && (scheme_id == undefined || scheme_id =="all
 
 //for all scheme
 if(scheme_id == "all" &&(type=="all" || type==undefined)){
-  console.log("loop - 3");
+  //console.log("loop - 3");
 this.http.get(this.userData.getAllgrp).subscribe((data) =>{
   this.grpfilres=data;
 Object.keys(this.grpfilres).forEach(prop => {

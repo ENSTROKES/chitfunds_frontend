@@ -34,6 +34,7 @@
                 </select>
                             </div>
 
+
                             <!-- <div class="col-md-3"> <label for="inputName5" class="form-label">  <b>Data</b></label><input type="number" ngModel name="" class="form-control" id="inputName5" [disabled]="selectedValue == 'allcustomer'"></div> -->
                             <div class="col-md-2">
 
@@ -167,9 +168,18 @@
                                                     <p>{{cudetail.cusgenid}}</p>
                                                 </div>
                                                 <div class="col-md-3" style="text-align: justify !important;">{{cudetail.cusname}}</div>
-                                                <div class="col-md-3"><input type="date" ngModel [(ngModel)]="cudetail.joiningDate" name="cudetail.joiningDate" class="form-control" id="inputName5"> </div>
+                                                <!-- <div class="col-md-3"><input type="date" ngModel [(ngModel)]="cudetail.joiningDate" name="cudetail.joiningDate" class="form-control" id="inputName5"> </div> -->
+                                                <div class="col-md-3">
+                                                    <select [(ngModel)]="cudetail.selectedMonth">
+                                                        <option *ngFor="let month of months" [value]="month">{{ month }}</option>
+                                                      </select>
+                                                    <select [(ngModel)]="cudetail.selectedYear">
+                                                        <option *ngFor="let year of years" [value]="year">{{ year }}</option>
+                                                      </select>
+
+                                                </div>
                                                 <div class="col-md-1"></div>
-                                                <div class="col-md-2"><select ngModel name="cudetail.subscription" class="form-control" [(ngModel)]="cudetail.subscription">
+                                                <div class="col-md-2"><select ngModel name="cudetail.subscription" [(ngModel)]="cudetail.subscription">
                                                     <option [selected]="true" [ngValue]="dateselectedvalye">---Select---</option>
                                              <option value="Daily" >Daily</option>
                                              <option value="Weekly" >Weekly</option>

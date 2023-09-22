@@ -101,7 +101,7 @@ export class GrouplistComponent implements OnInit {
     this.route.queryParams.subscribe(params => {
       this.grpidvalue = params['value'];
     });
-      console.log("AllData" +this.grpidvalue);
+      //console.log("AllData" +this.grpidvalue);
 
 // get method to group details by id
     this.http.get(this.userData.groupbyidurl+this.grpidvalue).subscribe((data) =>{
@@ -110,7 +110,7 @@ export class GrouplistComponent implements OnInit {
     Object.keys(this.grpidoutput).forEach(prop => {
     if(prop=="object"){
       this.GroupDetailsbyId = this.grpidoutput[prop];
-      //console.log("GetData" +this.userData.branchbyidurl);
+      ////console.log("GetData" +this.userData.branchbyidurl);
     }
     });
     
@@ -124,7 +124,7 @@ export class GrouplistComponent implements OnInit {
     Object.keys(this.grpmapidoutput).forEach(prop => {
     if(prop=="object"){
       this.GroupMappdetails = this.grpmapidoutput[prop];
-      console.log("GetData" +this.GroupMappdetails);
+      //console.log("GetData" +this.GroupMappdetails);
     }
     });
     
@@ -135,18 +135,18 @@ export class GrouplistComponent implements OnInit {
   // Get reciept by ID
 
   getrecieptId(data:any): void{
-    // console.log("GetData" +data);
+    // //console.log("GetData" +data);
      
-     // console.log("AllData" +JSON.stringify(data));
+     // //console.log("AllData" +JSON.stringify(data));
         
-     //console.log(new Date("2015/04/29 11:24:00").getTime());
+     ////console.log(new Date("2015/04/29 11:24:00").getTime());
      
      this.http.get(this.userData.getrecipetbycusid+data).subscribe((data) =>{
       this.recptcusid=data;
     Object.keys(this.recptcusid).forEach(prop => {
     if(prop=="object"){
       this.receiptByCustomerId = this.recptcusid[prop];
-      console.log("GetData" +this.receiptByCustomerId);
+      //console.log("GetData" +this.receiptByCustomerId);
     }
     });
     

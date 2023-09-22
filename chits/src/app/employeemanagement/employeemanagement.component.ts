@@ -131,14 +131,14 @@ button = 'Submit';
     this.res =  data;
 
     Object.keys(this.res).forEach(prop => {
-     // console.log("key : " +prop);
-     // console.log("value : "+this.res[prop]);
+     // //console.log("key : " +prop);
+     // //console.log("value : "+this.res[prop]);
       if(prop=="object"){
         this.ListOfEmpData = this.res[prop];
       }
     });
-      // console.log("get string data ==>>" +JSON.stringify(this.ListOfEmpData[0]));
-      // console.log("get data ==>>" + JSON.parse(this.empData));
+      // //console.log("get string data ==>>" +JSON.stringify(this.ListOfEmpData[0]));
+      // //console.log("get data ==>>" + JSON.parse(this.empData));
      // this.users=this.ListOfEmpData;
 })
 
@@ -173,8 +173,8 @@ click() {
 // //create employee
 
 getEmpFormData(data:any): void{
-  console.log("AllData" +JSON.stringify(data));
-console.log(new Date("2015/04/29 11:24:00").getTime());
+  //console.log("AllData" +JSON.stringify(data));
+//console.log(new Date("2015/04/29 11:24:00").getTime());
   this.userData.createUser(data).subscribe((result)=>{
    this.response = result;
     
@@ -213,8 +213,8 @@ console.log(new Date("2015/04/29 11:24:00").getTime());
 //update employee
 upresponse:any;
 updateEmpFormData(updata:any): void{
-  console.log("AllData" +JSON.stringify(updata));
-console.log(new Date("2015/04/29 11:24:00").getTime());
+  //console.log("AllData" +JSON.stringify(updata));
+//console.log(new Date("2015/04/29 11:24:00").getTime());
   this.http.put(this.userData.empupdate,updata).subscribe((result)=>{
    this.upresponse = result;
     
@@ -254,18 +254,18 @@ console.log(new Date("2015/04/29 11:24:00").getTime());
      // Get Group by ID
 
      getEmployeebyId(data:any): void{
-      // console.log("GetData" +data);
+      // //console.log("GetData" +data);
        
-       // console.log("AllData" +JSON.stringify(data));
+       // //console.log("AllData" +JSON.stringify(data));
           
-       //console.log(new Date("2015/04/29 11:24:00").getTime());
+       ////console.log(new Date("2015/04/29 11:24:00").getTime());
        
        this.http.get(this.userData.employeebyidurl+data).subscribe((data) =>{
         this.empidoutput=data;
       Object.keys(this.empidoutput).forEach(prop => {
       if(prop=="object"){
         this.EmployeeDetailsByID = this.empidoutput[prop];
-        //console.log("GetData" +this.userData.branchbyidurl);
+        ////console.log("GetData" +this.userData.branchbyidurl);
       }
       });
       
@@ -323,7 +323,7 @@ edit(user_id:any){
   }).then((result) => {
 
     if (result.isConfirmed) {
-      console.log('Clicked Yes, File deleted!');
+      //console.log('Clicked Yes, File deleted!');
       this.http.delete(this.userData.deleteemployee+data).subscribe((data) =>{
         this.employeedelete=data;
         
@@ -358,7 +358,7 @@ edit(user_id:any){
             
             else if (result.isDismissed) {
 
-      console.log('Clicked No, File is safe!');
+      //console.log('Clicked No, File is safe!');
 
     }
   })

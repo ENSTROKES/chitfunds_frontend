@@ -29,14 +29,14 @@ export class MinutesofauctionComponent implements OnInit {
       this.res =  data;
 
       Object.keys(this.res).forEach(prop => {
-       // console.log("key : " +prop);
-       // console.log("value : "+this.res[prop]);
+       // //console.log("key : " +prop);
+       // //console.log("value : "+this.res[prop]);
         if(prop=="object"){
           this.ListOfEmpData = this.res[prop];
         }
       });
-     // console.log("get string data ==>>" +JSON.stringify(this.ListOfEmpData[0]));
-     // console.log("get data ==>>" + JSON.parse(this.empData));
+     // //console.log("get string data ==>>" +JSON.stringify(this.ListOfEmpData[0]));
+     // //console.log("get data ==>>" + JSON.parse(this.empData));
    // this.users=this.ListOfEmpData;
   })
   

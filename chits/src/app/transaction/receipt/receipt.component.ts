@@ -104,7 +104,7 @@ this.http.get(this.userData.getreceiptcount).subscribe((data) =>{
     // get all customer method
     this.userData.customer().subscribe((data) =>{
       this.custmresponse=data;
-      console.log("AllData" +JSON.stringify(data));
+      //console.log("AllData" +JSON.stringify(data));
     Object.keys(this.custmresponse).forEach(prop => {
     if(prop=="object"){
       this.ListOfCustomerData = this.custmresponse[prop];
@@ -118,8 +118,8 @@ this.http.get(this.userData.getreceiptcount).subscribe((data) =>{
       this.res =  data;
 
       Object.keys(this.res).forEach(prop => {
-       // console.log("key : " +prop);
-       // console.log("value : "+this.res[prop]);
+       // //console.log("key : " +prop);
+       // //console.log("value : "+this.res[prop]);
         if(prop=="object"){
           this.ListOfEmpData = this.res[prop];
         }
@@ -144,7 +144,7 @@ this.http.get(this.userData.getroute).subscribe((data) =>{
 Object.keys(this.routeoutpt).forEach(prop => {
 if(prop=="object"){
   this.listofroutedata = this.routeoutpt[prop];
-  //console.log("GetData" +this.userData.branchbyidurl);
+  ////console.log("GetData" +this.userData.branchbyidurl);
 }
 });
 
@@ -169,25 +169,25 @@ click() {
   selectEnrollment:any;
   tdata:any;
   getrecieptFormData(data:any): void{
-    //  console.log("GetData" +data.officeName);
-    console.log("AllData post method" +JSON.stringify(data));
-    console.log("groupid"+this.grpidvalue.groupid);
-    //console.log("name and id : "+ data.branchName.groupId)
+    //  //console.log("GetData" +data.officeName);
+    //console.log("AllData post method" +JSON.stringify(data));
+    //console.log("groupid"+this.grpidvalue.groupid);
+    ////console.log("name and id : "+ data.branchName.groupId)
     data.groupId = this.grpidvalue.groupid;
     data.selectEnrollment = this.grpidvalue.gropName;
  
     data.employeeId = data.collectionEmployee.empId;
     data.collectionEmployee = data.collectionEmployee.empName;
     
-    console.log("cusid"+data.customerName.custicket);
+    //console.log("cusid"+data.customerName.custicket);
     data.customerId = data.customerName.cusId;
     data.collectionRoute = data.customerName.collectroute;
     data.ticketNumber = data.customerName.custicket;
     data.customerName = data.customerName.cusName;
 
-console.log("cusid"+data.customerName.custicket);
-console.log("cusid"+data.ticketNumber);
-    console.log("AllData after set id " +JSON.stringify(data));
+//console.log("cusid"+data.customerName.custicket);
+//console.log("cusid"+data.ticketNumber);
+    //console.log("AllData after set id " +JSON.stringify(data));
 
       this.http.post(this.userData.createreceipt, data).subscribe((result)=>{
        this.recptreslt = result;
@@ -232,9 +232,9 @@ console.log("cusid"+data.ticketNumber);
       //routeall_value:any;
       
       searchFilter(routeValue:any,recptype:any,recpdate:any){
-        console.log("rout:"+routeValue);
-        console.log("type:"+recptype);
-        console.log("date:"+recpdate);
+        //console.log("rout:"+routeValue);
+        //console.log("type:"+recptype);
+        //console.log("date:"+recpdate);
         this.url_value=(this.userData.getReceipt+ '?size=10&page=' + this.pageNumber);
         // filter with specific route , type and if date entered
         if(routeValue != undefined && routeValue !="All" )
@@ -277,15 +277,15 @@ console.log("cusid"+data.ticketNumber);
   //group details by id 
   recpdetailsbygrpid(data:any){
 
-    console.log("GetData" +data);
+    //console.log("GetData" +data);
     this.http.get(this.userData.grouplistmapdcus+data).subscribe((data) =>{
       this.grpidoutput=data;
     Object.keys(this.grpidoutput).forEach(prop => {
     if(prop=="object"){
       this.GroupDetailsbyId = this.grpidoutput[prop];
       this.recprelpop=true;
-      console.log("Recpt grp filter");
-      // console.log("AllData" +JSON.stringify(this.GroupDetailsbyId));
+      //console.log("Recpt grp filter");
+      // //console.log("AllData" +JSON.stringify(this.GroupDetailsbyId));
     }
     });
     
@@ -297,10 +297,10 @@ console.log("cusid"+data.ticketNumber);
   grpmapidoutput:any;
   GroupMappdetails:any;
 // recepitcreation(data:any){
-//   // console.log("AllData" +JSON.stringify(data));
+//   // //console.log("AllData" +JSON.stringify(data));
 
-// console.log("id -"+this.selectEnrollmentval.groupId);
-// console.log("name -"+this.selectEnrollmentval.groupName);
+// //console.log("id -"+this.selectEnrollmentval.groupId);
+// //console.log("name -"+this.selectEnrollmentval.groupName);
 
 // /// get method group customer details by id
 // this.http.get(this.userData.grouplistmapdcus+this.selectEnrollmentval.groupId).subscribe((data) =>{
@@ -308,7 +308,7 @@ console.log("cusid"+data.ticketNumber);
 // Object.keys(this.grpmapidoutput).forEach(prop => {
 // if(prop=="object"){
 //   this.GroupMappdetails = this.grpmapidoutput[prop];
-//   console.log("Recpt creatiom");
+//   //console.log("Recpt creatiom");
 //   // enabling form
 //   this.recprelpop=true;
 // }

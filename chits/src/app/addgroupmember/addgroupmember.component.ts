@@ -78,7 +78,7 @@ export class AddgroupmemberComponent implements OnInit {
 Object.keys(this.slaboutpt).forEach(prop => {
 if(prop=="object"){
   this.listofslabdata = this.slaboutpt[prop];
-  //console.log("GetData" +this.userData.branchbyidurl);
+  ////console.log("GetData" +this.userData.branchbyidurl);
 }
 });
 
@@ -98,18 +98,18 @@ if(prop=="object"){
 // Get Group by ID
 
 getGroupbyId(data:any): void{
-  // console.log("GetData" +data);
+  // //console.log("GetData" +data);
    
-   // console.log("AllData" +JSON.stringify(data));
+   // //console.log("AllData" +JSON.stringify(data));
       
-   //console.log(new Date("2015/04/29 11:24:00").getTime());
+   ////console.log(new Date("2015/04/29 11:24:00").getTime());
    
    this.http.get(this.userData.groupbyidurl+data).subscribe((data) =>{
     this.grpidoutput=data;
   Object.keys(this.grpidoutput).forEach(prop => {
   if(prop=="object"){
     this.GroupDetailsbyId = this.grpidoutput[prop];
-    //console.log("GetData" +this.userData.branchbyidurl);
+    ////console.log("GetData" +this.userData.branchbyidurl);
   }
   });
   
@@ -130,14 +130,14 @@ grpfilres:any;
 scheme_id:any;
 type:any;
 searchFilter(scheme_id:any,type:any){
-console.log("sec  "+scheme_id);
-console.log("type  "+type);
+//console.log("sec  "+scheme_id);
+//console.log("type  "+type);
 
 
 //filter with only scheme
 if(scheme_id != undefined && scheme_id !="all" )
 {
-  console.log("loop - 1");
+  //console.log("loop - 1");
 this.url_value="?scheme="+scheme_id;
 if(type!= undefined &&type!="all" ){
   this.url_value+=("&register="+type);
@@ -158,10 +158,10 @@ if(type!= undefined &&type!="all" ){
 
 
 if(type!= undefined &&type!="all" && (scheme_id == undefined || scheme_id =="all")){
-  console.log("loop - 2");
+  //console.log("loop - 2");
  
   this.url_value=("?register="+type);
-  console.log( this.url_value);
+  //console.log( this.url_value);
   this.http.get(this.userData.getAllgrp+this.url_value).subscribe((data) =>{
     this.grpfilres=data;
   Object.keys(this.grpfilres).forEach(prop => {
@@ -184,7 +184,7 @@ if(type!= undefined &&type!="all" && (scheme_id == undefined || scheme_id =="all
 
 //for all scheme
 if(scheme_id == "all" &&(type=="all" || type==undefined)){
-  console.log("loop - 3");
+  //console.log("loop - 3");
 this.http.get(this.userData.getAllgrp).subscribe((data) =>{
   this.grpfilres=data;
 Object.keys(this.grpfilres).forEach(prop => {
