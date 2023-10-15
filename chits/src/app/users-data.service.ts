@@ -51,8 +51,9 @@ export class UserDataService {
   getgroupcount=this.urlstrng +"getGroupCount";
   getreceiptcount=this.urlstrng +"getReceiptCount";
   getbranchcount=this.urlstrng +"getBranchCount";
-  exportledgerbyroute=this.urlstrng+"exportLedgerByRoute?route=";
+  exportledgerbyroute=this.urlstrng+"exportLedgerByRouteAndTime?route=KARAMADAI&fromdate=1680287401000&todate=1690828199000";
  exportledgerbygroup=this.urlstrng+"exportLedgerByGroup?group=";
+  outstandingreport=this.urlstrng+"getOutStandingReport";
   //getDocbyid='http://192.168.1.12:8082/getImageByCustomer?id=3';
   constructor(private http: HttpClient) {
     //employeeData: any;

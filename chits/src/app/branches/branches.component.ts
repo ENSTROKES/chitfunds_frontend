@@ -126,7 +126,7 @@ this.http.get(this.userData.getbranchcount).subscribe((data) =>{
 
 })
 
-this.searchFilter(true);
+// this.searchFilter(true);
 
 //head office
 this.userData.head().subscribe((data) =>{

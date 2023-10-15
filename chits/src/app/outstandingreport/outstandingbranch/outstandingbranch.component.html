@@ -1,0 +1,64 @@
+<main id="main" class="main">
+    <!-- <div class="col-md-2">
+
+      <button type="button" style="margin-top:32px;margin-left: 350px !important;" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#largeModal" (click)="exportAsXLSX()"> download</button>
+  </div> -->
+    <section class="section">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Branch Data</h5>
+                        <table class="table table-striped">
+
+                            <thead>
+                                <tr>
+                                    <th>S.No</th>
+                                    <th>Name</th>
+                                    <th>Outstanding</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>1</td>
+                                    <td>COONOOR</td>
+                                    <td>0</td>
+                                    <td><button class="btn btn-primary" (click)="goToPage('outstandroute','COONOOR')"> Details </button></td>
+                                </tr>
+                                <tr>
+                                    <td>1</td>
+                                    <td>COIMBATORE</td>
+                                    <td>2000</td>
+                                    <td><button class="btn btn-primary" (click)="goToPage('outstandroute','COIMBATORE')"> Details </button></td>
+                                </tr>
+                                <tr>
+                                    <td>1</td>
+                                    <td>KARAMADAI</td>
+                                    <td>0</td>
+                                    <td><button class="btn btn-primary" (click)="goToPage('outstandroute','KARAMADAI')"> Details </button></td>
+                                </tr>
+                                <!-- <ng-container *ngIf="reslt?.object ">
+                                    <tr *ngFor="let key of Object.keys(reslt.object) ">
+                                        <td>{{ key }}</td>
+                                        <td>{{ reslt.object[key] }}</td>
+                                    </tr>
+                                </ng-container> -->
+                                <!-- <tr *ngFor="let brnchData of reslt ">
+                                    <th>1</th>
+                                    <th>COONOOR</th>
+                                    <th>{{brnchData.COONOOR}}</th>
+                                </tr>
+                                <tr *ngFor="let brnchData of reslt ">
+                                    <th>1</th>
+                                    <th>COONOOR</th>
+                                    <th>{{brnchData.COONOOR}}</th>
+                                </tr> -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>

@@ -40,7 +40,11 @@ import { BnNgIdleService } from 'bn-ng-idle';
 import { MinusPipe } from './minus.pipe';
 import { ExcelService } from './excel.service';
 import { CanvasJSAngularChartsModule } from '@canvasjs/angular-charts';
-
+import { FullCalendarModule } from '@fullcalendar/angular';
+import { OutstandingbranchComponent } from './outstandingreport/outstandingbranch/outstandingbranch.component';
+import { OutstandingrouteComponent } from './outstandingreport/outstandingroute/outstandingroute.component';
+import { OutstandingroutsubComponent } from './outstandingreport/outstandingroutsub/outstandingroutsub.component';
+import { OutstandingcusComponent } from './outstandingreport/outstandingcus/outstandingcus.component';
 
 
 
@@ -84,6 +88,10 @@ import { CanvasJSAngularChartsModule } from '@canvasjs/angular-charts';
     ReportsComponent,
     LedgerComponent,
     MinusPipe,
+    OutstandingbranchComponent,
+    OutstandingrouteComponent,
+    OutstandingroutsubComponent,
+    OutstandingcusComponent,
     
   ],
   imports: [
@@ -95,7 +103,8 @@ import { CanvasJSAngularChartsModule } from '@canvasjs/angular-charts';
     FormsModule,
     ReactiveFormsModule,
     NgxPaginationModule,
-    CanvasJSAngularChartsModule
+    CanvasJSAngularChartsModule,
+    FullCalendarModule
     
   ],
    

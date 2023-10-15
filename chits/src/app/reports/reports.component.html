@@ -41,10 +41,16 @@
                                 <button type="button" style="margin-top:32px;margin-left: 350px !important;" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#largeModal" (click)="exportAsXLSX(grpfilterdatetyp,selectedValue)"> download</button>
                             </div>
                         </div>
-
+                        <full-calendar [options]="calendarOptions">
+                            <ng-template #eventContent let-arg>
+                                <b>{{arg.timeText}}</b>
+                                <i>{{arg.event.title}}</i>
+                            </ng-template>
+                        </full-calendar>
                     </div>
                 </div>
             </div>
         </div>
+
     </section>
 </main>

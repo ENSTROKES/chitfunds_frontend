@@ -29,6 +29,13 @@ import { FiltergridComponent } from './filtergrid/filtergrid.component';
 import { AuthenticationGuard } from './authentication.guard';
 import { GrouplistComponent } from './grouplist/grouplist.component';
 import { LedgerComponent } from './ledger/ledger.component';
+import { OutstandingbranchComponent } from './outstandingreport/outstandingbranch/outstandingbranch.component';
+import { OutstandingrouteComponent } from './outstandingreport/outstandingroute/outstandingroute.component';
+import { OutstandingroutsubComponent } from './outstandingreport/outstandingroutsub/outstandingroutsub.component';
+import { OutstandingcusComponent } from './outstandingreport/outstandingcus/outstandingcus.component';
+
+
+
 const routes: Routes = [
   { path: '',redirectTo:'/pages-login', pathMatch: 'full' },
   { path: 'pages-login', component: PagesLoginComponent,pathMatch: 'full' },
@@ -63,7 +70,10 @@ const routes: Routes = [
   { path: 'addmember', component: AddmemberComponent,canActivate:[AuthenticationGuard] },
   { path: 'filtergrid', component: FiltergridComponent,canActivate:[AuthenticationGuard] },
   { path: 'grouplist', component: GrouplistComponent,canActivate:[AuthenticationGuard] },
- 
+  { path: 'outstandbranch', component: OutstandingbranchComponent,canActivate:[AuthenticationGuard]},
+  { path: 'outstandroute', component: OutstandingrouteComponent,canActivate:[AuthenticationGuard]},
+  { path: 'outstandsub', component: OutstandingroutsubComponent,canActivate:[AuthenticationGuard]},
+  { path: 'outstandcus', component: OutstandingcusComponent,canActivate:[AuthenticationGuard]},
 ];
 
 @NgModule({

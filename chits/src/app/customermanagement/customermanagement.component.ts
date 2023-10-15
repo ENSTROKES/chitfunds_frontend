@@ -347,7 +347,7 @@ this.http.get(this.userData.getcustomercount).subscribe((data) =>{
     
     // })
 
-this.getCustomerlist("All","All","All");
+// this.getCustomerlist("All","All","All");
     
 
       // get all slab method

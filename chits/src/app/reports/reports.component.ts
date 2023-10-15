@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { ExcelService } from '../excel.service';
 import { HttpClient } from '@angular/common/http';
 import {UserDataService} from 'src/app/users-data.service';
+import { CalendarOptions } from '@fullcalendar/core';
+import dayGridPlugin from '@fullcalendar/daygrid';
 
 @Component({
   selector: 'app-reports',
@@ -62,6 +64,19 @@ if(prop=="object"){
 
 
   }
+
+  calendarOptions: CalendarOptions = {
+    plugins: [dayGridPlugin],
+    initialView: 'dayGridMonth',
+    weekends: true,
+    events: [
+      { title: 'Rs.1500', start: '2023-10-06',backgroundColor: 'red' },
+      { title: 'Rs.500', start: '2023-10-02',backgroundColor: 'red' },
+      { title: 'Rs.800', start: '2023-09-28',backgroundColor: 'red' }
+    ]
+  };
+
+
   // exportAsXLSX():void {
   //   this.excelService.exportAsExcelFile(this.listofroutedata, 'sample');
   // }
@@ -72,7 +87,7 @@ if(prop=="object"){
 
 if(type == "Group"){
 
-this.http.get(this.userData.exportledgerbygroup+value).subscribe((data) => {
+this.http.get(this.userData.exportledgerbygroup).subscribe((data) => {
   //console.log("URL:", this.userData.exportledgerbygroup+value);
   //console.log("API response:", data);
   this.routeoutpt = data;
@@ -86,7 +101,7 @@ this.http.get(this.userData.exportledgerbygroup+value).subscribe((data) => {
 });
 }
 if(type == "Route"){
-  this.http.get(this.userData.exportledgerbyroute+value).subscribe((data) => {
+  this.http.get(this.userData.exportledgerbyroute).subscribe((data) => {
     //console.log("URL:", this.userData.exportledgerbyroute+value);
     //console.log("API response:", data);
     this.routeoutpt = data;

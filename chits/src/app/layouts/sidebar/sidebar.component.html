@@ -59,9 +59,15 @@
             </ul>
         </li>
         <a class="nav-link collapsed" data-bs-target="#ledger-nav" data-bs-toggle="collapse" routerLink="/ledger" routerLinkActive="active-link"> <i class="bi bi-journal-text"></i><span>Ledger</span></a>
-
-        <a class="nav-link collapsed" data-bs-target="#reports-nav" data-bs-toggle="collapse" routerLink="/reports" routerLinkActive="active-link"> <i class="bi bi-journal-text"></i><span>Reports</span></a>
-
+        <li class="nav-item">
+            <!-- <a class="nav-link collapsed" data-bs-target="#reports-nav" data-bs-toggle="collapse" routerLink="/reports" routerLinkActive="active-link"> <i class="bi bi-journal-text"></i><span>Reports</span></a> -->
+            <a class="nav-link collapsed" data-bs-target="#reports-nav" data-bs-toggle="collapse" href="#"> <i class="bi bi-cash"></i><span>Reports</span><i class="bi bi-chevron-down ms-auto"></i> </a>
+            <ul id="reports-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+                <li>
+                    <a routerLink="/outstandbranch" routerLinkActive="active-link"> <i class="bi bi-circle"></i><span>Outstanding Report</span> </a>
+                </li>
+            </ul>
+        </li>
 
 
 

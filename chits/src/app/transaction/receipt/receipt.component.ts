@@ -81,7 +81,7 @@ pageNumber: number = 1;
 
 // })
 
-this.searchFilter("All" ,"All" ,this.recpdate);
+// this.searchFilter("All" ,"All" ,this.recpdate);
 
 
 this.http.get(this.userData.getreceiptcount).subscribe((data) =>{

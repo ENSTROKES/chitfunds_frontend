@@ -140,7 +140,7 @@ pageNumber: number = 1;
     // });
     
     // })
-    this.searchFilter("all","all");
+    // this.searchFilter("all","all");
 
 
 //get customer count fot pagenation
