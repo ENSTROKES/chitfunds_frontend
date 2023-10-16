@@ -6,6 +6,7 @@ import {Branch} from 'src/app/model/branch.model';
 import Swal from 'sweetalert2';
 import { CommonModule } from '@angular/common';
 import { ActivatedRoute, Router } from '@angular/router';
+import { ApiService } from 'src/app/services/api.service';
 interface outstandroute {
   type: string;
   value: string;
@@ -21,15 +22,17 @@ export class OutstandingrouteComponent {
     type:"route",
     value:""
   }
+  data: any;
   brnhvalue:any;
-  constructor(private http: HttpClient, private userData:UserDataService,private router: Router,private route: ActivatedRoute,private cdRef: ChangeDetectorRef ) {
+  constructor(private http: HttpClient, private userData:UserDataService,private router: Router,private route: ActivatedRoute,private cdRef: ChangeDetectorRef,private apiService: ApiService ) {
     
     this.route.queryParams.subscribe(params => {
       this.routedata.value= params['brnhvalue'];
-  
+      console.log(this.routedata.value)
     });
+    
 
-   this.getrouteData(this.routedata);
+   this.sendDataToApi(this.routedata);
   }
 
 
@@ -42,10 +45,18 @@ export class OutstandingrouteComponent {
       this.routereslt = result;
        })
       }
-      goToPage(pageName:string,brnhvalue:any):void{
-        this.router.navigate([`${pageName}`],{ queryParams: { brnhvalue}  });
+      goToPage(pageName:string,brnroute:any):void{
+        this.router.navigate([`${pageName}`],{ queryParams: { brnroute ,brnhvalue : this.routedata.value }  });
       } 
       goTobackPage(pageName:string):void{
         this.router.navigate([`${pageName}`]);
       } 
+      sendDataToApi(data: any): void {
+        this.apiService.postData(data).subscribe(response => {
+          // Handle the response from the API if needed
+          this.data = response.object;
+          console.log("data");
+          console.log(this.data);
+        });
+      }
 }

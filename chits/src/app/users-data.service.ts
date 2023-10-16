@@ -54,6 +54,7 @@ export class UserDataService {
   exportledgerbyroute=this.urlstrng+"exportLedgerByRouteAndTime?route=KARAMADAI&fromdate=1680287401000&todate=1690828199000";
  exportledgerbygroup=this.urlstrng+"exportLedgerByGroup?group=";
   outstandingreport=this.urlstrng+"getOutStandingReport";
+  outstandingcustomer=this.urlstrng+"customerOutstandingBySubscription";
   //getDocbyid='http://192.168.1.12:8082/getImageByCustomer?id=3';
   constructor(private http: HttpClient) {
     //employeeData: any;

@@ -1,4 +1,14 @@
 <main id="main" class="main">
+    <!-- <div class="pagetitle">
+        <h1>Route Outstanding</h1>
+        <nav>
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a routerLink="/outstandbranch">Home</a></li>
+                <li class="breadcrumb-item active"><a routerLink="/outstandroute"> Group</a></li>
+
+            </ol>
+        </nav>
+    </div> -->
     <!-- <div class="col-md-2">
 
     <button type="button" style="margin-top:32px;margin-left: 350px !important;" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#largeModal" (click)="exportAsXLSX()"> download</button>
@@ -22,11 +32,11 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td>1</td>
-                                    <td>OFFICE</td>
-                                    <td>2000</td>
-                                    <td><button class="btn btn-primary" (click)="goToPage('outstandsub','OFFICE')"> Details </button></td>
+                                <tr *ngFor="let item of data | keyvalue ;let i = index">
+                                    <td>{{i+1}}</td>
+                                    <td>{{ item.key }}</td>
+                                    <td>{{ item.value }}</td>
+                                    <td><button class="btn btn-primary " (click)="goToPage( 'outstandsub',item.key) "> Details </button></td>
                                 </tr>
 
                             </tbody>

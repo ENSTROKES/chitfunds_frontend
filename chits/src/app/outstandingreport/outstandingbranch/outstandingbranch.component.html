@@ -20,40 +20,13 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td>1</td>
-                                    <td>COONOOR</td>
-                                    <td>0</td>
-                                    <td><button class="btn btn-primary" (click)="goToPage('outstandroute','COONOOR')"> Details </button></td>
+                                <tr *ngFor="let item of data | keyvalue ;let i = index">
+                                    <td>{{i+1}}</td>
+                                    <td>{{ item.key }}</td>
+                                    <td>{{ item.value }}</td>
+                                    <td><button class="btn btn-primary " (click)="goToPage( 'outstandroute', item.key) "> Details </button></td>
                                 </tr>
-                                <tr>
-                                    <td>1</td>
-                                    <td>COIMBATORE</td>
-                                    <td>2000</td>
-                                    <td><button class="btn btn-primary" (click)="goToPage('outstandroute','COIMBATORE')"> Details </button></td>
-                                </tr>
-                                <tr>
-                                    <td>1</td>
-                                    <td>KARAMADAI</td>
-                                    <td>0</td>
-                                    <td><button class="btn btn-primary" (click)="goToPage('outstandroute','KARAMADAI')"> Details </button></td>
-                                </tr>
-                                <!-- <ng-container *ngIf="reslt?.object ">
-                                    <tr *ngFor="let key of Object.keys(reslt.object) ">
-                                        <td>{{ key }}</td>
-                                        <td>{{ reslt.object[key] }}</td>
-                                    </tr>
-                                </ng-container> -->
-                                <!-- <tr *ngFor="let brnchData of reslt ">
-                                    <th>1</th>
-                                    <th>COONOOR</th>
-                                    <th>{{brnchData.COONOOR}}</th>
-                                </tr>
-                                <tr *ngFor="let brnchData of reslt ">
-                                    <th>1</th>
-                                    <th>COONOOR</th>
-                                    <th>{{brnchData.COONOOR}}</th>
-                                </tr> -->
+
                             </tbody>
                         </table>
                     </div>

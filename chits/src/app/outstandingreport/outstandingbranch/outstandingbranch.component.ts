@@ -6,6 +6,7 @@ import {Branch} from 'src/app/model/branch.model';
 import Swal from 'sweetalert2';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
+import { ApiService } from 'src/app/services/api.service';
 interface outstandbrnh {
   type: string;
 }
@@ -20,41 +21,30 @@ export class OutstandingbranchComponent {
   branchdata : outstandbrnh = {
     type:"branch"
   }
+  data: any;
 
-
-  constructor(private http: HttpClient, private userData:UserDataService,private router: Router ) {
+  constructor(private http: HttpClient, private userData:UserDataService,private router: Router,private apiService: ApiService ) {
     
-    this.getbranchData(this.branchdata);
+    this.sendDataToApi(this.branchdata);
   }
 
 
-
-  reslt:any;
-  getbranchData(data:any): void{
-     this.http.post(this.userData.outstandingreport, data).subscribe((result)=>{
-       
-      this.reslt = result;
-      console.log(this.reslt);
-      console.log(this.reslt.COONOOR);
-      if(this.reslt.responseCode!="200"){
-        {    
-          Swal.fire({
-            position: 'center',
-            icon: 'error',
-            title: 'Internal Server Error',
-            showConfirmButton: false,
-          })
-          setTimeout(() => {
-           
-            location.reload();
-          }, 1000);
-        }
-      }
-       })
-      }
       goToPage(pageName:string,brnhvalue:any):void{
+        console.log(brnhvalue);
         this.router.navigate([`${pageName}`],{ queryParams: { brnhvalue}  });
       } 
+      sendDataToApi(data: any): void {
+        this.apiService.postData(data).subscribe(response => {
+          // Handle the response from the API if needed
+          this.data = response.object;
+          console.log("data");
+          console.log(this.data);
+        });
+      }
+
+      ngOnInit(): void {
+        
+      }
 
 }
 
