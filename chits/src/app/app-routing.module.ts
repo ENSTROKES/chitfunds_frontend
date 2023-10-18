@@ -33,7 +33,7 @@ import { OutstandingbranchComponent } from './outstandingreport/outstandingbranc
 import { OutstandingrouteComponent } from './outstandingreport/outstandingroute/outstandingroute.component';
 import { OutstandingroutsubComponent } from './outstandingreport/outstandingroutsub/outstandingroutsub.component';
 import { OutstandingcusComponent } from './outstandingreport/outstandingcus/outstandingcus.component';
-
+import { RouteComponent } from './route/route.component';
 
 
 const routes: Routes = [
@@ -74,6 +74,7 @@ const routes: Routes = [
   { path: 'outstandroute', component: OutstandingrouteComponent,canActivate:[AuthenticationGuard]},
   { path: 'outstandsub', component: OutstandingroutsubComponent,canActivate:[AuthenticationGuard]},
   { path: 'outstandcus', component: OutstandingcusComponent,canActivate:[AuthenticationGuard]},
+  { path: 'route', component: RouteComponent,canActivate:[AuthenticationGuard]},
 ];
 
 @NgModule({

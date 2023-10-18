@@ -28,14 +28,14 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr *ngFor="let cusdata of ListOfCustdata ">
-                                    <td>1</td>
+                                <tr *ngFor="let cusdata of ListOfCustdata; let i = index">
+                                    <td>{{i+1}}</td>
                                     <td>{{cusdata.customerName}}</td>
                                     <td>{{cusdata.ticketNumber}}</td>
                                     <td>{{cusdata.contactNumber}}</td>
                                     <td>{{cusdata.installment}}</td>
                                     <td>{{cusdata.pendingAmount}}</td>
-                                    <td>{{cusdata.paidAmount}} - {{cusdata.lastPaiedDate}}</td>
+                                    <td>{{cusdata.lastPaiedDate}}</td>
                                     <td>null</td>
                                     <td>
                                         <div class="icon">
@@ -50,10 +50,24 @@
                                                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                                         </div>
                                                         <div class="modal-body">
+                                                            <table class="table table-striped">
+
+                                                                <thead>
+                                                                    <tr>Total Amount Recieved - {{cusdata.paidAmount}}</tr>
+                                                                    <tr>Installments - {{cusdata.installment}}</tr>
+                                                                    <tr>Outstanding Amount - {{cusdata.pendingAmount}} </tr>
+                                                                </thead>
+                                                                <!-- <tbody>
+                                                                    <td>10</td>
+                                                                    <td>10</td>
+                                                                    <td>10</td>
+                                                                </tbody> -->
+                                                            </table>
                                                             <full-calendar [options]="calendarOptions">
                                                                 <ng-template #eventContent let-arg>
                                                                     <b>{{arg.timeText}}</b>
-                                                                    <i>{{arg.event.title}}</i>
+                                                                    <i style="font-size: large !important;">{{arg.event.title}} {{arg.event.rid}}</i>
+                                                                    <i>{{arg.event.rid}}</i>
                                                                 </ng-template>
                                                             </full-calendar>
 

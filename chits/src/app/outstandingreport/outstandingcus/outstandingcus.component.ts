@@ -17,6 +17,7 @@ interface outstandcus {
 interface Receipt {
   billAmount: number;
   receiptDate: string;
+  receiptId: string;
   // Add other properties as per your API response
 }
 @Component({
@@ -167,13 +168,15 @@ export class OutstandingcusComponent {
               this.receiptByCustomerId.forEach((receipt: Receipt) => {
                 if (this.calendarOptions.events && Array.isArray(this.calendarOptions.events)) {
                   this.calendarOptions.events.push({
-                    title: `Rs.${receipt.billAmount}`,
-                    start: receipt.receiptDate,
-                    backgroundColor: 'red'
+                    title: `Rs.${receipt.billAmount}  Id.${receipt.receiptId}`,
+                    rid: 'Id.${receipt.receiptId}',
+                    start: receipt.receiptDate
+                    
+                    // backgroundColor: 'red'
                   });
                 }
               });
-              console.log('Events:', this.calendarOptions.events);
+              console.log('Events:', this.calendarOptions.events); 
             }
           });
         });

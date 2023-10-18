@@ -55,6 +55,8 @@ export class UserDataService {
  exportledgerbygroup=this.urlstrng+"exportLedgerByGroup?group=";
   outstandingreport=this.urlstrng+"getOutStandingReport";
   outstandingcustomer=this.urlstrng+"customerOutstandingBySubscription";
+  createroute=this.urlstrng+"createRoute";
+  getallroute=this.urlstrng+"getAllRote";
   //getDocbyid='http://192.168.1.12:8082/getImageByCustomer?id=3';
   constructor(private http: HttpClient) {
     //employeeData: any;

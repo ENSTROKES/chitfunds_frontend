@@ -40,7 +40,21 @@
                 </li>
             </ul>
         </li>
-        <a class="nav-link collapsed" data-bs-target="#branch-nav" data-bs-toggle="collapse" routerLink="/branches" routerLinkActive="active-link"> <i class="bi bi-branch"></i><span>Branches</span></a>
+
+
+
+        <li class="nav-item">
+            <a class="nav-link collapsed" data-bs-target="#branch-nav" data-bs-toggle="collapse" routerLink="/branches" routerLinkActive="active-link"> <i class="bi bi-person-lines-fill"></i><span>Branches</span> <i class="bi bi-chevron-down ms-auto"></i></a>
+            <ul id="branch-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+
+                <li>
+                    <a routerLink="/route" routerLinkActive="active-link"> <i class="bi bi-circle"></i><span>Route</span> </a>
+                </li>
+            </ul>
+        </li>
+
+
+        <!-- <a class="nav-link collapsed" data-bs-target="#branch-nav" data-bs-toggle="collapse" routerLink="/branches" routerLinkActive="active-link"> <i class="bi bi-branch"></i><span>Branches</span></a> -->
         <li class="nav-item">
             <a class="nav-link collapsed" data-bs-target="#transaction-nav" data-bs-toggle="collapse" href="#"> <i class="bi bi-cash"></i><span>Transaction</span><i class="bi bi-chevron-down ms-auto"></i> </a>
             <ul id="transaction-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
