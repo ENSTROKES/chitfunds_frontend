@@ -11,7 +11,11 @@ interface outstandroute {
   type: string;
   value: string;
 }
-
+interface ApiData {
+  key: string;
+  value: number;
+  // other properties if any
+}
 @Component({
   selector: 'app-outstandingroute',
   templateUrl: './outstandingroute.component.html',
@@ -22,7 +26,7 @@ export class OutstandingrouteComponent {
     type:"route",
     value:""
   }
-  data: any;
+  data: ApiData[] = [];
   brnhvalue:any;
   constructor(private http: HttpClient, private userData:UserDataService,private router: Router,private route: ActivatedRoute,private cdRef: ChangeDetectorRef,private apiService: ApiService ) {
     

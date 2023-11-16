@@ -11,7 +11,11 @@ interface outstandbrnh {
   type: string;
 }
 
-
+interface ApiData {
+  key: string;
+  value: number;
+  // other properties if any
+}
 @Component({
   selector: 'app-outstandingbranch',
   templateUrl: './outstandingbranch.component.html',
@@ -21,8 +25,8 @@ export class OutstandingbranchComponent {
   branchdata : outstandbrnh = {
     type:"branch"
   }
-  data: any;
-
+  data: ApiData[] = [];
+  i=0;
   constructor(private http: HttpClient, private userData:UserDataService,private router: Router,private apiService: ApiService ) {
     
     this.sendDataToApi(this.branchdata);

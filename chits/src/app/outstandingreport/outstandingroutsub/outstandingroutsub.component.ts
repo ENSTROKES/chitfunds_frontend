@@ -11,6 +11,11 @@ interface outstandsub {
     type:string,
     value: string
   }
+  interface ApiData {
+    key: string;
+    value: number;
+    // other properties if any
+  }
 @Component({
   selector: 'app-outstandingroutsub',
   templateUrl: './outstandingroutsub.component.html',
@@ -22,7 +27,7 @@ export class OutstandingroutsubComponent {
     value:""
   }
   brnhvalue:any;
-  data: any;
+  data: ApiData[] = [];
   
   constructor(private http: HttpClient, private userData:UserDataService,private router: Router,private route: ActivatedRoute,private cdRef: ChangeDetectorRef,private apiService: ApiService ) {
     this.route.queryParams.subscribe(params => {

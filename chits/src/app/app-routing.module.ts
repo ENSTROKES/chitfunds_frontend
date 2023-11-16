@@ -33,8 +33,8 @@ import { OutstandingbranchComponent } from './outstandingreport/outstandingbranc
 import { OutstandingrouteComponent } from './outstandingreport/outstandingroute/outstandingroute.component';
 import { OutstandingroutsubComponent } from './outstandingreport/outstandingroutsub/outstandingroutsub.component';
 import { OutstandingcusComponent } from './outstandingreport/outstandingcus/outstandingcus.component';
-
-
+import { RouteComponent } from './route/route.component';
+import { CusclanderComponent } from './outstandingreport/cusclander/cusclander.component';
 
 const routes: Routes = [
   { path: '',redirectTo:'/pages-login', pathMatch: 'full' },
@@ -74,6 +74,8 @@ const routes: Routes = [
   { path: 'outstandroute', component: OutstandingrouteComponent,canActivate:[AuthenticationGuard]},
   { path: 'outstandsub', component: OutstandingroutsubComponent,canActivate:[AuthenticationGuard]},
   { path: 'outstandcus', component: OutstandingcusComponent,canActivate:[AuthenticationGuard]},
+  { path: 'route', component: RouteComponent,canActivate:[AuthenticationGuard]},
+  { path: 'cusclander', component: CusclanderComponent,canActivate:[AuthenticationGuard]},
 ];
 
 @NgModule({
