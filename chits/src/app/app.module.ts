@@ -45,6 +45,9 @@ import { OutstandingbranchComponent } from './outstandingreport/outstandingbranc
 import { OutstandingrouteComponent } from './outstandingreport/outstandingroute/outstandingroute.component';
 import { OutstandingroutsubComponent } from './outstandingreport/outstandingroutsub/outstandingroutsub.component';
 import { OutstandingcusComponent } from './outstandingreport/outstandingcus/outstandingcus.component';
+import { RouteComponent } from './route/route.component';
+import { CusclanderComponent } from './outstandingreport/cusclander/cusclander.component';
+
 
 
 
@@ -92,6 +95,9 @@ import { OutstandingcusComponent } from './outstandingreport/outstandingcus/outs
     OutstandingrouteComponent,
     OutstandingroutsubComponent,
     OutstandingcusComponent,
+    RouteComponent,
+    CusclanderComponent,
+   
     
   ],
   imports: [

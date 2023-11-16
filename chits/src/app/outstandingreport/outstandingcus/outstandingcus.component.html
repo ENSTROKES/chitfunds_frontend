@@ -10,7 +10,7 @@
                 <div class="card">
                     <div class="card-body">
                         <h5 class="card-title">Subscription Data</h5>
-                        <div class="col-md-1">
+                        <div class="col-md-1" style="padding: 7px;">
                             <button type="button " class="btn btn-primary " data-bs-dismiss="modal " (click)="goTobackPage('outstandsub')">Back</button></div>
                         <table class="table table-striped">
 
@@ -28,20 +28,42 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr *ngFor="let cusdata of ListOfCustdata ">
-                                    <td>1</td>
+                                <tr *ngFor="let cusdata of ListOfCustdata; let i = index">
+                                    <td>{{i+1}}</td>
                                     <td>{{cusdata.customerName}}</td>
                                     <td>{{cusdata.ticketNumber}}</td>
                                     <td>{{cusdata.contactNumber}}</td>
                                     <td>{{cusdata.installment}}</td>
-                                    <td>{{cusdata.pendingAmount}}</td>
-                                    <td>{{cusdata.paidAmount}} - {{cusdata.lastPaiedDate}}</td>
+                                    <!-- <td>{{cusdata.pendingAmount!.toLocaleString()}}</td> -->
+                                    <td>
+                                        <div *ngIf="cusdata.pendingAmount > 0; then trueBlock else falseBlock"></div>
+
+                                        <ng-template #trueBlock>
+                                            <i class="bi bi-arrow-down-circle-fill down-arrow"></i>&nbsp;
+                                            <span class="value down-arrow">{{ cusdata.pendingAmount!.toLocaleString() }}</span>
+                                        </ng-template>
+
+                                        <ng-template #falseBlock>
+                                            <ng-container *ngIf="cusdata.pendingAmount < 0; then negativeBlock else zeroBlock"></ng-container>
+
+                                            <ng-template #negativeBlock>
+                                                <i class="bi bi-arrow-up-circle-fill up-arrow"></i>&nbsp;
+                                                <span class="value up-arrow">{{ -cusdata.pendingAmount }}</span>
+                                            </ng-template>
+
+                                            <ng-template #zeroBlock>
+                                                <i class="bi bi-dash-circle-fill dash-arrow"></i>&nbsp;
+                                                <span class="dash-arrow">{{ cusdata.pendingAmount!.toLocaleString() }}</span>
+                                            </ng-template>
+                                        </ng-template>
+                                    </td>
+                                    <td>{{cusdata.lastPaiedDate | date :'dd-MMM-yy'}}</td>
                                     <td>null</td>
                                     <td>
                                         <div class="icon">
                                             <i class="bi bi-person-fill" data-bs-toggle="modal" data-bs-target="#Getcustomer" (click)="getCustomerbyId(cusdata.customerId)"></i>&nbsp;&nbsp;&nbsp;
-
-                                            <i class="bi bi-eye" data-bs-toggle="modal" data-bs-target="#Getcalender" (click)="getrecieptId(cusdata.customerId)"></i>
+                                            <i class="bi bi-eye" (click)="goToPage( 'cusclander',cusdata.customerId,cusdata.paidAmount,cusdata.installment,cusdata.pendingAmount)"></i>
+                                            <!-- <i class="bi bi-eye" data-bs-toggle="modal" data-bs-target="#Getcalender" (click)="getrecieptId(cusdata.customerId)"></i>
                                             <div class="modal fade" id="Getcalender" tabindex="-1">
                                                 <div class="modal-dialog modal-xl">
                                                     <div class="modal-content">
@@ -50,17 +72,31 @@
                                                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                                         </div>
                                                         <div class="modal-body">
-                                                            <full-calendar [options]="calendarOptions">
+                                                            <table class="table table-striped">
+
+                                                                <thead>
+                                                                    <tr>Total Amount Recieved - {{cusdata.paidAmount}}</tr>
+                                                                    <tr>Installments - {{cusdata.installment}}</tr>
+                                                                    <tr>Outstanding Amount - {{cusdata.pendingAmount}} </tr>
+                                                                </thead>
+                                                                <tbody>
+                                                                    <td>10</td>
+                                                                    <td>10</td>
+                                                                    <td>10</td>
+                                                                </tbody>
+                                                            </table>
+                                                            <full-calendar [options]="calendarOptions" style="width: 75% !important;">
                                                                 <ng-template #eventContent let-arg>
                                                                     <b>{{arg.timeText}}</b>
-                                                                    <i>{{arg.event.title}}</i>
+                                                                    <i style="font-size: large !important;">{{arg.event.title}} {{arg.event.rid}}</i>
+                                                                    <i>{{arg.event.rid}}</i>
                                                                 </ng-template>
                                                             </full-calendar>
 
                                                         </div>
                                                     </div>
                                                 </div>
-                                            </div>
+                                            </div> -->
 
                                             <div class="modal fade" id="Getcustomer" tabindex="-1">
                                                 <div class="modal-dialog modal-xl">

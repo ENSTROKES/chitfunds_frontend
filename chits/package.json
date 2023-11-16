@@ -22,6 +22,7 @@
     "@fullcalendar/angular": "^6.1.9",
     "@fullcalendar/core": "^6.1.9",
     "@fullcalendar/daygrid": "^6.1.9",
+    "@fullcalendar/multimonth": "^6.1.9",
     "@syncfusion/ej2-angular-navigations": "^20.4.48",
     "@types/file-saver": "^2.0.5",
     "angular-calendar": "^0.27.9",

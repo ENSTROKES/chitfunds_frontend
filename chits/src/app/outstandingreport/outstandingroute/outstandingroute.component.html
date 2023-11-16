@@ -35,7 +35,28 @@
                                 <tr *ngFor="let item of data | keyvalue ;let i = index">
                                     <td>{{i+1}}</td>
                                     <td>{{ item.key }}</td>
-                                    <td>{{ item.value }}</td>
+                                    <td>
+                                        <div *ngIf="item.value > 0; then trueBlock else falseBlock"></div>
+
+                                        <ng-template #trueBlock>
+                                            <i class="bi bi-arrow-down-circle-fill down-arrow"></i>&nbsp;
+                                            <span class="value down-arrow">{{ item.value!.toLocaleString() }}</span>
+                                        </ng-template>
+
+                                        <ng-template #falseBlock>
+                                            <ng-container *ngIf="item.value < 0; then negativeBlock else zeroBlock"></ng-container>
+
+                                            <ng-template #negativeBlock>
+                                                <i class="bi bi-arrow-up-circle-fill up-arrow"></i>&nbsp;
+                                                <span class="value up-arrow">{{ -item.value }}</span>
+                                            </ng-template>
+
+                                            <ng-template #zeroBlock>
+                                                <i class="bi bi-dash-circle-fill dash-arrow"></i>&nbsp;
+                                                <span class="dash-arrow">{{ item.value!.toLocaleString() }}</span>
+                                            </ng-template>
+                                        </ng-template>
+                                    </td>
                                     <td><button class="btn btn-primary " (click)="goToPage( 'outstandsub',item.key) "> Details </button></td>
                                 </tr>
 

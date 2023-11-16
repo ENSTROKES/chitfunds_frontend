@@ -51,7 +51,7 @@ export class AppComponent {
     s.src = "../assets/js/main.js";
     this.elementRef.nativeElement.appendChild(s);
 
-    this.bnIdle.startWatching(30000).subscribe((isTimedOut: boolean) => {
+    this.bnIdle.startWatching(400).subscribe((isTimedOut: boolean) => {
       if (isTimedOut && !this.isLoginPage()) {
         // Question
         localStorage.clear();

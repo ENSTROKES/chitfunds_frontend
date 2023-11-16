@@ -1,0 +1,63 @@
+<main id="main" class="main">
+
+    <!-- <div class="col-md-2">
+
+<button type="button" style="margin-top:32px;margin-left: 350px !important;" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#largeModal" (click)="exportAsXLSX()"> download</button>
+</div> -->
+    <section class="section">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-body">
+                        <!-- <h5 class="card-title">Customer Data</h5> -->
+                        <div class="col-md-1" style="padding: 7px;">
+                            <button type="button " class="btn btn-primary " data-bs-dismiss="modal " (click)="goTobackPage('outstandcus')">Back</button></div>
+
+                        <div class="row">
+                            <div class="col-lg-8">
+                                <full-calendar [options]="calendarOptions" style="height: 500 px !important;">
+                                    <ng-template #eventContent let-arg>
+                                        <!-- <b>{{arg.timeText}}</b> -->
+                                        <i style="font-size: large !important;">{{arg.event.title}} </i>
+                                        <i>{{arg.event.rid}}</i>
+                                    </ng-template>
+                                </full-calendar>
+                            </div>
+                            <div class="col-lg-4">
+                                <table class=" table table-striped ">
+
+                                    <thead style="padding-top: 500 px !important;">
+                                        <tr>
+                                            <th>Total Amount Recieved </th>
+                                            <th>- {{ paidamount }}</th>
+                                            <!-- <th>Installments - {{ installement }}</th>
+                                            <th>Outstanding Amount - {{ pendingamount }} </th> -->
+                                        </tr>
+                                    </thead>
+                                    <thead>
+                                        <tr>
+                                            <th>Installments </th>
+                                            <th>- {{ installement }}</th>
+                                            <!-- <th>Installments - {{ installement }}</th>
+                                          <th>Outstanding Amount - {{ pendingamount }} </th> -->
+                                        </tr>
+                                    </thead>
+                                    <thead>
+                                        <tr>
+                                            <th>Outstanding Amount </th>
+                                            <th>- {{ pendingamount }}</th>
+                                            <!-- <th>Installments - {{ installement }}</th>
+                                        <th>Outstanding Amount - {{ pendingamount }} </th> -->
+                                        </tr>
+                                    </thead>
+
+                                </table>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
