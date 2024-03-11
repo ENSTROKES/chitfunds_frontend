@@ -169,6 +169,8 @@ customer : Customer = {
 
   // get customer by id
   idoutput:any;
+  chitDetailsbyCustId:any;
+  chitListByCustId:any;
   customerDetailbyid : Customer = {
     // customerId:'',
     _id:'',
@@ -625,7 +627,19 @@ getCustomerbyId(custid:any): void{
   });
   
   })
-     }
+
+   /*
+   Get Chitdetails by customer Id
+   */
+   this.http.get(this.userData.chitlistByCustId+custid).subscribe((data) =>{    
+    this.chitDetailsbyCustId=data;
+    Object.keys(this.chitDetailsbyCustId).forEach(prop => {
+      if(prop=="object"){
+        this.chitListByCustId = this.chitDetailsbyCustId[prop];    
+      }
+    });  
+  })
+}
 
 
 

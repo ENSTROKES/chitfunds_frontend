@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { UserDataService } from 'src/app/users-data.service';
 import { Observable } from 'rxjs';
 import Swal from 'sweetalert2';
+declare var $: any;
 interface USERS {
   id: Number;
   name: String;
@@ -20,6 +21,7 @@ export class ReceiptComponent implements OnInit {
   userId: any; 
   searchText:any;
   CategoryName = {};
+  gropdelete:any;
   Users = {};
   res : any;
   ListOfEmpData :any;
@@ -29,6 +31,7 @@ export class ReceiptComponent implements OnInit {
   ListOfBranchData:any;
   recptreslt:any;
   ListOfGroupData:any;
+  grpreslt:any;
 //customer
 ListOfCustomerData:any;
 custmresponse:any;
@@ -205,6 +208,19 @@ click() {
           }, 1000);
         }
         
+      } else if(this.recptreslt.responseCode=="1000"){
+        {   
+          Swal.fire({
+            position: 'center',
+            icon: 'warning',
+            title: 'Receipt already exists!',
+            showConfirmButton: false,
+          })
+          setTimeout(() => {
+            location.reload();
+          }, 1000);
+        }
+        
       }
       else {
         {    
@@ -273,7 +289,7 @@ click() {
 
       grpidvalue:any;
       grpidoutput:any;
-      GroupDetailsbyId:any;
+      ReceiptDetailsbyId:any={};
   //group details by id 
   recpdetailsbygrpid(data:any){
 
@@ -282,10 +298,10 @@ click() {
       this.grpidoutput=data;
     Object.keys(this.grpidoutput).forEach(prop => {
     if(prop=="object"){
-      this.GroupDetailsbyId = this.grpidoutput[prop];
+      this.ReceiptDetailsbyId = this.grpidoutput[prop];
       this.recprelpop=true;
       //console.log("Recpt grp filter");
-      // //console.log("AllData" +JSON.stringify(this.GroupDetailsbyId));
+      // //console.log("AllData" +JSON.stringify(this.ReceiptDetailsbyId));
     }
     });
     
@@ -331,5 +347,115 @@ click() {
     this.userData.getNameList().subscribe((data: any) => {
       this.NameList = data;
     });
+  }
+  getReceiptDetailsbyId(receiptId:any){
+    this.http.get(this.userData.getReceiptById+receiptId).subscribe((data) =>{
+      this.grpidoutput=data;
+      Object.keys(this.grpidoutput).forEach(prop => {
+        if(prop=="object"){
+          this.ReceiptDetailsbyId = this.grpidoutput[prop];  
+          $('#EditReceipt').modal('toggle');
+          console.log(this.ReceiptDetailsbyId)        
+        }
+        });
+    })
+  }
+  deleteGroupbyId(){
+
+  }
+  updateReceipt(ReceiptModal:any){
+    
+    this.http.put(this.userData.updatereceipt, ReceiptModal).subscribe((result)=>{
+      this.grpreslt = result;
+     
+      if(this.grpreslt.responseCode=="200"){
+       {   
+         Swal.fire({
+           position: 'center',
+           icon: 'success',
+           title: 'Receipt Updated successfully!',
+           showConfirmButton: false,
+         })
+         setTimeout(() => {
+           location.reload();
+         }, 1000);
+       }
+       
+     }
+     else {
+       {    
+         Swal.fire({
+           position: 'center',
+           icon: 'error',
+           title: 'Error with Receipt Updation!',
+           showConfirmButton: false,
+         })
+         setTimeout(() => {
+           location.reload();
+         }, 1000);
+       }
+     }
+    });
+  }
+
+  deleteReceipt(data:any): void{
+           
+            
+    Swal.fire({
+      title: 'Are you sure?',
+      text: 'You will not be able to recover this action!',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonText: 'Yes, delete it!',
+      cancelButtonText: 'No, keep it',
+      customClass: {
+        confirmButton: 'my-confirm-button-class',
+        cancelButton: 'my-cancel-button-class',
+        title:'my-alert-title-class',
+        
+      }
+    }).then((result) => {
+
+      if (result.isConfirmed) {
+        //console.log('Clicked Yes, File deleted!');
+        this.http.delete(this.userData.deleteReceiptById+data).subscribe((data) =>{
+          this.gropdelete=data;
+          
+           
+                if(this.gropdelete.responseCode =="200"){
+                  
+                  Swal.fire({
+                    position: 'center',
+                    icon: 'success',
+                    title: 'Receipt Deleted successfully',
+                    showConfirmButton: false,
+                  })
+                  setTimeout(() => {
+                    location.reload();
+                  }, 1000);
+                }
+                else {
+                  {    
+                    Swal.fire({
+                      position: 'center',
+                      icon: 'error',
+                      title: 'Error with Receipt Deletion!',
+                      showConfirmButton: false,
+                    })
+                    setTimeout(() => {
+                      location.reload();
+                    }, 1000);
+                  }
+                }
+              })
+            } 
+              
+              else if (result.isDismissed) {
+
+        //console.log('Clicked No, File is safe!');
+
+      }
+    })
+     
   }
 }

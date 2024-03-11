@@ -392,8 +392,42 @@
                                                                                         </tbody>
                                                                                     </table>
                                                                                 </div>
-                                                                                <div class="col-md-4" style="float: left;">
-                                                                                    <table class="table table-borderless ">
+                                                                                <div class="col-md-12" style="float: left;">
+                                                                                    <div class="card">
+                                                                                        <div class="card-body">
+                                                                                            <h5 class="card-title">Chit Details</h5>
+                                                                                            <table class="table table-striped">
+
+                                                                                                <thead>
+                                                                                                    <tr>
+                                                                                                        <!-- <th>Group Name</th> -->
+                                                                                                        <th>CustomerName</th>
+                                                                                                        <th>Outstanding amt</th>
+                                                                                                        <th>Received amt</th>
+                                                                                                        <th>Ticket No</th>
+                                                                                                        <th>Collection Route </th>
+                                                                                                        <th>Contact No </th>
+                                                                                                    </tr>
+                                                                                                </thead>
+                                                                                                <tbody>
+                                                                                                    <tr *ngFor="let group of chitListByCustId">
+                                                                                                        <!-- <td>{{ group.groupName}}</td> -->
+                                                                                                        <td>{{ group.customerName}}</td>
+                                                                                                        <td>{{ group.outStandingAmount }}</td>
+                                                                                                        <td>{{ group.receivedAmount }}</td>
+                                                                                                        <td>{{group.ticketNumber}}</td>
+
+                                                                                                        <td>{{ group.collection_route }}</td>
+                                                                                                        <td>{{group.contactNumber}}</td>
+
+                                                                                                    </tr>
+                                                                                                </tbody>
+                                                                                            </table>
+
+
+                                                                                        </div>
+                                                                                    </div>
+                                                                                    <!-- <table class="table table-borderless ">
                                                                                         <tbody>
                                                                                             <h5 class="card-title">Chit Details</h5>
                                                                                             <tr>
@@ -409,10 +443,7 @@
                                                                                                 <th scope="col">Collection Route</th>
                                                                                                 <td>{{customerDetailbyid.customerChitDetails[0].collection_route}}</td>
                                                                                             </tr>
-                                                                                            <!-- <tr>
-                                                                                                  <th scope="col">Collection Pincode</th>
-                                                                                                  <td>{{customerDetailbyid.customerChitDetails[0].collection_pincode}}</td>
-                                                                                              </tr> -->
+                                                                                           
                                                                                             <tr>
                                                                                                 <th scope="col">chit Asking Month</th>
                                                                                                 <td>{{customerDetailbyid.customerChitDetails[0].chit_asking_month}}</td>
@@ -424,7 +455,7 @@
                                                                                         </tbody>
 
 
-                                                                                    </table>
+                                                                                    </table> -->
 
                                                                                 </div>
 

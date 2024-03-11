@@ -184,7 +184,11 @@
                                                         <td>{{ receipt.billAmount }}</td>
                                                         <td>
                                                             <div class="icon">
-                                                                <i class="bi bi-printer"></i></div>
+                                                                <i class="bi bi-pencil" data-bs-toggle="modal" data-bs-target="#EditReceipt" (click)="getReceiptDetailsbyId(receipt._id)"></i>&nbsp;
+                                                                <i class="bi bi-printer"></i>&nbsp;
+                                                                <i class="ri-delete-bin-line" (click)="deleteReceipt(receipt._id)"></i>&nbsp;
+                                                            </div>
+                                                                
                                                         </td>
 
                                                     </tr>
@@ -193,6 +197,64 @@
 
                                             <div class="d-flex " style="justify-content: right !important;">
                                                 <pagination-controls (pageChange)="changePage($event)"></pagination-controls>
+                                            </div>
+
+
+                                            <div class="modal fade" id="EditReceipt" tabindex="-1">
+                                                <div class="modal-dialog modal-xl">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <h5 class="modal-title">Receipt Edit</h5>
+                                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                        </div>
+                                                        <div class="modal-body">
+
+                                                            <form class="row g-3" #receiptForm="ngForm" (ngSubmit)="updateReceipt(ReceiptDetailsbyId)">
+                                                                <div class="col-md-3"> <label for="inputName5" class="form-label"> Receipt ID</label>
+                                                                    <input type="text" class="form-control" ngModel name="receiptId" id="inputName5" [(ngModel)]="ReceiptDetailsbyId.receiptId" readonly>
+                                                                </div>
+                                                                <div class="col-md-3"> <label for="inputName5" class="form-label"> Branch Name</label>
+                                                                    <input type="text" class="form-control" ngModel name="branchName" id="inputName5" [(ngModel)]="ReceiptDetailsbyId.branchName">
+                                                                </div>
+                                                                <div class="col-md-3"> <label for="inputName5" class="form-label"> Receipt Date</label>
+                                                                    <input type="date" class="form-control" ngModel name="receiptDate" id="inputName5" [(ngModel)]="ReceiptDetailsbyId.receiptDate" readonly>
+                                                                </div>
+                                                                <div class="col-md-3"> <label for="inputName5" class="form-label">Collection Employee</label>
+                                                                    <input type="text" class="form-control" ngModel name="collectionEmployee" id="inputName5" [(ngModel)]="ReceiptDetailsbyId.collectionEmployee">
+                                                                </div>
+                                                                <div class="col-md-3"> <label for="inputName5" class="form-label"> Customer Name</label>
+                                                                    <input type="text" class="form-control" ngModel name="customerName" id="inputName5" [(ngModel)]="ReceiptDetailsbyId.customerName">
+                                                                </div>
+                                                                <div class="col-md-3"> <label for="inputName5" class="form-label">Enrollment</label>
+                                                                    <input type="text" class="form-control" ngModel name="selectEnrollment" id="inputName5" [(ngModel)]="ReceiptDetailsbyId.selectEnrollment">
+                                                                </div>
+                                                                <div class="col-md-3"> <label for="inputName5" class="form-label"> Receipt Type</label>
+                                                                    <input type="text" class="form-control" ngModel name="receiptType" id="inputName5" [(ngModel)]="ReceiptDetailsbyId.receiptType">
+                                                                </div>
+                                                                <div class="col-md-3"> <label for="inputName5" class="form-label"> Bill Amount</label>
+                                                                    <input type="text" class="form-control" ngModel name="billAmount" id="inputName5" [(ngModel)]="ReceiptDetailsbyId.billAmount">
+                                                                </div>
+                                                                <div class="col-md-3"> <label for="inputName5" class="form-label"> Collection Route</label>
+                                                                    <input type="text" class="form-control" ngModel name="collectionRoute" id="inputName5" [(ngModel)]="ReceiptDetailsbyId.collectionRoute">
+                                                                </div>
+                                                                <div class="col-md-3"> <label for="inputName5" class="form-label"> Payment Mode</label>
+                                                                    <input type="text" class="form-control" ngModel name="paymentMode" id="inputName5" [(ngModel)]="ReceiptDetailsbyId.paymentMode">
+                                                                </div>
+                                                                <div class="col-md-3"> <label for="inputName5" class="form-label"> Ticket Number</label>
+                                                                    <input type="text" class="form-control" ngModel name="ticketNumber" id="inputName5" [(ngModel)]="ReceiptDetailsbyId.ticketNumber">
+                                                                </div>
+                                                               
+                                                                <div class="modal-footer"><button type="submit" class="btn btn-primary">&nbsp; Update</button>&nbsp;
+                                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close
+                                                                     </button>
+                                                                </div>
+
+                                                            </form>
+
+                                                        </div>
+
+                                                    </div>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
@@ -287,7 +349,7 @@
                                                         <div class="col-md-6"> <label for="inputName5" class="form-label"> Customer Name</label>
                                                             <select ngModel name="customerName" class="form-control">
                                  <option value="" disable selected hidden>---Select----</option>
-                                 <option *ngFor="let cusData of GroupDetailsbyId" [ngValue]="{cusId:  cusData.customerId, cusName: cusData.customerName, collectroute: cusData.collection_route , custicket : cusData.ticketNumber}">
+                                 <option *ngFor="let cusData of ReceiptDetailsbyId" [ngValue]="{cusId:  cusData.customerId, cusName: cusData.customerName, collectroute: cusData.collection_route , custicket : cusData.ticketNumber}">
                                    {{cusData.customerName}} - {{cusData.ticketNumber}}
                                 </option>
                                  

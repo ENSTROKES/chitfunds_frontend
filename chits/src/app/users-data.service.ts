@@ -12,8 +12,8 @@ export class UserDataService {
   }
   
   data = String;
-  // urlstrng= "https://api.vanmohportal.com/"
- urlstrng= "http://3.109.252.15/chitfund/"
+  urlstrng= "https://api.vanmohportal.com/"
+//  urlstrng= "http://3.109.252.15/chitfund/"
   // url = 'https://jsonplaceholder.typicode.com/users';
   url = this.urlstrng +'getAllEmployee';
   createurl = this.urlstrng +'createEmployee';
@@ -24,11 +24,13 @@ export class UserDataService {
   createbrnch = this.urlstrng +'createBranch';
   creategrp = this.urlstrng +'createGroup';
   createreceipt = this.urlstrng +'createReceipt';
+  updatereceipt= this.urlstrng +'updateReceipt';
   getAllgrp =this.urlstrng +'getAllGroup';
   getAllcustomer =this.urlstrng +'getAllCustomers';
   getReceipt =this.urlstrng +'getAllReceipt';
   createcustomer=this.urlstrng +'createCustomer';
   customerbyidurl=this.urlstrng +'getCustomerById?id=';
+  chitlistByCustId=this.urlstrng +'getChitListByCustomerId?customerId=';
   groupbyidurl=this.urlstrng +'getGroupById?id=';
   employeebyidurl=this.urlstrng +'getEmployeeById?id=';
   loginurl=this.urlstrng +'userLogin?userName=';
@@ -57,6 +59,8 @@ export class UserDataService {
   outstandingcustomer=this.urlstrng+"customerOutstandingBySubscription";
   createroute=this.urlstrng+"createRoute";
   getallroute=this.urlstrng+"getAllRote";
+  getReceiptById = this.urlstrng+"getReceiptById?id=";
+  deleteReceiptById = this.urlstrng+"deleteReceipt?recptId=";
   //getDocbyid='http://192.168.1.12:8082/getImageByCustomer?id=3';
   constructor(private http: HttpClient) {
     //employeeData: any;

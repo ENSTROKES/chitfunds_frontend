@@ -161,6 +161,17 @@ export class GrouplistComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  getUpdatelist(){
+    this.http.get(this.userData.grouplistmapdcus+this.grpidvalue).subscribe((data) =>{
+    this.grpmapidoutput=data;
+      Object.keys(this.grpmapidoutput).forEach(prop => {
+      if(prop=="object"){
+        this.GroupMappdetails = this.grpmapidoutput[prop];
+        //console.log("GetData" +this.GroupMappdetails);
+      }
+      });
+      
+    })  
+  }
   
-
 }
