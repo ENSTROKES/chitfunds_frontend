@@ -1,18 +1,41 @@
 /* You can add global styles to this file, and also import other style files */
 
-
 /* @import "bootstarp/dist/css/bootstrap.css"; */
+@import url("./assets/fonts/fonts.scss");
+
+:root {
+  scroll-behavior: smooth;
+  --app-font: "Metropolis", sans-serif !important;
+  --app-white: #fff;
+  --app-color: #6941c6;
+  --app-primary-button-active-color: #9162ff;
+  --app-sidebar-bg: rgb(105 65 198 / 17%);
+}
+
+body {
+  font-family: var(--app-font);
+}
+
+.btn-primary {
+  --bs-btn-color: var(--app-white);
+  --bs-btn-bg: var(--app-color);
+  --bs-btn-active-bg: var(--app-color);
+  --bs-btn-active-border-color: var(--app-color);
+  --bs-btn-border-color: var(--app-color);
+  --bs-btn-hover-bg: var(--app-primary-button-active-color);
+  --bs-btn-hover-border-color: var(--app-primary-button-active-color);
+}
 
 .my-confirm-button-class {
-    background-color: #0C52A6 !important;
-    color: white !important;
+  background-color: #0c52a6 !important;
+  color: white !important;
 }
 
 .my-cancel-button-class {
-    background-color: rgb(119, 119, 119) !important;
-    color: white !important;
+  background-color: rgb(119, 119, 119) !important;
+  color: white !important;
 }
 
 .my-alert-title-class {
-    font-weight: 800;
+  font-weight: 800;
 }

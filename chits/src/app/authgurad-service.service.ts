@@ -1,12 +1,11 @@
 import { Injectable } from '@angular/core';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class AuthguradServiceService {
-
-  constructor() { }
-  gettoken(){  
-    return !!localStorage.getItem("SeesionUser");  
-    } 
+  constructor() {}
+  gettoken() {
+    return !!localStorage.getItem('SeesionUser');
+  }
 }
