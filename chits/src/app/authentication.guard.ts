@@ -18,11 +18,12 @@ export class AuthenticationGuard implements CanActivate {
     private Authguardservice: AuthguradServiceService,
     private router: Router
   ) {}
-  canActivate(): boolean // state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree // route: ActivatedRouteSnapshot,
+  canActivate(): boolean // route: ActivatedRouteSnapshot,
+  // state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree
   {
-    // if (!this.Authguardservice.gettoken()) {
-    //   this.router.navigateByUrl('/pages-login');
-    // }
+    if (!this.Authguardservice.gettoken()) {
+      this.router.navigateByUrl('/pages-login');
+    }
     return this.Authguardservice.gettoken();
   }
 }
