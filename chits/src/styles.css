@@ -69,3 +69,7 @@ body {
 .form-label {
   font-weight: 600;
 }
+
+.breadcrumb {
+  font-size: small;
+}
