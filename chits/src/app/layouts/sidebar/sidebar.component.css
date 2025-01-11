@@ -1,3 +1,10 @@
 .active-link {
-    color: #4154f1 !important; /* Note: You could also use a custom theme */
-  }
+  color: var(
+    --app-color
+  ) !important; /* Note: You could also use a custom theme */
+}
+.active-link i {
+  color: var(
+    --app-color
+  ) !important; /* Note: You could also use a custom theme */
+}

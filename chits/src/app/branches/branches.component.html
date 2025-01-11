@@ -25,27 +25,31 @@
                             </div>
                         </div> -->
                         <div class="row">
-                            <div class="col-md-2"> <label for="inputName5" class="form-label">  <b>Type</b><span style="color:red">*</span></label>
+                            <div class="col-md-2"> <label for="inputName5" class="form-label"> <b>Type</b><span
+                                        style="color:red">*</span></label>
                                 <select ngModel name="headoffice" [(ngModel)]="offctyp" class="form-control">
                                     <option [selected]="true" [ngValue]="brchselectvalue">---Select---</option>
-                            <option value="All" >All</option>
-                             <option value="true" >Head Office</option>
-                             <option value="false" >Branch Office</option>
-                    </select>
+                                    <option value="All">All</option>
+                                    <option value="true">Head Office</option>
+                                    <option value="false">Branch Office</option>
+                                </select>
 
                             </div>
                             <div class="col-md-2">
-                                <button type="button" style="margin-top:32px;" class="btn btn-primary" data-bs-dismiss="modal" (click)="searchFilter(offctyp)">Search</button>
+                                <button type="button" style="margin-top:32px;" class="btn btn-primary"
+                                    data-bs-dismiss="modal" (click)="searchFilter(offctyp)">Search</button>
                             </div>
                         </div>
 
-                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#largeModal" style="margin-left:900px; margin-top:-63px;"> Create </button>
+                        <button type="button" class="btn btn-primary" data-bs-toggle="modal"
+                            data-bs-target="#largeModal" style="margin-left:900px; margin-top:-63px;"> Create </button>
                         <div class="modal fade" id="largeModal" tabindex="-1">
                             <div class="modal-dialog modal-lg">
                                 <div class="modal-content">
                                     <div class="modal-header">
                                         <h5 class="modal-title">Office Form </h5>
-                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                            aria-label="Close"></button>
                                     </div>
                                     <div class="modal-body">
                                         <div class="col-lg-15">
@@ -53,77 +57,123 @@
                                             <div class="card">
                                                 <div class="card-body">
                                                     <!-- <h5 class="card-title">Group Form</h5> -->
-                                                    <form class="row g-3" #branchForm="ngForm" (ngSubmit)="getbranchFormData(branchForm.value)">
-                                                        <div class="col-md-4"> <label for="inputName5" class="form-label">Office Name</label> <input type="text" class="form-control" id="inputName5" ngModel name="officeName"></div>
-                                                        <div class="col-md-4"> <label for="inputName5" class="form-label">Branch Code</label> <input type="text" class="form-control" id="inputName5" ngModel name="branchCode" maxlength="3"></div>
+                                                    <form class="row g-3" #branchForm="ngForm"
+                                                        (ngSubmit)="getbranchFormData(branchForm.value)">
+                                                        <div class="col-md-4"> <label for="inputName5"
+                                                                class="form-label">Office Name</label> <input
+                                                                type="text" class="form-control" id="inputName5" ngModel
+                                                                name="officeName"></div>
+                                                        <div class="col-md-4"> <label for="inputName5"
+                                                                class="form-label">Branch Code</label> <input
+                                                                type="text" class="form-control" id="inputName5" ngModel
+                                                                name="branchCode" maxlength="3"></div>
                                                         <div class="col-md-6">
-                                                            <label for="inputName5" class="form-label"> Mobile Number </label>
-                                                            <div class="input-group w-50"><span class="input-group-text">+91</span> <input type="text" ngModel name="phoneNumber" maxlength="10" class="form-control"></div>
+                                                            <label for="inputName5" class="form-label"> Mobile Number
+                                                            </label>
+                                                            <div class="input-group w-50"><span
+                                                                    class="input-group-text">+91</span> <input
+                                                                    type="text" ngModel name="phoneNumber"
+                                                                    maxlength="10" class="form-control"></div>
                                                         </div>
-                                                        <div class="col-md-4"> <label for="inputName5" class="form-label">Email ID</label> <input type="text" class="form-control" id="inputName5" ngModel name="emailID"></div>
+                                                        <div class="col-md-4"> <label for="inputName5"
+                                                                class="form-label">Email ID</label> <input type="text"
+                                                                class="form-control" id="inputName5" ngModel
+                                                                name="emailID"></div>
                                                         <div class="col-md-6">
                                                             <label for="inputName5" class="form-label"> Address</label>
-                                                            <div class="form-floating"><textarea class="form-control" ngModel name="address" id="floatingTextarea" style="height: 100px;"></textarea><label for="floatingTextarea"></label></div>
+                                                            <div class="form-floating"><textarea class="form-control"
+                                                                    ngModel name="address" id="floatingTextarea"
+                                                                    style="height: 100px;"></textarea><label
+                                                                    for="floatingTextarea"></label></div>
                                                         </div>
-                                                        <div class="col-md-3"> <label for="inputZip" class="form-label">Pin Code</label> <input type="text" class="form-control" id="inputZip" ngModel name="pincode"></div>
+                                                        <div class="col-md-3"> <label for="inputZip"
+                                                                class="form-label">Pin Code</label> <input type="text"
+                                                                class="form-control" id="inputZip" ngModel
+                                                                name="pincode"></div>
                                                         <div class="col-md-4">
                                                             <label for="inputState" class="form-label">State</label>
-                                                            <select id="inputState" ngModel name="state" class="form-select">
-                                                <option disable selected hidden>Choose...</option>
-                                                <option value="AN">Andaman and Nicobar Islands</option>
-                                                <option value="AP">Andhra Pradesh</option>
-                                                <option value="AR">Arunachal Pradesh</option>
-                                                <option value="AS">Assam</option>
-                                                <option value="BR">Bihar</option>
-                                                <option value="CH">Chandigarh</option>
-                                                <option value="CT">Chhattisgarh</option>
-                                                <option value="DN">Dadra and Nagar Haveli</option>
-                                                <option value="DD">Daman and Diu</option>
-                                                <option value="DL">Delhi</option>
-                                                <option value="GA">Goa</option>
-                                                <option value="GJ">Gujarat</option>
-                                                <option value="HR">Haryana</option>
-                                                <option value="HP">Himachal Pradesh</option>
-                                                <option value="JK">Jammu and Kashmir</option>
-                                                <option value="JH">Jharkhand</option>
-                                                <option value="KA">Karnataka</option>
-                                               <option value="KL">Kerala</option>
-                                               <option value="LA">Ladakh</option> 
-                                                <option value="LD">Lakshadweep</option>
-                                                <option value="MP">Madhya Pradesh</option>
-                                                <option value="MH">Maharashtra</option>
-                                                <option value="MN">Manipur</option>
-                                                <option value="ML">Meghalaya</option>
-                                                <option value="MZ">Mizoram</option>
-                                                <option value="NL">Nagaland</option>
-                                                <option value="OR">Odisha</option>
-                                                <option value="PY">Puducherry</option>
-                                                <option value="PB">Punjab</option>
-                                                <option value="RJ">Rajasthan</option>
-                                                <option value="SK">Sikkim</option>
-                                                <option value="TN">Tamil Nadu</option>
-                                                <option value="TG">Telangana</option>
-                                                <option value="TR">Tripura</option>
-                                                <option value="UP">Uttar Pradesh</option>
-                                                <option value="UT">Uttarakhand</option>
-                                                <option value="WB">West Bengal</option>
-                                             </select>
+                                                            <select id="inputState" ngModel name="state"
+                                                                class="form-select">
+                                                                <option disable selected hidden>Choose...</option>
+                                                                <option value="AN">Andaman and Nicobar Islands</option>
+                                                                <option value="AP">Andhra Pradesh</option>
+                                                                <option value="AR">Arunachal Pradesh</option>
+                                                                <option value="AS">Assam</option>
+                                                                <option value="BR">Bihar</option>
+                                                                <option value="CH">Chandigarh</option>
+                                                                <option value="CT">Chhattisgarh</option>
+                                                                <option value="DN">Dadra and Nagar Haveli</option>
+                                                                <option value="DD">Daman and Diu</option>
+                                                                <option value="DL">Delhi</option>
+                                                                <option value="GA">Goa</option>
+                                                                <option value="GJ">Gujarat</option>
+                                                                <option value="HR">Haryana</option>
+                                                                <option value="HP">Himachal Pradesh</option>
+                                                                <option value="JK">Jammu and Kashmir</option>
+                                                                <option value="JH">Jharkhand</option>
+                                                                <option value="KA">Karnataka</option>
+                                                                <option value="KL">Kerala</option>
+                                                                <option value="LA">Ladakh</option>
+                                                                <option value="LD">Lakshadweep</option>
+                                                                <option value="MP">Madhya Pradesh</option>
+                                                                <option value="MH">Maharashtra</option>
+                                                                <option value="MN">Manipur</option>
+                                                                <option value="ML">Meghalaya</option>
+                                                                <option value="MZ">Mizoram</option>
+                                                                <option value="NL">Nagaland</option>
+                                                                <option value="OR">Odisha</option>
+                                                                <option value="PY">Puducherry</option>
+                                                                <option value="PB">Punjab</option>
+                                                                <option value="RJ">Rajasthan</option>
+                                                                <option value="SK">Sikkim</option>
+                                                                <option value="TN">Tamil Nadu</option>
+                                                                <option value="TG">Telangana</option>
+                                                                <option value="TR">Tripura</option>
+                                                                <option value="UP">Uttar Pradesh</option>
+                                                                <option value="UT">Uttarakhand</option>
+                                                                <option value="WB">West Bengal</option>
+                                                            </select>
                                                         </div>
-                                                        <div class="col-md-4"> <label for="inputCity" class="form-label">District</label> <input type="text" class="form-control" id="inputCity" ngModel name="district"></div>
-                                                        <div class="col-md-3"> <label for="inputCity" class="form-label">City</label> <input type="text" class="form-control" id="inputCity" ngModel name="city"></div>
-                                                        <div class="col-md-4"> <label for="inputCity" class="form-label">Landmark</label> <input type="text" class="form-control" id="inputCity" ngModel name="landmark"></div>
-                                                        <div class="col-md-4"> <label for="inputCity" class="form-label">Remarks</label> <input type="text" class="form-control" id="inputCity" ngModel name="remarks"></div>
-                                                        <div class="col-md-6"> <label for="inputName5" class="form-label"> Start Date </label> <input type="date" class="form-control" id="inputName5" ngModel name="startUpDate"></div>
-                                                        <label class="form-check-label" for="gridCheck1" style="margin-top: -10px; padding-top: 30px;"> If Branch Office: &nbsp; Yes</label>
-                                                        <input class="form-check-input" ngModel name="headOffice" style="margin-top: -20px;margin-left: 180px;" type="checkbox" [(ngModel)]="isChecked" (change)="showHideText($event);">
+                                                        <div class="col-md-4"> <label for="inputCity"
+                                                                class="form-label">District</label> <input type="text"
+                                                                class="form-control" id="inputCity" ngModel
+                                                                name="district"></div>
+                                                        <div class="col-md-3"> <label for="inputCity"
+                                                                class="form-label">City</label> <input type="text"
+                                                                class="form-control" id="inputCity" ngModel name="city">
+                                                        </div>
+                                                        <div class="col-md-4"> <label for="inputCity"
+                                                                class="form-label">Landmark</label> <input type="text"
+                                                                class="form-control" id="inputCity" ngModel
+                                                                name="landmark"></div>
+                                                        <div class="col-md-4"> <label for="inputCity"
+                                                                class="form-label">Remarks</label> <input type="text"
+                                                                class="form-control" id="inputCity" ngModel
+                                                                name="remarks"></div>
+                                                        <div class="col-md-6"> <label for="inputName5"
+                                                                class="form-label"> Start Date </label> <input
+                                                                type="date" class="form-control" id="inputName5" ngModel
+                                                                name="startUpDate"></div>
+                                                        <label class="form-check-label" for="gridCheck1"
+                                                            style="margin-top: -10px; padding-top: 30px;"> If Branch
+                                                            Office: &nbsp; Yes</label>
+                                                        <input class="form-check-input" ngModel name="headOffice"
+                                                            style="margin-top: -20px;margin-left: 180px;"
+                                                            type="checkbox" [(ngModel)]="isChecked"
+                                                            (change)="showHideText($event);">
 
                                                         <div *ngIf="isDisplayed">
                                                             <div class="row">
-                                                                <div class="col-md-6"> <label for="inputName5" class="form-label"> Head Office Name</label>
-                                                                    <select ngModel name="headOfficeName" class="form-control">
-                                                                        <option disable selected hidden>---Select----</option>
-                                                                         <option *ngFor="let headData of ListOfHeadData" [value]="headData.officeName">{{headData.officeName}}</option>
-                                                     
+                                                                <div class="col-md-6"> <label for="inputName5"
+                                                                        class="form-label"> Head Office Name</label>
+                                                                    <select ngModel name="headOfficeName"
+                                                                        class="form-control">
+                                                                        <option disable selected hidden>---Select----
+                                                                        </option>
+                                                                        <option *ngFor="let headData of ListOfHeadData"
+                                                                            [value]="headData.officeName">
+                                                                            {{headData.officeName}}</option>
+
                                                                     </select>
                                                                 </div>
 
@@ -131,8 +181,11 @@
                                                             <!-- <div  class="modal-footer"> <button type="submit" class="btn btn-primary">Submit</button>&nbsp; <button type="reset" class="btn btn-secondary">Reset</button></div>                                             -->
                                                         </div>
                                                         <div class="modal-footer">
-                                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                                            <button type="submit" class="btn btn-primary">&nbsp; Submit</button></div>
+                                                            <button type="button" class="btn btn-secondary"
+                                                                data-bs-dismiss="modal">Close</button>
+                                                            <button type="submit"
+                                                                class="btn btn-primary">Submit</button>
+                                                        </div>
                                                         <!-- [disabled]="isLoading" (click)="click()"
                                                             <i class="spinner-border" style="width: 20px; height: 20px;"[ngClass]="{'spinner-border': isLoading}"></i> -->
                                                     </form>
@@ -171,8 +224,10 @@
                                     <td>{{ brnchData.startUpDate}}</td>
                                     <td>
                                         <div class="icon">
-                                            <i class="bi bi-pencil" data-bs-toggle="modal" data-bs-target="#Editbranch" (click)="getBranchbyId(brnchData._id)"></i> &nbsp;
-                                            <i class="bi bi-eye" data-bs-toggle="modal" data-bs-target="#Getbranch" (click)="getBranchbyId(brnchData._id)"></i>&nbsp;
+                                            <i class="bi bi-pencil" data-bs-toggle="modal" data-bs-target="#Editbranch"
+                                                (click)="getBranchbyId(brnchData._id)"></i> &nbsp;
+                                            <i class="bi bi-eye" data-bs-toggle="modal" data-bs-target="#Getbranch"
+                                                (click)="getBranchbyId(brnchData._id)"></i>&nbsp;
                                             <!-- (click)="userDetails(brnchData.branchID)" -->
 
                                             <i class="ri-delete-bin-line" (click)="deleteBranchbyId(brnchData._id)"></i>
@@ -181,45 +236,107 @@
                                                     <div class="modal-content">
                                                         <div class="modal-header">
 
-                                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                            <button type="button" class="btn-close"
+                                                                data-bs-dismiss="modal" aria-label="Close"></button>
                                                         </div>
                                                         <div class="modal-body">
 
-                                                            <form class="row g-3" #branchForm="ngForm" (ngSubmit)="getbranchFormData(branchForm.value)">
+                                                            <form class="row g-3" #branchForm="ngForm"
+                                                                (ngSubmit)="getbranchFormData(branchForm.value)">
 
-                                                                <div class="col-md-6"> <label for="inputName5" class="form-label">Branch ID</label>
-                                                                    <input type="text" class="form-control" ngModel name="branchId" id="inputName5" [(ngModel)]="BranchDetailById.branchId" readonly>
+                                                                <div class="col-md-6"> <label for="inputName5"
+                                                                        class="form-label">Branch ID</label>
+                                                                    <input type="text" class="form-control" ngModel
+                                                                        name="branchId" id="inputName5"
+                                                                        [(ngModel)]="BranchDetailById.branchId"
+                                                                        readonly>
                                                                 </div>
-                                                                <div class="col-md-6"> <label for="inputName5" class="form-label">Branch Code</label>
-                                                                    <input type="text" class="form-control" ngModel name="branchCode" id="inputName5" [(ngModel)]="BranchDetailById.branchCode" readonly>
+                                                                <div class="col-md-6"> <label for="inputName5"
+                                                                        class="form-label">Branch Code</label>
+                                                                    <input type="text" class="form-control" ngModel
+                                                                        name="branchCode" id="inputName5"
+                                                                        [(ngModel)]="BranchDetailById.branchCode"
+                                                                        readonly>
                                                                 </div>
-                                                                <div class="col-md-6"> <label for="inputName5" class="form-label">Branch Name</label>
-                                                                    <input type="text" class="form-control" ngModel name="officeName" id="inputName5" [(ngModel)]="BranchDetailById.officeName">
+                                                                <div class="col-md-6"> <label for="inputName5"
+                                                                        class="form-label">Branch Name</label>
+                                                                    <input type="text" class="form-control" ngModel
+                                                                        name="officeName" id="inputName5"
+                                                                        [(ngModel)]="BranchDetailById.officeName">
                                                                 </div>
-                                                                <div class="col-md-6"> <label for="inputName5" class="form-label">Mobile Number</label> <input type="text" class="form-control" ngModel name="phoneNumber" id="inputName5
+                                                                <div class="col-md-6"> <label for="inputName5"
+                                                                        class="form-label">Mobile Number</label> <input
+                                                                        type="text" class="form-control" ngModel
+                                                                        name="phoneNumber" id="inputName5
                                    " [(ngModel)]="BranchDetailById.phoneNumber"></div>
-                                                                <div class="col-md-6"> <label for="inputName5" class="form-label">Head office</label> <input type="text" class="form-control" ngModel name="headOffice" id="inputName5
+                                                                <div class="col-md-6"> <label for="inputName5"
+                                                                        class="form-label">Head office</label> <input
+                                                                        type="text" class="form-control" ngModel
+                                                                        name="headOffice" id="inputName5
                                    " [(ngModel)]="BranchDetailById.headOffice" readonly></div>
-                                                                <div class="col-md-6"> <label for="inputName5" class="form-label">Head Office Name</label> <input type="text" class="form-control" ngModel name="headOfficeName" id="inputName5
+                                                                <div class="col-md-6"> <label for="inputName5"
+                                                                        class="form-label">Head Office Name</label>
+                                                                    <input type="text" class="form-control" ngModel
+                                                                        name="headOfficeName" id="inputName5
                                    " [(ngModel)]="BranchDetailById.headOfficeName"></div>
-                                                                <div class="col-md-6"> <label for="inputName5" class="form-label">Start date</label> <input type="date" class="form-control" ngModel name="startUpDate" id="inputName5
+                                                                <div class="col-md-6"> <label for="inputName5"
+                                                                        class="form-label">Start date</label> <input
+                                                                        type="date" class="form-control" ngModel
+                                                                        name="startUpDate" id="inputName5
                                    " [(ngModel)]="BranchDetailById.startUpDate"></div>
-                                                                <div class="col-md-6"> <label for="inputName5" class="form-label">Email ID</label> <input type="text" class="form-control" ngModel name="emailID" id="inputName5" [(ngModel)]="BranchDetailById.emailID"></div>
-                                                                <div class="col-md-6"> <label for="inputName5" class="form-label">Address</label> <input type="text" class="form-control" ngModel name="address" id="inputName5" [(ngModel)]="BranchDetailById.address"></div>
+                                                                <div class="col-md-6"> <label for="inputName5"
+                                                                        class="form-label">Email ID</label> <input
+                                                                        type="text" class="form-control" ngModel
+                                                                        name="emailID" id="inputName5"
+                                                                        [(ngModel)]="BranchDetailById.emailID"></div>
+                                                                <div class="col-md-6"> <label for="inputName5"
+                                                                        class="form-label">Address</label> <input
+                                                                        type="text" class="form-control" ngModel
+                                                                        name="address" id="inputName5"
+                                                                        [(ngModel)]="BranchDetailById.address"></div>
 
-                                                                <div class="col-md-6"> <label for="inputName5" class="form-label">City</label> <input type="text" class="form-control" ngModel name="city" id="inputName5" [(ngModel)]="BranchDetailById.city"></div>
-                                                                <div class="col-md-6"> <label for="inputName5" class="form-label">District</label> <input type="text" class="form-control" ngModel name="district" id="inputName5" [(ngModel)]="BranchDetailById.district"></div>
-                                                                <div class="col-md-6"> <label for="inputName5" class="form-label">State</label> <input type="text" class="form-control" ngModel name="state" id="inputName5" [(ngModel)]="BranchDetailById.state"></div>
-                                                                <div class="col-md-6"> <label for="inputName5" class="form-label">Pincode</label> <input type="text" class="form-control" ngModel name="pincode" id="inputName5" [(ngModel)]="BranchDetailById.pincode"></div>
-                                                                <div class="col-md-6"> <label for="inputName5" class="form-label">Landmark</label> <input type="text" class="form-control" ngModel name="landmark" id="inputName5" [(ngModel)]="BranchDetailById.landmark"></div>
-                                                                <div class="col-md-6"> <label for="inputName5" class="form-label">Remarks</label> <input type="text" class="form-control" ngModel name="remarks" id="inputName5" [(ngModel)]="BranchDetailById.remarks"></div>
+                                                                <div class="col-md-6"> <label for="inputName5"
+                                                                        class="form-label">City</label> <input
+                                                                        type="text" class="form-control" ngModel
+                                                                        name="city" id="inputName5"
+                                                                        [(ngModel)]="BranchDetailById.city"></div>
+                                                                <div class="col-md-6"> <label for="inputName5"
+                                                                        class="form-label">District</label> <input
+                                                                        type="text" class="form-control" ngModel
+                                                                        name="district" id="inputName5"
+                                                                        [(ngModel)]="BranchDetailById.district"></div>
+                                                                <div class="col-md-6"> <label for="inputName5"
+                                                                        class="form-label">State</label> <input
+                                                                        type="text" class="form-control" ngModel
+                                                                        name="state" id="inputName5"
+                                                                        [(ngModel)]="BranchDetailById.state"></div>
+                                                                <div class="col-md-6"> <label for="inputName5"
+                                                                        class="form-label">Pincode</label> <input
+                                                                        type="text" class="form-control" ngModel
+                                                                        name="pincode" id="inputName5"
+                                                                        [(ngModel)]="BranchDetailById.pincode"></div>
+                                                                <div class="col-md-6"> <label for="inputName5"
+                                                                        class="form-label">Landmark</label> <input
+                                                                        type="text" class="form-control" ngModel
+                                                                        name="landmark" id="inputName5"
+                                                                        [(ngModel)]="BranchDetailById.landmark"></div>
+                                                                <div class="col-md-6"> <label for="inputName5"
+                                                                        class="form-label">Remarks</label> <input
+                                                                        type="text" class="form-control" ngModel
+                                                                        name="remarks" id="inputName5"
+                                                                        [(ngModel)]="BranchDetailById.remarks"></div>
                                                                 <div class="col-md-6">
-                                                                    <input type="text" class="form-control" ngModel name="_id" id="inputName5" [(ngModel)]="BranchDetailById._id" hidden>
+                                                                    <input type="text" class="form-control" ngModel
+                                                                        name="_id" id="inputName5"
+                                                                        [(ngModel)]="BranchDetailById._id" hidden>
                                                                 </div>
 
-                                                                <div class="modal-footer"><button type="submit" class="btn btn-primary">&nbsp; Edit</button>&nbsp;
-                                                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close
-                                           </button>
+                                                                <div class="modal-footer"><button type="submit"
+                                                                        class="btn btn-primary">&nbsp;
+                                                                        Edit</button>&nbsp;
+                                                                    <button type="button" class="btn btn-secondary"
+                                                                        data-bs-dismiss="modal">Close
+                                                                    </button>
                                                                 </div>
 
                                                             </form>
@@ -234,7 +351,8 @@
                                                     <div class="modal-content">
                                                         <div class="modal-header">
 
-                                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                            <button type="button" class="btn-close"
+                                                                data-bs-dismiss="modal" aria-label="Close"></button>
                                                         </div>
                                                         <div class="modal-body">
 
@@ -253,14 +371,18 @@
                                                                         </tr>
                                                                         <tr>
                                                                             <th scope="col">Mobile Number</th>
-                                                                            <td>{{BranchDetailById.phoneNumber}}</td><br></tr>
+                                                                            <td>{{BranchDetailById.phoneNumber}}</td>
+                                                                            <br>
+                                                                        </tr>
                                                                         <tr>
                                                                             <th scope="col">Head Office Name</th>
                                                                             <td>{{BranchDetailById.headOfficeName}}</td>
                                                                         </tr>
                                                                         <tr>
                                                                             <th scope="col">Start date</th>
-                                                                            <td>{{BranchDetailById.startUpDate}}</td><br></tr>
+                                                                            <td>{{BranchDetailById.startUpDate}}</td>
+                                                                            <br>
+                                                                        </tr>
                                                                         <tr>
                                                                             <th scope="col">Email ID</th>
                                                                             <td>{{BranchDetailById.emailID}}</td>
@@ -279,14 +401,16 @@
                                                                         </tr>
                                                                         <tr>
                                                                             <th scope="col">State</th>
-                                                                            <td>{{BranchDetailById.state}}</td><br></tr>
+                                                                            <td>{{BranchDetailById.state}}</td><br>
+                                                                        </tr>
                                                                         <tr>
                                                                             <th scope="col">Pincode</th>
                                                                             <td>{{BranchDetailById.pincode}}</td>
                                                                         </tr>
                                                                         <tr>
                                                                             <th scope="col">Landmark</th>
-                                                                            <td>{{BranchDetailById.landmark}}</td><br></tr>
+                                                                            <td>{{BranchDetailById.landmark}}</td><br>
+                                                                        </tr>
                                                                         <tr>
                                                                             <th scope="col">Remarks</th>
                                                                             <td>{{BranchDetailById.remarks}}</td>
@@ -298,8 +422,9 @@
                                                                 </table>
                                                             </div>
                                                             <div class="modal-footer">
-                                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close
-                                                              </button>
+                                                                <button type="button" class="btn btn-secondary"
+                                                                    data-bs-dismiss="modal">Close
+                                                                </button>
                                                             </div>
 
                                                         </div>

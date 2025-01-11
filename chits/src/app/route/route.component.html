@@ -25,16 +25,19 @@
                             </nav>
                         </div>
 
-                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#largeModal" style="margin-left:780px; margin-top:-60px;"> Create </button>
+                        <button type="button" class="btn btn-primary" data-bs-toggle="modal"
+                            data-bs-target="#largeModal" style="margin-left:780px; margin-top:-60px;"> Create </button>
                         <div class="modal fade" id="largeModal" tabindex="-1">
                             <div class="modal-dialog modal-lg">
                                 <div class="modal-content">
                                     <div class="modal-header">
                                         <h5 class="modal-title">Route Creation </h5>
-                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                            aria-label="Close"></button>
                                     </div>
                                     <div class="modal-body">
-                                        <form class="row g-3" #routeForm="ngForm" (ngSubmit)="getrouteFormData(routeForm.value)">
+                                        <form class="row g-3" #routeForm="ngForm"
+                                            (ngSubmit)="getrouteFormData(routeForm.value)">
                                             <!-- <div class="col-md-6"> <label for="inputName5" class="form-label"> Branch</label>
                                                 <select name="BranchName" class="form-control">
                                        <option>---Select----</option>
@@ -43,19 +46,26 @@
                                     </option>
                                     </select>
                                             </div> -->
-                                            <div class="col-md-6"> <label for="inputName5" class="form-label">Branch Name</label>
+                                            <div class="col-md-6"> <label for="inputName5" class="form-label">Branch
+                                                    Name</label>
                                                 <select ngModel name="branch" class="form-control">
-                                                  <option disable selected hidden>---Select----</option>
-                                                   <option *ngFor="let branchData of ListOfBranchData" [value]="branchData.officeName">{{branchData.officeName}}</option>
-                                              </select>
+                                                    <option disable selected hidden>---Select----</option>
+                                                    <option *ngFor="let branchData of ListOfBranchData"
+                                                        [value]="branchData.officeName">{{branchData.officeName}}
+                                                    </option>
+                                                </select>
                                             </div>
 
 
-                                            <div class="col-md-6"> <label for="inputName5" class="form-label">Route Name</label> <input type="text" class="form-control" id="inputName5" ngModel name="collectionRouteName"></div>
+                                            <div class="col-md-6"> <label for="inputName5" class="form-label">Route
+                                                    Name</label> <input type="text" class="form-control" id="inputName5"
+                                                    ngModel name="collectionRouteName"></div>
                                             <!-- <div class="col-md-6"> <label for="inputName5" class="form-label">Pincode</label> <input type="text" maxlength="6" class="form-control" id="inputName5" ngModel name="district"></div> -->
                                             <div class="modal-footer">
-                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                                <button type="submit" class="btn btn-primary">&nbsp; Submit</button></div>
+                                                <button type="button" class="btn btn-secondary"
+                                                    data-bs-dismiss="modal">Close</button>
+                                                <button type="submit" class="btn btn-primary">Submit</button>
+                                            </div>
                                         </form>
                                     </div>
 

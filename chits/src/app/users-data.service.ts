@@ -10,10 +10,10 @@ export class UserDataService {
   get(user_id: any) {
     throw new Error('Method not implemented.');
   }
-  
+
   data = String;
-  urlstrng= "https://api.vanmohportal.com/"
-//  urlstrng= "http://3.109.252.15/chitfund/"
+  // urlstrng= "https://api.vanmohportal.com/"
+ urlstrng= "http://3.109.252.15:8080/chitfund/"
   // url = 'https://jsonplaceholder.typicode.com/users';
   url = this.urlstrng +'getAllEmployee';
   createurl = this.urlstrng +'createEmployee';
@@ -66,7 +66,7 @@ export class UserDataService {
     //employeeData: any;
   }
   CategoryName = ['Name', 'Username', 'Email'];
- 
+
 
   //employee
   users() {
@@ -94,7 +94,7 @@ export class UserDataService {
 
   //create employee
   createUser(data: any) {
-    
+
     //console.log("createUser" + data);
 
     return this.http.post(this.createurl, data);
@@ -110,7 +110,7 @@ export class UserDataService {
   // }
    //create branch
    createbranch(data: any) {
-    
+
     //console.log("createbranch" + data);
 
     return this.http.post(this.createbrnch, data);

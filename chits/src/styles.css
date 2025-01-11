@@ -10,6 +10,7 @@
   --app-color: #6941c6;
   --app-primary-button-active-color: #9162ff;
   --app-sidebar-bg: rgb(105 65 198 / 17%);
+  --bs-border-width: 1px;
 }
 
 body {
@@ -23,7 +24,9 @@ body {
   --bs-btn-active-border-color: var(--app-color);
   --bs-btn-border-color: var(--app-color);
   --bs-btn-hover-bg: var(--app-primary-button-active-color);
+  --bs-btn-disabled-bg: var(--app-primary-button-active-color);
   --bs-btn-hover-border-color: var(--app-primary-button-active-color);
+  --bs-btn-disabled-border-color: var(--app-primary-button-active-color);
 }
 
 .my-confirm-button-class {
@@ -38,4 +41,31 @@ body {
 
 .my-alert-title-class {
   font-weight: 800;
+}
+.btn-check:focus + .btn-primary,
+.btn-primary:focus {
+  background-color: var(--bs-btn-active-bg);
+  border-color: var(--bs-btn-active-bg);
+}
+
+.section .card {
+  border-width: 0px;
+}
+
+.nav-tabs .nav-link {
+  border: 0px;
+}
+
+.nav-tabs .nav-link:focus,
+.nav-tabs .nav-link:hover,
+.nav-tabs .nav-link.active {
+  border-bottom: 2px solid #1677ff;
+  border-top: 0px;
+  border-left: 0px;
+  border-radius: 0px;
+  color: #1677ff;
+}
+
+.form-label {
+  font-weight: 600;
 }

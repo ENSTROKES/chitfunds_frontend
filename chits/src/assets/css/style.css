@@ -418,10 +418,16 @@ h6 {
 }
 
 .header .toggle-sidebar-btn {
-  font-size: 32px;
-  padding-left: 10px;
+  font-size: 25px;
+  padding-left: 0px;
   cursor: pointer;
-  color: #012970;
+  color: #fff;
+  height: 100%;
+  display: block;
+  width: 100%;
+  margin-top: 3px;
+  margin-left: -2px;
+  font-weight: 600;
 }
 
 .header .search-bar {
@@ -701,8 +707,6 @@ h6 {
   align-items: center;
   font-size: 15px;
   font-weight: 600;
-  color: var(--app-color);
-  transition: 0.3;
   background: rgba(255, 255, 255, 0.2);
   padding: 10px 15px;
   border-radius: 8px;
@@ -711,7 +715,6 @@ h6 {
 .sidebar-nav .nav-link i {
   font-size: 16px;
   margin-right: 10px;
-  color: var(--app-color);
 }
 
 .sidebar-nav .nav-link.collapsed {
@@ -755,7 +758,7 @@ h6 {
   color: #012970;
   transition: 0.3;
   padding: 10px 0 10px 40px;
-  transition: 0.3s;
+  text-decoration: none;
 }
 
 .sidebar-nav .nav-content a i {
@@ -767,7 +770,7 @@ h6 {
 
 .sidebar-nav .nav-content a:hover,
 .sidebar-nav .nav-content a.active {
-  color: #4154f1;
+  color: var(--app-color);
 }
 
 .sidebar-nav .nav-content a.active i {
