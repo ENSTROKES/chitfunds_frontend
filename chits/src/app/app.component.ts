@@ -1,4 +1,4 @@
-import { Component ,ElementRef} from '@angular/core';
+import { Component, ElementRef } from '@angular/core';
 import { Router } from '@angular/router';
 import { BnNgIdleService } from 'bn-ng-idle';
 import Swal from 'sweetalert2';
@@ -6,14 +6,16 @@ import Swal from 'sweetalert2';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  styleUrls: ['./app.component.css'],
 })
 export class AppComponent {
   title = 'admindashboard';
-  
-  constructor(private elementRef: ElementRef,  public  _router: Router,private bnIdle: BnNgIdleService ) { 
-    
-  }
+
+  constructor(
+    private elementRef: ElementRef,
+    public _router: Router,
+    private bnIdle: BnNgIdleService
+  ) {}
   showInfoAlert() {
     Swal.fire({
       title: 'Session expired',
@@ -23,19 +25,12 @@ export class AppComponent {
       confirmButtonText: '   Ok   ',
       customClass: {
         confirmButton: 'my-confirm-button-class',
-        
-        
-      }
-      
+      },
     }).then((result) => {
-
       if (result.isConfirmed) {
-
-       location.reload();
-
+        location.reload();
       }
-    })
-   
+    });
   }
 
   isLoginPage(): boolean {
@@ -45,23 +40,19 @@ export class AppComponent {
   }
 
   ngOnInit(): void {
-
-    var s = document.createElement("script");
-    s.type = "text/javascript";
-    s.src = "../assets/js/main.js";
+    var s = document.createElement('script');
+    s.type = 'text/javascript';
+    s.src = '../assets/js/main.js';
     this.elementRef.nativeElement.appendChild(s);
 
     this.bnIdle.startWatching(400).subscribe((isTimedOut: boolean) => {
       if (isTimedOut && !this.isLoginPage()) {
         // Question
         localStorage.clear();
-       this.showInfoAlert() ;
-       
+        this.showInfoAlert();
+
         this.bnIdle.stopTimer();
       }
     });
-    
   }
-
-  }
-
+}

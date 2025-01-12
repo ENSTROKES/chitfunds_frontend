@@ -30,10 +30,14 @@ body {
 }
 
 .my-confirm-button-class {
-  background-color: #0c52a6 !important;
+  background-color: var(--app-color) !important;
   color: white !important;
 }
 
+.swal2-icon.swal2-info {
+  color: var(--app-color) !important;
+  border-color: var(--app-color) !important;
+}
 .my-cancel-button-class {
   background-color: rgb(119, 119, 119) !important;
   color: white !important;
