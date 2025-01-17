@@ -1,69 +1,72 @@
 <main id="main" class="main">
 
-    <!-- <div class="col-md-2">
+  <!-- <div class="col-md-2">
 
 <button type="button" style="margin-top:32px;margin-left: 350px !important;" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#largeModal" (click)="exportAsXLSX()"> download</button>
 </div> -->
-    <section class="section">
-        <div class="row">
-            <div class="col-lg-12">
-                <div class="card">
-                    <div class="card-body">
-                        <h5 class="card-title">Subscription Data</h5>
-                        <div class="col-md-1" style="padding: 7px;">
-                            <button type="button " class="btn btn-primary " data-bs-dismiss="modal " (click)="goTobackPage('outstandsub')">Back</button></div>
-                        <table class="table table-striped">
+  <section class="section">
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title">Subscription Data</h5>
+            <div class="col-md-1" style="padding: 7px;">
+              <button type="button " class="btn btn-primary " data-bs-dismiss="modal "
+                (click)="goTobackPage('outstandsub')">Back</button>
+            </div>
+            <table class="table table-striped">
 
-                            <thead>
-                                <tr>
-                                    <th>S.No</th>
-                                    <th>Name</th>
-                                    <th>Ticket No</th>
-                                    <th>Contact No</th>
-                                    <th>Instalment</th>
-                                    <th>Outstanding</th>
-                                    <th>Last Payment</th>
-                                    <th>Remarks</th>
-                                    <th>Action</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr *ngFor="let cusdata of ListOfCustdata; let i = index">
-                                    <td>{{i+1}}</td>
-                                    <td>{{cusdata.customerName}}</td>
-                                    <td>{{cusdata.ticketNumber}}</td>
-                                    <td>{{cusdata.contactNumber}}</td>
-                                    <td>{{cusdata.installment}}</td>
-                                    <!-- <td>{{cusdata.pendingAmount!.toLocaleString()}}</td> -->
-                                    <td>
-                                        <div *ngIf="cusdata.pendingAmount > 0; then trueBlock else falseBlock"></div>
+              <thead>
+                <tr>
+                  <th>S.No</th>
+                  <th>Name</th>
+                  <th>Ticket No</th>
+                  <th>Contact No</th>
+                  <th>Instalment</th>
+                  <th>Outstanding</th>
+                  <th>Last Payment</th>
+                  <th>Remarks</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let cusdata of ListOfCustdata; let i = index">
+                  <td>{{i+1}}</td>
+                  <td>{{cusdata.customerName}}</td>
+                  <td>{{cusdata.ticketNumber}}</td>
+                  <td>{{cusdata.contactNumber}}</td>
+                  <td>{{cusdata.installment}}</td>
+                  <td>
+                    <div *ngIf="cusdata.pendingAmount > 0; then trueBlock else falseBlock"></div>
 
-                                        <ng-template #trueBlock>
-                                            <i class="bi bi-arrow-down-circle-fill down-arrow"></i>&nbsp;
-                                            <span class="value down-arrow">{{ cusdata.pendingAmount!.toLocaleString() }}</span>
-                                        </ng-template>
+                    <ng-template #trueBlock>
+                      <i class="bi bi-arrow-down-circle-fill down-arrow"></i>&nbsp;
+                      <span class="value down-arrow">{{ cusdata.pendingAmount!.toLocaleString() }}</span>
+                    </ng-template>
 
-                                        <ng-template #falseBlock>
-                                            <ng-container *ngIf="cusdata.pendingAmount < 0; then negativeBlock else zeroBlock"></ng-container>
+                    <ng-template #falseBlock>
+                      <ng-container *ngIf="cusdata.pendingAmount < 0; then negativeBlock else zeroBlock"></ng-container>
 
-                                            <ng-template #negativeBlock>
-                                                <i class="bi bi-arrow-up-circle-fill up-arrow"></i>&nbsp;
-                                                <span class="value up-arrow">{{ -cusdata.pendingAmount }}</span>
-                                            </ng-template>
+                      <ng-template #negativeBlock>
+                        <i class="bi bi-arrow-up-circle-fill up-arrow"></i>&nbsp;
+                        <span class="value up-arrow">{{ -cusdata.pendingAmount }}</span>
+                      </ng-template>
 
-                                            <ng-template #zeroBlock>
-                                                <i class="bi bi-dash-circle-fill dash-arrow"></i>&nbsp;
-                                                <span class="dash-arrow">{{ cusdata.pendingAmount!.toLocaleString() }}</span>
-                                            </ng-template>
-                                        </ng-template>
-                                    </td>
-                                    <td>{{cusdata.lastPaiedDate | date :'dd-MMM-yy'}}</td>
-                                    <td>null</td>
-                                    <td>
-                                        <div class="icon">
-                                            <i class="bi bi-person-fill" data-bs-toggle="modal" data-bs-target="#Getcustomer" (click)="getCustomerbyId(cusdata.customerId)"></i>&nbsp;&nbsp;&nbsp;
-                                            <i class="bi bi-eye" (click)="goToPage( 'cusclander',cusdata.customerId,cusdata.paidAmount,cusdata.installment,cusdata.pendingAmount)"></i>
-                                            <!-- <i class="bi bi-eye" data-bs-toggle="modal" data-bs-target="#Getcalender" (click)="getrecieptId(cusdata.customerId)"></i>
+                      <ng-template #zeroBlock>
+                        <i class="bi bi-dash-circle-fill dash-arrow"></i>&nbsp;
+                        <span class="dash-arrow">{{ cusdata.pendingAmount!.toLocaleString() }}</span>
+                      </ng-template>
+                    </ng-template>
+                  </td>
+                  <td>{{cusdata.lastPaiedDate | date :'dd-MMM-yy'}}</td>
+                  <td>null</td>
+                  <td>
+                    <div class="icon">
+                      <i class="bi bi-person-fill" data-bs-toggle="modal" data-bs-target="#Getcustomer"
+                        (click)="getCustomerbyId(cusdata.customerId)"></i>&nbsp;&nbsp;&nbsp;
+                      <i class="bi bi-eye"
+                        (click)="goToPage( 'cusclander',cusdata.customerName,cusdata.paidAmount,cusdata.installment,cusdata.pendingAmount)"></i>
+                      <!-- <i class="bi bi-eye" data-bs-toggle="modal" data-bs-target="#Getcalender" (click)="getrecieptId(cusdata.customerId)"></i>
                                             <div class="modal fade" id="Getcalender" tabindex="-1">
                                                 <div class="modal-dialog modal-xl">
                                                     <div class="modal-content">
@@ -98,194 +101,201 @@
                                                 </div>
                                             </div> -->
 
-                                            <div class="modal fade" id="Getcustomer" tabindex="-1">
-                                                <div class="modal-dialog modal-xl">
-                                                    <div class="modal-content">
-                                                        <div class="modal-header">
+                      <div class="modal fade" id="Getcustomer" tabindex="-1">
+                        <div class="modal-dialog modal-xl">
+                          <div class="modal-content">
+                            <div class="modal-header">
 
-                                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                                        </div>
-                                                        <div class="modal-body">
-
-
-                                                            <div class="col-md-4" style="float: left;">
-                                                                <table class="table table-borderless ">
-                                                                    <tbody>
-                                                                        <h5 class="card-title">Personal Details</h5>
-                                                                        <tr>
-                                                                            <th scope="col">Name</th>
-
-                                                                            <td>: {{customerDetailbyid.personalDetails.name}}</td>
-                                                                        </tr>
-                                                                        <tr>
-                                                                            <th scope="col">Father Name</th>
-                                                                            <td>{{customerDetailbyid.personalDetails.father}}</td>
-                                                                        </tr>
-                                                                        <tr>
-                                                                            <th scope="col">Spouse Name</th>
-                                                                            <td>{{customerDetailbyid.personalDetails.spouse_name}}</td>
-                                                                        </tr>
-                                                                        <tr>
-                                                                            <th scope="col">DOB</th>
-                                                                            <td>{{customerDetailbyid.personalDetails.dob}}</td>
-                                                                        </tr>
-                                                                        <tr>
-                                                                            <th scope="col">Mobile number</th>
-                                                                            <td>{{customerDetailbyid.personalDetails.phoneNumber}}</td>
-                                                                        </tr>
-                                                                        <tr>
-                                                                            <th scope="col">Alter Mobile number</th>
-                                                                            <td>{{customerDetailbyid.personalDetails.altrPhoneNumber}}</td>
-                                                                        </tr>
-                                                                        <tr>
-                                                                            <th scope="col">Email ID</th>
-                                                                            <td>{{customerDetailbyid.personalDetails.email}}</td><br></tr>
-                                                                        <tr>
-                                                                            <th scope="col">Aadhar No.</th>
-                                                                            <td>{{customerDetailbyid.personalDetails.aadhar_no}}</td>
-                                                                        </tr>
-                                                                        <tr>
-                                                                            <th scope="col">Pan No.</th>
-                                                                            <td>{{customerDetailbyid.personalDetails.pan}}</td><br></tr>
-                                                                        <tr>
-                                                                            <th scope="col">Gender</th>
-                                                                            <td>{{customerDetailbyid.personalDetails.gender}}</td>
-                                                                        </tr>
-                                                                        <tr>
-                                                                            <th scope="col">Occupation</th>
-                                                                            <td>{{customerDetailbyid.personalDetails.occupation}}</td>
-                                                                        </tr>
-                                                                        <tr>
-                                                                            <th scope="col">Monthly Income</th>
-                                                                            <td>{{customerDetailbyid.personalDetails.monthly_income}}</td>
-                                                                        </tr>
-                                                                        <tr>
-                                                                            <th scope="col">Marrital Status</th>
-                                                                            <td>{{customerDetailbyid.personalDetails.marrital_status}}</td><br></tr>
-                                                                        <tr>
-                                                                            <th scope="col">Address</th>
-                                                                            <td>{{customerDetailbyid.personalDetails.address}}</td>
-                                                                        </tr>
-                                                                        <tr>
-                                                                            <th scope="col">City</th>
-                                                                            <td>{{customerDetailbyid.personalDetails.city}}</td>
-                                                                        </tr>
-                                                                        <tr>
-                                                                            <th scope="col">State</th>
-                                                                            <td>{{customerDetailbyid.personalDetails.state}}</td>
-                                                                        </tr>
-                                                                        <tr>
-                                                                            <th scope="col">Pincode</th>
-                                                                            <td>{{customerDetailbyid.personalDetails.pincode}}</td>
-                                                                        </tr>
-                                                                        <tr>
-                                                                            <th scope="col">Landmark</th>
-                                                                            <td>{{customerDetailbyid.personalDetails.landmark}}</td>
-                                                                        </tr>
-                                                                    </tbody>
-                                                                </table>
-                                                            </div>
-                                                            <div class="col-md-4" style="float: left;">
-                                                                <table class="table table-borderless ">
-
-                                                                    <tbody>
-
-                                                                        <h5 class="card-title">Office Details</h5>
-
-                                                                        <tr>
-                                                                            <th scope="col">Customer ID</th>
-                                                                            <td>{{customerDetailbyid.customerGenId}}</td>
-                                                                        </tr>
-                                                                        <tr>
-                                                                            <th scope="col">Branch Name</th>
-                                                                            <td>{{customerDetailbyid.branchName}}</td>
-                                                                        </tr>
-
-                                                                        <tr>
-                                                                            <th scope="col">Joining date</th>
-                                                                            <td>{{customerDetailbyid.joiningDate}}</td><br></tr>
-                                                                        <tr>
-                                                                            <th scope="col">Refered Type</th>
-                                                                            <td>{{customerDetailbyid.referedType}}</td>
-                                                                        </tr>
-                                                                        <tr>
-                                                                            <th scope="col">Refered By</th>
-                                                                            <td>{{customerDetailbyid.referedBy}}</td><br></tr>
-                                                                    </tbody>
-                                                                </table>
-                                                            </div>
-                                                            <div class="col-md-4" style="float: left;">
-                                                                <table class="table table-borderless ">
-                                                                    <tbody>
-                                                                        <h5 class="card-title">Nominee Details</h5>
-                                                                        <tr>
-                                                                            <th scope="col">Name</th>
-                                                                            <td>{{customerDetailbyid.customerNomineeDetails.name}}</td><br></tr>
-                                                                        <tr>
-                                                                            <th scope="col">Relationship</th>
-                                                                            <td>{{customerDetailbyid.customerNomineeDetails.relationship}}</td>
-                                                                        </tr>
-
-                                                                        <tr>
-                                                                            <th scope="col">Aadhar NO.</th>
-                                                                            <td>{{customerDetailbyid.customerNomineeDetails.adharNumber}}</td>
-                                                                        </tr>
-                                                                    </tbody>
-                                                                </table>
-                                                            </div>
-                                                            <div class="col-md-4" style="float: left;">
-                                                                <table class="table table-borderless ">
-                                                                    <tbody>
-                                                                        <h5 class="card-title">Chit Details</h5>
-                                                                        <tr>
-                                                                            <th scope="col">Scheme</th>
-
-                                                                            <td>{{customerDetailbyid.customerChitDetails[0].scheme}}</td>
-                                                                        </tr>
-                                                                        <tr>
-                                                                            <th scope="col">Subscription</th>
-                                                                            <td>{{customerDetailbyid.customerChitDetails[0].subscription}}</td>
-                                                                        </tr>
-                                                                        <tr>
-                                                                            <th scope="col">Collection Route</th>
-                                                                            <td>{{customerDetailbyid.customerChitDetails[0].collection_route}}</td>
-                                                                        </tr>
-
-                                                                        <tr>
-                                                                            <th scope="col">chit Asking Month</th>
-                                                                            <td>{{customerDetailbyid.customerChitDetails[0].chit_asking_month}}</td>
-                                                                        </tr>
-                                                                        <tr>
-                                                                            <th scope="col">Remarks</th>
-                                                                            <td>{{customerDetailbyid.customerChitDetails[0].remarks}}</td>
-                                                                        </tr>
-                                                                    </tbody>
+                              <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
 
 
-                                                                </table>
+                              <div class="col-md-4" style="float: left;">
+                                <table class="table table-borderless ">
+                                  <tbody>
+                                    <h5 class="card-title">Personal Details</h5>
+                                    <tr>
+                                      <th scope="col">Name</th>
 
-                                                            </div>
+                                      <td>: {{customerDetailbyid.personalDetails.name}}</td>
+                                    </tr>
+                                    <tr>
+                                      <th scope="col">Father Name</th>
+                                      <td>{{customerDetailbyid.personalDetails.father}}</td>
+                                    </tr>
+                                    <tr>
+                                      <th scope="col">Spouse Name</th>
+                                      <td>{{customerDetailbyid.personalDetails.spouse_name}}</td>
+                                    </tr>
+                                    <tr>
+                                      <th scope="col">DOB</th>
+                                      <td>{{customerDetailbyid.personalDetails.dob}}</td>
+                                    </tr>
+                                    <tr>
+                                      <th scope="col">Mobile number</th>
+                                      <td>{{customerDetailbyid.personalDetails.phoneNumber}}</td>
+                                    </tr>
+                                    <tr>
+                                      <th scope="col">Alter Mobile number</th>
+                                      <td>{{customerDetailbyid.personalDetails.altrPhoneNumber}}</td>
+                                    </tr>
+                                    <tr>
+                                      <th scope="col">Email ID</th>
+                                      <td>{{customerDetailbyid.personalDetails.email}}</td><br>
+                                    </tr>
+                                    <tr>
+                                      <th scope="col">Aadhar No.</th>
+                                      <td>{{customerDetailbyid.personalDetails.aadhar_no}}</td>
+                                    </tr>
+                                    <tr>
+                                      <th scope="col">Pan No.</th>
+                                      <td>{{customerDetailbyid.personalDetails.pan}}</td><br>
+                                    </tr>
+                                    <tr>
+                                      <th scope="col">Gender</th>
+                                      <td>{{customerDetailbyid.personalDetails.gender}}</td>
+                                    </tr>
+                                    <tr>
+                                      <th scope="col">Occupation</th>
+                                      <td>{{customerDetailbyid.personalDetails.occupation}}</td>
+                                    </tr>
+                                    <tr>
+                                      <th scope="col">Monthly Income</th>
+                                      <td>{{customerDetailbyid.personalDetails.monthly_income}}</td>
+                                    </tr>
+                                    <tr>
+                                      <th scope="col">Marrital Status</th>
+                                      <td>{{customerDetailbyid.personalDetails.marrital_status}}</td><br>
+                                    </tr>
+                                    <tr>
+                                      <th scope="col">Address</th>
+                                      <td>{{customerDetailbyid.personalDetails.address}}</td>
+                                    </tr>
+                                    <tr>
+                                      <th scope="col">City</th>
+                                      <td>{{customerDetailbyid.personalDetails.city}}</td>
+                                    </tr>
+                                    <tr>
+                                      <th scope="col">State</th>
+                                      <td>{{customerDetailbyid.personalDetails.state}}</td>
+                                    </tr>
+                                    <tr>
+                                      <th scope="col">Pincode</th>
+                                      <td>{{customerDetailbyid.personalDetails.pincode}}</td>
+                                    </tr>
+                                    <tr>
+                                      <th scope="col">Landmark</th>
+                                      <td>{{customerDetailbyid.personalDetails.landmark}}</td>
+                                    </tr>
+                                  </tbody>
+                                </table>
+                              </div>
+                              <div class="col-md-4" style="float: left;">
+                                <table class="table table-borderless ">
 
-                                                            <div class="modal-footer ">
-                                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close
-                                                                    </button>
+                                  <tbody>
 
-                                                            </div>
-                                                        </div>
+                                    <h5 class="card-title">Office Details</h5>
 
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </td>
-                                </tr>
+                                    <tr>
+                                      <th scope="col">Customer ID</th>
+                                      <td>{{customerDetailbyid.customerGenId}}</td>
+                                    </tr>
+                                    <tr>
+                                      <th scope="col">Branch Name</th>
+                                      <td>{{customerDetailbyid.branchName}}</td>
+                                    </tr>
+
+                                    <tr>
+                                      <th scope="col">Joining date</th>
+                                      <td>{{customerDetailbyid.joiningDate}}</td><br>
+                                    </tr>
+                                    <tr>
+                                      <th scope="col">Refered Type</th>
+                                      <td>{{customerDetailbyid.referedType}}</td>
+                                    </tr>
+                                    <tr>
+                                      <th scope="col">Refered By</th>
+                                      <td>{{customerDetailbyid.referedBy}}</td><br>
+                                    </tr>
+                                  </tbody>
+                                </table>
+                              </div>
+                              <div class="col-md-4" style="float: left;">
+                                <table class="table table-borderless ">
+                                  <tbody>
+                                    <h5 class="card-title">Nominee Details</h5>
+                                    <tr>
+                                      <th scope="col">Name</th>
+                                      <td>{{customerDetailbyid.customerNomineeDetails.name}}</td><br>
+                                    </tr>
+                                    <tr>
+                                      <th scope="col">Relationship</th>
+                                      <td>{{customerDetailbyid.customerNomineeDetails.relationship}}</td>
+                                    </tr>
+
+                                    <tr>
+                                      <th scope="col">Aadhar NO.</th>
+                                      <td>{{customerDetailbyid.customerNomineeDetails.adharNumber}}</td>
+                                    </tr>
+                                  </tbody>
+                                </table>
+                              </div>
+                              <div class="col-md-4" style="float: left;">
+                                <table class="table table-borderless ">
+                                  <tbody>
+                                    <h5 class="card-title">Chit Details</h5>
+                                    <tr>
+                                      <th scope="col">Scheme</th>
+
+                                      <td>{{customerDetailbyid.customerChitDetails[0].scheme}}</td>
+                                    </tr>
+                                    <tr>
+                                      <th scope="col">Subscription</th>
+                                      <td>{{customerDetailbyid.customerChitDetails[0].subscription}}</td>
+                                    </tr>
+                                    <tr>
+                                      <th scope="col">Collection Route</th>
+                                      <td>{{customerDetailbyid.customerChitDetails[0].collection_route}}</td>
+                                    </tr>
+
+                                    <tr>
+                                      <th scope="col">chit Asking Month</th>
+                                      <td>{{customerDetailbyid.customerChitDetails[0].chit_asking_month}}</td>
+                                    </tr>
+                                    <tr>
+                                      <th scope="col">Remarks</th>
+                                      <td>{{customerDetailbyid.customerChitDetails[0].remarks}}</td>
+                                    </tr>
+                                  </tbody>
 
 
-                            </tbody>
-                        </table>
+                                </table>
+
+                              </div>
+
+                              <div class="modal-footer ">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close
+                                </button>
+
+                              </div>
+                            </div>
+
+                          </div>
+                        </div>
+                      </div>
                     </div>
-                </div>
-            </div>
+                  </td>
+                </tr>
+
+
+              </tbody>
+            </table>
+          </div>
         </div>
-    </section>
+      </div>
+    </div>
+  </section>
 </main>

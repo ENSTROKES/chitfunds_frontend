@@ -77,3 +77,7 @@ body {
 .breadcrumb {
   font-size: small;
 }
+
+.w-10 {
+  width: 10%;
+}
