@@ -65,6 +65,8 @@ export class ReceiptComponent implements OnInit {
   recptype: any;
   recpdate: any;
   recptselectvalue: any;
+  filterCustomerName: any;
+  filterBranchName: any;
 
   //For paination
   totalReceipt: any;
@@ -227,7 +229,7 @@ export class ReceiptComponent implements OnInit {
   url_value = this.userData.getReceipt + '?size=10&page=' + this.pageNumber;
   //routeall_value:any;
 
-  searchFilter(routeValue: any, recptype: any, recpdate: any) {
+  searchFilter(routeValue: any, recptype: any, recpdate: any, filterCustomerName: any,  filterBranchName : any) {
     //console.log("rout:"+routeValue);
     //console.log("type:"+recptype);
     //console.log("date:"+recpdate);
@@ -242,6 +244,12 @@ export class ReceiptComponent implements OnInit {
     }
     if (recpdate != undefined && recpdate != 'All') {
       this.url_value += '&billDate=' + recpdate;
+    }
+    if (filterCustomerName != undefined && filterCustomerName?.cusName != 'All') {
+      this.url_value += '&customerName=' + filterCustomerName?.cusName;
+    }
+    if (filterBranchName != undefined && filterBranchName != 'All') {
+      this.url_value += '&branchName=' + filterBranchName;
     }
 
     this.http.get(this.url_value).subscribe((data) => {
@@ -258,7 +266,7 @@ export class ReceiptComponent implements OnInit {
   }
   changePage(event: number) {
     this.pageNumber = event;
-    this.searchFilter(this.routeValue, this.recptype, this.recpdate);
+    this.searchFilter(this.routeValue, this.recptype, this.recpdate, this.filterCustomerName,  this.filterBranchName);
   }
 
   grpidvalue: any;

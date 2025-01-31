@@ -85,9 +85,27 @@
                                                         maxlength="200" />
                                                 </div>
                                                 <div class="col-md-2">
+                                                    <label for="inputName6" class="form-label"> Customer Name</label>
+                                                    <select ngModel name="filterCustomerName" [(ngModel)]="filterCustomerName" class="form-control">
+                                                        <option value="" disable selected hidden>---Select----</option>
+                                                        <option *ngFor="let cusData of ListOfCustomerData" [ngValue]="{cusId:  cusData._id, cusName: cusData.personalDetails.name, collectroute: cusData.customerChitDetails[0].collection_route}">
+                                                          {{cusData.personalDetails.name}}
+                                                       </option>
+                                                    </select>
+                                                </div>
+                                                <div class="col-md-2">
+                                                  <label for="inputName7" class="form-label"> Branch Name</label>
+                                                    <select ngModel name="filterBranchName" [(ngModel)]="filterBranchName" class="form-control">
+                                                        <option value="" disable selected hidden>---Select----</option>
+                                                        <option *ngFor="let branchData of ListOfBranchData">
+                                                            {{ branchData.officeName}}
+                                                        </option>
+                                                    </select>
+                                                </div>
+                                                <div class="col-md-2">
                                                     <button type="button" style="margin-top:32px;"
                                                         class="btn btn-primary" data-bs-dismiss="modal"
-                                                        (click)="searchFilter(routeValue,recptype,recpdate)">Search</button>
+                                                        (click)="searchFilter(routeValue,recptype,recpdate,filterCustomerName,filterBranchName)">Search</button>
                                                 </div>
 
                                             </div>
