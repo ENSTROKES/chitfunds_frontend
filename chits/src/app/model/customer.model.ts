@@ -12,5 +12,6 @@ export class Customer {
         referedBy:string;
         personalDetails: PersonalDetails;
         customerNomineeDetails:customerNomineeDetails;
+        customerCoApplicantDetails?: customerNomineeDetails;
         customerChitDetails:customerChitDetails[];
 }

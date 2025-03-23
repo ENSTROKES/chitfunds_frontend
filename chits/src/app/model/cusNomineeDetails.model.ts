@@ -6,4 +6,5 @@ export class customerNomineeDetails {
   // nominee_address:string;
   createdDate: any;
   adharNumber:string;
+  phoneNumber?: string;
 }

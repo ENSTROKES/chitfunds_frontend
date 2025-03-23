@@ -37,6 +37,7 @@ export class ReceiptComponent implements OnInit {
   custmresponse: any;
 
   recprelpop = false;
+  phoneNo = "";
 
   //recipt
   ListOfReceiptData: any;
@@ -171,7 +172,6 @@ export class ReceiptComponent implements OnInit {
 
     data.employeeId = data.collectionEmployee.empId;
     data.collectionEmployee = data.collectionEmployee.empName;
-
     //console.log("cusid"+data.customerName.custicket);
     data.customerId = data.customerName.cusId;
     data.collectionRoute = data.customerName.collectroute;

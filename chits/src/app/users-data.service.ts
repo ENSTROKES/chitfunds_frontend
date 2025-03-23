@@ -13,7 +13,7 @@ export class UserDataService {
 
   data = String;
   // urlstrng= "https://api.vanmohportal.com/"
- urlstrng= "http://3.109.252.15:8080/chitfund/"
+ urlstrng= "http://13.201.82.39:9999/chitfund/"
   // url = 'https://jsonplaceholder.typicode.com/users';
   url = this.urlstrng +'getAllEmployee';
   createurl = this.urlstrng +'createEmployee';

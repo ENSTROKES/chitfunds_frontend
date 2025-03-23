@@ -11,6 +11,7 @@ import { FormBuilder, FormGroup, Validators,FormControl } from '@angular/forms';
 import { docbyid } from '../model/getdocbyid.model';
 import Swal from 'sweetalert2';
 import { interval } from 'rxjs';
+import stateCityReference from '../model/stateCityJson';
 
 
 
@@ -33,10 +34,6 @@ export class CustomermanagementComponent implements OnInit {
     referedBy: new FormControl('',[Validators.required])
     
   })
-     
-    
-
-  
 
   rotselectvalue:any;
 
@@ -48,6 +45,7 @@ export class CustomermanagementComponent implements OnInit {
   // get branch
   response:any;
   ListOfBranchData:any;
+  cityReference: any = stateCityReference;
 //spinner
 button = 'Submit';
   isLoading = false;
@@ -92,6 +90,11 @@ customer : Customer = {
                    state:'',
                    city:'',
                    landmark:'',
+                   collection_address:'',
+                   collection_pincode:'',
+                   collection_state:'',
+                   collection_city:'',
+                   collection_landmark:'',
                    phoneNumber:'',
                    email:'',
                    altrPhoneNumber:''
@@ -100,10 +103,17 @@ customer : Customer = {
                           name:'',
                          
                           relationship:'',
-                         
+                          phoneNumber: '',
                           adharNumber:'',
                           createdDate: 0 
                           },
+                          customerCoApplicantDetails:{   nomineeId:0,                             
+                            name:'',
+                            relationship:'',
+                            phoneNumber: '',
+                            adharNumber:'',
+                            createdDate: 0 
+                            },
                           customerChitDetails:[{scheme  :  ' ',
                           createdDate: 0 ,
    subscription  :  ' ',
@@ -203,12 +213,19 @@ customer : Customer = {
                                     },                                
     customerNomineeDetails:{ nomineeId:0,                                 
                             name:'',
-                            
                             relationship:'',
-                            
                             adharNumber:'',
                             createdDate: 0 ,
+                            phoneNumber: ''
                             },
+                            customerCoApplicantDetails:{    
+                              nomineeId:0,                              
+                              name:'',
+                              relationship:'',
+                              adharNumber:'',
+                              phoneNumber: '',
+                              createdDate: 0 
+                              },
                             customerChitDetails:[{scheme  :  ' ',
    subscription  :  ' ',
    collection_route  :  ' ',
@@ -250,16 +267,33 @@ customer : Customer = {
                        landmark:'',
                        phoneNumber:'',
                        altrPhoneNumber:'',
-                       email:''
+                       email:'',
+                       stay_type: "",
+                       duration_of_stay: "",
+                       occupation_address: "",
+                       occupation_pincode: "",
+                       occupation_state: "",
+                       occupation_city: "",
+                       occupation_landmark: "",
+                       occupation_type: "",
+                       duration_of_occupation: ""
                                       },                                
-      customerNomineeDetails:{    nomineeId:0,                              
+                        customerNomineeDetails:{    
+                              nomineeId:0,                              
                               name:'',
-                              
                               relationship:'',
-                              
                               adharNumber:'',
+                              phoneNumber: '',
                               createdDate: 0 
                               },
+                              customerCoApplicantDetails:{    
+                                nomineeId:0,                              
+                                name:'',
+                                relationship:'',
+                                adharNumber:'',
+                                phoneNumber: '',
+                                createdDate: 0 
+                                },
                               customerChitDetails:[{scheme  :  ' ',
    subscription  :  ' ',
    collection_route  :  ' ',
@@ -309,6 +343,8 @@ routeoutpt:any;
 listofroutedata:any;
 routeValue:any;
 filslabValue:any;
+filsNameValue:any;
+filsPhoneNoValue:any;
 slabselectvalue:any;  
 filbranchValue:any;
 //For paination
@@ -385,6 +421,20 @@ cusfilurl:any;
 filbranch:any;
 route:any;
 filslab:any;
+occupationCityOptions: any[] = []
+cityOptions: any[] = []
+collectionCityOptions: any[] = []
+
+updatedOccupationCities () {
+  this.occupationCityOptions = this.customer.personalDetails.occupation_state ? this.cityReference[this.customer.personalDetails.occupation_state] : []
+}
+updatedCities () {
+  this.cityOptions = this.customer.personalDetails.state ? this.cityReference[this.customer.personalDetails.state] : []
+}
+updatedCollectionCities () {
+  this.collectionCityOptions = this.customer.personalDetails.collection_state ? this.cityReference[this.customer.personalDetails.collection_state ] : []
+}
+
 getCustomerlist(filbranch:any,route:any,filslab:any){
   //console.log("bra" +filbranch);
   //console.log("rt" +route);
@@ -404,6 +454,13 @@ if(filbranch != undefined && filbranch != "All"){
 //add slab
   if(filslab != undefined && filslab != "All"){
     this.cusfilurl+=("&scheme="+filslab);
+  }
+
+  if(this.filsPhoneNoValue != undefined && this.filsPhoneNoValue != ""){
+    this.cusfilurl+=("&phoneNo="+this.filsPhoneNoValue);
+  }
+  if(this.filsNameValue != undefined && this.filsNameValue != ""){
+    this.cusfilurl+=("&Name="+this.filsNameValue);
   }
 
 
@@ -450,6 +507,14 @@ getUserFormData(data:any){
     this.button = 'Submit';
     //alert('Done loading');
   }, 2000)
+}
+
+isSameAddress: boolean = false
+updateCollectionAddress () {  
+    this.customer.personalDetails.collection_address = this.isSameAddress  ?  this.customer.personalDetails.address : ""
+    this.customer.personalDetails.collection_pincode =  this.isSameAddress ? this.customer.personalDetails.pincode: ""
+    this.customer.personalDetails.collection_state =  this.isSameAddress ?  this.customer.personalDetails.state : ""
+    this.customer.personalDetails.collection_landmark =  this.isSameAddress ? this.customer.personalDetails.landmark : ""
 }
 
 

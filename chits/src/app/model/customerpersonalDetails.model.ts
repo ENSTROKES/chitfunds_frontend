@@ -15,7 +15,21 @@ export class PersonalDetails {
   state:string;
   city:string;
   landmark:string;
+  collection_address?: string;
+  collection_pincode?:any;
+  collection_state?:string;
+  collection_city?:string;
+  collection_landmark?:string;
   phoneNumber: string;
   altrPhoneNumber:string;
   email: string;
+  stay_type?:string;
+  duration_of_stay?: string;
+  occupation_address?: string;
+  occupation_pincode?:any;
+  occupation_state?:string;
+  occupation_city?:string;
+  occupation_landmark?:string;
+  occupation_type?:string;
+  duration_of_occupation?: string;
 }
