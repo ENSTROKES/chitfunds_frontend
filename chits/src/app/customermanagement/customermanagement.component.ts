@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { TabComponent } from "@syncfusion/ej2-angular-navigations";
 import { HttpClient } from '@angular/common/http';
 import {UserDataService} from 'src/app/users-data.service';
@@ -946,8 +946,9 @@ if (window.confirm('Customer craeted successfully without documents')) {
 // }
 
 
-  ngOnInit(): void {
-    this.idleTimeoutService.setIdleTimeout(5);
-}
+
+  ngOnInit() {
+    this.idleTimeoutService.setIdleTimeout(5);  
+  }
 }
 

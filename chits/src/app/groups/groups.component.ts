@@ -2,7 +2,7 @@ import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { UserDataService } from 'src/app/users-data.service';
 import { Group } from '../model/groupbyid.model';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { GroupMapCusList } from '../model/groupmapcustlist.model';
 import Swal from 'sweetalert2';
 
@@ -192,6 +192,7 @@ export class GroupsComponent implements OnInit {
     }, 2000);
   }
 
+ 
   // Create Group Method
 
   getgroupFormData(data: any): void {

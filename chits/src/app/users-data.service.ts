@@ -50,11 +50,14 @@ export class UserDataService {
   getledgerbyroute=this.urlstrng +"getLedgerByRoute?route=";
   getrecipetbycusid=this.urlstrng +"getReceiptByCustomerId?id=";
   getcustomercount=this.urlstrng +"getCustomersCount";
+  getAllTemporaryMap=this.urlstrng +"getAllTemporaryMap";
+  getTemporaryGroupById=this.urlstrng +"getTemporaryGroupById?id=";
+  getAllTemporaryGroup=this.urlstrng +"getAllTemporaryGroup";
   getgroupcount=this.urlstrng +"getGroupCount";
   getreceiptcount=this.urlstrng +"getReceiptCount";
   getbranchcount=this.urlstrng +"getBranchCount";
   exportledgerbyroute=this.urlstrng+"exportLedgerByRouteAndTime?route=KARAMADAI&fromdate=1680287401000&todate=1690828199000";
- exportledgerbygroup=this.urlstrng+"exportLedgerByGroup?group=";
+  exportledgerbygroup=this.urlstrng+"exportLedgerByGroup?group=";
   outstandingreport=this.urlstrng+"getOutStandingReport";
   outstandingcustomer=this.urlstrng+"customerOutstandingBySubscription";
   createroute=this.urlstrng+"createRoute";

@@ -50,6 +50,7 @@ const routes: Routes = [
   { path: 'minutesofauction', component: MinutesofauctionComponent,canActivate:[AuthenticationGuard]},
   { path: 'ledger', component:LedgerComponent,canActivate:[AuthenticationGuard]},
   { path: 'customermanagement', component: CustomermanagementComponent,canActivate:[AuthenticationGuard]},
+  { path: 'temp-grouplist', component: AddgroupmemberComponent,canActivate:[AuthenticationGuard]},
   { path: 'employeemanagement', component: EmployeemanagementComponent,canActivate:[AuthenticationGuard]},
   { path: 'groups', component: GroupsComponent,canActivate:[AuthenticationGuard]},
   { path: 'reports', component: ReportsComponent,canActivate:[AuthenticationGuard]},

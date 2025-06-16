@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { UserDataService } from '../users-data.service';
 import { Group } from '../model/groupbyid.model';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Customer } from '../model/customer.model';
 
 @Component({
@@ -11,6 +11,7 @@ import { Customer } from '../model/customer.model';
   styleUrls: ['./addgroupmember.component.css']
 })
 export class AddgroupmemberComponent implements OnInit {
+  [x: string]: Object;
   searchText: any;
   ListOfGroupData:any;
   grpres:any;
@@ -49,8 +50,11 @@ export class AddgroupmemberComponent implements OnInit {
 
     totalGroup: any;
     pageNumber: number = 1;
+  tempGroups: any;
+  tempGroupDetails: any;
 
-  constructor(private http: HttpClient, private userData:UserDataService,private router:Router) {
+    
+  constructor(private http: HttpClient, private activatedRoute: ActivatedRoute,private userData:UserDataService,private router:Router) {
 
 
     this.searchFilter("all","all");
@@ -208,6 +212,21 @@ changePage(event: number) {
 
 
   ngOnInit(): void {
+
+    this.http.get(this.userData.getAllTemporaryGroup).subscribe((res: any) => {
+      this.tempGroups = res.object
+    })
   }
+
+  getTempGroupbyId (data: any) {
+    this.http.get(this.userData.getTemporaryGroupById+data).subscribe((data: any) =>{
+      this.tempGroupDetails=data.object;
+    })
+  }
+  
+   isTemprorary () {
+    return this.activatedRoute.snapshot.url.toString().includes("temp-");
+  }
+
 
 }

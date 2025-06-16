@@ -14,12 +14,24 @@
           <a routerLink="/addgroupmember" routerLinkActive="active-link"> <i class="bi bi-circle"></i><span>Group
               Mapping</span> </a>
         </li>
-
+        <li>
+          <a routerLink="/temp-grouplist" routerLinkActive="active-link"> <i
+              class="bi bi-circle"></i><span>Temporary Group List</span> </a>
+        </li>
       </ul>
     </li>
-    <a class="nav-link collapsed" data-bs-target="#customer-nav" data-bs-toggle="collapse"
-      routerLink="/customermanagement" routerLinkActive="active-link"> <i
-        class="bi bi-person-lines-fill"></i><span>Customer Mangement</span></a>
+    <li class="nav-item">
+          <a class="nav-link collapsed" data-bs-target="#employee-nav" data-bs-toggle="collapse"
+            routerLink="/customermanagement" routerLinkActive="active-link"> <i
+              class="bi bi-person-lines-fill"></i><span>Customer Mangement</span> <i
+              class="bi bi-chevron-down ms-auto"></i></a>
+          <ul id="employee-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+            <li>
+              <a routerLink="/customermanagement" routerLinkActive="active-link"> <i class="bi bi-circle"></i><span>Cutomer List</span> </a>
+            </li>
+          
+          </ul>
+    </li>
 
     <li class="nav-item">
       <a class="nav-link collapsed" data-bs-target="#employee-nav" data-bs-toggle="collapse"
